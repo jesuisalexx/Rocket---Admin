@@ -1,7 +1,7 @@
 <template>
-  <LayoutWrapper>
+  <Layout>
     <router-view />
-  </LayoutWrapper>
+  </Layout>
 </template>
 
 <script setup lang="ts">
@@ -13,7 +13,7 @@ import {
 } from 'vue';
 import { useCommonStore } from '@/stores/common';
 import { theme } from '@/types/theme';
-import LayoutWrapper from '@/components/core/layoutWrapper/LayoutWrapper.vue';
+import Layout from '@/components/core/layout/Layout.vue';
 
 const commonStore = useCommonStore();
 

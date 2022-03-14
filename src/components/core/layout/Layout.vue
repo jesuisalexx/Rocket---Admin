@@ -27,4 +27,4 @@ const currentLayout = computed(() => {
 });
 </script>
 
-<style lang="scss" src="layout.scss" />
+<style lang="scss" src="./layout.scss" />

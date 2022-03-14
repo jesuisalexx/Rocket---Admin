@@ -11,4 +11,11 @@
   &__telegram-icon {
     margin-right: rem(10px);
   }
+  &__social {
+    display: flex;
+    align-items: center;
+  }
+  &__instagram {
+    margin-left: 10px;
+  }
 }

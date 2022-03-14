@@ -1,0 +1,14 @@
+@import "../../../assets/styles/utils";
+
+.header {
+  padding: 45px 54px;
+  display: flex;
+  justify-content: space-between;
+  &__controls {
+    display: flex;
+    align-items: center;
+  }
+  &__telegram-icon {
+    margin-right: rem(10px);
+  }
+}

@@ -1,0 +1,16 @@
+@import "src/assets/styles/utils";
+
+.theme-switch {
+  display: flex;
+  align-items: center;
+  &__button {
+    color: rgb(var(--color-primary-3));
+    cursor: pointer;
+    &:not(:first-child) {
+      margin-left: rem(6px);
+    }
+    &--active {
+      color: rgb(var(--color-primary-1));
+    }
+  }
+}

@@ -8,12 +8,13 @@
     display: flex;
     align-items: center;
   }
+  &__control {
+    &:not(:first-child) {
+      margin-left: rem(14px);
+    }
+  }
   &__telegram-icon {
     margin-right: rem(10px);
-  }
-  &__social {
-    display: flex;
-    align-items: center;
   }
   &__instagram {
     margin-left: 10px;

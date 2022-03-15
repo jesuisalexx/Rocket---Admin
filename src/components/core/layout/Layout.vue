@@ -14,7 +14,6 @@ import defaultLayout from '@/layouts/default/Default.vue';
 import { useCommonStore } from '@/stores/common';
 
 const route = useRoute();
-
 const commonStore = useCommonStore();
 
 const layoutsMap: Record<string, any> = {

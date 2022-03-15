@@ -5,8 +5,8 @@
 </template>
 
 <style lang="scss">
-.root {
-  index: 20px;
+.index {
+  padding: 50px;
   height: 3000px;
 }
 </style>

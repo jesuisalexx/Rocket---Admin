@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue';
-import { buttonState } from './types';
+import { buttonState } from '@/types/button';
 
 defineProps({
   state: {

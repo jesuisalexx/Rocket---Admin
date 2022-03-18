@@ -5,15 +5,6 @@
     @submit.prevent="handleSubmit"
   >
     <slot />
-    <div style="color: white; margin-top: 10px;">
-      Model: {{ model }}
-    </div>
-    <div style="color: white">
-      Errors: {{ errorsMap }}
-    </div>
-    <div style="color: white">
-      Touched: {{ touchedMap }}
-    </div>
   </form>
 </template>
 

@@ -13,6 +13,7 @@
         type="text"
         :autocomplete="autocomplete"
         :inputmode="inputmode"
+        :placeholder="placeholder"
         @input="onInput"
         @focus="onFocus"
         @blur="onBlur"
@@ -39,6 +40,10 @@ const props = defineProps({
     default: null,
   },
   label: {
+    type: String as PropType<string>,
+    default: null,
+  },
+  placeholder: {
     type: String as PropType<string>,
     default: null,
   },
@@ -84,19 +89,4 @@ const {
 );
 </script>
 
-<style lang="scss">
-  @import "../../../assets/styles/utils";
-  .field {
-    &__input-wrapper {
-      width: 100%;
-      height: rem(30px);
-      border: rem(1px) solid rgba(var(--white), 1);
-      border-radius: rem(2px);
-      color: rgba(var(--white), 1);
-      & > input {
-        height: 100%;
-        width: 100%;
-      }
-    }
-  }
-</style>
+<style lang="scss" src="./field.scss" />

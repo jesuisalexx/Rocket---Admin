@@ -31,6 +31,7 @@ module.exports = {
     'getter-return': 'off',
     'vuejs-accessibility/heading-has-content': 'off',
     'no-restricted-globals': 'off',
+    'no-param-reassign': 'off',
 
     'vuejs-accessibility/click-events-have-key-events': 'off',
     'vuejs-accessibility/form-control-has-label': 'off',

@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { AbstractRequestProps, ApiResponse } from '@/types/httpTransport';
+import { requestOnReject, requestOnResolve, responseOnReject } from '@/api/interceptors';
 
 const baseURL = String(import.meta.env.VITE_API_BASE_URL);
 
 const api = axios.create({
   baseURL,
 });
+api.interceptors.request.use(requestOnResolve, requestOnReject);
+api.interceptors.response.use((response) => response, responseOnReject);
 
 const request = async (
   { method, path, payload }: AbstractRequestProps,

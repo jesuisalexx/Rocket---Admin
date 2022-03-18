@@ -21,7 +21,7 @@ export const useAuthToken = () => {
     { immediate: true },
   );
 
-  const setToken = (newToken: string, isSessionStorage: boolean) => {
+  const setToken = (newToken: string | null, isSessionStorage = false) => {
     if (isSessionStorage) {
       sessionToken.value = newToken;
       return;

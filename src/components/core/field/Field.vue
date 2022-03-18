@@ -10,7 +10,7 @@
       <input
         v-model="localValue"
         :tabindex="disableTabNavigation ? -1 : tabIndex"
-        type="text"
+        :type="computedType"
         :autocomplete="autocomplete"
         :inputmode="inputmode"
         :placeholder="placeholder"
@@ -83,6 +83,7 @@ const {
   onFocus,
   onBlur,
   error,
+  computedType,
 } = useField(
   props,
   emit,

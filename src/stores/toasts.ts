@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import { Toast } from '@/types/toast';
+import { Toast, toastType } from '@/types/toast';
 import { uuid } from '@/utils/uuid';
 
 export const useToastStore = defineStore('toast', () => {
@@ -13,6 +13,22 @@ export const useToastStore = defineStore('toast', () => {
     });
   };
 
+  const showSuccess = (toast: Omit<Toast, 'id' | 'type'>) => {
+    list.value.push({
+      id: uuid(),
+      type: toastType.SUCCESS,
+      ...toast,
+    });
+  };
+
+  const showDanger = (toast: Omit<Toast, 'id' | 'type'>) => {
+    list.value.push({
+      id: uuid(),
+      type: toastType.DANGER,
+      ...toast,
+    });
+  };
+
   const removeToast = (toastId: Toast['id']) => {
     const toastIndex = list.value.findIndex((element) => element.id === toastId);
     list.value.splice(toastIndex, 1);
@@ -21,6 +37,8 @@ export const useToastStore = defineStore('toast', () => {
   return {
     list,
     showToast,
+    showSuccess,
+    showDanger,
     removeToast,
   };
 });

@@ -1,0 +1,12 @@
+@import "src/assets/styles";
+
+.app {
+  &__toast-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    .toast {
+      pointer-events: all;
+    }
+  }
+}

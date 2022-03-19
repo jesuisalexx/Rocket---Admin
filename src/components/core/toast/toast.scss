@@ -1,0 +1,31 @@
+@import "src/assets/styles/utils";
+
+.toast {
+  $this: &;
+  min-width: 320px;
+  @apply flex items-center justify-between py-5 px-5 bg-white border border-gray-200 rounded-lg shadow-xl;
+  //@apply py-5 pl-5 pr-14 bg-white border border-gray-200 rounded-lg shadow-xl dark:bg-dark-3 dark:text-gray-300;
+  @include media-breakpoint-down(md) {
+    min-width: auto;
+    max-width: calc(100% - 30px);
+  }
+  &--success {
+    @apply text-success;
+    #{$this}__icon {
+      @apply text-success;
+    }
+  }
+  &--danger {
+    @apply text-danger;
+    #{$this}__icon {
+      @apply text-danger;
+    }
+  }
+  &__content {
+    display: flex;
+    align-items: center;
+  }
+  .toast__close {
+
+  }
+}

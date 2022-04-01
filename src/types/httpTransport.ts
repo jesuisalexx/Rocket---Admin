@@ -1,11 +1,11 @@
 export type ApiResponse<ConcreteDTO = Record<any, any>> = {
   result: boolean
   status: number
-  response?: ConcreteDTO | null
+  data?: ConcreteDTO | null
   headers?: Record<any, any>
 }
 
-export type AbstractRequestProps = {
+export type RequestProps = {
   method: string
   path: string
   payload: any

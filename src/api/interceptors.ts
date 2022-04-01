@@ -20,4 +20,6 @@ export const responseOnReject = (error: Error) => {
   if (error.toString().indexOf('Request failed with status code 403') > 0) {
     sessionStore.setToken(null);
   }
+
+  throw error;
 };

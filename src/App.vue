@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import Layout from '@/components/core/layout/Layout.vue';
+import Layout from '@/components/app/layout/Layout.vue';
 import ToastLayer from '@/components/app/toastLayer/ToastLayer.vue';
 import { useApp } from '@/hooks/useApp';
 

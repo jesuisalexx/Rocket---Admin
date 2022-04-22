@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import eslintPlugin from 'vite-plugin-eslint';
-import friendlyTypeImports from 'rollup-plugin-friendly-type-imports';
 import pagesPlugin from 'vite-plugin-pages';
 import svgLoader from 'vite-svg-loader';
 import path from 'path';
@@ -13,7 +12,6 @@ export default defineConfig({
       reactivityTransform: true,
     }),
     // eslintPlugin(),
-    friendlyTypeImports(),
     svgLoader({
       svgo: false,
     }),

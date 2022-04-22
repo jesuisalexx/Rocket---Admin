@@ -4,11 +4,14 @@ import {
   provide,
   watch,
   Ref,
-  onMounted, reactive,
+  onMounted,
+  reactive,
 } from 'vue';
-
-// resetForm
-// resetAttrs
+import {
+  createObjectWithValues,
+  getValueByPath,
+  setValueByPath,
+} from '@/utils/object';
 
 export const useForm = (
   props: Record<any, any>,
@@ -30,32 +33,26 @@ export const useForm = (
   };
 
   // errors
-  const errorsList = ref([]);
-  const errorsMap = computed(() => errorsList.value.reduce((acc, error) => ({
-    ...acc,
-    [error[0]]: error[1],
-  }), {}));
+  const errorsList = ref<Array<{ path: string, message: string }>>([]);
+  const errorsMap = computed(() => errorsList.value.reduce((map, error) => {
+    setValueByPath(map, error.path, error.message);
+    return map;
+  }, {}));
   const isFormValid = computed(() => !errorsList.value.length);
   provide('errorsMap', errorsMap);
 
   // touch
   const touchedMap = reactive<Record<string, boolean>>(
-    Object
-      .keys(model.value)
-      .reduce((acc, modelKey) => ({
-        ...acc,
-        [modelKey]: false,
-      }), {}),
+    createObjectWithValues(model.value, false),
   );
-  const touch = (field: string) => {
-    touchedMap[field] = true;
+  const touch = (path: string) => {
+    setValueByPath(touchedMap, path, true);
   };
   const touchMany = (value: boolean) => {
-    Object
-      .keys(touchedMap)
-      .forEach((modelKey) => {
-        touchedMap[modelKey] = value;
-      });
+    Object.assign(
+      touchedMap,
+      createObjectWithValues(model.value, value),
+    );
   };
   const touchAll = () => {
     touchMany(true);
@@ -74,10 +71,14 @@ export const useForm = (
       await props.validationSchema.validate(model.value, { abortEarly: false });
       errorsList.value = [];
     } catch (err: any) {
-      const errors = err.inner.map((e: any) => [e.path, e.message]);
-      errorsList.value = errors.filter(
-        (error: string[]) => touchedMap[error[0]],
-      );
+      errorsList.value = err.inner
+        .map(({ path, message }: any) => ({
+          // yup return error path like menus[0].title, so
+          // we need to get path like menus.0.title
+          path: path.replaceAll('[', '.').replaceAll(']', ''),
+          message,
+        }))
+        .filter(({ path }: any) => getValueByPath(touchedMap, path));
     }
     return isFormValid.value;
   };
@@ -95,6 +96,8 @@ export const useForm = (
     if (isValid) {
       emit('submit');
     }
+    emit('validate', isFormValid.value);
+    return isValid;
   };
 
   const reset = () => {
@@ -105,7 +108,7 @@ export const useForm = (
 
   onMounted(() => {
     // Append hidden button type submit to form.
-    // For situations when submit button outside form
+    // For situations when submit button is outside form
     if (props.submitOnEnter && form.value) {
       const submitButton = document.createElement('button');
       submitButton.type = 'submit';
@@ -120,6 +123,7 @@ export const useForm = (
     touch,
     touchAll,
     clearTouchedMap,
+    errorsList,
     errorsMap,
     isFormValid,
     touchedMap,

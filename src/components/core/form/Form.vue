@@ -12,11 +12,12 @@
 import {
   ref,
   PropType,
+  VueElement,
 } from 'vue';
 import { useForm } from '@/hooks/useForm';
 import { touchTrigger } from '@/types/form';
 
-const form = ref<HTMLElement | null>(null);
+const form = ref<VueElement | null>(null);
 
 const props = defineProps({
   modelValue: {
@@ -33,29 +34,24 @@ const props = defineProps({
   },
   touchBy: {
     type: String as PropType<touchTrigger>,
-    default: touchTrigger.INPUT,
+    default: touchTrigger.BLUR,
   },
   submitOnEnter: {
     type: Boolean,
     default: false,
   },
 });
-const emit = defineEmits(['update:modelValue', 'submit']);
+const emit = defineEmits(['update:modelValue', 'submit', 'validate']);
 
 const {
-  model,
-  errorsMap,
-  touchedMap,
   handleSubmit,
+  reset,
+  validate,
 } = useForm(props, emit, form);
+
+defineExpose({
+  reset,
+  handleSubmit,
+  validate,
+});
 </script>
-
-<style lang="scss">
-@import "../../../assets/styles/utils";
-
-.form {
-  border: rem(1px) solid gray;
-  border-radius: rem(4px);
-  padding: rem(10px);
-}
-</style>

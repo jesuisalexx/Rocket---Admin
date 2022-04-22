@@ -3,21 +3,28 @@
     :is="currentLayout"
     class="layout"
   >
-    <slot />
+    <router-view v-slot="{ Component }">
+      <transition
+        name="layout-transition"
+        mode="out-in"
+      >
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </component>
 </template>
 
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import defaultLayout from '@/layouts/default/Default.vue';
+import DefaultLayout from '@/layouts/default/Default.vue';
 import { useCommonStore } from '@/stores/common';
 
 const route = useRoute();
 const commonStore = useCommonStore();
 
 const layoutsMap: Record<string, any> = {
-  default: defaultLayout,
+  default: DefaultLayout,
 };
 
 const currentLayout = computed(() => {

@@ -1,14 +1,12 @@
-@import "utils";
-
-body {
+@mixin useCustomScrollbar() {
   &::-webkit-scrollbar-track {
-    background: rgba(var(--color-primary-4), 1);
+    background: rgb(var(--color-slate-100));
   }
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(var(--color-primary-3), 1);
+    background-color: rgb(var(--color-slate-300));
     outline: none;
   }
   &::-webkit-scrollbar {
-    width: rem(13px);
+    width: 13px;
   }
 }

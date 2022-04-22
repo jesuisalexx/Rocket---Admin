@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { checkAuth, useSessionStore } from '@/stores/session';
+import { hideProgress, showProgress } from '@/libs/nprogress';
 import routes from '~pages';
 
 export const router = createRouter({
@@ -8,6 +9,8 @@ export const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  showProgress();
+
   const sessionStore = useSessionStore();
 
   const { guestRequired, authRequired } = to.meta;
@@ -23,4 +26,8 @@ router.beforeEach((to, from, next) => {
     return;
   }
   next();
+});
+
+router.afterEach(() => {
+  hideProgress();
 });

@@ -1,5 +1,15 @@
 @import "src/assets/styles";
 
+#nprogress {
+  .bar {
+    background: lightgray;
+    z-index: 100000;
+  }
+  .spinner {
+    display: none;
+  }
+}
+
 .app {
   &__toast-layer {
     position: fixed;

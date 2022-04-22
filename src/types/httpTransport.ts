@@ -1,8 +1,9 @@
-export type ApiResponse<ConcreteDTO = Record<any, any>> = {
-  result: boolean
-  status: number
-  data?: ConcreteDTO | null
-  headers?: Record<any, any>
+export type ApiResponse = {
+  result: boolean,
+  status: number,
+  data?: any,
+  meta?: any,
+  headers?: Record<any, any>,
 }
 
 export type RequestProps = {

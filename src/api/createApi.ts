@@ -8,6 +8,7 @@ export const createApi = ({
 }) => {
   const api = axios.create({
     baseURL: url,
+    timeout: 15000,
     headers,
   });
   api.interceptors.request.use(requestOnResolve, ((error) => error));
@@ -15,7 +16,7 @@ export const createApi = ({
 
   const request = async (
     { method, path, payload }: RequestProps,
-  ): Promise<ApiResponse<any>> => {
+  ): Promise<ApiResponse> => {
     try {
       // @ts-ignore
       const { status, data, headers } = await api[method](
@@ -77,11 +78,11 @@ export const createApi = ({
     {
       method: 'patch',
       path,
-      payload,
+      payload: { data: payload },
     },
   );
 
-  const deleteMethod = (
+  const del = (
     path: string,
     payload?: any,
   ) => request(
@@ -99,6 +100,6 @@ export const createApi = ({
     post,
     put,
     patch,
-    deleteMethod,
+    del,
   };
 };

@@ -7,8 +7,8 @@ import { i18n } from '@/i18n';
 import { OutsideClickDirective } from '@/directives/outsideClick';
 
 createApp(App)
-  .use(router)
   .use(createPinia())
+  .use(router)
   .use(i18n)
   .directive('click-outside', OutsideClickDirective)
   .mount('#app');

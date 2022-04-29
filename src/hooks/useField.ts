@@ -26,11 +26,15 @@ export const useField = (
         : modelValue.value
     ),
     set: (value) => {
+      const normalizedValue = props.type === 'number' && value === ''
+        ? 0
+        : value;
+
       if (isInsideForm) {
-        setValueByPath(model.value, fieldsPath.value, value);
+        setValueByPath(model.value, fieldsPath.value, normalizedValue);
         return;
       }
-      emit('update:modelValue', value);
+      emit('update:modelValue', normalizedValue);
     },
   });
 
@@ -50,8 +54,11 @@ export const useField = (
     isTouched.value = true;
   };
 
+  const permanentValidate = inject<() => void>('permanentValidate');
+
   const onInput = (event: InputEvent) => {
     if (props.isDisabled) return;
+    permanentValidate?.();
     if (isInsideForm && touchedMap && touchBy === touchTrigger.INPUT) {
       touch();
     }
@@ -59,6 +66,7 @@ export const useField = (
   };
   const onFocus = (event: InputEvent) => {
     if (props.isDisabled) return;
+    permanentValidate?.();
     if (isInsideForm && touchedMap && touchBy === touchTrigger.FOCUS) {
       touch();
     }
@@ -66,6 +74,7 @@ export const useField = (
   };
   const onBlur = (event: InputEvent) => {
     if (props.isDisabled) return;
+    permanentValidate?.();
     if (isInsideForm && touchedMap && touchBy === touchTrigger.BLUR) {
       touch();
     }

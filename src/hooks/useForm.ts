@@ -82,6 +82,11 @@ export const useForm = (
     }
     return isFormValid.value;
   };
+  const permanentValidate = async () => {
+    if (!props.permanent) return;
+    await validate();
+  };
+  provide('permanentValidate', permanentValidate);
 
   watch([model, touchedMap], async () => {
     if (props.permanent) {

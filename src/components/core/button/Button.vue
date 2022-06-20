@@ -2,8 +2,8 @@
   <button
     tabindex="0"
     :class="[
-      'button',
-      `button--${state}`
+      $style.button,
+      $style[state]
     ]"
   >
     <slot />
@@ -23,4 +23,14 @@ defineProps({
 });
 </script>
 
-<style lang="scss" src="./button.scss" />
+<style lang="scss" module>
+@import "src/assets/styles/utils";
+
+.button {
+  &.success {
+    color: rgb(var(--color-primary-3));
+    border: 1px solid rgb(var(--color-primary-3));
+    background-color: rgb(var(--color-background));
+  }
+}
+</style>

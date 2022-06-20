@@ -1,9 +1,9 @@
 <template>
-  <div class="theme-switch">
+  <div :class="$style.root">
     <div
       :class="{
-        'theme-switch__button': true,
-        'theme-switch__button--active': activeTheme === theme.LIGHT
+        [$style.button]: true,
+        [$style.active]: activeTheme === theme.LIGHT
       }"
       @click="setLightTheme"
     >
@@ -11,8 +11,8 @@
     </div>
     <div
       :class="{
-        'theme-switch__button': true,
-        'theme-switch__button--active': activeTheme === theme.DARK
+        [$style.button]: true,
+        [$style.active]: activeTheme === theme.DARK
       }"
       @click="setDarkTheme"
     >
@@ -40,4 +40,22 @@ const setDarkTheme = () => {
 };
 </script>
 
-<style lang="scss" src="./themeSwitch.scss" />
+<style lang="scss" module>
+@import "src/assets/styles/utils";
+
+.root {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  color: rgb(var(--color-primary-3));
+  cursor: pointer;
+  &:not(:first-child) {
+    margin-left: rem(6px);
+  }
+  &.active {
+    color: rgb(var(--color-primary-1));
+  }
+}
+</style>

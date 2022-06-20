@@ -1,26 +1,23 @@
 <template>
   <label
     :class="{
-      'field': true,
-      'field--disabled': isDisabled
+      [$style.root]: true,
+      [$style.disabled]: isDisabled
     }"
   >
     <span
       v-if="('label' in $slots) || label"
-      class="field__label"
+      :class="$style.label"
     >
       <slot name="label">
         {{ label }}
       </slot>
     </span>
-    <div class="field__input-wrapper">
+    <div :class="$style.field">
       <input
         ref="input"
         v-model="localValue"
         v-maska="mask"
-        :class="{
-          'field__input': true,
-        }"
         :tabindex="(disableTabNavigation || isDisabled) ? -1 : tabIndex"
         :type="computedType"
         :autocomplete="autocomplete"
@@ -33,7 +30,7 @@
     </div>
     <div
       v-if="error"
-      class="field__error"
+      :class="$style.error"
     >
       {{ error }}
     </div>
@@ -131,4 +128,29 @@ defineExpose({
 });
 </script>
 
-<style lang="scss" src="./field.scss" />
+<style lang="scss" module>
+@import "src/assets/styles/utils";
+
+.root {
+  display: block;
+  &.disabled {}
+}
+
+.label {}
+
+.field {
+  width: 100%;
+  height: rem(30px);
+  border: rem(1px) solid rgba(var(--white), 1);
+  border-radius: rem(2px);
+  color: rgba(var(--white), 1);
+  & > input {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.fieldLabel {}
+
+.error {}
+</style>

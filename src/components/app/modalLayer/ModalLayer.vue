@@ -1,21 +1,18 @@
 <template>
   <div
     :class="{
-      'modal-layer__wrapper': true,
-      'modal-layer__wrapper--active': isActiveModals
+      [$style.root]: true,
+      [$style.active]: isActiveModals
     }"
   >
     <div
-      :class="{
-        'modal-layer': true,
-        'modal-layer--active': isActiveModals,
-      }"
+      :class="$style.module"
     >
       <component
         :is="displayModal.component"
         v-if="isActiveModals"
         v-bind="displayModal.payload"
-        class="modal-layer__modal"
+        :class="$style.module"
         @close="closeModal(displayModal.id)"
       />
     </div>
@@ -47,4 +44,29 @@ const closeModal = (modalId: Modal['id']) => {
 };
 </script>
 
-<style lang="scss" src="./modalLayer.scss" />
+<style lang="scss" module>
+@import "src/assets/styles/utils";
+
+.root {
+  pointer-events: none;
+  &.active {
+    pointer-events: all;
+    .layer {
+      background-color: rgba(0,0,0, 0.2);
+    }
+  }
+}
+
+.layer {
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  @include useCustomScrollbar();
+}
+
+.module {
+  width: 100%;
+}
+</style>

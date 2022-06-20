@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @function extractRgb($color) {
   @return "#{red($color), green($color), blue($color)}";
 }
@@ -10,7 +12,7 @@
     @return $size;
   }
 
-  $remSize: $size / $baseFontSize;
+  $remSize: math.div($size, $baseFontSize);
 
   @if ($em) {
     @return $remSize + 0em;

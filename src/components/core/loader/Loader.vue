@@ -1,8 +1,8 @@
 <template>
   <LoaderIconDots
     :class="[
-      'loader',
-      `loader--${size}`
+      $style.loader,
+      $style[size],
     ]"
   />
 </template>
@@ -21,4 +21,13 @@ defineProps({
 });
 </script>
 
-<style lang="scss" src="./loader.scss" />
+<style lang="scss" module>
+.loader {
+  fill: currentColor;
+  stroke: currentColor;
+  &.md {
+    width: 36px !important;
+    height: 18px !important;
+  }
+}
+</style>

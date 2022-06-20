@@ -1,27 +1,24 @@
 <template>
   <Modal
-    class="confirm-modal"
-    @close="close"
+    :class="$style.root"
+    @close="handleClose"
   >
-    <div class="confirm-modal__content">
-      <div class="confirm-modal__icon">
-        close
-      </div>
-      <div class="confirm-modal__label">
+    <div :class="$style.content">
+      <div :class="$style.label">
         {{ label || 'Are you sure?' }}
       </div>
-      <div class="confirm-modal__text">
+      <div :class="$style.text">
         {{ text || 'Confirm' }}
       </div>
-      <div class="confirm-modal__controls">
+      <div :class="$style.controls">
         <Button
           state="outline-secondary"
-          @click="handleCancel"
+          @click="handleClose"
         >
           {{ cancelText || 'cancel' }}
         </Button>
         <Button
-          class="confirm-modal__submit"
+          :class="$style.submit"
           state="danger"
           @click="handleSubmit"
         >
@@ -65,14 +62,9 @@ const props = defineProps({
 });
 const emit = defineEmits(['close']);
 
-const close = () => {
+const handleClose = () => {
   props.onCancel();
   emit('close');
-};
-
-const handleCancel = () => {
-  props.onCancel();
-  close();
 };
 
 const handleSubmit = () => {
@@ -81,4 +73,24 @@ const handleSubmit = () => {
 };
 </script>
 
-<style lang="scss" src="./confirmModal.scss" />
+<style lang="scss" module>
+@import "src/assets/styles/utils";
+
+.root {
+  max-width: 400px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label, .text {
+  text-align: center;
+}
+
+.controls {}
+
+.submit {}
+</style>

@@ -1,7 +1,7 @@
 <template>
   <form
     ref="form"
-    class="form"
+    :class="$style.form"
     @submit.prevent="handleSubmit"
   >
     <slot />
@@ -55,3 +55,7 @@ defineExpose({
   validate,
 });
 </script>
+
+<style lang="scss" module>
+.form {}
+</style>

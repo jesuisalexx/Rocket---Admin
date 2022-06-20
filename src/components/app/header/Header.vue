@@ -1,10 +1,10 @@
 <template>
-  <div class="header">
+  <div :class="$style.root">
     <Logo />
-    <div class="header__controls">
-      <ThemeSwitch class="header__control" />
-      <TelegramIcon class="header__control" />
-      <InstagramIcon class="header__control" />
+    <div :class="$style.controls">
+      <ThemeSwitch :class="$style.control" />
+      <TelegramIcon :class="$style.control" />
+      <InstagramIcon :class="$style.control" />
     </div>
   </div>
 </template>
@@ -17,4 +17,25 @@ import ThemeSwitch from '@/components/app/themeSwitch/ThemeSwitch.vue';
 import Logo from '@/components/app/logo/Logo.vue';
 </script>
 
-<style lang="scss" src="./header.scss" />
+<style lang="scss" module>
+@import "src/assets/styles/utils";
+
+.root {
+  padding: 45px 54px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+}
+
+.control {
+  &:not(:first-child) {
+    margin-left: rem(14px);
+  }
+}
+
+.telegramIcon {}
+</style>

@@ -1,8 +1,8 @@
 <template>
-  <div class="card">
+  <div :class="$style.card">
     <div
       v-if="'head' in $slots"
-      class="card__head"
+      :class="$style.head"
     >
       <slot name="head" />
     </div>
@@ -10,4 +10,7 @@
   </div>
 </template>
 
-<style lang="scss" src="./card.scss" />
+<style lang="scss" module>
+.card {}
+.head {}
+</style>

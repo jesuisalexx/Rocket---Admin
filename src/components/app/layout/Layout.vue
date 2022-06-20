@@ -1,7 +1,7 @@
 <template>
   <component
     :is="currentLayout"
-    class="layout"
+    :class="$style.layout"
   >
     <router-view v-slot="{ Component }">
       <transition
@@ -52,4 +52,30 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<style lang="scss" src="./layout.scss" />
+<style lang="scss" module>
+.layout {
+  min-height: calc(100 * var(--vh));
+  & > * {
+    min-height: 100%;
+  }
+}
+</style>
+
+<style lang="scss">
+.layout-transition {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity 0.15s ease, .15s transform;
+  }
+
+  &-enter-from {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+  &-leave-to {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+}
+
+</style>

@@ -1,14 +1,14 @@
 <template>
   <transition-group
     tag="div"
-    class="toast-layer"
+    :class="$style.toastLayer"
     name="toast"
     mode="out-in"
   >
     <Toast
       v-for="(toast, toastIndex) in toasts"
       :key="toast.id"
-      class="toast-layer__toast"
+      :class="$style.toast"
       :style="{
         top: `${(TOAST_HEIGHT * toastIndex) + (TOAST_GAP * (toastIndex + 1))}px`,
         right: `${TOAST_GAP}px`,
@@ -37,4 +37,34 @@ const hideToast = (toastId: ToastType['id']) => {
 };
 </script>
 
-<style lang="scss" src="./toastLayer.scss" />
+<style lang="scss" module>
+@import "src/assets/styles/utils";
+
+.toastLayer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.toast {
+  pointer-events: all;
+  position: absolute;
+  transition: .20s top, .20s opacity;
+  background-color: white;
+}
+</style>
+
+<style lang="scss">
+.toast {
+  &-enter-active,
+  &-leave-active {
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  &-enter-from,
+  &-leave-to {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+</style>

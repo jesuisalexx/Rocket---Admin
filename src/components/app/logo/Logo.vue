@@ -1,5 +1,5 @@
 <template>
-  <div class="logo">
+  <div :class="$style.logo">
     {{ commonStore.logoText }}
   </div>
 </template>
@@ -10,4 +10,8 @@ import { useCommonStore } from '@/stores/common';
 const commonStore = useCommonStore();
 </script>
 
-<style lang="scss" src="./logo.scss" />
+<style lang="scss" module>
+.logo {
+  color: rgb(var(--color-primary-1));
+}
+</style>

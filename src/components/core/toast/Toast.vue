@@ -1,17 +1,20 @@
 <template>
-  <div :class="['toast', `toast--${toast.type}`]">
-    <div class="toast__content">
-      <div class="ml-4 mr-4">
-        <div class="font-medium">
-          {{ toast.label }}
-        </div>
-        <div class="text-gray-600 mt-1">
-          {{ toast.text }}
-        </div>
+  <div
+    :class="[
+      $style.root,
+      $style[toast.type],
+    ]"
+  >
+    <div :class="$style.content">
+      <div :class="$style.label">
+        {{ toast.label }}
+      </div>
+      <div :class="$style.text">
+        {{ toast.text }}
       </div>
     </div>
     <button
-      class="toast__close"
+      :class="$style.close"
       @click="closeModal"
     >
       close
@@ -45,4 +48,16 @@ if (duration) {
 }
 </script>
 
-<style lang="scss" src="./toast.scss" />
+<style lang="scss" module>
+@import "src/assets/styles/utils";
+
+.root {}
+
+.content {}
+
+.label {}
+
+.text {}
+
+.close {}
+</style>

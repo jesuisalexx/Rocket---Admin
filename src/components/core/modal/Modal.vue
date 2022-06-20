@@ -1,30 +1,30 @@
 <template>
   <Card
     v-click-outside="close"
-    class="app-modal"
+    :class="$style.root"
   >
     <div
       :class="{
-        'app-modal__loader': true,
-        'app-modal__loader--active': isLoading,
+        [$style.loader]: true,
+        [$style.active]: isLoading,
       }"
     >
       <Loader />
     </div>
     <template #head>
-      <div class="app-modal__head">
+      <div :class="$style.head">
         <slot name="head">
           {{ label }}
         </slot>
         <button
-          class="app-modal__close-button"
+          :class="$style.closeButton"
           @click="close"
         >
           close
         </button>
       </div>
     </template>
-    <div class="app-modal__content">
+    <div :class="$style.content">
       <slot />
     </div>
   </Card>
@@ -51,4 +51,41 @@ const close = (e: Event) => {
 };
 </script>
 
-<style lang="scss" src="./modal.scss" />
+<style lang="scss" module>
+@import "src/assets/styles/utils";
+
+.root {
+  position: relative;
+  max-width: 600px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.content {
+  margin-top: 20px;
+}
+
+.closeButton {
+  margin-left: auto;
+}
+
+.loader {
+  position: absolute;
+  z-index: 300;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: .2s opacity;
+  pointer-events: none;
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+</style>

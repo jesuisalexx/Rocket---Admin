@@ -7,7 +7,7 @@ import { theme } from '@/types/theme';
 
 export const useCommonStore = defineStore('common', () => {
   // app theme
-  const activeTheme = ref<theme>("dark" as theme.DARK);
+  const activeTheme = ref<theme>('dark' as theme.DARK);
   watch(activeTheme, (value) => {
     document.body.removeAttribute('class');
     document.body.classList.add(value);

@@ -1,4 +1,4 @@
-export enum buttonState {
+export enum buttonVariant {
     PRIMARY = 'primary',
     SUCCESS = 'success',
 }

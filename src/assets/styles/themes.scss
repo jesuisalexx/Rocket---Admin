@@ -10,20 +10,10 @@
   --color-primary-2: #{extractRgb($gray-2)};
   --color-primary-3: #{extractRgb($gray-1)};
   --color-primary-4: #{extractRgb($black)};
-
-  --color-background: var(--color-primary-4);
-}
-
-.light {
-
-  --color-black: #{extractRgb($black)};
-  --color-white: #{extractRgb($white)};
-
-  --color-primary-1: #{extractRgb($black)};
-  --color-primary-2: #{extractRgb($gray-1)};
-  --color-primary-3: #{extractRgb($gray-2)};
-  --color-primary-4: #{extractRgb($gray-3)};
-  --color-primary-5: #{extractRgb($gray-4)};
-
+  --color-primary-accent: #{extractRgb($accent)};
+  --color-primary-accent-dark: #{extractRgb($accent-dark)};
+  --color-border: #{extractRgb($border)};
+  --color-body-light: #{extractRgb($body-light)};
+  --color-body-dark: #{extractRgb($body-dark)};
   --color-background: var(--color-primary-4);
 }

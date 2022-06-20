@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue';
-import { buttonVariant } from '@/types/button';
+import { buttonVariant } from './index';
 
 defineProps({
   variant: {

@@ -1,6 +1,6 @@
 <template>
-  <div class="default-layout">
-    <Header class="default-layout__header" />
+  <div :class="$style.root">
+    <Header :class="$style.header" />
     <slot />
   </div>
 </template>
@@ -9,4 +9,11 @@
 import Header from '@/components/app/header/Header.vue';
 </script>
 
-<style lang="scss" src="./default.scss" />
+<style lang="scss" module>
+.root {}
+
+.header {
+  position: sticky;
+  top: 0;
+}
+</style>

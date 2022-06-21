@@ -2,7 +2,8 @@
   <label
     :class="{
       [$style.root]: true,
-      [$style.disabled]: isDisabled
+      [$style.disabled]: isDisabled,
+      [$style.error]: error
     }"
   >
     <span
@@ -17,12 +18,14 @@
       <input
         ref="input"
         v-model="localValue"
-        v-maska="mask"
+        v-mask="mask"
+        :class="$style.input"
         :tabindex="(disableTabNavigation || isDisabled) ? -1 : tabIndex"
         :type="computedType"
         :autocomplete="autocomplete"
         :inputmode="inputmode"
         :placeholder="placeholder"
+        :disabled="isDisabled"
         @input="onInput"
         @focus="onFocus"
         @blur="onBlur"
@@ -30,7 +33,7 @@
     </div>
     <div
       v-if="error"
-      :class="$style.error"
+      :class="$style['error-text']"
     >
       {{ error }}
     </div>
@@ -133,24 +136,53 @@ defineExpose({
 
 .root {
   display: block;
-  &.disabled {}
+
+  &.disabled {
+    .input {
+      background: rgb(var(--color-border));
+      color: rgb(var(--color-body-dark));
+    }
+  }
 }
 
-.label {}
+.label {
+  color: rgb(var(--color-body-dark));
+}
 
 .field {
+}
+.input {
+  height: 100%;
   width: 100%;
-  height: rem(30px);
-  border: rem(1px) solid rgba(var(--white), 1);
-  border-radius: rem(2px);
-  color: rgba(var(--white), 1);
-  & > input {
-    height: 100%;
-    width: 100%;
+  border: 1px solid rgb(var(--color-border));
+  border-radius: 14px;
+  padding: 10px 16px;
+  background: none;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  color: rgba(var(--color-body-light));
+  cursor: pointer;
+  margin-top: 10px;
+
+  &::placeholder {
+    color: rgb(var(--color-body-dark));
+  }
+  &:focus {
+    border: 1px solid rgb(var(--color-primary-accent));
   }
 }
 
 .fieldLabel {}
 
-.error {}
+.error {
+  color: rgb(var(--color-orange));
+  .input {
+    border: 1px solid orange;
+  }
+}
+.error-text {
+  margin-top: 10px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+}
 </style>

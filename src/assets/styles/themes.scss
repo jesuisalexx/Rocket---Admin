@@ -15,5 +15,17 @@
   --color-border: #{extractRgb($border)};
   --color-body-light: #{extractRgb($body-light)};
   --color-body-dark: #{extractRgb($body-dark)};
-  --color-background: var(--color-primary-4);
+  --color-orange: #{extractRgb($orange)};
+  --color-red: #{extractRgb($red)};
+  --color-green: #{extractRgb($green)};
+  --color-light-green: #{extractRgb($light-green)};
+  --color-yellow: #{extractRgb($yellow)};
+  --color-blue: #{extractRgb($blue)};
+  --color-purple: #{extractRgb($purple)};
+  --color-pink: #{extractRgb($pink)};
+  --color-heading: #{extractRgb($heading)};
+  --color-surface: #{extractRgb($surface)};
+  --color-overlay-light: #{extractRgb($overlay-light)};
+  --color-background: #{extractRgb($background)};
+
 }

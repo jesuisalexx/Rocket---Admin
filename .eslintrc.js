@@ -32,6 +32,7 @@ module.exports = {
     'vuejs-accessibility/heading-has-content': 'off',
     'no-restricted-globals': 'off',
     'no-param-reassign': 'off',
+    'vue/multi-word-component-names': 'off',
 
     'vuejs-accessibility/click-events-have-key-events': 'off',
     'vuejs-accessibility/form-control-has-label': 'off',

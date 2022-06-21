@@ -1,18 +1,29 @@
 <template>
   <div class="index">
-    <Button variant="primary">
-      Button
-    </Button>
+    <Form
+      v-model="model"
+      :validation-schema="validationSchema"
+    >
+      <Field
+        label="zaloopa"
+        name="name"
+      />
+    </Form>
   </div>
 </template>
 
 <script setup lang="ts">
-import Button from '@/components/core/button/Button.vue';
-</script>
+import Field from '@/components/core/field/Field.vue';
+import Form from '@/components/core/form/Form.vue';
+import { ref } from 'vue';
+import { object, string } from 'yup';
 
-<style lang="scss">
-.index {
-  padding: 50px;
-  height: 3000px;
-}
-</style>
+const model = ref({
+  name: '',
+});
+
+const validationSchema = object().shape({
+  name: string()
+    .required(),
+});
+</script>

@@ -6,16 +6,19 @@
       $style[variant]
     ]"
   >
-<!--    <div v-if="$style.before in $slots || iconBefore">-->
-<!--      <slot>-->
-<!--        <Icon />-->
-<!--      </slot>-->
-<!--    </div>-->
+    <div
+      v-if="'before' in $slots || iconBefore"
+      :class="$style.buttonBefore"
+    >
+      <slot name="before">
+        <Icon :icon="iconBefore" />
+      </slot>
+    </div>
     <slot />
-<!--    <Icon-->
-<!--      :class="$style.icon"-->
-<!--      icon="settings"-->
-<!--    />-->
+    <!--    <Icon-->
+    <!--      :class="$style.icon"-->
+    <!--      icon="settings"-->
+    <!--    />-->
   </button>
 </template>
 
@@ -29,6 +32,10 @@ defineProps({
     type: String as PropType<string>,
     default: buttonVariant.PRIMARY,
     validator: (state: buttonVariant) => Object.values(buttonVariant).includes(state),
+  },
+  iconBefore: {
+    type: String as PropType<string>,
+    default: '',
   },
 });
 </script>
@@ -82,5 +89,10 @@ defineProps({
   }
 }
 .icon {
+}
+.buttonBefore {
+  width: 20px;
+  height: 20px;
+  z-index: 1;
 }
 </style>

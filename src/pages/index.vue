@@ -4,7 +4,10 @@
       v-model="model"
       :validation-schema="validationSchema"
     >
-      <Checkbox name="isChecked" />
+      <!--      <Checkbox name="isChecked" />-->
+      <!--      <Button icon-before="alert">-->
+      <!--        Button-->
+      <!--      </Button>-->
     </Form>
   </div>
 </template>

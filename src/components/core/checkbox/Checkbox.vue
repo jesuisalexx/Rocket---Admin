@@ -21,6 +21,7 @@
         @blur="onBlur"
       >
       <Icon
+        v-if="localValue"
         :class="$style.icon"
         icon="check"
         name="check"

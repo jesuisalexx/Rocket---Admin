@@ -4,8 +4,8 @@ export enum avatarShape {
 }
 
 export enum avatarSize {
-    SMALLCIRCLE = 'smallCircle',
-    BIGCIRCLE = 'bigCircle',
-    SMALLSQUARE = 'smallSquare',
-    BIGSQUARE = 'bigSquare',
+    XS = 'xs',
+    S = 's',
+    M = 'm',
+    L = 'l',
 }

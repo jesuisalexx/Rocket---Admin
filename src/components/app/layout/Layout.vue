@@ -62,6 +62,8 @@ onBeforeUnmount(() => {
 </style>
 
 <style lang="scss">
+@import "src/assets/styles/utils";
+
 .layout-transition {
   &-enter-active,
   &-leave-active {

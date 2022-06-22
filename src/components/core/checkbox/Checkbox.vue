@@ -1,30 +1,34 @@
 <template>
   <div
     :class="{
-      'checkbox': true,
-      'checkbox--checked': localValue
+      [$style.root]: true
     }"
   >
-    <div class="checkbox__check">
+    <div
+      :class="{
+        [$style.check]: true,
+        [$style.checked]: localValue
+      }"
+    >
       <input
         :id="inputId"
         v-model="localValue"
         tabindex="0"
         type="checkbox"
-        class="checkbox__input"
+        :class="$style.input"
         @input="onInput"
         @focus="onFocus"
         @blur="onBlur"
       >
       <Icon
-        class="checkbox__icon"
+        :class="$style.icon"
+        icon="check"
         name="check"
-        size="xs"
       />
     </div>
     <label
       :for="inputId"
-      class="checkbox__label"
+      :class="$style.label"
     >
       <slot />
     </label>
@@ -68,4 +72,34 @@ const {
 );
 </script>
 
-<style lang="scss" src="./checkbox.scss" />
+<style lang="scss" module>
+@import "src/assets/styles/utils";
+
+.root {
+}
+.check {
+  width: rem(18px);
+  height: rem(18px);
+  border-radius: rem(5px);
+  cursor: pointer;
+  border: rem(1px) solid rgb(var(--color-border));
+  background: rgb(var(--color-background));
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checked {
+  background: rgb(var(--color-primary-accent));
+  border: rem(1px) solid rgb(var(--color-primary-accent));
+}
+.input {
+  width: 100%;
+  height: 100%;
+}
+.icon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+</style>

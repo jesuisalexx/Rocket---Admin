@@ -10,11 +10,11 @@
 
 <script lang="ts" setup>
 
-export interface IconProps {
+interface IconProps {
   icon: string;
 }
 
-const props = defineProps<IconProps>()
+const props = defineProps<IconProps>();
 
 defineExpose(props);
 </script>
@@ -23,12 +23,10 @@ defineExpose(props);
 @import "@/assets/styles/utils";
 
 .icon {
-  display: flex;
   flex-direction: column;
   max-width: 100%;
   max-height: 100%;
   pointer-events: none;
-  position: relative;
   .source {
     fill: currentColor;
   }

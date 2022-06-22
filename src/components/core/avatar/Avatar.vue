@@ -22,7 +22,7 @@ defineProps({
   },
   size: {
     type: String as PropType<string>,
-    default: avatarSize.BIGCIRCLE,
+    default: avatarSize.XS,
     validator: (state: avatarSize) => Object.values(avatarSize).includes(state),
   },
 });
@@ -39,19 +39,19 @@ defineProps({
   &.square {
     border-radius: 30%;
   }
-  &.smallCircle {
+  &.xs {
     width: 30px;
     height: 30px;
   }
-  &.bigCircle {
+  &.s {
     width: 40px;
     height: 40px;
   }
-  &.smallSquare {
+  &.m {
     width: 64px;
     height: 64px;
   }
-  &.bigSquare {
+  &.l {
     width: 150px;
     height: 150px;
   }

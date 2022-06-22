@@ -176,6 +176,7 @@ defineExpose({
 
 .error {
   color: rgb(var(--color-orange));
+
   .input {
     border: 1px solid orange;
   }

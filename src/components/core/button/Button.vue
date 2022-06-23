@@ -8,17 +8,21 @@
   >
     <div
       v-if="'before' in $slots || iconBefore"
-      :class="$style.buttonBefore"
+      :class="$style.iconBefore"
     >
       <slot name="before">
         <Icon :icon="iconBefore" />
       </slot>
     </div>
     <slot />
-    <!--    <Icon-->
-    <!--      :class="$style.icon"-->
-    <!--      icon="settings"-->
-    <!--    />-->
+    <div
+      v-if="'after' in $slots || iconAfter"
+      :class="$style.iconAfter"
+    >
+      <slot name="after">
+        <Icon :icon="iconAfter" />
+      </slot>
+    </div>
   </button>
 </template>
 
@@ -37,6 +41,10 @@ defineProps({
     type: String as PropType<string>,
     default: '',
   },
+  iconAfter: {
+    type: String as PropType<string>,
+    default: '',
+  },
 });
 </script>
 
@@ -48,6 +56,7 @@ defineProps({
   font-size: rem(15px);
   cursor: pointer;
   display: flex;
+  align-items: center;
 
   &.success {
     color: rgb(var(--color-primary-3));
@@ -59,8 +68,8 @@ defineProps({
     background-color: rgb(var(--color-primary-accent));
     border-radius: rem(14px);
     padding: rem(8px) rem(24px);
-    box-shadow: 0 rem(3px) rgb(var(--color-primary-accent-dark));
-    transition: .1s;
+    box-shadow: 0 rem(2px) rgb(var(--color-primary-accent-dark));
+    transition: 0.27s;
     &:hover {
       color: rgb(var(--color-white));
       background-color: rgb(var(--color-primary-accent));
@@ -74,7 +83,7 @@ defineProps({
     border-radius: rem(14px);
     padding: rem(8px) rem(24px);
     border: rem(1px) solid rgb(var(--color-border));
-    transition: .1s;
+    transition: 0.27s;
     &:hover {
       color: rgb(var(--color-primary-accent));
       background-color: rgba(var(--color-primary-accent), 0.1);
@@ -90,9 +99,14 @@ defineProps({
 }
 .icon {
 }
-.buttonBefore {
-  width: 20px;
-  height: 20px;
-  z-index: 1;
+.iconBefore {
+  width: rem(20px);
+  height: rem(20px);
+  margin-right: rem(10px);
+}
+.iconAfter {
+  width: rem(20px);
+  height: rem(20px);
+  margin-left: rem(10px);
 }
 </style>

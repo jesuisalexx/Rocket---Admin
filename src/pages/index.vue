@@ -5,9 +5,17 @@
       :validation-schema="validationSchema"
     >
       <!--      <Checkbox name="isChecked" />-->
-      <!--      <Button icon-before="alert">-->
+      <!--      <Button-->
+      <!--        variant="secondary"-->
+      <!--        icon-after="settings"-->
+      <!--      >-->
       <!--        Button-->
       <!--      </Button>-->
+      <Field
+        name="name"
+        label="password"
+        icon-after="hide"
+      />
     </Form>
   </div>
 </template>

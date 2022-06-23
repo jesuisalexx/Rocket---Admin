@@ -15,11 +15,23 @@
       </slot>
     </span>
     <div :class="$style.field">
+      <div
+        v-if="'before' in $slots || iconBefore"
+        :class="$style.iconBefore"
+      >
+        <slot name="before">
+          <Icon :icon="iconBefore" />
+        </slot>
+      </div>
       <input
         ref="input"
         v-model="localValue"
         v-mask="mask"
-        :class="$style.input"
+        :class="{
+          [$style.input]: true,
+          [$style.inputIconBefore]: iconBefore,
+          [$style.inputIconAfter]: iconAfter,
+        }"
         :tabindex="(disableTabNavigation || isDisabled) ? -1 : tabIndex"
         :type="computedType"
         :autocomplete="autocomplete"
@@ -30,6 +42,14 @@
         @focus="onFocus"
         @blur="onBlur"
       >
+      <div
+        v-if="'after' in $slots || iconAfter"
+        :class="$style.iconAfter"
+      >
+        <slot name="after">
+          <Icon :icon="iconAfter" />
+        </slot>
+      </div>
     </div>
     <div
       v-if="error"
@@ -41,6 +61,8 @@
 </template>
 
 <script setup lang="ts">
+import Icon from '@/components/core/icon/Icon.vue';
+
 import { nextTick, PropType, ref } from 'vue';
 import { useField } from '@/hooks/useField';
 import { inputType } from '@/types/form';
@@ -98,6 +120,14 @@ const props = defineProps({
     type: String as PropType<string>,
     default: '',
   },
+  iconBefore: {
+    type: String as PropType<string>,
+    default: '',
+  },
+  iconAfter: {
+    type: String as PropType<string>,
+    default: '',
+  },
 });
 const emit = defineEmits([
   'update:modelValue',
@@ -150,26 +180,38 @@ defineExpose({
 }
 
 .field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: rem(10px);
 }
 .input {
   height: 100%;
   width: 100%;
-  border: 1px solid rgb(var(--color-border));
-  border-radius: 14px;
-  padding: 10px 16px;
+  border: rem(1px) solid rgb(var(--color-border));
+  border-radius: rem(14px);
+  padding: rem(10px) rem(16px);
   background: none;
-  font-size: 14px;
+  font-size: rem(14px);
   font-family: 'Poppins', sans-serif;
   color: rgba(var(--color-body-light));
-  cursor: pointer;
-  margin-top: 10px;
+  cursor: text;
 
   &::placeholder {
     color: rgb(var(--color-body-dark));
   }
   &:focus {
-    border: 1px solid rgb(var(--color-primary-accent));
+    border: rem(1px) solid rgb(var(--color-primary-accent));
   }
+  &.iconBefore {
+    padding-left: rem(30px);
+  }
+}
+.inputIconBefore {
+  padding-left: rem(48px);
+}
+.inputIconAfter {
+  padding-right: rem(48px);
 }
 
 .fieldLabel {}
@@ -178,12 +220,25 @@ defineExpose({
   color: rgb(var(--color-orange));
 
   .input {
-    border: 1px solid orange;
+    border: rem(1px) solid orange;
   }
 }
 .error-text {
-  margin-top: 10px;
+  margin-top: rem(10px);
   font-family: 'Poppins', sans-serif;
-  font-size: 13px;
+  font-size: rem(13px);
+}
+.iconBefore {
+  width: rem(20px);
+  height: rem(20px);
+  position: absolute;
+  left: rem(16px);
+}
+.iconAfter {
+  width: rem(20px);
+  height: rem(20px);
+  position: absolute;
+  right: rem(16px);
+  cursor: pointer;
 }
 </style>

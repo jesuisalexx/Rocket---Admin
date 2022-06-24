@@ -30,8 +30,8 @@ defineProps({
 
 <style lang="scss" module>
 .root {
-  width: 100px;
-  height: 100px;
+  width: rem(100px);
+  height: rem(100px);
   background: #000;
   &.circle {
     border-radius: 50%;
@@ -40,20 +40,20 @@ defineProps({
     border-radius: 30%;
   }
   &.xs {
-    width: 30px;
-    height: 30px;
+    width: rem(30px);
+    height: rem(30px);
   }
   &.s {
-    width: 40px;
-    height: 40px;
+    width: rem(40px);
+    height: rem(40px);
   }
   &.m {
-    width: 64px;
-    height: 64px;
+    width: rem(64px);
+    height: rem(64px);
   }
   &.l {
-    width: 150px;
-    height: 150px;
+    width: rem(150px);
+    height: rem(150px);
   }
 }
 </style>

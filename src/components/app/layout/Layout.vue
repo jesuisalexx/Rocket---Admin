@@ -18,6 +18,7 @@
 import { computed, onBeforeUnmount, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import DefaultLayout from '@/layouts/default/Default.vue';
+import AuthLayout from '@/layouts/authLayout/Authlayout.vue';
 import { useCommonStore } from '@/stores/common';
 
 const route = useRoute();
@@ -25,6 +26,7 @@ const commonStore = useCommonStore();
 
 const layoutsMap: Record<string, any> = {
   default: DefaultLayout,
+  auth: AuthLayout,
 };
 
 const currentLayout = computed(() => {

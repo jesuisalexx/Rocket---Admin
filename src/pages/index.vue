@@ -1,21 +1,23 @@
 <template>
-  <div class="index">
+  <div
+    class="index"
+  >
     <Form
       v-model="model"
       :validation-schema="validationSchema"
     >
       <!--      <Checkbox name="isChecked" />-->
-      <!--      <Button-->
-      <!--        variant="secondary"-->
-      <!--        icon-after="settings"-->
-      <!--      >-->
-      <!--        Button-->
-      <!--      </Button>-->
-      <Field
-        name="name"
-        label="password"
-        icon-after="hide"
-      />
+      <Button
+        variant="primary"
+        icon-after="settings"
+      >
+        Button
+      </Button>
+      <!--      <Field-->
+      <!--        name="name"-->
+      <!--        label="password"-->
+      <!--        icon-after="hide"-->
+      <!--      />-->
     </Form>
   </div>
 </template>

@@ -28,10 +28,13 @@
       />
     </div>
     <label
+      v-if="('label' in $slots) || label"
       :for="inputId"
       :class="$style.label"
     >
-      <slot />
+      <slot>
+        {{ label }}
+      </slot>
     </label>
   </div>
 </template>
@@ -53,6 +56,11 @@ const props = defineProps({
   },
   detachForm: {
     type: Boolean as PropType<boolean>,
+    default: false,
+  },
+  label: {
+    type: String as PropType<string>,
+    default: null,
   },
 });
 const emit = defineEmits([
@@ -77,6 +85,8 @@ const {
 @import "src/assets/styles/utils";
 
 .root {
+  display: flex;
+  align-items: center;
 }
 .check {
   width: rem(18px);
@@ -102,5 +112,12 @@ const {
   position: absolute;
   width: 100%;
   height: 100%;
+}
+.label {
+  color: rgb(var(--color-body-dark));
+  font-size: rem(14px);
+  font-family: 'Poppins', sans-serif;
+  margin-left: rem(10px);
+  cursor: pointer;
 }
 </style>

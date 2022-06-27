@@ -9,27 +9,18 @@
       <div :class="$style.label">
         <slot name="label" />
       </div>
-      <div :class="$style.username">
-        <slot name="username" />
-      </div>
       <div :class="$style.login">
-        <slot name="login" />
+        <slot name="email" />
       </div>
-      <div :class="$style.password">
-        <slot name="password" />
-      </div>
-      <div :class="$style.confirmPassword">
-        <slot name="password-confirm" />
-      </div>
-      <div :class="$style.createButton">
-        <slot name="create-button" />
+      <div :class="$style.submitButton">
+        <slot name="submit-button" />
       </div>
       <div :class="$style.bottomTextWrap">
         <div :class="$style.bottomText">
           <slot name="bottom-text" />
         </div>
         <div :class="$style.signUp">
-          <slot name="sign-up-button" />
+          <slot name="login-button" />
         </div>
       </div>
     </div>
@@ -72,7 +63,7 @@ const localModel = computed({
   align-items: center;
 }
 .icon {
-  margin-top: rem(60px);
+  margin-top: rem(170px);
 }
 .label {
   color: rgb(var(--color-heading));
@@ -93,7 +84,7 @@ const localModel = computed({
   color: rgb(var(--color-body-dark));
   text-transform: uppercase;
   font-size: rem(12px);
-  margin-top: rem(36px);
+  margin-top: rem(41px);
 }
 .stripe {
   width: rem(122px);
@@ -124,7 +115,7 @@ const localModel = computed({
 .termsButton {
   margin-left: rem(7px);
 }
-.createButton {
+.submitButton {
   width: 100%;
   margin-top: rem(24px);
 }

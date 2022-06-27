@@ -1,90 +1,109 @@
 <template>
   <div>
-    <SignInPageContainer
+    <RegisterPageContainer
       v-model="model"
     >
       <template #label>
-        Login To Your Account
+        Create Account
       </template>
       <template #top-button>
         <Button
           variant="secondary-google"
           icon-before-special="google"
         >
-          Login with Google
+          Sign Up with Google
         </Button>
       </template>
       <template #top-text>
-        Or Login with email
+        Or Sign Up with email
+      </template>
+      <template #username>
+        <Field
+          name="registerUsername"
+          label="Full Name"
+          placeholder="Regina Cooper"
+        />
       </template>
       <template #login>
         <Field
-          name="login"
+          name="registerLogin"
           label="Email"
+          placeholder="cooper@example.com"
         />
       </template>
       <template #password>
         <Field
-          name="password"
+          name="registerPassword"
           label="Password"
-          icon-after="hide"
           type="password"
+          icon-after="hide"
+          placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+        />
+      </template>
+      <template #password-confirm>
+        <Field
+          name="confirmPassword"
+          type="password"
+          label="Confirm Password"
+          icon-after="hide"
           placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
         />
       </template>
       <template #checkbox>
         <Checkbox
           name="isChecked"
-          label="Remember me"
+          label="I accept"
         />
       </template>
-      <template #password-button>
+      <template #terms-button>
         <Button
           variant="primary-minimalistic"
         >
-          Forgot Password?
+          Terms and Conditions
         </Button>
       </template>
-      <template #login-button>
+      <template #create-button>
         <Button
           variant="primary-extended"
         >
-          Log In
+          Create Account
         </Button>
       </template>
       <template #bottom-text>
-        Don't have an account?
+        Already have an account?
       </template>
       <template #sign-up-button>
         <Button
           variant="primary-minimalistic"
         >
-          Sign Up
+          Login
         </Button>
       </template>
-    </SignInPageContainer>
+    </RegisterPageContainer>
   </div>
 </template>
 
 <route>
 {
-  name: "sign-in",
-  meta: {
-    layout: "auth"
-  }
+name: "register",
+meta: {
+layout: "auth"
+}
 }
 </route>
 
 <script lang="ts" setup>
-import SignInPageContainer from '@/containers/SignInPageContainer.vue';
 import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import { ref } from 'vue';
+import RegisterPageContainer from '@/containers/RegisterPageContainer.vue';
 
 const model = ref({
-  login: '',
-  password: '',
+  registerUsername: '',
+  registerLogin: '',
+  registerPassword: '',
+  confirmPassword: '',
   isChecked: false,
 });
 

@@ -43,11 +43,22 @@
         @blur="onBlur"
       >
       <div
-        v-if="'after' in $slots || iconAfter"
+        v-if="type === 'password'"
+        :class="$style.iconAfter"
+        @click="togglePassword"
+      >
+        <Icon
+          :icon="isPasswordVisible ? 'show' : 'hide'"
+        />
+      </div>
+      <div
+        v-else-if="'after' in $slots || iconAfter"
         :class="$style.iconAfter"
       >
         <slot name="after">
-          <Icon :icon="iconAfter" />
+          <Icon
+            :icon="iconAfter"
+          />
         </slot>
       </div>
     </div>
@@ -63,7 +74,9 @@
 <script setup lang="ts">
 import Icon from '@/components/core/icon/Icon.vue';
 
-import { nextTick, PropType, ref } from 'vue';
+import {
+  computed, nextTick, PropType, ref,
+} from 'vue';
 import { useField } from '@/hooks/useField';
 import { inputType } from '@/types/form';
 
@@ -145,6 +158,8 @@ const {
   onBlur,
   computedType,
   error,
+  isPasswordVisible,
+  togglePassword,
 } = useField(
   props,
   emit,
@@ -185,6 +200,13 @@ defineExpose({
   align-items: center;
   margin-top: rem(10px);
 }
+.input[type="password"]
+{
+  font: large Verdana,sans-serif;
+  letter-spacing: rem(1px);
+  height: rem(43px);
+}
+
 .input {
   height: 100%;
   width: 100%;
@@ -196,25 +218,31 @@ defineExpose({
   font-family: 'Poppins', sans-serif;
   color: rgba(var(--color-body-light));
   cursor: text;
+  letter-spacing: 1px;
 
   &::placeholder {
     color: rgb(var(--color-body-dark));
   }
+
   &:focus {
     border: rem(1px) solid rgb(var(--color-primary-accent));
   }
+
   &.iconBefore {
     padding-left: rem(30px);
   }
 }
+
 .inputIconBefore {
   padding-left: rem(48px);
 }
+
 .inputIconAfter {
   padding-right: rem(48px);
 }
 
-.fieldLabel {}
+.fieldLabel {
+}
 
 .error {
   color: rgb(var(--color-orange));
@@ -223,17 +251,20 @@ defineExpose({
     border: rem(1px) solid orange;
   }
 }
+
 .error-text {
   margin-top: rem(10px);
   font-family: 'Poppins', sans-serif;
   font-size: rem(13px);
 }
+
 .iconBefore {
   width: rem(20px);
   height: rem(20px);
   position: absolute;
   left: rem(16px);
 }
+
 .iconAfter {
   width: rem(20px);
   height: rem(20px);

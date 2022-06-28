@@ -39,7 +39,7 @@ import Icon from '@/components/core/icon/Icon.vue';
 import { PropType } from 'vue';
 import { buttonVariant } from './index';
 
-defineProps({
+const props = defineProps({
   variant: {
     type: String as PropType<string>,
     default: buttonVariant.PRIMARY,

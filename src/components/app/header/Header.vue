@@ -1,11 +1,11 @@
 <template>
   <div :class="$style.root">
-    <Logo />
-    <div :class="$style.controls">
-      <ThemeSwitch :class="$style.control" />
-      <TelegramIcon :class="$style.control" />
-      <InstagramIcon :class="$style.control" />
-    </div>
+    <!--    <Logo />-->
+    <!--    <div :class="$style.controls">-->
+    <!--      <ThemeSwitch :class="$style.control" />-->
+    <!--      <TelegramIcon :class="$style.control" />-->
+    <!--      <InstagramIcon :class="$style.control" />-->
+    <!--    </div>-->
   </div>
 </template>
 
@@ -21,7 +21,6 @@ import Logo from '@/components/app/logo/Logo.vue';
 @import "src/assets/styles/utils";
 
 .root {
-  padding: 45px 54px;
   display: flex;
   justify-content: space-between;
 }

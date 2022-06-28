@@ -26,5 +26,6 @@ const computedSvgComponent = computed(() => logoSvgMap[props.state]);
 <style lang="scss" module>
 .logo {
   color: rgb(var(--color-primary-1));
+  height: rem(36px);
 }
 </style>

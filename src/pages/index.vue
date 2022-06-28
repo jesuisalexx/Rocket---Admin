@@ -7,12 +7,12 @@
       :validation-schema="validationSchema"
     >
       <!--      <Checkbox name="isChecked" />-->
-      <Button
-        variant="primary"
-        icon-after="settings"
-      >
-        Button
-      </Button>
+      <!--      <Button-->
+      <!--        variant="primary"-->
+      <!--      >-->
+      <!--        Button-->
+      <!--      </Button>-->
+      <Sidebar />
       <!--      <Field-->
       <!--        name="name"-->
       <!--        label="password"-->
@@ -24,6 +24,7 @@
 
 <script setup lang="ts">
 import Field from '@/components/core/field/Field.vue';
+import Sidebar from '@/components/core/sidebar/Sidebar.vue';
 import Form from '@/components/core/form/Form.vue';
 import Avatar from '@/components/core/avatar/Avatar.vue';
 import Icon from '@/components/core/icon/Icon.vue';

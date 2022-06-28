@@ -28,6 +28,6 @@ const icons = (Object.entries(
 @import "src/assets/styles/utils";
 
 .root {
-  display: none;
+  //display: none;
 }
 </style>

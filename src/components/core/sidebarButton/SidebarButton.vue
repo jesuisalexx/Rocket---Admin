@@ -1,26 +1,44 @@
 <template>
-  <div :class="$style.root">
+  <div :class="isSidebarWide? $style.root : $style.rootTiny">
     <component
       :is="computedComponent"
-      :class="$style.button"
+      :class="isSidebarWide? $style.button : $style.buttonTinyWrap"
     >
-      <Icon
-        :class="$style.iconBefore"
-        :icon="button.iconBefore"
-      />
-      <div :class="$style.text">
-        {{ button.label }}
+      <div
+        v-if="isSidebarWide = !isSidebarWide"
+        :class="$style.buttonTiny"
+      >
+        <div
+          :class="$style.iconWrap"
+        >
+          <Icon
+            :class="$style.iconBeforeTiny"
+            :icon="button.iconBefore"
+          />
+        </div>
       </div>
       <div
-        v-if="typeof button.counter === 'number' "
-        :class="$style.counter"
+        v-else
+        :class="$style.button"
       >
-        {{ button.counter }}
+        <Icon
+          :class="$style.iconBefore"
+          :icon="button.iconBefore"
+        />
+        <div :class="$style.text">
+          {{ button.label }}
+        </div>
+        <div
+          v-if="typeof button.counter === 'number' "
+          :class="$style.counter"
+        >
+          {{ button.counter }}
+        </div>
+        <Icon
+          :class="$style.iconAfter"
+          :icon="button.iconAfter"
+        />
       </div>
-      <Icon
-        :class="$style.iconAfter"
-        :icon="button.iconAfter"
-      />
     </component>
   </div>
 </template>
@@ -33,7 +51,7 @@ import { SidebarButton, SidebarButtonType } from './index';
 const props = defineProps<{
   button: SidebarButton,
 }>();
-
+const isSidebarWide = true;
 const componentMap: Record<SidebarButtonType, string> = {
   [SidebarButtonType.LINK]: 'router-link',
   [SidebarButtonType.BUTTON]: 'button',
@@ -48,6 +66,10 @@ const computedComponent = computed(() => componentMap[props.button.type]);
 .root {
   width: 100%;
 }
+.rootTiny {
+  display: flex;
+  justify-content: center;
+}
 .button {
   width: 100%;
   height: rem(56px);
@@ -56,12 +78,38 @@ const computedComponent = computed(() => componentMap[props.button.type]);
   position: relative;
   cursor: pointer;
   color: rgb(var(--color-body-light));
-  border-left: rem(4px) solid rgb(var(--color-background));
-  &:active {
+  padding-left: rem(4px);
+  &:focus {
+    padding-left: 0;
     background: rgb(var(--color-surface));
     border-left: rem(4px) solid rgb(var(--color-primary-accent));
     color: rgb(var(--color-heading));
   }
+}
+.buttonTinyWrap {
+  height: rem(56px);
+  width: rem(44px);
+}
+.buttonTiny {
+  height: rem(44px);
+  width: rem(44px);
+}
+.iconWrap {
+  height: rem(44px);
+  width: rem(44px);
+  border-radius: rem(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    background: rgb(var(--color-surface));
+  }
+}
+
+.iconBeforeTiny {
+  width: rem(20px);
+  height: rem(20px);
 }
 .iconBefore {
   width: rem(20px);

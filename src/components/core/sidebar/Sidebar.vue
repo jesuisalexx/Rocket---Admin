@@ -1,39 +1,16 @@
 <template>
-  <div :class="$style.root">
-    <div :class="$style.logoWrap">
-      <div :class="$style.logo">
-        <Logo :state="logoFull" />
+  <div
+    :class="isSidebarWide? $style.root : $style.rootTiny"
+  >
+    <div :class="isSidebarWide? $style.logoWrap : $style.logoWrapTiny">
+      <div :class="isSidebarWide? $style.logo : $style.logoTiny">
+        <Logo :state="isSidebarWide? logoFull : logoCompact" />
       </div>
     </div>
     <SidebarButton
-      :button="dashboardButton"
-    />
-    <SidebarButton
-      :button="commerceButton"
-    />
-    <SidebarButton
-      :button="calendarButton"
-    />
-    <SidebarButton
-      :button="mailButton"
-    />
-    <SidebarButton
-      :button="chatButton"
-    />
-    <SidebarButton
-      :button="tasksButton"
-    />
-    <SidebarButton
-      :button="projectsButton"
-    />
-    <SidebarButton
-      :button="managerButton"
-    />
-    <SidebarButton
-      :button="notesButton"
-    />
-    <SidebarButton
-      :button="contactsButton"
+      v-for="button in buttons"
+      :key="button.label"
+      :button="button"
     />
   </div>
 </template>
@@ -41,65 +18,18 @@
 <script setup lang="ts">
 import SidebarButton from '@/components/core/sidebarButton/SidebarButton.vue';
 import { SidebarButton as TSidebarButton, SidebarButtonType } from '@/components/core/sidebarButton';
-import { ref } from 'vue';
+import { PropType, ref } from 'vue';
 import { logoState } from '@/components/app/logo';
 import Logo from '@/components/app/logo/Logo.vue';
 
 const logoFull = ref<logoState>(logoState.FULL);
 const logoCompact = ref<logoState>(logoState.COMPACT);
 
-const dashboardButton = ref<TSidebarButton>({
-  label: 'Dashboard',
-  type: SidebarButtonType.BUTTON,
-  iconBefore: 'grid',
-});
-const commerceButton = ref<TSidebarButton>({
-  label: 'E-Commerce',
-  type: SidebarButtonType.BUTTON,
-  iconBefore: 'cart',
-  iconAfter: 'arrowSmall',
-});
-const calendarButton = ref<TSidebarButton>({
-  label: 'Calendar',
-  type: SidebarButtonType.BUTTON,
-  iconBefore: 'calendar',
-});
-const mailButton = ref<TSidebarButton>({
-  label: 'Mail',
-  type: SidebarButtonType.BUTTON,
-  iconBefore: 'mail',
-  counter: 4,
-});
-const chatButton = ref<TSidebarButton>({
-  label: 'Chat',
-  type: SidebarButtonType.BUTTON,
-  iconBefore: 'chat',
-});
-const tasksButton = ref<TSidebarButton>({
-  label: 'Tasks',
-  type: SidebarButtonType.BUTTON,
-  iconBefore: 'tasks',
-});
-const projectsButton = ref<TSidebarButton>({
-  label: 'Projects',
-  type: SidebarButtonType.BUTTON,
-  iconBefore: 'project',
-});
-const managerButton = ref<TSidebarButton>({
-  label: 'File Manager',
-  type: SidebarButtonType.BUTTON,
-  iconBefore: 'folder',
-});
-const notesButton = ref<TSidebarButton>({
-  label: 'Notes',
-  type: SidebarButtonType.BUTTON,
-  iconBefore: 'text',
-});
-const contactsButton = ref<TSidebarButton>({
-  label: 'Contacts',
-  type: SidebarButtonType.BUTTON,
-  iconBefore: 'contacts',
-});
+const props = defineProps<{
+  buttons: TSidebarButton[],
+  isSidebarWide: Boolean
+}>();
+
 </script>
 
 <style lang="scss" module>
@@ -108,11 +38,26 @@ const contactsButton = ref<TSidebarButton>({
 .root {
   width: 270px;
   height: 100vh;
+  border-right: 1px solid rgb(var(--color-border));
+}
+.rootTiny {
+  width: 65px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .logoWrap {
   width: 100%;
   height: rem(65px);
   display: flex;
+  align-items: center;
+}
+.logoWrapTiny {
+  width: 100%;
+  height: rem(50px);
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 .logo {
@@ -123,6 +68,16 @@ const contactsButton = ref<TSidebarButton>({
   align-items: center;
   margin-left: rem(28px);
   cursor: pointer;
+}
+.logoTiny {
+  font-family: 'Poppins', sans-serif;
+  font-size: rem(18px);
+  color: rgb(var(--color-heading));
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: rem(35px);
+  height: rem(36px);
 }
 .logoText {
   margin-left: rem(6px);

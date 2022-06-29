@@ -6,12 +6,14 @@
       $style[size]
     ]"
   >
+    <Icon :icon="avatarIcon" />
     <slot />
   </div>
 </template>
 
 <script setup lang="ts">
 import { PropType } from 'vue';
+import Icon from '@/components/core/icon/Icon.vue';
 import { avatarShape, avatarSize } from './index';
 
 defineProps({
@@ -25,6 +27,9 @@ defineProps({
     default: avatarSize.XS,
     validator: (state: avatarSize) => Object.values(avatarSize).includes(state),
   },
+  // avatarIcon: {
+  //   type: String as PropType<string>,
+  // },
 });
 </script>
 
@@ -32,7 +37,7 @@ defineProps({
 .root {
   width: rem(100px);
   height: rem(100px);
-  background: #000;
+  background: red;
   &.circle {
     border-radius: 50%;
   }

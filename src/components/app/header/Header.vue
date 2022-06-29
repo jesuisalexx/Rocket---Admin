@@ -1,40 +1,77 @@
 <template>
   <div :class="$style.root">
-    <!--    <Logo />-->
-    <!--    <div :class="$style.controls">-->
-    <!--      <ThemeSwitch :class="$style.control" />-->
-    <!--      <TelegramIcon :class="$style.control" />-->
-    <!--      <InstagramIcon :class="$style.control" />-->
+    <!--    <div :class="$style.menuIcon">-->
+    <!--      <Icon-->
+    <!--        icon="menu"-->
+    <!--      />-->
+    <!--    </div>-->
+    <!--    <div :class="$style.toolsWrap">-->
+    <!--      <div :class="$style.searchIcon">-->
+    <!--        <Icon-->
+    <!--          icon="search"-->
+    <!--        />-->
+    <!--      </div>-->
+    <!--      <div :class="$style.bellIcon">-->
+    <!--        <Icon-->
+    <!--          icon="bellNotifications"-->
+    <!--        />-->
+    <!--      </div>-->
+    <!--      <div :class="$style.stripe" />-->
+    <!--      <div :class="$style.avatar">-->
+    <!--      </div>-->
     <!--    </div>-->
   </div>
 </template>
 
 <script setup lang="ts">
-import InstagramIcon from '@/components/special/instagramIcon/InstagramIcon.vue';
-import TelegramIcon from '@/components/special/telegramIcon/TelegramIcon.vue';
-import ThemeSwitch from '@/components/app/themeSwitch/ThemeSwitch.vue';
+import Icon from '@/components/core/icon/Icon.vue';
+import Avatar from '@/components/core/avatar/Avatar.vue';
 
-import Logo from '@/components/app/logo/Logo.vue';
 </script>
 
 <style lang="scss" module>
 @import "src/assets/styles/utils";
 
 .root {
+  width: 100%;
+  height: rem(65px);
+  background: rgb(var(--color-surface));
   display: flex;
   justify-content: space-between;
-}
-
-.controls {
-  display: flex;
   align-items: center;
 }
-
-.control {
-  &:not(:first-child) {
-    margin-left: rem(14px);
-  }
-}
-
-.telegramIcon {}
+//.menuIcon {
+//  width: 20px;
+//  height: 20px;
+//  margin-left: 28px;
+//  cursor: pointer;
+//}
+//.searchIcon {
+//  width: 20px;
+//  height: 20px;
+//  cursor: pointer;
+//}
+//.bellIcon {
+//  width: 20px;
+//  height: 20px;
+//  margin-left: 23px;
+//  cursor: pointer;
+//}
+//.toolsWrap {
+//  width: 300px;
+//  height: 100%;
+//  background: grey;
+//  display: flex;
+//  align-items: center;
+//}
+//.stripe {
+//  height: 31px;
+//  width: 1px;
+//  background: rgb(var(--color-border));
+//  margin-left: 23px;
+//}
+//.avatar {
+//  width: 40px;
+//  height: 40px;
+//}
 </style>

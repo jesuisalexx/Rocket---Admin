@@ -12,7 +12,11 @@ import Sidebar from '@/components/core/sidebar/Sidebar.vue';
 import { SidebarButtonType } from '@/components/core/sidebarButton';
 import { ref } from 'vue';
 
-const isSidebarWide = true;
+import { useLayoutStore } from '@/stores/useLayoutStore';
+
+const layoutStore = useLayoutStore();
+
+const isSidebarWide = layoutStore.isSidebarExpanded;
 
 const buttons = ref([
   {

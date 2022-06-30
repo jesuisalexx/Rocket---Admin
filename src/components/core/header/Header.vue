@@ -5,7 +5,6 @@
     </div>
     <div :class="$style.rightSection">
       <slot name="right-section-icons" />
-      <div :class="$style.divider" />
       <slot name="right-section-profile" />
     </div>
   </div>
@@ -28,11 +27,5 @@
   height: 100%;
   display: flex;
   align-items: center;
-}
-.divider {
-  height: 31px;
-  width: 1px;
-  background: rgb(var(--color-border));
-  margin: 0 25px;
 }
 </style>

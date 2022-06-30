@@ -21,14 +21,19 @@ import { SidebarButton as TSidebarButton, SidebarButtonType } from '@/components
 import { PropType, ref } from 'vue';
 import { logoState } from '@/components/app/logo';
 import Logo from '@/components/app/logo/Logo.vue';
+import { useLayoutStore } from '@/stores/useLayoutStore';
 
 const logoFull = ref<logoState>(logoState.FULL);
 const logoCompact = ref<logoState>(logoState.COMPACT);
 
+const layoutStore = useLayoutStore();
+
+const isSidebarWide = layoutStore.isSidebarExpanded;
+
 const props = defineProps<{
   buttons: TSidebarButton[],
-  isSidebarWide: Boolean
 }>();
+console.log(isSidebarWide, 'consol');
 
 </script>
 
@@ -36,15 +41,17 @@ const props = defineProps<{
 @import "src/assets/styles/utils";
 
 .root {
-  width: 270px;
+  width: rem(270px);
   height: 100vh;
-  border-right: 1px solid rgb(var(--color-border));
+  border-right: rem(1px) solid rgb(var(--color-border));
 }
 .rootTiny {
-  width: 65px;
+  height: 100%;
+  width: rem(65px);
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-right: rem(1px) solid rgb(var(--color-border));
 }
 .logoWrap {
   width: 100%;
@@ -55,7 +62,7 @@ const props = defineProps<{
 .logoWrapTiny {
   width: 100%;
   height: rem(50px);
-  margin-top: 15px;
+  margin-top: rem(15px);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -46,12 +46,16 @@
 <script setup lang="ts">
 import { computed, defineProps } from 'vue';
 import Icon from '@/components/core/icon/Icon.vue';
+import { useLayoutStore } from '@/stores/useLayoutStore';
 import { SidebarButton, SidebarButtonType } from './index';
+
+const layoutStore = useLayoutStore();
 
 const props = defineProps<{
   button: SidebarButton,
 }>();
-const isSidebarWide = true;
+const isSidebarWide = layoutStore.isSidebarExpanded;
+
 const componentMap: Record<SidebarButtonType, string> = {
   [SidebarButtonType.LINK]: 'router-link',
   [SidebarButtonType.BUTTON]: 'button',

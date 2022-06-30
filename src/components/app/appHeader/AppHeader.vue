@@ -3,13 +3,14 @@
     <Header>
       <template #left-section>
         <div
-          v-if="computedState = HeaderState.DEFAULT"
+          v-if="computedState === HeaderState.DEFAULT"
           :class="$style.menuButton"
+          @click="layoutStore.switchSidebar()"
         >
           <Icon icon="menu" />
         </div>
         <div
-          v-else
+          v-if="computedState === HeaderState.PROFILE"
           :class="$style.leftMenu"
         >
           <Button
@@ -34,7 +35,7 @@
       </template>
       <template #right-section-icons>
         <div
-          v-if="computedState = HeaderState.DEFAULT"
+          v-if="computedState === HeaderState.DEFAULT"
           :class="$style.rightSectionIcons"
         >
           <div :class="$style.searchButton">
@@ -45,7 +46,7 @@
           </div>
         </div>
         <div
-          v-else
+          v-if="computedState === HeaderState.PROFILE"
           :class="$style.rightSectionIcons"
         >
           <div :class="$style.searchButton">
@@ -75,8 +76,10 @@ import Button from '@/components/core/button/Button.vue';
 import { HeaderState } from '@/components/core/header';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { useLayoutStore } from '@/stores/useLayoutStore';
 
 const route = useRoute();
+const layoutStore = useLayoutStore();
 
 const computedState = computed(() => route.meta.headerState || HeaderState.DEFAULT);
 </script>
@@ -91,38 +94,38 @@ const computedState = computed(() => route.meta.headerState || HeaderState.DEFAU
 }
 
 .menuButton {
-  width: 20px;
-  height: 20px;
-  margin-left: 30px;
+  width: rem(20px);
+  height: rem(20px);
+  margin-left: rem(30px);
   cursor: pointer;
 }
 
 .searchButton {
-  width: 20px;
-  height: 20px;
+  width: rem(20px);
+  height: rem(20px);
   cursor: pointer;
 }
 
 .bellButton {
-  width: 20px;
-  height: 20px;
-  margin-left: 20px;
+  width: rem(20px);
+  height: rem(20px);
+  margin-left: rem(20px);
   cursor: pointer;
 }
 
 .header {
   width: 100%;
-  height: 65px;
+  height: rem(65px);
 }
 
 .leftMenu {
   display: flex;
   align-items: center;
-  margin-left: 30px;
+  margin-left: rem(30px);
 }
 
 .simpleButton {
-  margin-left: 32px;
+  margin-left: rem(32px);
 }
 .rightSectionIcons {
   display: flex;

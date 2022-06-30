@@ -1,5 +1,6 @@
 <template>
   <div :class="$style.root">
+    <div :class="$style.divider" />
     <div :class="$style.avatar">
       <Avatar
         :avatar-icon="avatarIcon"
@@ -34,24 +35,30 @@ const props = defineProps({
   align-items: center;
   cursor: pointer;
 }
+.divider {
+  height: rem(31px);
+  width: rem(1px);
+  background: rgb(var(--color-border));
+  margin: 0 rem(25px);
+}
 .avatar {
-  height: 40px;
-  width: 40px;
+  height: rem(40px);
+  width: rem(40px);
 }
 .text {
   font-family: 'Poppins', sans-serif;
-  font-size: 15px;
+  font-size: rem(15px);
   color: rgb(var(--color-heading));
   display: flex;
   align-items: center;
-  margin-left: 12px;
+  margin-left: rem(12px);
 }
 .arrowIcon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
-  margin-left: 6px;
+  width: rem(20px);
+  height: rem(20px);
+  margin-left: rem(6px);
 }
 </style>

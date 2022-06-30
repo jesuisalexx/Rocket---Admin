@@ -2,7 +2,7 @@
   <div :class="$style.root">
     <AppSidebar />
     <div :class="$style.headerWrap">
-      <Header />
+      <AppHeader />
       <slot />
     </div>
   </div>
@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import AppSidebar from '@/components/app/appSidebar/AppSidebar.vue';
-import Header from '@/components/app/header/Header.vue';
+import AppHeader from '@/components/app/appHeader/AppHeader.vue';
 </script>
 
 <style lang="scss" module>

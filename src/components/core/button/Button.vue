@@ -147,6 +147,11 @@ const props = defineProps({
     font-size: 14px;
     background: none;
   }
+  &.simple {
+    color: rgb(var(--color-body-light));
+    font-size: 14px;
+    background: none;
+  }
 }
 .icon {
 }

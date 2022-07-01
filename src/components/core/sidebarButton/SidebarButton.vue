@@ -2,6 +2,7 @@
   <div :class="isSidebarWide? $style.root : $style.rootTiny">
     <component
       :is="computedComponent"
+      :to="button.to"
       :class="isSidebarWide? $style.button : $style.buttonTinyWrap"
     >
       <div
@@ -54,7 +55,7 @@ const layoutStore = useLayoutStore();
 const props = defineProps<{
   button: SidebarButton,
 }>();
-const isSidebarWide = layoutStore.isSidebarExpanded;
+const isSidebarWide = computed(() => layoutStore.isSidebarExpanded);
 
 const componentMap: Record<SidebarButtonType, string> = {
   [SidebarButtonType.LINK]: 'router-link',

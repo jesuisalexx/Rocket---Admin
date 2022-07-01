@@ -21,54 +21,84 @@ const isSidebarWide = layoutStore.isSidebarExpanded;
 const buttons = ref([
   {
     label: 'Dashboard',
-    type: SidebarButtonType.BUTTON,
+    type: SidebarButtonType.LINK,
+    to: {
+      name: 'index',
+    },
     iconBefore: 'grid',
   },
   {
     label: 'E-Commerce',
-    type: SidebarButtonType.BUTTON,
+    type: SidebarButtonType.LINK,
+    to: {
+      name: 'index',
+    },
     iconBefore: 'cart',
     iconAfter: 'arrowSmall',
   },
   {
     label: 'Calendar',
-    type: SidebarButtonType.BUTTON,
+    type: SidebarButtonType.LINK,
+    to: {
+      name: 'index',
+    },
     iconBefore: 'calendar',
   },
   {
     label: 'Mail',
-    type: SidebarButtonType.BUTTON,
+    type: SidebarButtonType.LINK,
+    to: {
+      name: 'index',
+    },
     iconBefore: 'mail',
     counter: 4,
   },
   {
     label: 'Chat',
-    type: SidebarButtonType.BUTTON,
+    type: SidebarButtonType.LINK,
+    to: {
+      name: 'index',
+    },
     iconBefore: 'chat',
   },
   {
     label: 'Tasks',
-    type: SidebarButtonType.BUTTON,
+    type: SidebarButtonType.LINK,
+    to: {
+      name: 'index',
+    },
     iconBefore: 'tasks',
   },
   {
     label: 'Projects',
-    type: SidebarButtonType.BUTTON,
+    type: SidebarButtonType.LINK,
+    to: {
+      name: 'index',
+    },
     iconBefore: 'project',
   },
   {
     label: 'File Manager',
-    type: SidebarButtonType.BUTTON,
+    type: SidebarButtonType.LINK,
+    to: {
+      name: 'index',
+    },
     iconBefore: 'folder',
   },
   {
     label: 'Notes',
-    type: SidebarButtonType.BUTTON,
+    type: SidebarButtonType.LINK,
+    to: {
+      name: 'index',
+    },
     iconBefore: 'text',
   },
   {
     label: 'Contacts',
-    type: SidebarButtonType.BUTTON,
+    type: SidebarButtonType.LINK,
+    to: {
+      name: 'index',
+    },
     iconBefore: 'contacts',
   },
 ]);

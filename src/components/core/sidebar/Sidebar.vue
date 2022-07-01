@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import SidebarButton from '@/components/core/sidebarButton/SidebarButton.vue';
 import { SidebarButton as TSidebarButton, SidebarButtonType } from '@/components/core/sidebarButton';
-import { PropType, ref } from 'vue';
+import { computed, PropType, ref } from 'vue';
 import { logoState } from '@/components/app/logo';
 import Logo from '@/components/app/logo/Logo.vue';
 import { useLayoutStore } from '@/stores/useLayoutStore';
@@ -28,7 +28,7 @@ const logoCompact = ref<logoState>(logoState.COMPACT);
 
 const layoutStore = useLayoutStore();
 
-const isSidebarWide = layoutStore.isSidebarExpanded;
+const isSidebarWide = computed(() => layoutStore.isSidebarExpanded);
 
 const props = defineProps<{
   buttons: TSidebarButton[],
@@ -61,8 +61,7 @@ console.log(isSidebarWide, 'consol');
 }
 .logoWrapTiny {
   width: 100%;
-  height: rem(50px);
-  margin-top: rem(15px);
+  height: rem(65px);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -10,7 +10,6 @@ export const useLayoutStore = defineStore('layout', () => {
 
   const switchSidebar = () => {
     isSidebarExpanded.value = !isSidebarExpanded.value;
-    console.log(isSidebarExpanded.value);
   };
 
   return {

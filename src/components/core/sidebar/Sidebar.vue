@@ -40,48 +40,47 @@ console.log(isSidebarExpanded, 'consol');
 <style lang="scss" module>
 @import "src/assets/styles/utils";
 
-.root.expanded {
-
-}
-
 .root {
-  width: rem(270px);
-  height: 100vh;
-  border-right: rem(1px) solid rgb(var(--color-border));
+  height: 100%;
+  width: rem(65px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   &.expanded {
-    height: 100%;
-    width: rem(65px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: rem(270px);
+    height: 100vh;
+    border-right: rem(1px) solid rgb(var(--color-border));
+
     .logoWrap {
       width: 100%;
       height: rem(65px);
       display: flex;
-      justify-content: center;
       align-items: center;
     }
+
     .logo {
-      width: rem(35px);
-      height: rem(36px);
+      width: 100%;
+      font-family: 'Poppins', sans-serif;
+      font-size: rem(18px);
+      color: rgb(var(--color-heading));
+      display: flex;
+      align-items: center;
+      margin-left: rem(28px);
+      cursor: pointer;
     }
   }
 }
+
 
 .logoWrap {
   width: 100%;
   height: rem(65px);
   display: flex;
+  justify-content: center;
   align-items: center;
 }
-
 .logo {
-  font-family: 'Poppins', sans-serif;
-  font-size: rem(18px);
-  color: rgb(var(--color-heading));
-  display: flex;
-  align-items: center;
-  margin-left: rem(28px);
-  cursor: pointer;
+  width: rem(35px);
+  height: rem(36px);
 }
 </style>

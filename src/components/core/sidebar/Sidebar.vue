@@ -33,8 +33,6 @@ const isSidebarExpanded = computed(() => layoutStore.isSidebarExpanded);
 const props = defineProps<{
   buttons: TSidebarButton[],
 }>();
-console.log(isSidebarExpanded, 'consol');
-
 </script>
 
 <style lang="scss" module>
@@ -70,7 +68,6 @@ console.log(isSidebarExpanded, 'consol');
     }
   }
 }
-
 
 .logoWrap {
   width: 100%;

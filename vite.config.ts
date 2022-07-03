@@ -23,4 +23,17 @@ export default defineConfig({
       '@root': path.resolve(__dirname, ''),
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://rocket-backend.site/',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+    watch: {
+      usePolling: true,
+    },
+  },
 });

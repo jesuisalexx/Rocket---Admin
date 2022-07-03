@@ -82,6 +82,10 @@ import Field from '@/components/core/field/Field.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import { ref } from 'vue';
 
+import { signIn } from '@/api/endpoints/auth';
+
+signIn();
+
 const model = ref({
   login: '',
   password: '',

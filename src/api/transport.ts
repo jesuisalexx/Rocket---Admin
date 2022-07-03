@@ -1,4 +1,5 @@
 import { createApi } from '@/api/createApi';
+import { isProduction } from '@/utils/env';
 
 export const {
   get,
@@ -7,5 +8,5 @@ export const {
   patch,
   del,
 } = createApi({
-  url: String(import.meta.env.VITE_API_BASE_URL),
+  url: isProduction ? String(import.meta.env.VITE_APP_API_URL) : '/api',
 });

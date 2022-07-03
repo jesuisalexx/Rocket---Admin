@@ -1,10 +1,13 @@
 <template>
   <div
-    :class="isSidebarWide? $style.root : $style.rootTiny"
+    :class="[
+      $style.root,
+      isSidebarExpanded && $style.expanded,
+    ]"
   >
-    <div :class="isSidebarWide? $style.logoWrap : $style.logoWrapTiny">
-      <div :class="isSidebarWide? $style.logo : $style.logoTiny">
-        <Logo :state="isSidebarWide? logoFull : logoCompact" />
+    <div :class="$style.logoWrap">
+      <div :class="$style.logo">
+        <Logo :state="isSidebarExpanded ? logoState.FULL : logoState.COMPACT" />
       </div>
     </div>
     <SidebarButton
@@ -17,55 +20,61 @@
 
 <script setup lang="ts">
 import SidebarButton from '@/components/core/sidebarButton/SidebarButton.vue';
-import { SidebarButton as TSidebarButton, SidebarButtonType } from '@/components/core/sidebarButton';
-import { computed, PropType, ref } from 'vue';
+import { SidebarButton as TSidebarButton } from '@/components/core/sidebarButton';
+import { computed } from 'vue';
 import { logoState } from '@/components/app/logo';
 import Logo from '@/components/app/logo/Logo.vue';
 import { useLayoutStore } from '@/stores/useLayoutStore';
 
-const logoFull = ref<logoState>(logoState.FULL);
-const logoCompact = ref<logoState>(logoState.COMPACT);
-
 const layoutStore = useLayoutStore();
 
-const isSidebarWide = computed(() => layoutStore.isSidebarExpanded);
+const isSidebarExpanded = computed(() => layoutStore.isSidebarExpanded);
 
 const props = defineProps<{
   buttons: TSidebarButton[],
 }>();
-console.log(isSidebarWide, 'consol');
+console.log(isSidebarExpanded, 'consol');
 
 </script>
 
 <style lang="scss" module>
 @import "src/assets/styles/utils";
 
+.root.expanded {
+
+}
+
 .root {
   width: rem(270px);
   height: 100vh;
   border-right: rem(1px) solid rgb(var(--color-border));
+  &.expanded {
+    height: 100%;
+    width: rem(65px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .logoWrap {
+      width: 100%;
+      height: rem(65px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .logo {
+      width: rem(35px);
+      height: rem(36px);
+    }
+  }
 }
-.rootTiny {
-  height: 100%;
-  width: rem(65px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-right: rem(1px) solid rgb(var(--color-border));
-}
+
 .logoWrap {
   width: 100%;
   height: rem(65px);
   display: flex;
   align-items: center;
 }
-.logoWrapTiny {
-  width: 100%;
-  height: rem(65px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 .logo {
   font-family: 'Poppins', sans-serif;
   font-size: rem(18px);
@@ -74,18 +83,5 @@ console.log(isSidebarWide, 'consol');
   align-items: center;
   margin-left: rem(28px);
   cursor: pointer;
-}
-.logoTiny {
-  font-family: 'Poppins', sans-serif;
-  font-size: rem(18px);
-  color: rgb(var(--color-heading));
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  width: rem(35px);
-  height: rem(36px);
-}
-.logoText {
-  margin-left: rem(6px);
 }
 </style>

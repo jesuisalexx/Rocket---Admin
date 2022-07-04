@@ -22,11 +22,11 @@
 import SidebarButton from '@/components/core/sidebarButton/SidebarButton.vue';
 import { SidebarButton as TSidebarButton } from '@/components/core/sidebarButton';
 import { computed } from 'vue';
-import { logoState } from '@/components/app/logo';
-import Logo from '@/components/app/logo/Logo.vue';
-import { useLayoutStore } from '@/stores/useLayoutStore';
+import { logoState } from '@/components/core/logo';
+import Logo from '@/components/core/logo/Logo.vue';
+import { layout } from '@/stores/layout';
 
-const layoutStore = useLayoutStore();
+const layoutStore = layout();
 
 const isSidebarExpanded = computed(() => layoutStore.isSidebarExpanded);
 
@@ -39,15 +39,17 @@ const props = defineProps<{
 @import "src/assets/styles/utils";
 
 .root {
-  height: 100%;
   width: rem(65px);
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-right: rem(1px) solid rgb(var(--color-border));
+  transition: .15s width;
   &.expanded {
     width: rem(270px);
+    min-width: rem(270px);
     height: 100vh;
-    border-right: rem(1px) solid rgb(var(--color-border));
 
     .logoWrap {
       width: 100%;
@@ -58,12 +60,10 @@ const props = defineProps<{
 
     .logo {
       width: 100%;
-      font-family: 'Poppins', sans-serif;
-      font-size: rem(18px);
-      color: rgb(var(--color-heading));
       display: flex;
       align-items: center;
       margin-left: rem(28px);
+      margin-top: rem(5px);
       cursor: pointer;
     }
   }

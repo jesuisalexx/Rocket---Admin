@@ -1,24 +1,22 @@
 <template>
-  <div>
-    <Sidebar
-      :is-sidebar-wide="isSidebarWide"
-      :buttons="buttons"
-    />
-  </div>
+  <Sidebar
+    :is-sidebar-wide="isSidebarWide"
+    :buttons="buttons"
+  />
 </template>
 
 <script setup lang="ts">
 import Sidebar from '@/components/core/sidebar/Sidebar.vue';
 import { SidebarButtonType } from '@/components/core/sidebarButton';
-import { ref } from 'vue';
+import { computed } from 'vue';
 
-import { useLayoutStore } from '@/stores/useLayoutStore';
+import { layout } from '@/stores/layout';
 
-const layoutStore = useLayoutStore();
+const layoutStore = layout();
 
-const isSidebarWide = layoutStore.isSidebarExpanded;
+const isSidebarWide = computed(() => layoutStore.isSidebarExpanded);
 
-const buttons = ref([
+const buttons = computed(() => [
   {
     label: 'Dashboard',
     type: SidebarButtonType.LINK,

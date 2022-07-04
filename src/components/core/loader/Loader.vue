@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { PropType } from 'vue';
-import LoaderIconDots from '@/assets/icons/loader.svg';
+import LoaderIconDots from '@/assets/img/loader.svg';
 
 type sizes = 'md';
 

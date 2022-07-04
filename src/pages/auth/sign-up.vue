@@ -85,7 +85,7 @@
 
 <route>
 {
-name: "register",
+name: "sign-up",
 meta: {
 layout: "auth"
 }
@@ -97,7 +97,7 @@ import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import { ref } from 'vue';
-import RegisterPageContainer from '@/containers/RegisterPageContainer.vue';
+import RegisterPageContainer from '@/containers/SignUpPageContainer.vue';
 
 const model = ref({
   registerUsername: '',

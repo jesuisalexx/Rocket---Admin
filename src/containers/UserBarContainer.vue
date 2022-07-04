@@ -1,6 +1,5 @@
 <template>
   <div :class="$style.root">
-    <div :class="$style.divider" />
     <div :class="$style.avatar">
       <Avatar
         :avatar-icon="avatarIcon"
@@ -34,12 +33,6 @@ const props = defineProps({
   display: flex;
   align-items: center;
   cursor: pointer;
-}
-.divider {
-  height: rem(31px);
-  width: rem(1px);
-  background: rgb(var(--color-border));
-  margin: 0 rem(25px);
 }
 .avatar {
   height: rem(40px);

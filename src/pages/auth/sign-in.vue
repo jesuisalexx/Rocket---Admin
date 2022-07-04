@@ -21,6 +21,7 @@
         <Field
           name="login"
           label="Email"
+          placeholder="cooper@example.com"
         />
       </template>
       <template #password>

@@ -1,25 +1,14 @@
 <template>
-  <div :class="isSidebarWide? $style.root : $style.rootTiny">
-    <component
-      :is="computedComponent"
-      :to="button.to"
-      :class="isSidebarWide? $style.button : $style.buttonTinyWrap"
-    >
-      <div
-        v-if="isSidebarWide = !isSidebarWide"
-        :class="$style.buttonTiny"
-      >
-        <div
-          :class="$style.iconWrap"
-        >
-          <Icon
-            :class="$style.iconBeforeTiny"
-            :icon="button.iconBefore"
-          />
-        </div>
-      </div>
-      <div
-        v-else
+  <div
+    :class="[
+      $style.root,
+      !isSidebarExpanded && $style.expanded,
+    ]"
+  >
+    <div :class="$style.buttonWrap">
+      <component
+        :is="computedComponent"
+        :to="button.to"
         :class="$style.button"
       >
         <Icon
@@ -39,23 +28,23 @@
           :class="$style.iconAfter"
           :icon="button.iconAfter"
         />
-      </div>
-    </component>
+      </component>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, defineProps } from 'vue';
 import Icon from '@/components/core/icon/Icon.vue';
-import { useLayoutStore } from '@/stores/useLayoutStore';
+import { layout } from '@/stores/layout';
 import { SidebarButton, SidebarButtonType } from './index';
 
-const layoutStore = useLayoutStore();
+const layoutStore = layout();
 
 const props = defineProps<{
   button: SidebarButton,
 }>();
-const isSidebarWide = computed(() => layoutStore.isSidebarExpanded);
+const isSidebarExpanded = computed(() => layoutStore.isSidebarExpanded);
 
 const componentMap: Record<SidebarButtonType, string> = {
   [SidebarButtonType.LINK]: 'router-link',
@@ -70,10 +59,56 @@ const computedComponent = computed(() => componentMap[props.button.type]);
 
 .root {
   width: 100%;
-}
-.rootTiny {
-  display: flex;
-  justify-content: center;
+  &.expanded {
+    display: flex;
+    justify-content: center;
+    .buttonWrap {
+      width: rem(44px);
+      height: rem(56px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .button {
+      width: rem(44px);
+      height: rem(44px);
+      border-radius: rem(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+      border: 0;
+      background: none;
+      &:focus {
+        background: rgb(var(--color-surface));
+      }
+    }
+    .iconWrap {
+      height: rem(44px);
+      width: rem(44px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    .iconBeforeTiny {
+      display: none;
+    }
+    .iconBefore {
+      margin-left: 0;
+    }
+    .iconAfter {
+      display: none;
+    }
+    .counter {
+      display: none;
+    }
+    .text {
+      display: none;
+    }
+  }
 }
 .button {
   width: 100%;
@@ -91,14 +126,7 @@ const computedComponent = computed(() => componentMap[props.button.type]);
     color: rgb(var(--color-heading));
   }
 }
-.buttonTinyWrap {
-  height: rem(56px);
-  width: rem(44px);
-}
-.buttonTiny {
-  height: rem(44px);
-  width: rem(44px);
-}
+
 .iconWrap {
   height: rem(44px);
   width: rem(44px);

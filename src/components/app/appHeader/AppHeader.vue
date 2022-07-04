@@ -49,12 +49,19 @@
           v-if="computedState === HeaderState.PROFILE"
           :class="$style.rightSectionIcons"
         >
-          <div :class="$style.searchButton">
+          <div
+            :class="$style.chatButton"
+            @click="openChatBar()"
+          >
             <Icon icon="chatNotification" />
           </div>
           <div :class="$style.bellButton">
             <Icon icon="bell" />
           </div>
+        </div>
+      </template>
+      <template #divider>
+        <div :class="$style.divider">
         </div>
       </template>
       <template #right-section-profile>
@@ -76,10 +83,12 @@ import Button from '@/components/core/button/Button.vue';
 import { HeaderState } from '@/components/core/header';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { useLayoutStore } from '@/stores/useLayoutStore';
+import { layout } from '@/stores/layout';
 
 const route = useRoute();
-const layoutStore = useLayoutStore();
+const layoutStore = layout();
+
+const openChatBar = computed(() => layoutStore.openChatBar);
 
 const computedState = computed(() => route.meta.headerState || HeaderState.DEFAULT);
 </script>
@@ -105,12 +114,22 @@ const computedState = computed(() => route.meta.headerState || HeaderState.DEFAU
   height: rem(20px);
   cursor: pointer;
 }
-
+.chatButton {
+  width: rem(20px);
+  height: rem(20px);
+  cursor: pointer;
+}
 .bellButton {
   width: rem(20px);
   height: rem(20px);
   margin-left: rem(20px);
   cursor: pointer;
+}
+.divider {
+  height: rem(31px);
+  width: rem(1px);
+  background: rgb(var(--color-border));
+  margin: 0 rem(24px);
 }
 
 .header {

@@ -5,6 +5,7 @@
     </div>
     <div :class="$style.rightSection">
       <slot name="right-section-icons" />
+      <slot name="divider" />
       <slot name="right-section-profile" />
     </div>
   </div>
@@ -20,8 +21,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.leftSection {
 }
 .rightSection {
   height: 100%;

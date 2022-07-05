@@ -4,37 +4,37 @@
       v-model="model"
     >
       <template #label>
-        Create Account
+        {{ $t('auth-pages.create-account') }}
       </template>
       <template #top-button>
         <Button
           variant="secondary-google"
           icon-before-special="google"
         >
-          Sign Up with Google
+          {{ $t('auth-pages.sign-up-with-google') }}
         </Button>
       </template>
       <template #top-text>
-        Or Sign Up with email
+        {{ $t('auth-pages.or-sign-up-with-email') }}
       </template>
       <template #username>
         <Field
           name="registerUsername"
-          label="Full Name"
+          :label="$t('auth-pages.full-name')"
           placeholder="Regina Cooper"
         />
       </template>
       <template #login>
         <Field
           name="registerLogin"
-          label="Email"
+          :label="$t('auth-pages.email')"
           placeholder="cooper@example.com"
         />
       </template>
       <template #password>
         <Field
           name="registerPassword"
-          label="Password"
+          :label="$t('auth-pages.password')"
           type="password"
           icon-after="hide"
           placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
@@ -44,7 +44,7 @@
         <Field
           name="confirmPassword"
           type="password"
-          label="Confirm Password"
+          :label="$t('auth-pages.confirm-password')"
           icon-after="hide"
           placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
         />
@@ -52,31 +52,31 @@
       <template #checkbox>
         <Checkbox
           name="isChecked"
-          label="I accept"
+          :label="$t('auth-pages.i-accept')"
         />
       </template>
       <template #terms-button>
         <Button
           variant="primary-minimalistic"
         >
-          Terms and Conditions
+          {{ $t('auth-pages.terms-and-conditions') }}
         </Button>
       </template>
       <template #create-button>
         <Button
           variant="primary-extended"
         >
-          Create Account
+          {{ $t('auth-pages.create-account') }}
         </Button>
       </template>
       <template #bottom-text>
-        Already have an account?
+        {{ $t('auth-pages.already-have-an-account') }}
       </template>
       <template #sign-up-button>
         <Button
           variant="primary-minimalistic"
         >
-          Login
+          {{ $t('auth-pages.login') }}
         </Button>
       </template>
     </RegisterPageContainer>
@@ -98,6 +98,9 @@ import Field from '@/components/core/field/Field.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import { ref } from 'vue';
 import RegisterPageContainer from '@/containers/SignUpPageContainer.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const model = ref({
   registerUsername: '',

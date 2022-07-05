@@ -2,5 +2,53 @@
   "theme": {
     "light": "Light",
     "dark": "Dark"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "e-commerce": "E-Commerce",
+    "calendar": "Calendar",
+    "mail": "Mail",
+    "chat": "Сhat",
+    "tasks": "Tasks",
+    "projects": "Projects",
+    "file-manager": "File Manager",
+    "notes": "Notes",
+    "contacts": "Contacts"
+  },
+  "auth-pages": {
+    "create-account": "Create Account",
+    "sign-up-with-google": "Sign Up with Google",
+    "full-name": "Full Name",
+    "email": "Email",
+    "password": "Password",
+    "confirm-password": "Confirm Password",
+    "or-sign-up-with-email": "Or Sign Up with email",
+    "i-accept": "I accept",
+    "terms-and-conditions": "Terms and Conditions",
+    "already-have-an-account": "Already have an account?",
+    "login": "Login",
+
+    "login-to-your-account": "Login To Your Account",
+    "login-with-google": "Login with Google",
+    "or-login-with-email": "Or Login with email",
+    "remember-me": "Remember Me",
+    "forgot-password": "Forgot Password?",
+    "log-in": "Log In",
+    "dont-have-an-account": "Dont have an account?",
+    "sign-up": "Sign Up",
+
+
+    "reset-your-password": "Reset Your Password",
+    "reset-password": "Reset Password",
+    "go-back-to": "Go back to",
+
+    "recover-your-password": "Recover Your Password",
+    "recover-password": "Recover Password"
+  },
+  "header": {
+    "settings": "Settings",
+    "activity": "Activity",
+    "users": "Users",
+    "name": "John Doe"
   }
 }

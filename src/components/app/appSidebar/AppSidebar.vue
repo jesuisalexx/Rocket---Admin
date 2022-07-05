@@ -11,6 +11,9 @@ import { SidebarButtonType } from '@/components/core/sidebarButton';
 import { computed } from 'vue';
 
 import { layout } from '@/stores/layout';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const layoutStore = layout();
 
@@ -18,7 +21,7 @@ const isSidebarWide = computed(() => layoutStore.isSidebarExpanded);
 
 const buttons = computed(() => [
   {
-    label: 'Dashboard',
+    label: t('sidebar.dashboard'),
     type: SidebarButtonType.LINK,
     to: {
       name: 'index',
@@ -26,7 +29,7 @@ const buttons = computed(() => [
     iconBefore: 'grid',
   },
   {
-    label: 'E-Commerce',
+    label: t('sidebar.e-commerce'),
     type: SidebarButtonType.LINK,
     to: {
       name: 'index',
@@ -35,7 +38,7 @@ const buttons = computed(() => [
     iconAfter: 'arrowSmall',
   },
   {
-    label: 'Calendar',
+    label: t('sidebar.calendar'),
     type: SidebarButtonType.LINK,
     to: {
       name: 'index',
@@ -43,7 +46,7 @@ const buttons = computed(() => [
     iconBefore: 'calendar',
   },
   {
-    label: 'Mail',
+    label: t('sidebar.mail'),
     type: SidebarButtonType.LINK,
     to: {
       name: 'index',
@@ -52,7 +55,7 @@ const buttons = computed(() => [
     counter: 4,
   },
   {
-    label: 'Chat',
+    label: t('sidebar.chat'),
     type: SidebarButtonType.LINK,
     to: {
       name: 'index',
@@ -60,7 +63,7 @@ const buttons = computed(() => [
     iconBefore: 'chat',
   },
   {
-    label: 'Tasks',
+    label: t('sidebar.tasks'),
     type: SidebarButtonType.LINK,
     to: {
       name: 'index',
@@ -68,7 +71,7 @@ const buttons = computed(() => [
     iconBefore: 'tasks',
   },
   {
-    label: 'Projects',
+    label: t('sidebar.projects'),
     type: SidebarButtonType.LINK,
     to: {
       name: 'index',
@@ -76,7 +79,7 @@ const buttons = computed(() => [
     iconBefore: 'project',
   },
   {
-    label: 'File Manager',
+    label: t('sidebar.file-manager'),
     type: SidebarButtonType.LINK,
     to: {
       name: 'index',
@@ -84,7 +87,7 @@ const buttons = computed(() => [
     iconBefore: 'folder',
   },
   {
-    label: 'Notes',
+    label: t('sidebar.notes'),
     type: SidebarButtonType.LINK,
     to: {
       name: 'index',
@@ -92,7 +95,7 @@ const buttons = computed(() => [
     iconBefore: 'text',
   },
   {
-    label: 'Contacts',
+    label: t('sidebar.contacts'),
     type: SidebarButtonType.LINK,
     to: {
       name: 'index',

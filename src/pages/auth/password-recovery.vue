@@ -7,12 +7,12 @@
         <BigLock />
       </template>
       <template #label>
-        Recover Your Password
+        {{ $t('auth-pages.recover-your-password') }}
       </template>
       <template #email>
         <Field
           name="login"
-          label="Email"
+          :label="$t('auth-pages.email')"
           placeholder="cooper@example.com"
         />
       </template>
@@ -20,17 +20,17 @@
         <Button
           variant="primary-extended"
         >
-          Recover Password
+          {{ $t('auth-pages.recover-password') }}
         </Button>
       </template>
       <template #bottom-text>
-        Go back to
+        {{ $t('auth-pages.go-back-to') }}
       </template>
       <template #login-button>
         <Button
           variant="primary-minimalistic"
         >
-          Login
+          {{ $t('auth-pages.login') }}
         </Button>
       </template>
     </PasswordRecoveryContainer>
@@ -51,8 +51,11 @@ import PasswordRecoveryContainer from '@/containers/PasswordRecoveryContainer.vu
 import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
 import BigLock from '@/components/core/icon/assets/bigLock.svg';
+import { useI18n } from 'vue-i18n';
 
 import { ref } from 'vue';
+
+const { t } = useI18n();
 
 const model = ref({
   login: '',

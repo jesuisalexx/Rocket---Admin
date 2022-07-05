@@ -4,30 +4,30 @@
       v-model="model"
     >
       <template #label>
-        Login To Your Account
+        {{ $t('auth-pages.login-to-your-account') }}
       </template>
       <template #top-button>
         <Button
           variant="secondary-google"
           icon-before-special="google"
         >
-          Login with Google
+          {{ $t('auth-pages.login-with-google') }}
         </Button>
       </template>
       <template #top-text>
-        Or Login with email
+        {{ $t('auth-pages.or-login-with-email') }}
       </template>
       <template #login>
         <Field
           name="login"
-          label="Email"
+          :label="$t('auth-pages.email')"
           placeholder="cooper@example.com"
         />
       </template>
       <template #password>
         <Field
           name="password"
-          label="Password"
+          :label="$t('auth-pages.password')"
           icon-after="hide"
           type="password"
           placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
@@ -36,31 +36,31 @@
       <template #checkbox>
         <Checkbox
           name="isChecked"
-          label="Remember me"
+          :label="$t('auth-pages.remember-me')"
         />
       </template>
       <template #password-button>
         <Button
           variant="primary-minimalistic"
         >
-          Forgot Password?
+          {{ $t('auth-pages.forgot-password') }}
         </Button>
       </template>
       <template #login-button>
         <Button
           variant="primary-extended"
         >
-          Log In
+          {{ $t('auth-pages.log-in') }}
         </Button>
       </template>
       <template #bottom-text>
-        Don't have an account?
+        {{ $t('auth-pages.dont-have-an-account') }}
       </template>
       <template #sign-up-button>
         <Button
           variant="primary-minimalistic"
         >
-          Sign Up
+          {{ $t('auth-pages.sign-up') }}
         </Button>
       </template>
     </SignInPageContainer>
@@ -82,8 +82,10 @@ import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import { ref } from 'vue';
-
 import { signIn } from '@/api/endpoints/auth';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 signIn();
 

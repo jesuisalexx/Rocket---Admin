@@ -17,19 +17,19 @@
             variant="secondary"
             icon-before="settings"
           >
-            Settings
+            {{ $t('header.settings') }}
           </Button>
           <Button
             variant="simple"
             :class="$style.simpleButton"
           >
-            Activity
+            {{ $t('header.activity') }}
           </Button>
           <Button
             variant="simple"
             :class="$style.simpleButton"
           >
-            Users
+            {{ $t('header.users') }}
           </Button>
         </div>
       </template>
@@ -67,7 +67,7 @@
       <template #right-section-profile>
         <UserBarContainer avatar-icon="avatar">
           <template #user-name>
-            artTemplate
+            {{ $t('header.name') }}
           </template>
         </UserBarContainer>
       </template>
@@ -84,13 +84,16 @@ import { HeaderState } from '@/components/core/header';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { layout } from '@/stores/layout';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const route = useRoute();
 const layoutStore = layout();
 
 const openChatBar = computed(() => layoutStore.openChatBar);
 
-const computedState = computed(() => route.meta.headerState || HeaderState.DEFAULT);
+const computedState = computed(() => route.meta.headerState || HeaderState.PROFILE);
 </script>
 
 <style lang="scss" module>

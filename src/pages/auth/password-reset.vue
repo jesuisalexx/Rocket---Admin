@@ -7,19 +7,19 @@
         <BigLock />
       </template>
       <template #label>
-        Reset Your Password
+        {{ $t('auth-pages.reset-your-password') }}
       </template>
       <template #login>
         <Field
           name="resetLogin"
-          label="Email"
+          :label="$t('auth-pages.email')"
           placeholder="cooper@example.com"
         />
       </template>
       <template #password>
         <Field
           name="resetPassword"
-          label="Password"
+          :label="$t('auth-pages.password')"
           type="password"
           icon-after="hide"
           placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
@@ -28,7 +28,7 @@
       <template #password-confirm>
         <Field
           name="confirmPassword"
-          label="Confirm Password"
+          :label="$t('auth-pages.confirm-password')"
           type="password"
           icon-after="hide"
           placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
@@ -38,17 +38,17 @@
         <Button
           variant="primary-extended"
         >
-          Reset Password
+          {{ $t('auth-pages.reset-password') }}
         </Button>
       </template>
       <template #bottom-text>
-        Go back to
+        {{ $t('auth-pages.go-back-to') }}
       </template>
       <template #sign-up-button>
         <Button
           variant="primary-minimalistic"
         >
-          Login
+          {{ $t('auth-pages.login') }}
         </Button>
       </template>
     </PasswordResetContainer>
@@ -70,6 +70,9 @@ import Field from '@/components/core/field/Field.vue';
 import { ref } from 'vue';
 import PasswordResetContainer from '@/containers/PasswordResetContainer.vue';
 import BigLock from '@/components/core/icon/assets/bigLock.svg';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const model = ref({
   resetUsername: '',

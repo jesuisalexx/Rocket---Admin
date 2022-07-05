@@ -1,7 +1,9 @@
 <template>
   <div :class="$style.root">
-    <Illustration :class="$style.picture" />
-    <slot />
+    <div :class="$style.layoutWrap">
+      <Illustration :class="$style.picture" />
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -13,8 +15,12 @@ import Illustration from '@/assets/img/authIllustration.svg';
 .root {
   width: 100%;
   height: 100vh;
-  padding: rem(70px);
-  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.layoutWrap {
+  width: 85%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,6 +28,5 @@ import Illustration from '@/assets/img/authIllustration.svg';
 .picture {
   width: rem(580px);
   height: rem(590px);
-  left: 15%;
 }
 </style>

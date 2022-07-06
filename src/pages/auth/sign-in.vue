@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <Form
+    v-model="model"
+    :validation-schema="validationSchema"
+    @submit="submit"
+  >
     <SignInPageContainer
       v-model="model"
     >
@@ -19,7 +23,7 @@
       </template>
       <template #login>
         <Field
-          name="login"
+          name="email"
           :label="$t('auth-pages.email')"
           placeholder="cooper@example.com"
         />
@@ -35,8 +39,8 @@
       </template>
       <template #checkbox>
         <Checkbox
-          name="isChecked"
           :label="$t('auth-pages.remember-me')"
+          :detach-form="true"
         />
       </template>
       <template #password-button>
@@ -59,19 +63,20 @@
       <template #sign-up-button>
         <Button
           variant="primary-minimalistic"
+          type="submit"
         >
           {{ $t('auth-pages.sign-up') }}
         </Button>
       </template>
     </SignInPageContainer>
-  </div>
+  </Form>
 </template>
 
 <route>
 {
-  name: "sign-in",
   meta: {
-    layout: "auth"
+    layout: "auth",
+    guestRequired: true,
   }
 }
 </route>
@@ -81,22 +86,16 @@ import SignInPageContainer from '@/containers/SignInPageContainer.vue';
 import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
-import { ref } from 'vue';
-import { signIn } from '@/api/endpoints/auth';
+import Form from '@/components/core/form/Form.vue';
 import { useI18n } from 'vue-i18n';
+import { useSignIn } from '@/hooks/useSignIn';
 
 const { t } = useI18n();
 
-signIn();
-
-const model = ref({
-  login: '',
-  password: '',
-  isChecked: false,
-});
-
+const {
+  model,
+  validationSchema,
+  submit,
+} = useSignIn();
+submit();
 </script>
-
-<style lang="scss" module>
-
-</style>

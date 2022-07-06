@@ -6,56 +6,72 @@
       $style[size]
     ]"
   >
-    <Icon :icon="avatarIcon" />
-    <slot />
+    <DefaultAvatar
+      v-if="!src"
+      :class="$style.source"
+    />
+    <img
+      v-else
+      :class="$style.source"
+      :src="src"
+      alt=""
+    >
   </div>
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue';
-import Icon from '@/components/core/icon/Icon.vue';
+import DefaultAvatar from '@/assets/img/avatar.svg';
 import { avatarShape, avatarSize } from './index';
 
-defineProps({
-  shape: {
-    type: String as PropType<string>,
-    default: avatarShape.SQUARE,
-    validator: (state: avatarShape) => Object.values(avatarShape).includes(state),
+withDefaults(
+  defineProps<{
+      shape?: avatarShape,
+      size?: avatarSize,
+      src?: string,
+    }>(),
+  {
+    shape: avatarShape.CIRCLE,
+    size: avatarSize.S,
   },
-  size: {
-    type: String as PropType<string>,
-    default: avatarSize.XS,
-    validator: (state: avatarSize) => Object.values(avatarSize).includes(state),
-  },
-  avatarIcon: String,
-});
+);
 </script>
 
 <style lang="scss" module>
+@import "@/assets/styles/utils";
+
 .root {
-  width: 100%;
-  height: 100%;
+  background: #000;
+  .source {
+    width: 100%;
+    height: 100%;
+  }
 }
+
 .circle {
   border-radius: 50%;
 }
+
 .square {
   border-radius: 30%;
 }
+
 .xs {
   width: rem(30px);
   height: rem(30px);
 }
+
 .s {
   width: rem(40px);
   height: rem(40px);
 }
+
 .m {
   width: rem(64px);
   height: rem(64px);
 }
+
 .l {
-  width: rem(150px);
-  height: rem(150px);
+  width: rem(140px);
+  height: rem(140px);
 }
 </style>

@@ -10,6 +10,15 @@
   </div>
 </template>
 
+<route>
+{
+  meta: {
+    layout: "auth",
+    authRequired: true,
+  }
+}
+</route>
+
 <script setup lang="ts">
 import Form from '@/components/core/form/Form.vue';
 import { ref } from 'vue';

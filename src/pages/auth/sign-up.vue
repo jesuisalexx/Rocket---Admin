@@ -85,10 +85,10 @@
 
 <route>
 {
-name: "sign-up",
-meta: {
-layout: "auth"
-}
+  meta: {
+    layout: "auth",
+    guestRequired: true,
+  }
 }
 </route>
 

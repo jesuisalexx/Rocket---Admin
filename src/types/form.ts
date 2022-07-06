@@ -7,5 +7,6 @@ export enum touchTrigger {
 export enum inputType {
   TEXT = 'text',
   PASSWORD = 'password',
-  NUMBER = 'number'
+  NUMBER = 'number',
+  SELECT = 'select'
 }

@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="$style.icon"
+    :class="$style.root"
   >
     <svg :class="$style.source">
       <use :xlink:href="`#icon-${icon}`" />
@@ -22,10 +22,10 @@ defineExpose(props);
 <style lang="scss" module>
 @import "@/assets/styles/utils";
 
-.icon {
+.root {
   flex-direction: column;
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   .source {
     fill: currentColor;

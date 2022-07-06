@@ -50,5 +50,14 @@
     "activity": "Activity",
     "users": "Users",
     "name": "John Doe"
+  },
+  "profile": {
+    "profile": "Profile",
+    "name": "Name",
+    "last-name": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "status": "Status",
+    "next-step": "Next Step"
   }
 }

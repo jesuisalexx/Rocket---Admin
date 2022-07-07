@@ -34,7 +34,7 @@
           :label="$t('auth-pages.password')"
           icon-after="hide"
           type="password"
-          placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+          placeholder="type password"
         />
       </template>
       <template #checkbox>

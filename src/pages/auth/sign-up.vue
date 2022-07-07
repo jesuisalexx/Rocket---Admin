@@ -1,6 +1,6 @@
 <template>
   <div>
-    <RegisterPageContainer
+    <SignUpPageContainer
       v-model="model"
     >
       <template #label>
@@ -79,7 +79,7 @@
           {{ $t('auth-pages.login') }}
         </Button>
       </template>
-    </RegisterPageContainer>
+    </SignUpPageContainer>
   </div>
 </template>
 
@@ -97,7 +97,7 @@ import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import { ref } from 'vue';
-import RegisterPageContainer from '@/containers/SignUpPageContainer.vue';
+import SignUpPageContainer from '@/containers/SignUpPageContainer.vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();

@@ -39,56 +39,56 @@
   display: flex;
 }
 .smallCardWrap {
-  width: 400px;
-  height: 300px;
-  border-radius: 30px;
+  width: rem(400px);
+  height: rem(300px);
+  border-radius: rem(30px);
   background: green;
 }
 .bigCardWrap {
   margin-left: 20px;
-  width: 500px;
-  height: 750px;
-  border-radius: 40px;
-  padding: 30px;
+  width: rem(500px);
+  height: rem(750px);
+  border-radius: rem(40px);
+  padding: rem(30px);
   background: rgb(var(--color-surface));
-  border: 1px solid black;
+  border: rem(1px) solid black;
 }
 .heading {
-  font-size: 28px;
+  font-size: rem(28px);
   font-weight: 500;
   font-family: 'Poppins', sans-serif;
   color: rgb(var(--color-heading));
 }
 .avatarWrap {
-  margin-top: 20px;
+  margin-top: rem(20px);
   width: 100%;
   display: flex;
   justify-content: center;
   position: relative;
 }
 .avatar {
-  width: 160px;
-  height: 160px;
+  width: rem(160px);
+  height: rem(160px);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: rem(10px);
   border-radius: 50%;
-  border: 2px dashed rgb(var(--color-body-dark));
+  border: rem(2px) dashed rgb(var(--color-body-dark));
 }
 .nameWrap {
-  margin-top: 25px;
+  margin-top: rem(25px);
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 .wideFields {
   width: 100%;
-  margin-top: 27px;
+  margin-top: rem(27px);
 }
 .buttonWrap {
   display: flex;
   justify-content: flex-end;
-  margin-top: 24px;
+  margin-top: rem(24px);
 }
 </style>

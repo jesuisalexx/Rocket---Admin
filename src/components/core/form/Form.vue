@@ -43,6 +43,8 @@ const props = defineProps({
 });
 const emit = defineEmits(['update:modelValue', 'submit', 'validate']);
 
+console.log('props', props);
+
 const {
   handleSubmit,
   reset,

@@ -1,7 +1,5 @@
 <template>
-  <Form
-    v-model="localModel"
-  >
+  <div>
     <div :class="$style.root">
       <div :class="$style.label">
         <slot name="label" />
@@ -32,40 +30,24 @@
           />
         </div>
       </div>
-      <div :class="$style.loginButton">
-        <slot name="login-button" />
-      </div>
-      <div :class="$style.bottomTextWrap">
-        <div :class="$style.bottomText">
-          <slot name="bottom-text" />
+      <div :class="$style.bottomPartsWrap">
+        <div :class="$style.loginButton">
+          <slot name="login-button" />
         </div>
-        <div :class="$style.signUp">
-          <slot name="sign-up-button" />
+        <div :class="$style.bottomTextWrap">
+          <div :class="$style.bottomText">
+            <slot name="bottom-text" />
+          </div>
+          <div :class="$style.signUp">
+            <slot name="sign-up-button" />
+          </div>
         </div>
       </div>
     </div>
-  </Form>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import Form from '@/components/core/form/Form.vue';
-import { computed } from 'vue';
-
-const props = defineProps({
-  modelValue: {
-    type: Object,
-  },
-});
-const emit = defineEmits([
-  'update:modelValue',
-]);
-const localModel = computed({
-  get: () => props.modelValue,
-
-  set: (value) => {
-    emit('update:modelValue', value);
-  },
-});
 </script>
 
 <style lang="scss" module>
@@ -132,11 +114,18 @@ const localModel = computed({
   color: rgb(var(--color-body-dark));
   font-size: rem(14px);
 }
+.bottomPartsWrap {
+  width: 100%;
+  height: rem(265px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
 .signUp {
   margin-left: rem(7px);
 }
 .bottomTextWrap {
   display: flex;
-  margin-top: rem(150px);
 }
 </style>

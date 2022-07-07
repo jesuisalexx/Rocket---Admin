@@ -75,7 +75,7 @@
 import Icon from '@/components/core/icon/Icon.vue';
 
 import {
-  computed, nextTick, PropType, ref,
+  nextTick, PropType, ref,
 } from 'vue';
 import { useField } from '@/hooks/useField';
 import { inputType } from '@/types/form';
@@ -199,12 +199,6 @@ defineExpose({
   display: flex;
   align-items: center;
   margin-top: rem(10px);
-}
-.input[type="password"]
-{
-  font: large Verdana,sans-serif;
-  letter-spacing: rem(1px);
-  height: rem(43px);
 }
 
 .input {

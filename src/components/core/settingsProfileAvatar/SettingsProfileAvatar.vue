@@ -18,18 +18,18 @@ import EditIcon from '@/components/core/icon/assets/editRounded.svg';
 <style lang="scss" module>
 .root {
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: rem(160px);
+  height: rem(160px);
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 .editIcon {
-  width: 33px;
-  height: 33px;
+  width: rem(33px);
+  height: rem(33px);
   position: absolute;
-  right: 1px;
-  top: 11px;
+  right: rem(1px);
+  top: rem(11px);
 }
 </style>

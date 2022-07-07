@@ -17,8 +17,7 @@
         />
       </template>
       <template #avatar>
-        <SettingsProfileAvatar
-        />
+        <SettingsProfileAvatar />
       </template>
       <template #email>
         <Field
@@ -33,10 +32,9 @@
         />
       </template>
       <template #status>
-        <Field
+        <InputSelect
           name="last-name"
           :label="$t('profile.status')"
-          :type="Select"
         />
       </template>
       <template #button>
@@ -57,6 +55,7 @@ import SettingsProfileAvatar from '@/components/core/settingsProfileAvatar/Setti
 import Button from '@/components/core/button/Button.vue';
 import { PropType } from 'vue';
 import { inputType } from '@/types/form';
+import InputSelect from '@/components/core/inputSelect/InputSelect.vue';
 
 const props = defineProps({
   type: {

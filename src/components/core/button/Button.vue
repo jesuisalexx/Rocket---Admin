@@ -3,16 +3,17 @@
     tabindex="0"
     :class="[
       $style.button,
-      $style[variant]
+      $style[variant],
+      isLoading && $style.loading,
     ]"
   >
     <div
-      v-if="'beforeSpecial' in $slots || iconBeforeSpecial"
-      :class="$style.iconBeforeSpecial"
+      :class="$style.loaderWrap"
     >
-      <slot name="before">
-        <Icon :icon="iconBeforeSpecial" />
-      </slot>
+      <Loader :class="$style.loader" />
+    </div>
+    <div :class="iconBeforeSpecial">
+      <slot name="icon-before-special" />
     </div>
     <div
       v-if="'before' in $slots || iconBefore"
@@ -22,7 +23,9 @@
         <Icon :icon="iconBefore" />
       </slot>
     </div>
-    <slot />
+    <div :class="$style.content">
+      <slot />
+    </div>
     <div
       v-if="'after' in $slots || iconAfter"
       :class="$style.iconAfter"
@@ -36,6 +39,7 @@
 
 <script setup lang="ts">
 import Icon from '@/components/core/icon/Icon.vue';
+import Loader from '@/components/core/loader/Loader.vue';
 import { PropType } from 'vue';
 import { buttonVariant } from './index';
 
@@ -57,6 +61,10 @@ const props = defineProps({
     type: String as PropType<string>,
     default: '',
   },
+  isLoading: {
+    type: Boolean as PropType<boolean>,
+    default: false,
+  },
 });
 </script>
 
@@ -71,11 +79,30 @@ const props = defineProps({
   align-items: center;
   position: relative;
 
+  .loaderWrap {
+    opacity: 0;
+  }
+
+  &.loading {
+    pointer-events: none;
+    .iconBefore,
+   .iconAfter,
+   .content {
+     opacity: 0;
+     pointer-events: none;
+   }
+
+    .loaderWrap {
+      opacity: 1;
+    }
+  }
+
   &.success {
     color: rgb(var(--color-primary-3));
     border: rem(1px) solid rgb(var(--color-primary-3));
     background-color: rgb(var(--color-background));
   }
+
   &.primary {
     color: rgb(var(--color-white));
     background-color: rgb(var(--color-primary-accent));
@@ -83,14 +110,16 @@ const props = defineProps({
     padding: rem(8px) rem(24px);
     box-shadow: 0 rem(2px) rgb(var(--color-primary-accent-dark));
     transition: 0.27s;
+
     &:hover {
       color: rgb(var(--color-white));
       background-color: rgb(var(--color-primary-accent));
       border-radius: rem(14px);
       padding: rem(8px) rem(24px);
-      box-shadow: 0 rem(8px) rem(16px)  rgba(var(--color-primary-accent), 0.2);
+      box-shadow: 0 rem(8px) rem(16px) rgba(var(--color-primary-accent), 0.2);
     }
   }
+
   &.primary-extended {
     width: 100%;
     display: flex;
@@ -101,60 +130,82 @@ const props = defineProps({
     padding: rem(8px) rem(24px);
     box-shadow: 0 rem(2px) rgb(var(--color-primary-accent-dark));
     transition: 0.27s;
+
     &:hover {
       color: rgb(var(--color-white));
       background-color: rgb(var(--color-primary-accent));
       border-radius: rem(14px);
       padding: rem(8px) rem(24px);
-      box-shadow: 0 rem(8px) rem(16px)  rgba(var(--color-primary-accent), 0.2);
+      box-shadow: 0 rem(8px) rem(16px) rgba(var(--color-primary-accent), 0.2);
     }
   }
+
   &.secondary {
     color: rgb(var(--color-body-light));
     border-radius: rem(14px);
     padding: rem(8px) rem(24px);
     border: rem(1px) solid rgb(var(--color-border));
     transition: 0.27s;
+
     &:hover {
       color: rgb(var(--color-primary-accent));
       background-color: rgba(var(--color-primary-accent), 0.1);
       border: rem(1px) solid rgba(var(--color-primary-accent), 0.1);
     }
   }
-  &.secondary-google{
+
+  &.secondary-google {
     width: 100%;
     color: rgb(var(--color-body-light));
     border-radius: rem(14px);
-    padding: rem(9px) rem(108px);
+    padding: rem(9px) 0;
     border: rem(1px) solid rgb(var(--color-border));
     transition: 0.27s;
     display: flex;
     justify-content: center;
+
     &:hover {
       color: rgb(var(--color-primary-accent));
       background-color: rgba(var(--color-primary-accent), 0.1);
       border: rem(1px) solid rgba(var(--color-primary-accent), 0.1);
     }
   }
+
   &.disabled {
     color: rgb(var(--color-body-dark));
     border-radius: rem(14px);
     padding: rem(8px) rem(24px);
     background-color: rgb(var(--color-border));
   }
+
   &.primary-minimalistic {
     color: rgb(var(--color-primary-accent));
-    font-size: 14px;
+    font-size: rem(14px);
     background: none;
   }
+
   &.simple {
     color: rgb(var(--color-body-light));
-    font-size: 14px;
+    font-size: rem(14px);
     background: none;
   }
 }
-.icon {
+
+.loader {
 }
+
+.loaderWrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  display: none;
+}
+
 .iconBefore {
   width: rem(20px);
   height: rem(20px);
@@ -163,6 +214,7 @@ const props = defineProps({
   justify-content: center;
   align-items: center;
 }
+
 .iconBeforeSpecial {
   width: rem(20px);
   height: rem(20px);
@@ -171,9 +223,8 @@ const props = defineProps({
   justify-content: center;
   align-items: center;
   position: absolute;
-  left: 14px;
-  top: 13px;
 }
+
 .iconAfter {
   width: rem(20px);
   height: rem(20px);

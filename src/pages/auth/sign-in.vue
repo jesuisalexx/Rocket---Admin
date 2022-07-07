@@ -10,10 +10,12 @@
       <template #label>
         {{ $t('auth-pages.login-to-your-account') }}
       </template>
+      <template #top-button-icon>
+        <Google />
+      </template>
       <template #top-button>
         <Button
           variant="secondary-google"
-          icon-before-special="google"
         >
           {{ $t('auth-pages.login-with-google') }}
         </Button>
@@ -53,6 +55,7 @@
       <template #login-button>
         <Button
           variant="primary-extended"
+          :is-loading="isLoading"
         >
           {{ $t('auth-pages.log-in') }}
         </Button>
@@ -87,15 +90,16 @@ import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import Form from '@/components/core/form/Form.vue';
+import Google from '@/components/core/icon/assets/google.svg';
 import { useI18n } from 'vue-i18n';
 import { useSignIn } from '@/hooks/useSignIn';
 
 const { t } = useI18n();
 
 const {
+  isLoading,
   model,
   validationSchema,
   submit,
 } = useSignIn();
-submit();
 </script>

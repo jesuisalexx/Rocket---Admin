@@ -21,15 +21,13 @@ import EditIcon from '@/components/core/icon/assets/editRounded.svg';
   width: rem(160px);
   height: rem(160px);
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
   cursor: pointer;
 }
 .editIcon {
   width: rem(33px);
   height: rem(33px);
   position: absolute;
-  right: rem(1px);
-  top: rem(11px);
+  right: 1px;
 }
 </style>

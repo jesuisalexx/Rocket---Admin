@@ -49,7 +49,6 @@
 <script setup lang="ts">
 import SettingsContainer from '@/containers/SettingsContainer.vue';
 import Field from '@/components/core/field/Field.vue';
-import Icon from '@/components/core/icon/Icon.vue';
 import SettingsProfileAvatar from '@/components/core/settingsProfileAvatar/SettingsProfileAvatar.vue';
 
 import Button from '@/components/core/button/Button.vue';

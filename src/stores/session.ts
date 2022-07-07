@@ -36,7 +36,11 @@ export const checkAuth = (
 export const useSessionStore = defineStore('session', () => {
   const isAuthorized = ref(false);
 
-  const { token, setToken, removeToken } = useAuthToken();
+  const {
+    token,
+    setToken,
+    removeToken,
+  } = useAuthToken();
 
   watch(
     token,
@@ -61,9 +65,11 @@ export const useSessionStore = defineStore('session', () => {
   const handleSignIn = async (model: SignInDto, remember: boolean) => {
     const { result, data } = await signIn(model);
 
-    // check response, and if token, call setToken()
-    // second argument tell remember user or not
-    console.log(result, data);
+    if (result) {
+      setToken(data);
+    } else {
+      console.log(data);
+    }
 
     return {
       result,

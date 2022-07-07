@@ -6,10 +6,12 @@
       <template #label>
         {{ $t('auth-pages.create-account') }}
       </template>
+      <template #top-button-icon>
+        <Google />
+      </template>
       <template #top-button>
         <Button
           variant="secondary-google"
-          icon-before-special="google"
         >
           {{ $t('auth-pages.sign-up-with-google') }}
         </Button>
@@ -96,6 +98,7 @@
 import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
+import Google from '@/components/core/icon/assets/google.svg';
 import { ref } from 'vue';
 import SignUpPageContainer from '@/containers/SignUpPageContainer.vue';
 import { useI18n } from 'vue-i18n';

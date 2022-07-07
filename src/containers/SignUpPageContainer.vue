@@ -7,6 +7,9 @@
         <slot name="label" />
       </div>
       <div :class="$style.topButton">
+        <div :class="$style.google">
+          <slot name="top-button-icon" />
+        </div>
         <slot name="top-button" />
       </div>
       <div :class="$style.topText">
@@ -98,6 +101,13 @@ const localModel = computed({
   width: 100%;
   font-size: rem(15px);
   margin-top: rem(35px);
+  display: flex;
+  position: relative;
+}
+.google {
+  top: rem(13px);
+  left: rem(25px);
+  position: absolute;
 }
 .topText {
   width: 100%;

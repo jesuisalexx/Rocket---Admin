@@ -23,7 +23,7 @@ defineProps({
 
 <style lang="scss" module>
 .loader {
-  fill: currentColor;
+  fill: white;
   stroke: currentColor;
   &.md {
     width: 36px !important;

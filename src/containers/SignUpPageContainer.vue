@@ -1,7 +1,5 @@
 <template>
-  <Form
-    v-model="localModel"
-  >
+  <div>
     <div :class="$style.root">
       <div :class="$style.label">
         <slot name="label" />
@@ -16,6 +14,14 @@
         <div :class="$style.stripe" />
         <slot name="top-text" />
         <div :class="$style.stripe" />
+      </div>
+      <div :class="$style.namesWrap">
+        <div :class="$style.name">
+          <slot name="first-name" />
+        </div>
+        <div :class="$style.lastName">
+          <slot name="last-name" />
+        </div>
       </div>
       <div :class="$style.username">
         <slot name="username" />
@@ -32,7 +38,7 @@
       <div :class="$style.checkboxWrap">
         <div :class="$style.checkbox">
           <slot
-            name="checkbox"
+            name="accept"
           />
         </div>
         <div :class="$style.termsButton">
@@ -41,40 +47,24 @@
           />
         </div>
       </div>
-      <div :class="$style.createButton">
-        <slot name="create-button" />
-      </div>
-      <div :class="$style.bottomTextWrap">
-        <div :class="$style.bottomText">
-          <slot name="bottom-text" />
+      <div :class="$style.bottomPartWrap">
+        <div :class="$style.createButton">
+          <slot name="create-button" />
         </div>
-        <div :class="$style.signUp">
-          <slot name="sign-up-button" />
+        <div :class="$style.bottomTextWrap">
+          <div :class="$style.bottomText">
+            <slot name="bottom-text" />
+          </div>
+          <div :class="$style.signUp">
+            <slot name="sign-up-button" />
+          </div>
         </div>
       </div>
     </div>
-  </Form>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import Form from '@/components/core/form/Form.vue';
-import { computed } from 'vue';
-
-const props = defineProps({
-  modelValue: {
-    type: Object,
-  },
-});
-const emit = defineEmits([
-  'update:modelValue',
-]);
-const localModel = computed({
-  get: () => props.modelValue,
-
-  set: (value) => {
-    emit('update:modelValue', value);
-  },
-});
 </script>
 
 <style lang="scss" module>
@@ -82,8 +72,7 @@ const localModel = computed({
 
 .root {
   width: rem(600px);
-  height: rem(884px);
-  padding: rem(18px) rem(100px);
+  padding: rem(18px) rem(90px);
   border-radius: rem(20px);
   background: rgb(var(--color-surface));
   font-family: 'Poppins', sans-serif;
@@ -95,12 +84,12 @@ const localModel = computed({
   color: rgb(var(--color-heading));
   font-size: rem(28px);
   font-weight: 500;
-  margin-top: rem(65px);
+  margin-top: rem(50px);
 }
 .topButton {
   width: 100%;
   font-size: rem(15px);
-  margin-top: rem(35px);
+  margin-top: rem(36px);
   display: flex;
   position: relative;
 }
@@ -117,16 +106,28 @@ const localModel = computed({
   color: rgb(var(--color-body-dark));
   text-transform: uppercase;
   font-size: rem(12px);
-  margin-top: rem(36px);
+  margin-top: rem(30px);
 }
 .stripe {
   width: rem(122px);
   height: rem(1px);
   background: rgb(var(--color-border));
 }
+.namesWrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: rem(28px);
+}
+.name {
+  width: 46%;
+}
+.lastName {
+  width: 46%;
+}
 .username {
   width: 100%;
-  margin-top: rem(28px);
+  margin-top: rem(20px);
 }
 .login {
   width: 100%;
@@ -143,7 +144,7 @@ const localModel = computed({
 .checkboxWrap {
   display: flex;
   width: 100%;
-  margin-top: rem(24px);
+  margin-top: rem(25px);
 }
 .termsButton {
   margin-left: rem(7px);
@@ -156,11 +157,18 @@ const localModel = computed({
   color: rgb(var(--color-body-dark));
   font-size: rem(14px);
 }
+.bottomPartWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: rem(150px);
+}
 .signUp {
   margin-left: rem(7px);
 }
 .bottomTextWrap {
   display: flex;
-  margin-top: rem(69px);
 }
 </style>

@@ -7,12 +7,12 @@
         <BigLock />
       </template>
       <template #label>
-        {{ $t('auth-pages.recover-your-password') }}
+        {{ t('auth-pages.recover-your-password') }}
       </template>
       <template #email>
         <Field
           name="login"
-          :label="$t('auth-pages.email')"
+          :label="t('auth-pages.email')"
           placeholder="cooper@example.com"
         />
       </template>
@@ -20,17 +20,17 @@
         <Button
           variant="primary-extended"
         >
-          {{ $t('auth-pages.recover-password') }}
+          {{ t('auth-pages.recover-password') }}
         </Button>
       </template>
       <template #bottom-text>
-        {{ $t('auth-pages.go-back-to') }}
+        {{ t('auth-pages.go-back-to') }}
       </template>
       <template #login-button>
         <Button
           variant="primary-minimalistic"
         >
-          {{ $t('auth-pages.login') }}
+          {{ t('auth-pages.login') }}
         </Button>
       </template>
     </PasswordRecoveryContainer>

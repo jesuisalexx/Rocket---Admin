@@ -34,5 +34,6 @@ export const useSignIn = () => {
     validationSchema,
     isLoading,
     submit,
+    remember,
   };
 };

@@ -1,10 +1,14 @@
 <template>
-  <div>
+  <Form
+    v-model="model"
+    :validation-schema="validationSchema"
+    @submit="submit"
+  >
     <SignUpPageContainer
       v-model="model"
     >
       <template #label>
-        {{ $t('auth-pages.create-account') }}
+        {{ t('auth-pages.create-account') }}
       </template>
       <template #top-button-icon>
         <Google />
@@ -17,72 +21,88 @@
         </Button>
       </template>
       <template #top-text>
-        {{ $t('auth-pages.or-sign-up-with-email') }}
+        {{ t('auth-pages.or-sign-up-with-email') }}
+      </template>
+      <template #first-name>
+        <Field
+          name="firstName"
+          :label="t('auth-pages.name')"
+          placeholder="Regina"
+        />
+      </template>
+      <template #last-name>
+        <Field
+          name="lastName"
+          :label="t('auth-pages.last-name')"
+          placeholder="Cooper"
+        />
       </template>
       <template #username>
         <Field
-          name="registerUsername"
-          :label="$t('auth-pages.full-name')"
-          placeholder="Regina Cooper"
+          name="username"
+          :label="t('auth-pages.username')"
+          placeholder="Username"
         />
       </template>
       <template #login>
         <Field
-          name="registerLogin"
-          :label="$t('auth-pages.email')"
+          name="email"
+          :label="t('auth-pages.email')"
           placeholder="cooper@example.com"
         />
       </template>
       <template #password>
         <Field
-          name="registerPassword"
-          :label="$t('auth-pages.password')"
+          name="password"
+          :label="t('auth-pages.password')"
           type="password"
           icon-after="hide"
-          placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+          placeholder="Type password"
         />
       </template>
       <template #password-confirm>
         <Field
           name="confirmPassword"
           type="password"
-          :label="$t('auth-pages.confirm-password')"
+          :label="t('auth-pages.confirm-password')"
           icon-after="hide"
-          placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+          placeholder="Confirm password"
         />
       </template>
-      <template #checkbox>
+      <template #accept>
         <Checkbox
-          name="isChecked"
-          :label="$t('auth-pages.i-accept')"
+          v-model="accept"
+          name="accept"
+          :label="t('auth-pages.i-accept')"
         />
       </template>
       <template #terms-button>
         <Button
           variant="primary-minimalistic"
         >
-          {{ $t('auth-pages.terms-and-conditions') }}
+          {{ t('auth-pages.terms-and-conditions') }}
         </Button>
       </template>
       <template #create-button>
         <Button
           variant="primary-extended"
+          :is-loading="isLoading"
         >
-          {{ $t('auth-pages.create-account') }}
+          {{ t('auth-pages.create-account') }}
         </Button>
       </template>
       <template #bottom-text>
-        {{ $t('auth-pages.already-have-an-account') }}
+        {{ t('auth-pages.already-have-an-account') }}
       </template>
       <template #sign-up-button>
         <Button
           variant="primary-minimalistic"
         >
-          {{ $t('auth-pages.login') }}
+          {{ t('auth-pages.login') }}
         </Button>
       </template>
     </SignUpPageContainer>
-  </div>
+  </Form>
 </template>
 
 <route>
@@ -97,21 +117,21 @@
 <script lang="ts" setup>
 import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
+import Form from '@/components/core/form/Form.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import Google from '@/components/core/icon/assets/google.svg';
-import { ref } from 'vue';
 import SignUpPageContainer from '@/containers/SignUpPageContainer.vue';
 import { useI18n } from 'vue-i18n';
+import { useSignUp } from '@/hooks/useSignUp';
 
 const { t } = useI18n();
-
-const model = ref({
-  registerUsername: '',
-  registerLogin: '',
-  registerPassword: '',
-  confirmPassword: '',
-  isChecked: false,
-});
+const {
+  isLoading,
+  model,
+  validationSchema,
+  submit,
+  accept,
+} = useSignUp();
 
 </script>
 

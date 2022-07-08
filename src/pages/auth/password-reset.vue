@@ -7,19 +7,19 @@
         <BigLock />
       </template>
       <template #label>
-        {{ $t('auth-pages.reset-your-password') }}
+        {{ t('auth-pages.reset-your-password') }}
       </template>
       <template #login>
         <Field
           name="resetLogin"
-          :label="$t('auth-pages.email')"
+          :label="t('auth-pages.email')"
           placeholder="cooper@example.com"
         />
       </template>
       <template #password>
         <Field
           name="resetPassword"
-          :label="$t('auth-pages.password')"
+          :label="t('auth-pages.password')"
           type="password"
           icon-after="hide"
           placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
@@ -28,7 +28,7 @@
       <template #password-confirm>
         <Field
           name="confirmPassword"
-          :label="$t('auth-pages.confirm-password')"
+          :label="t('auth-pages.confirm-password')"
           type="password"
           icon-after="hide"
           placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
@@ -38,17 +38,17 @@
         <Button
           variant="primary-extended"
         >
-          {{ $t('auth-pages.reset-password') }}
+          {{ t('auth-pages.reset-password') }}
         </Button>
       </template>
       <template #bottom-text>
-        {{ $t('auth-pages.go-back-to') }}
+        {{ t('auth-pages.go-back-to') }}
       </template>
       <template #sign-up-button>
         <Button
           variant="primary-minimalistic"
         >
-          {{ $t('auth-pages.login') }}
+          {{ t('auth-pages.login') }}
         </Button>
       </template>
     </PasswordResetContainer>

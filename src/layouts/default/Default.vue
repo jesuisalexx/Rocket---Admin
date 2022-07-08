@@ -33,7 +33,6 @@ const onClickOutside = (event: MouseEvent) => {
   if ((event.target as HTMLDivElement).classList.contains('chatButton')) {
     layoutStore.openChatBar();
   } else {
-    console.log(event.target);
     layoutStore.closeChatBar();
   }
 };

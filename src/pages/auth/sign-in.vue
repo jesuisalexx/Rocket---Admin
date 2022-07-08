@@ -8,7 +8,7 @@
       v-model="model"
     >
       <template #label>
-        {{ $t('auth-pages.login-to-your-account') }}
+        {{ t('auth-pages.login-to-your-account') }}
       </template>
       <template #top-button-icon>
         <Google />
@@ -17,31 +17,32 @@
         <Button
           variant="secondary-google"
         >
-          {{ $t('auth-pages.login-with-google') }}
+          {{ t('auth-pages.login-with-google') }}
         </Button>
       </template>
       <template #top-text>
-        {{ $t('auth-pages.or-login-with-email') }}
+        {{ t('auth-pages.or-login-with-email') }}
       </template>
       <template #login>
         <Field
           name="email"
-          :label="$t('auth-pages.email')"
+          :label="t('auth-pages.email')"
           placeholder="cooper@example.com"
         />
       </template>
       <template #password>
         <Field
           name="password"
-          :label="$t('auth-pages.password')"
+          :label="t('auth-pages.password')"
           icon-after="hide"
           type="password"
-          placeholder="type password"
+          placeholder="Type password"
         />
       </template>
       <template #checkbox>
         <Checkbox
-          :label="$t('auth-pages.remember-me')"
+          v-model="remember"
+          :label="t('auth-pages.remember-me')"
           :detach-form="true"
         />
       </template>
@@ -49,7 +50,7 @@
         <Button
           variant="primary-minimalistic"
         >
-          {{ $t('auth-pages.forgot-password') }}
+          {{ t('auth-pages.forgot-password') }}
         </Button>
       </template>
       <template #login-button>
@@ -57,18 +58,18 @@
           variant="primary-extended"
           :is-loading="isLoading"
         >
-          {{ $t('auth-pages.log-in') }}
+          {{ t('auth-pages.log-in') }}
         </Button>
       </template>
       <template #bottom-text>
-        {{ $t('auth-pages.dont-have-an-account') }}
+        {{ t('auth-pages.dont-have-an-account') }}
       </template>
       <template #sign-up-button>
         <Button
           variant="primary-minimalistic"
           type="submit"
         >
-          {{ $t('auth-pages.sign-up') }}
+          {{ t('auth-pages.sign-up') }}
         </Button>
       </template>
     </SignInPageContainer>
@@ -101,5 +102,6 @@ const {
   model,
   validationSchema,
   submit,
+  remember,
 } = useSignIn();
 </script>

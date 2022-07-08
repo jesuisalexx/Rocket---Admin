@@ -4,8 +4,8 @@ import { defineStore } from 'pinia';
 import { router } from '@/router';
 import { useAuthToken } from '@/hooks/useAuthToken';
 import { RouteLocationRaw } from 'vue-router';
-import { signIn } from '@/api/endpoints/auth';
-import { SignInDto } from '@/api/dto/auth';
+import { signIn, signUp } from '@/api/endpoints/auth';
+import { SignInDto, SignUpDto } from '@/api/dto/auth';
 
 export const checkAuth = (
   isAuthorized: boolean,
@@ -76,6 +76,20 @@ export const useSessionStore = defineStore('session', () => {
       data,
     };
   };
+  const handleSignUp = async (model: SignUpDto, accept: boolean) => {
+    const { result, data } = await signUp(model);
+
+    if (result) {
+      setToken(data);
+    } else {
+      console.log(data);
+    }
+
+    return {
+      result,
+      data,
+    };
+  };
 
   const logoutUser = () => {
     removeToken();
@@ -89,6 +103,7 @@ export const useSessionStore = defineStore('session', () => {
     isAuthorized,
     checkAuth,
     signIn: handleSignIn,
+    signUp: handleSignUp,
     logoutUser,
   };
 });

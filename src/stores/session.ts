@@ -6,6 +6,8 @@ import { useAuthToken } from '@/hooks/useAuthToken';
 import { RouteLocationRaw } from 'vue-router';
 import { signIn, signUp } from '@/api/endpoints/auth';
 import { SignInDto, SignUpDto } from '@/api/dto/auth';
+import { useToastStore } from '@/stores/toasts';
+import { useI18n } from 'vue-i18n';
 
 export const checkAuth = (
   isAuthorized: boolean,
@@ -62,12 +64,38 @@ export const useSessionStore = defineStore('session', () => {
     { deep: true, immediate: true },
   );
 
+  const toastStore = useToastStore();
+  const { t } = useI18n();
+
   const handleSignIn = async (model: SignInDto, remember: boolean) => {
     const { result, data } = await signIn(model);
 
     if (result) {
-      setToken(data);
+      setToken(data, remember);
+      toastStore.showSuccess(
+        {
+          label: 'Success',
+          text: 'Welcome',
+          duration: 5000,
+        },
+      );
+      console.log(data);
     } else {
+      const isSeveralErrors = Array.isArray(data.message);
+      if (isSeveralErrors) {
+        data.message.forEach((message: string) => toastStore.showDanger({
+          label: 'Error',
+          text: t(message),
+          duration: 5000,
+        }));
+      } else {
+        toastStore.showDanger({
+          label: 'Error',
+          text: t(data.message),
+          duration: 5000,
+        });
+      }
+
       console.log(data);
     }
 
@@ -80,8 +108,30 @@ export const useSessionStore = defineStore('session', () => {
     const { result, data } = await signUp(model);
 
     if (result) {
-      setToken(data);
+      setToken(data, accept);
+      toastStore.showSuccess(
+        {
+          label: 'Success',
+          text: 'Welcome',
+          duration: 5000,
+        },
+      );
     } else {
+      const isSeveralErrors = Array.isArray(data.message);
+      if (isSeveralErrors) {
+        data.message.forEach((message: string) => toastStore.showDanger({
+          label: 'Error',
+          text: t(message),
+          duration: 5000,
+        }));
+      } else {
+        toastStore.showDanger({
+          label: 'Error',
+          text: t(data.message),
+          duration: 5000,
+        });
+      }
+
       console.log(data);
     }
 

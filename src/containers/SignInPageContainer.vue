@@ -67,6 +67,12 @@
   flex-direction: column;
   align-items: center;
 }
+.toast {
+  position: absolute;
+  z-index: 2;
+  left: 20px;
+  top: 50px;
+}
 .label {
   color: rgb(var(--color-heading));
   font-size: rem(28px);

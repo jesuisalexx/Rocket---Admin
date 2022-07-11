@@ -8,6 +8,9 @@
     >
       Logout
     </Button>
+    <!--    <Toast-->
+    <!--      :toast="error"-->
+    <!--    />-->
   </div>
 </template>
 

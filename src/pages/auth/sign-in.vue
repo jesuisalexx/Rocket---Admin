@@ -95,7 +95,19 @@ import Google from '@/components/core/icon/assets/google.svg';
 import { useI18n } from 'vue-i18n';
 import { useSignIn } from '@/hooks/useSignIn';
 
+import { toastType } from '@/types/toast';
+import { useSessionStore } from '@/stores/session';
+
 const { t } = useI18n();
+const {
+  signIn,
+} = useSessionStore();
+
+const error = {
+  label: 'Error',
+  text: '',
+  type: toastType.DANGER,
+};
 
 const {
   isLoading,

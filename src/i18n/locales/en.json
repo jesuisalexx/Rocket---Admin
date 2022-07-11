@@ -61,5 +61,12 @@
     "phone": "Phone",
     "status": "Status",
     "next-step": "Next Step"
+  },
+  "auth": {
+    "error": {
+      "wrong-email-or-password": "Wrong email or password",
+      "password-min-length": "Password must contain 8 symbols or more",
+      "first-name-min-length": "First name must contain 2 symbols or more"
+    }
   }
 }

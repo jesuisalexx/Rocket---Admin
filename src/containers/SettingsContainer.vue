@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.root">
-    <div :class="$style.smallCardWrap"></div>
+    <div :class="$style.smallCardWrap" />
     <div :class="$style.bigCardWrap">
       <div :class="$style.heading">
         <slot name="heading" />
@@ -48,10 +48,10 @@
   margin-left: 20px;
   width: rem(500px);
   height: rem(750px);
-  border-radius: rem(40px);
+  border-radius: rem(30px);
   padding: rem(30px);
   background: rgb(var(--color-surface));
-  border: rem(1px) solid black;
+  position: relative;
 }
 .heading {
   font-size: rem(28px);
@@ -89,6 +89,6 @@
 .buttonWrap {
   display: flex;
   justify-content: flex-end;
-  margin-top: rem(24px);
+  margin-top: rem(130px);
 }
 </style>

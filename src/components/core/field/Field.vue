@@ -3,7 +3,8 @@
     :class="{
       [$style.root]: true,
       [$style.disabled]: isDisabled,
-      [$style.error]: error
+      [$style.error]: error,
+      [$style.select]: type.select
     }"
   >
     <span
@@ -182,6 +183,12 @@ defineExpose({
 .root {
   display: block;
 
+  &.select {
+    .input {
+      background: rgb(var(--color-green));
+      color: rgb(var(--color-body-dark));
+    }
+  }
   &.disabled {
     .input {
       background: rgb(var(--color-border));

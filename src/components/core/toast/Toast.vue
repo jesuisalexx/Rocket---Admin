@@ -63,6 +63,7 @@ if (duration) {
   color: white;
   padding-left: 20px;
   padding-right: 100px;
+  cursor: pointer;
 
   &.success {
     background: rgb(var(--color-overlay-light));

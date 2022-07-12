@@ -34,6 +34,7 @@
       <template #status>
         <InputSelect
           name="last-name"
+          :options="options"
           :label="$t('profile.status')"
         />
       </template>
@@ -52,14 +53,28 @@ import Field from '@/components/core/field/Field.vue';
 import SettingsProfileAvatar from '@/components/core/settingsProfileAvatar/SettingsProfileAvatar.vue';
 
 import Button from '@/components/core/button/Button.vue';
-import { PropType } from 'vue';
-import { inputType } from '@/types/form';
 import InputSelect from '@/components/core/inputSelect/InputSelect.vue';
 
 const props = defineProps({
-  type: {
-    type: String as PropType<inputType>,
-    default: inputType.SELECT,
-  },
 });
+const options = [
+  {
+    value: 'car',
+  },
+  {
+    value: 'dog',
+  },
+  {
+    value: 'cat',
+  },
+  {
+    value: 'duck',
+  },
+  {
+    value: 'pigeon',
+  },
+  {
+    value: 'squirrel',
+  },
+];
 </script>

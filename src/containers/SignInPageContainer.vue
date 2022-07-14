@@ -1,6 +1,11 @@
 <template>
   <div>
-    <div :class="$style.root">
+    <div
+      :class="[
+        $style.root,
+        isLoading && $style.loading,
+      ]"
+    >
       <div :class="$style.label">
         <slot name="label" />
       </div>
@@ -51,6 +56,14 @@
 </template>
 
 <script lang="ts" setup>
+import { PropType } from 'vue';
+
+const props = defineProps({
+  isLoading: {
+    type: Boolean as PropType<boolean>,
+    default: false,
+  },
+});
 </script>
 
 <style lang="scss" module>
@@ -66,6 +79,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.loading {
+  pointer-events: none;
 }
 .toast {
   position: absolute;

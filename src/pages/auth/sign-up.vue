@@ -2,10 +2,11 @@
   <Form
     v-model="model"
     :validation-schema="validationSchema"
-    @submit="submit"
+    @submit="passwordMatch"
   >
     <SignUpPageContainer
       v-model="model"
+      :is-loading="isLoading"
     >
       <template #label>
         {{ t('auth-pages.create-account') }}
@@ -129,7 +130,7 @@ const {
   isLoading,
   model,
   validationSchema,
-  submit,
+  passwordMatch,
   accept,
 } = useSignUp();
 

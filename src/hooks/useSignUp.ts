@@ -16,7 +16,26 @@ export const useSignUp = () => {
     accept: false,
   });
 
+  const isLoading = ref(false);
+
   const accept = false;
+
+  const passwordMatch = () => {
+    if (model.value.password === model.value.confirmPassword) {
+      const submit = async () => {
+        if (model.value.accept === true) {
+          isLoading.value = true;
+          await sessionStore.signUp(model.value, accept);
+          isLoading.value = false;
+        } else {
+          console.log('accept terms');
+        }
+      };
+      submit();
+    } else {
+      console.log('password doesnt match');
+    }
+  };
 
   const validationSchema = object().shape({
     firstName: string()
@@ -30,29 +49,15 @@ export const useSignUp = () => {
       .email(),
     password: string()
       .required(),
-    confirmPassword: string()
-      .required(),
     accept: boolean()
       .required(),
   });
-
-  const isLoading = ref(false);
-
-  const submit = async () => {
-    if (model.value.accept === true) {
-      isLoading.value = true;
-      await sessionStore.signUp(model.value, accept);
-      isLoading.value = false;
-    } else {
-      console.log('accept terms');
-    }
-  };
 
   return {
     model,
     validationSchema,
     isLoading,
-    submit,
+    passwordMatch,
     accept,
   };
 };

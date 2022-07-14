@@ -6,6 +6,7 @@
   >
     <SignInPageContainer
       v-model="model"
+      :is-loading="isLoading"
     >
       <template #label>
         {{ t('auth-pages.login-to-your-account') }}
@@ -28,6 +29,7 @@
           name="email"
           :label="t('auth-pages.email')"
           placeholder="cooper@example.com"
+          :is-loading="isLoading"
         />
       </template>
       <template #password>
@@ -37,6 +39,7 @@
           icon-after="hide"
           type="password"
           placeholder="Type password"
+          :is-loading="isLoading"
         />
       </template>
       <template #checkbox>
@@ -44,6 +47,7 @@
           v-model="remember"
           :label="t('auth-pages.remember-me')"
           :detach-form="true"
+          :is-loading="isLoading"
         />
       </template>
       <template #password-button>

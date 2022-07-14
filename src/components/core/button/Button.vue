@@ -215,16 +215,6 @@ const props = defineProps({
   align-items: center;
 }
 
-.iconBeforeSpecial {
-  width: rem(20px);
-  height: rem(20px);
-  margin-right: rem(10px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-}
-
 .iconAfter {
   width: rem(20px);
   height: rem(20px);

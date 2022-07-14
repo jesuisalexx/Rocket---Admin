@@ -17,7 +17,7 @@
       <div :class="$style.wideFields">
         <slot name="email" />
       </div>
-      <div :class="$style.wideFields">
+      <div :class="$style.phoneField">
         <slot name="phone" />
       </div>
       <div :class="$style.wideFields">
@@ -45,7 +45,7 @@
   background: green;
 }
 .bigCardWrap {
-  margin-left: 20px;
+  margin-left: rem(20px);
   width: rem(500px);
   height: rem(750px);
   border-radius: rem(30px);
@@ -85,6 +85,10 @@
 .wideFields {
   width: 100%;
   margin-top: rem(27px);
+}
+.phoneField {
+  margin-top: rem(27px);
+  z-index: 5;
 }
 .buttonWrap {
   display: flex;

@@ -61,8 +61,7 @@
         </div>
       </template>
       <template #divider>
-        <div :class="$style.divider">
-        </div>
+        <div :class="$style.divider" />
       </template>
       <template #right-section-profile>
         <UserBarContainer avatar-icon="avatar">

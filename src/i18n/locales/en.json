@@ -68,5 +68,11 @@
       "password-min-length": "Password must contain 8 symbols or more",
       "first-name-min-length": "First name must contain 2 symbols or more"
     }
+  },
+  "selectInput": {
+    "status": "Status"
+  },
+  "telInput": {
+    "phone": "Phone"
   }
 }

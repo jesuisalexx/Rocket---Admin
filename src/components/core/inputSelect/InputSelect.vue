@@ -5,7 +5,7 @@
     <label
       :class="$style.label"
     >
-      Status
+      {{ t('selectInput.status') }}
     </label>
     <div v-click-outside="closeSelect">
       <div
@@ -13,10 +13,18 @@
         @click="switchSelect"
       >
         {{ currentValue }}
+        <ArrowDown2
+          :class="{
+            [$style.inputIconDown]: true,
+            [$style.inputIconUp]: isOpen
+          }"
+        />
       </div>
       <div
         v-if="isOpen"
-        :class="$style.optionsWrap"
+        :class="{
+          [$style.optionsWrap]: isOpen
+        }"
       >
         <div
           v-for="option in options"
@@ -34,6 +42,10 @@
 <script setup lang="ts">
 import { computed, defineProps } from 'vue';
 import { useSettingsStore } from '@/stores/settings';
+import ArrowDown2 from '@/components/core/icon/assets/ArrowDown2.svg';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const settingsStore = useSettingsStore();
 const currentValue = computed(() => settingsStore.currentValue);
@@ -57,7 +69,7 @@ const props = defineProps<{
   z-index: 3;
 }
 .select {
-  height: 43px;
+  height: rem(43px);
   width: 100%;
   border: rem(1px) solid rgb(var(--color-border));
   border-radius: rem(14px);
@@ -67,7 +79,18 @@ const props = defineProps<{
   font-family: 'Poppins', sans-serif;
   color: rgba(var(--color-body-light));
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: rem(10px);
+  position: relative;
+}
+.inputIconDown {
+  position: absolute;
+  top: rem(12px);
+  right: rem(20px);
+  transition: 0.4s;
+}
+.inputIconUp {
+  transform: rotate(180deg);
+  transition: 0.4s;
 }
 .label {
   color: rgb(var(--color-body-dark));
@@ -76,7 +99,7 @@ const props = defineProps<{
   width: 100%;
   height: rem(200px);
   overflow: auto;
-  margin-top: 2px;
+  margin-top: rem(2px);
 }
 .option {
   background: rgb(var(--color-body-dark));

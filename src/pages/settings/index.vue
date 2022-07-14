@@ -8,12 +8,14 @@
         <Field
           name="name"
           :label="$t('profile.name')"
+          placeholder="Regina"
         />
       </template>
       <template #last-name>
         <Field
           name="last-name"
           :label="$t('profile.last-name')"
+          placeholder="Cooper"
         />
       </template>
       <template #avatar>
@@ -23,13 +25,11 @@
         <Field
           name="last-name"
           :label="$t('profile.email')"
+          placeholder="cooper@example.com"
         />
       </template>
       <template #phone>
-        <Field
-          name="last-name"
-          :label="$t('profile.phone')"
-        />
+        <TelInput />
       </template>
       <template #status>
         <InputSelect
@@ -54,12 +54,13 @@ import SettingsProfileAvatar from '@/components/core/settingsProfileAvatar/Setti
 
 import Button from '@/components/core/button/Button.vue';
 import InputSelect from '@/components/core/inputSelect/InputSelect.vue';
+import TelInput from '@/components/core/telInput/TelInput.vue';
 
 const props = defineProps({
 });
 const options = [
   {
-    value: 'car',
+    value: 'bear',
   },
   {
     value: 'dog',

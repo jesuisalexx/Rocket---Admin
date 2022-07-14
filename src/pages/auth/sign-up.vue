@@ -2,7 +2,7 @@
   <Form
     v-model="model"
     :validation-schema="validationSchema"
-    @submit="passwordMatch"
+    @submit="submit"
   >
     <SignUpPageContainer
       v-model="model"
@@ -72,8 +72,9 @@
       </template>
       <template #accept>
         <Checkbox
-          v-model="accept"
+          v-model="isDisabled"
           name="accept"
+          :detach-form="true"
           :label="t('auth-pages.i-accept')"
         />
       </template>
@@ -88,6 +89,7 @@
         <Button
           variant="primary-extended"
           :is-loading="isLoading"
+          :is-disabled="isDisabled"
         >
           {{ t('auth-pages.create-account') }}
         </Button>
@@ -130,8 +132,8 @@ const {
   isLoading,
   model,
   validationSchema,
-  passwordMatch,
-  accept,
+  submit,
+  isDisabled,
 } = useSignUp();
 
 </script>

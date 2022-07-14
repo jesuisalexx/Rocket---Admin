@@ -2,6 +2,7 @@ import { useSessionStore } from '@/stores/session';
 import { ref, watchEffect } from 'vue';
 import { SignUpDto } from '@/api/dto/auth';
 import { boolean, object, string } from 'yup';
+import * as Yup from 'yup';
 
 export const useSignUp = () => {
   const sessionStore = useSessionStore();
@@ -12,29 +13,14 @@ export const useSignUp = () => {
     username: '',
     email: '',
     password: '',
-    confirmPassword: '',
-    accept: false,
   });
-
+  const accept = ref(false);
   const isLoading = ref(false);
 
-  const accept = false;
-
-  const passwordMatch = () => {
-    if (model.value.password === model.value.confirmPassword) {
-      const submit = async () => {
-        if (model.value.accept === true) {
-          isLoading.value = true;
-          await sessionStore.signUp(model.value, accept);
-          isLoading.value = false;
-        } else {
-          console.log('accept terms');
-        }
-      };
-      submit();
-    } else {
-      console.log('password doesnt match');
-    }
+  const submit = async () => {
+    isLoading.value = true;
+    await sessionStore.signUp(model.value, accept.value);
+    isLoading.value = false;
   };
 
   const validationSchema = object().shape({
@@ -48,16 +34,17 @@ export const useSignUp = () => {
       .required()
       .email(),
     password: string()
-      .required(),
-    accept: boolean()
-      .required(),
+      .required('Password is required'),
+    confirmPassword: Yup.string()
+      .required('Confirm Password is required field')
+      .oneOf([Yup.ref('password')], 'Passwords does not match field'),
   });
 
   return {
     model,
     validationSchema,
     isLoading,
-    passwordMatch,
-    accept,
+    isDisabled: accept,
+    submit,
   };
 };

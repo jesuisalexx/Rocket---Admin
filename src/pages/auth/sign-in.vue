@@ -47,7 +47,6 @@
           v-model="remember"
           :label="t('auth-pages.remember-me')"
           :detach-form="true"
-          :is-loading="isLoading"
         />
       </template>
       <template #password-button>

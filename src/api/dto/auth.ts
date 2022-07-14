@@ -8,6 +8,4 @@ export type SignUpDto = {
   username: string,
   email: string,
   password: string,
-  confirmPassword: string,
-  accept: boolean,
 }

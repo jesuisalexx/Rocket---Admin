@@ -5,6 +5,10 @@ import pagesPlugin from 'vite-plugin-pages';
 import svgLoader from 'vite-svg-loader';
 import path from 'path';
 
+require('dotenv').config();
+
+console.log(process.env.VITE_APP_API_URL);
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -26,7 +30,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://rocket-backend.site/',
+        target: process.env.VITE_APP_API_URL,
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ''),

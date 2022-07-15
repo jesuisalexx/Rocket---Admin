@@ -7,6 +7,7 @@
     <SignUpPageContainer
       v-model="model"
       :is-loading="isLoading"
+      :is-disabled="isDisabled"
     >
       <template #label>
         {{ t('auth-pages.create-account') }}
@@ -89,7 +90,6 @@
         <Button
           variant="primary-extended"
           :is-loading="isLoading"
-          :is-disabled="isDisabled"
         >
           {{ t('auth-pages.create-account') }}
         </Button>

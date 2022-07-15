@@ -5,7 +5,6 @@
       $style.button,
       $style[variant],
       isLoading && $style.loading,
-      isDisabled === false && $style.disabled,
     ]"
   >
     <div
@@ -42,12 +41,7 @@
 import Icon from '@/components/core/icon/Icon.vue';
 import Loader from '@/components/core/loader/Loader.vue';
 import { PropType } from 'vue';
-// import { useSignUp } from '@/hooks/useSignUp';
 import { buttonVariant } from './index';
-
-// const {
-//   isDisabled,
-// } = useSignUp();
 
 const props = defineProps({
   variant: {
@@ -71,10 +65,6 @@ const props = defineProps({
     type: Boolean as PropType<boolean>,
     default: false,
   },
-  isDisabled: {
-    type: Boolean as PropType<boolean>,
-    default: false,
-  },
 });
 </script>
 
@@ -91,9 +81,6 @@ const props = defineProps({
 
   .loaderWrap {
     opacity: 0;
-  }
-  &.disabled {
-    pointer-events: none;
   }
   &.loading {
     pointer-events: none;

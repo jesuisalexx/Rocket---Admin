@@ -53,7 +53,12 @@
         </div>
       </div>
       <div :class="$style.bottomPartWrap">
-        <div :class="$style.createButton">
+        <div
+          :class="[
+            $style.createButton,
+            !isDisabled && $style.disabled,
+          ]"
+        >
           <slot name="create-button" />
         </div>
         <div :class="$style.bottomTextWrap">
@@ -77,6 +82,10 @@ const props = defineProps({
     type: Boolean as PropType<boolean>,
     default: false,
   },
+  isDisabled: {
+    type: Boolean as PropType<boolean>,
+    default: false,
+  },
 });
 </script>
 
@@ -92,6 +101,9 @@ const props = defineProps({
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.disabled {
+  pointer-events: none;
 }
 .loading {
   pointer-events: none;

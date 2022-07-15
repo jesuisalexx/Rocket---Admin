@@ -79,7 +79,6 @@ export const useSessionStore = defineStore('session', () => {
           duration: 5000,
         },
       );
-      console.log(data);
     } else {
       const isSeveralErrors = Array.isArray(data.message);
       if (isSeveralErrors) {

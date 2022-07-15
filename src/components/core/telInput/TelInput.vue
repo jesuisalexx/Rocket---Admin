@@ -12,6 +12,7 @@
         type="number"
         name="tel"
         placeholder="(201) 555-5555"
+        :class="$style.input"
       >
     </div>
   </div>
@@ -53,6 +54,11 @@ onMounted(() => {
   padding: 0 rem(10px);
 }
 .label {
+  width: 300px;
+  height: 40px;
   color: rgb(var(--color-body-dark));
+}
+.input {
+  width: 100%;
 }
 </style>

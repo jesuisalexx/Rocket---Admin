@@ -1,4 +1,5 @@
 <template>
+  <!--change div on form-->
   <div>
     <PasswordResetContainer
       v-model="model"
@@ -11,14 +12,14 @@
       </template>
       <template #login>
         <Field
-          name="resetLogin"
+          name="email"
           :label="t('auth-pages.email')"
           placeholder="cooper@example.com"
         />
       </template>
       <template #password>
         <Field
-          name="resetPassword"
+          name="oldPassword"
           :label="t('auth-pages.password')"
           type="password"
           icon-after="hide"
@@ -27,7 +28,7 @@
       </template>
       <template #password-confirm>
         <Field
-          name="confirmPassword"
+          name="newPassword"
           :label="t('auth-pages.confirm-password')"
           type="password"
           icon-after="hide"
@@ -65,22 +66,30 @@ layout: "auth"
 </route>
 
 <script lang="ts" setup>
+import Form from '@/components/core/form/Form.vue';
 import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
 import { ref } from 'vue';
 import PasswordResetContainer from '@/containers/PasswordResetContainer.vue';
 import BigLock from '@/components/core/icon/assets/bigLock.svg';
 import { useI18n } from 'vue-i18n';
+// import {useSignIn} from "@/hooks/useSignIn";
 
 const { t } = useI18n();
 
 const model = ref({
-  resetUsername: '',
-  resetLogin: '',
-  resetPassword: '',
-  confirmPassword: '',
-  isChecked: false,
+  email: '',
+  oldPassword: '',
+  newPassword: '',
 });
+
+// const {
+//   isLoading,
+//   model,
+//   validationSchema,
+//   submit,
+//   remember,
+// } = useSignIn();
 
 </script>
 

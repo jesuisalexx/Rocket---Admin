@@ -152,6 +152,22 @@ const props = defineProps({
       border: rem(1px) solid rgba(var(--color-primary-accent), 0.1);
     }
   }
+  &.secondary-extended {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: rgb(var(--color-body-light));
+    border-radius: rem(14px);
+    padding: rem(8px) rem(24px);
+    border: rem(1px) solid rgb(var(--color-border));
+    transition: 0.27s;
+
+    &:hover {
+      color: rgb(var(--color-primary-accent));
+      background-color: rgba(var(--color-primary-accent), 0.1);
+      border: rem(1px) solid rgba(var(--color-primary-accent), 0.1);
+    }
+  }
 
   &.secondary-google {
     width: 100%;

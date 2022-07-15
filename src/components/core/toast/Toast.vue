@@ -109,7 +109,7 @@ if (duration) {
   border-radius: rem(7px);
   background: rgb(var(--color-surface));
   position: absolute;
-  top: rem(32px);
+  top: rem(15px);
   right: rem(15px);
   cursor: pointer;
 }

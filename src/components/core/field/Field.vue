@@ -67,7 +67,7 @@
       v-if="error"
       :class="$style['error-text']"
     >
-      {{ error }}
+      {{ t(error) }}
     </div>
   </label>
 </template>
@@ -80,6 +80,9 @@ import {
 } from 'vue';
 import { useField } from '@/hooks/useField';
 import { inputType } from '@/types/form';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps({
   modelValue: {

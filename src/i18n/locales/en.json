@@ -60,13 +60,20 @@
     "email": "Email",
     "phone": "Phone",
     "status": "Status",
-    "next-step": "Next Step"
+    "next-step": "Next Step",
+    "settings": "Settings",
+    "other": "Other shit"
   },
   "auth": {
     "error": {
+      "email-required": "Email is required",
+      "email-invalid": "Email is invalid",
+      "password-required": "Password is required",
       "wrong-email-or-password": "Wrong email or password",
-      "password-min-length": "Password must contain 8 symbols or more",
-      "first-name-min-length": "First name must contain 2 symbols or more"
+      "password-min-length": "Password must contain at least 8 symbols",
+      "first-name-min-length": "First name must contain at least 2 symbols",
+      "remember-me-empty": "Remember field is empty",
+      "username-min-length": "Username must contain at least 2 symbols "
     }
   },
   "selectInput": {

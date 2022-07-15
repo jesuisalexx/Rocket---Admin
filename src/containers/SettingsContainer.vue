@@ -1,6 +1,16 @@
 <template>
   <div :class="$style.root">
-    <div :class="$style.smallCardWrap" />
+    <div :class="$style.smallCardWrap">
+      <div :class="$style.linkButton">
+        <slot name="profile" />
+      </div>
+      <div :class="$style.linkButton">
+        <slot name="settings" />
+      </div>
+      <div :class="$style.linkButton">
+        <slot name="other" />
+      </div>
+    </div>
     <div :class="$style.bigCardWrap">
       <div :class="$style.heading">
         <slot name="heading" />
@@ -37,12 +47,14 @@
 @import "src/assets/styles/utils";
 .root {
   display: flex;
+  padding: rem(25px);
 }
 .smallCardWrap {
-  width: rem(400px);
-  height: rem(300px);
+  width: rem(300px);
+  height: fit-content;
   border-radius: rem(30px);
-  background: green;
+  padding: rem(30px);
+  background: rgb(var(--color-surface));
 }
 .bigCardWrap {
   margin-left: rem(20px);
@@ -52,6 +64,12 @@
   padding: rem(30px);
   background: rgb(var(--color-surface));
   position: relative;
+}
+.linkButton {
+  width: 100%;
+  height: rem(60px);
+  display: flex;
+  align-items: center;
 }
 .heading {
   font-size: rem(28px);

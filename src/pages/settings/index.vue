@@ -1,6 +1,21 @@
 <template>
   <div>
     <SettingsContainer>
+      <template #profile>
+        <Button variant="secondary-extended">
+          {{ $t('profile.profile') }}
+        </Button>
+      </template>
+      <template #settings>
+        <Button variant="secondary-extended">
+          {{ $t('profile.settings') }}
+        </Button>
+      </template>
+      <template #other>
+        <Button variant="secondary-extended">
+          {{ $t('profile.other') }}
+        </Button>
+      </template>
       <template #heading>
         {{ $t('profile.profile') }}
       </template>

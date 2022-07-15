@@ -1,11 +1,19 @@
 import { useSessionStore } from '@/stores/session';
 import { ref, watchEffect } from 'vue';
 import { SignUpDto } from '@/api/dto/auth';
-import { boolean, object, string } from 'yup';
+import {
+  boolean,
+  object,
+  string,
+  ref as yupRef,
+} from 'yup';
 import * as Yup from 'yup';
+import { useI18n } from 'vue-i18n';
 
 export const useSignUp = () => {
   const sessionStore = useSessionStore();
+
+  const { t } = useI18n();
 
   const model = ref<SignUpDto>({
     firstName: '',
@@ -25,7 +33,7 @@ export const useSignUp = () => {
 
   const validationSchema = object().shape({
     firstName: string()
-      .required(),
+      .required(t('')),
     lastName: string()
       .required(),
     username: string()
@@ -37,7 +45,7 @@ export const useSignUp = () => {
       .required('Password is required'),
     confirmPassword: Yup.string()
       .required('Confirm Password is required field')
-      .oneOf([Yup.ref('password')], 'Passwords does not match field'),
+      .oneOf([yupRef('password')], 'Passwords does not match field'),
   });
 
   return {

@@ -1,6 +1,10 @@
 <template>
   <!--change div on form-->
-  <div>
+  <Form
+    v-model="model"
+    :validation-schema="validationSchema"
+    @submit="submit"
+  >
     <PasswordResetContainer
       v-model="model"
     >
@@ -10,29 +14,29 @@
       <template #label>
         {{ t('auth-pages.reset-your-password') }}
       </template>
-      <template #login>
+      <template #email>
         <Field
           name="email"
           :label="t('auth-pages.email')"
           placeholder="cooper@example.com"
         />
       </template>
-      <template #password>
+      <template #old-password>
         <Field
           name="oldPassword"
-          :label="t('auth-pages.password')"
+          :label="t('auth-pages.old-password')"
           type="password"
           icon-after="hide"
-          placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+          placeholder="Type old password"
         />
       </template>
-      <template #password-confirm>
+      <template #new-password>
         <Field
           name="newPassword"
-          :label="t('auth-pages.confirm-password')"
+          :label="t('auth-pages.new-password')"
           type="password"
           icon-after="hide"
-          placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+          placeholder="Type new password"
         />
       </template>
       <template #create-button>
@@ -53,7 +57,7 @@
         </Button>
       </template>
     </PasswordResetContainer>
-  </div>
+  </Form>
 </template>
 
 <route>
@@ -69,27 +73,19 @@ layout: "auth"
 import Form from '@/components/core/form/Form.vue';
 import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
-import { ref } from 'vue';
 import PasswordResetContainer from '@/containers/PasswordResetContainer.vue';
 import BigLock from '@/components/core/icon/assets/bigLock.svg';
 import { useI18n } from 'vue-i18n';
-// import {useSignIn} from "@/hooks/useSignIn";
+import { useResetPassword } from '@/hooks/useResetPassword';
 
 const { t } = useI18n();
 
-const model = ref({
-  email: '',
-  oldPassword: '',
-  newPassword: '',
-});
-
-// const {
-//   isLoading,
-//   model,
-//   validationSchema,
-//   submit,
-//   remember,
-// } = useSignIn();
+const {
+  isLoading,
+  model,
+  validationSchema,
+  submit,
+} = useResetPassword();
 
 </script>
 

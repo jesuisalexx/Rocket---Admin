@@ -42,6 +42,8 @@
 
     "reset-your-password": "Reset Your Password",
     "reset-password": "Reset Password",
+    "old-password": "Old password",
+    "new-password": "New password",
     "go-back-to": "Go back to",
 
     "recover-your-password": "Recover Your Password",

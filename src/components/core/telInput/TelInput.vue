@@ -58,6 +58,9 @@ onMounted(() => {
   height: 40px;
   color: rgb(var(--color-body-dark));
 }
+.iti {
+  width: 100%;
+}
 .input {
   width: 100%;
 }

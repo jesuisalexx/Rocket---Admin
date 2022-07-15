@@ -1,6 +1,5 @@
 <template>
-  <Form
-    v-model="localModel"
+  <div
   >
     <div :class="$style.root">
       <div :class="$style.icon">
@@ -9,52 +8,33 @@
       <div :class="$style.label">
         <slot name="label" />
       </div>
-      <div :class="$style.username">
-        <slot name="username" />
-      </div>
       <div :class="$style.login">
-        <slot name="login" />
+        <slot name="email" />
       </div>
       <div :class="$style.password">
-        <slot name="password" />
+        <slot name="old-password" />
       </div>
       <div :class="$style.confirmPassword">
-        <slot name="password-confirm" />
+        <slot name="new-password" />
       </div>
-      <div :class="$style.createButton">
-        <slot name="create-button" />
-      </div>
-      <div :class="$style.bottomTextWrap">
-        <div :class="$style.bottomText">
-          <slot name="bottom-text" />
+      <div :class="$style.bottomParts">
+        <div :class="$style.createButton">
+          <slot name="create-button" />
         </div>
-        <div :class="$style.signUp">
-          <slot name="sign-up-button" />
+        <div :class="$style.bottomTextWrap">
+          <div :class="$style.bottomText">
+            <slot name="bottom-text" />
+          </div>
+          <div :class="$style.signUp">
+            <slot name="sign-up-button" />
+          </div>
         </div>
       </div>
     </div>
-  </Form>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import Form from '@/components/core/form/Form.vue';
-import { computed } from 'vue';
-
-const props = defineProps({
-  modelValue: {
-    type: Object,
-  },
-});
-const emit = defineEmits([
-  'update:modelValue',
-]);
-const localModel = computed({
-  get: () => props.modelValue,
-
-  set: (value) => {
-    emit('update:modelValue', value);
-  },
-});
 </script>
 
 <style lang="scss" module>
@@ -62,7 +42,7 @@ const localModel = computed({
 
 .root {
   width: rem(600px);
-  height: rem(884px);
+  height: rem(950px);
   padding: rem(18px) rem(100px);
   border-radius: rem(20px);
   background: rgb(var(--color-surface));
@@ -106,7 +86,7 @@ const localModel = computed({
 }
 .login {
   width: 100%;
-  margin-top: rem(23px);
+  margin-top: rem(30px);
 }
 .password {
   width: 100%;
@@ -124,9 +104,17 @@ const localModel = computed({
 .termsButton {
   margin-left: rem(7px);
 }
+.bottomParts {
+  width: 100%;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
 .createButton {
   width: 100%;
-  margin-top: rem(24px);
+  margin-top: rem(45px);
 }
 .bottomText {
   color: rgb(var(--color-body-dark));
@@ -137,6 +125,5 @@ const localModel = computed({
 }
 .bottomTextWrap {
   display: flex;
-  margin-top: rem(69px);
 }
 </style>

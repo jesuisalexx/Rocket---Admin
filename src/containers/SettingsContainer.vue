@@ -105,6 +105,7 @@
   margin-top: rem(27px);
 }
 .phoneField {
+  width: 100%;
   margin-top: rem(27px);
   z-index: 5;
 }

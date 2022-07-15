@@ -1,7 +1,9 @@
 <template>
   <div :class="$style.root">
     <div :class="$style.layoutWrap">
-      <Illustration :class="$style.picture" />
+      <div :class="$style.picture">
+        <Illustration />
+      </div>
       <slot />
     </div>
   </div>

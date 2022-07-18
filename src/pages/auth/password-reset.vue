@@ -39,6 +39,15 @@
           placeholder="Type new password"
         />
       </template>
+      <template #new-password-confirm>
+        <Field
+          name="newPasswordConfirm"
+          :label="t('auth-pages.new-password-confirm')"
+          type="password"
+          icon-after="hide"
+          placeholder="Confirm new password"
+        />
+      </template>
       <template #create-button>
         <Button
           variant="primary-extended"
@@ -74,18 +83,18 @@ import Form from '@/components/core/form/Form.vue';
 import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
 import PasswordResetContainer from '@/containers/PasswordResetContainer.vue';
-import BigLock from '@/components/core/icon/assets/bigLock.svg';
 import { useI18n } from 'vue-i18n';
-import { useResetPassword } from '@/hooks/useResetPassword';
+import BigLock from '@/assets/img/bigLock.svg';
+// import { useResetPassword } from '@/hooks/useResetPassword';
 
 const { t } = useI18n();
-
-const {
-  isLoading,
-  model,
-  validationSchema,
-  submit,
-} = useResetPassword();
+//
+// const {
+//   isLoading,
+//   model,
+//   validationSchema,
+//   submit,
+// } = useResetPassword();
 
 </script>
 

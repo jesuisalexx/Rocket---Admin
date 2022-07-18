@@ -3,6 +3,7 @@ export type SignInDto = {
   password: string,
   remember: boolean,
 }
+
 export type SignUpDto = {
   firstName: string,
   lastName: string,
@@ -10,8 +11,15 @@ export type SignUpDto = {
   email: string,
   password: string,
 }
+
+export type ChangePasswordDto = {
+  oldPassword: string,
+  newPassword: string,
+}
+
 export type ResetPasswordDto = {
   email: string,
   oldPassword: string,
   newPassword: string,
+  newPasswordConfirm: string,
 }

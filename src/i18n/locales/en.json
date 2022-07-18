@@ -44,6 +44,7 @@
     "reset-password": "Reset Password",
     "old-password": "Old password",
     "new-password": "New password",
+    "new-password-confirm": "Confirm new password",
     "go-back-to": "Go back to",
 
     "recover-your-password": "Recover Your Password",
@@ -64,7 +65,8 @@
     "status": "Status",
     "next-step": "Next Step",
     "settings": "Settings",
-    "other": "Other shit"
+    "other": "Other shit",
+    "change-password": "Change password"
   },
   "auth": {
     "error": {

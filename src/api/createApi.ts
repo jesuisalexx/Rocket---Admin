@@ -78,7 +78,7 @@ export const createApi = ({
     {
       method: 'patch',
       path,
-      payload: { data: payload },
+      payload,
     },
   );
 

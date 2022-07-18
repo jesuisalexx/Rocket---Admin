@@ -1,6 +1,5 @@
 <template>
-  <div
-  >
+  <div>
     <div :class="$style.root">
       <div :class="$style.icon">
         <slot name="icon" />
@@ -14,8 +13,11 @@
       <div :class="$style.password">
         <slot name="old-password" />
       </div>
-      <div :class="$style.confirmPassword">
+      <div :class="$style.newPassword">
         <slot name="new-password" />
+      </div>
+      <div :class="$style.confirmPassword">
+        <slot name="new-password-confirm" />
       </div>
       <div :class="$style.bottomParts">
         <div :class="$style.createButton">
@@ -51,14 +53,11 @@
   flex-direction: column;
   align-items: center;
 }
-.icon {
-  margin-top: rem(60px);
-}
 .label {
   color: rgb(var(--color-heading));
   font-size: rem(28px);
   font-weight: 500;
-  margin-top: rem(37px);
+  margin-top: rem(15px);
 }
 .topButton {
   width: 100%;
@@ -92,6 +91,10 @@
   width: 100%;
   margin-top: rem(23px);
 }
+.newPassword {
+  width: 100%;
+  margin-top: rem(23px);
+}
 .confirmPassword {
   width: 100%;
   margin-top: rem(23px);
@@ -114,7 +117,7 @@
 }
 .createButton {
   width: 100%;
-  margin-top: rem(45px);
+  margin-top: rem(30px);
 }
 .bottomText {
   color: rgb(var(--color-body-dark));

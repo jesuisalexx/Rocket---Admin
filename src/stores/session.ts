@@ -4,8 +4,8 @@ import { defineStore } from 'pinia';
 import { router } from '@/router';
 import { useAuthToken } from '@/hooks/useAuthToken';
 import { RouteLocationRaw } from 'vue-router';
-import { signIn, signUp, ResetPassword } from '@/api/endpoints/auth';
-import { SignInDto, SignUpDto, ResetPasswordDto } from '@/api/dto/auth';
+import { signIn, signUp, changePassword } from '@/api/endpoints/auth';
+import { SignInDto, SignUpDto, ChangePasswordDto } from '@/api/dto/auth';
 import { useToastStore } from '@/stores/toasts';
 import { useI18n } from 'vue-i18n';
 
@@ -139,15 +139,15 @@ export const useSessionStore = defineStore('session', () => {
       data,
     };
   };
-  const handleResetPassword = async (model: ResetPasswordDto) => {
-    const { result, data } = await ResetPassword(model);
+  const handleChangePassword = async (model: ChangePasswordDto) => {
+    const { result, data } = await changePassword(model);
 
     if (result) {
       setToken(data);
       toastStore.showSuccess(
         {
           label: 'Success',
-          text: 'Password has Successfully changed',
+          text: 'Welcome',
           duration: 5000,
         },
       );
@@ -175,6 +175,42 @@ export const useSessionStore = defineStore('session', () => {
       data,
     };
   };
+  // const handleResetPassword = async (model: ResetPasswordDto) => {
+  //   const { result, data } = await ResetPassword(model);
+  //
+  //   if (result) {
+  //     setToken(data);
+  //     toastStore.showSuccess(
+  //       {
+  //         label: 'Success',
+  //         text: 'Password has Successfully changed',
+  //         duration: 5000,
+  //       },
+  //     );
+  //   } else {
+  //     const isSeveralErrors = Array.isArray(data.message);
+  //     if (isSeveralErrors) {
+  //       data.message.forEach((message: string) => toastStore.showDanger({
+  //         label: 'Error',
+  //         text: t(message),
+  //         duration: 5000,
+  //       }));
+  //     } else {
+  //       toastStore.showDanger({
+  //         label: 'Error',
+  //         text: t(data.message),
+  //         duration: 5000,
+  //       });
+  //     }
+  //
+  //     console.log(data);
+  //   }
+  //
+  //   return {
+  //     result,
+  //     data,
+  //   };
+  // };
 
   const logoutUser = () => {
     removeToken();
@@ -189,7 +225,8 @@ export const useSessionStore = defineStore('session', () => {
     checkAuth,
     signIn: handleSignIn,
     signUp: handleSignUp,
-    ResetPassword: handleResetPassword,
+    ChangePassword: handleChangePassword,
+    // ResetPassword: handleResetPassword,
     logoutUser,
   };
 });

@@ -1,0 +1,74 @@
+<template>
+  <Form
+    v-model="model"
+    :validation-schema="validationSchema"
+    @submit="submit"
+  >
+    <ChangePasswordContainer
+      v-model="model"
+      :is-loading="isLoading"
+    >
+      <template #img>
+        <BigLock />
+      </template>
+      <template #old-password>
+        <Field
+          name="oldPassword"
+          :label="t('auth-pages.old-password')"
+          type="password"
+          icon-after="hide"
+          placeholder="Type old password"
+        />
+      </template>
+      <template #new-password>
+        <Field
+          name="newPassword"
+          :label="t('auth-pages.new-password')"
+          type="password"
+          icon-after="hide"
+          placeholder="Type new password"
+        />
+      </template>
+      <template #new-password-confirm>
+        <Field
+          name="newPasswordConfirm"
+          :label="t('auth-pages.new-password-confirm')"
+          type="password"
+          icon-after="hide"
+          placeholder="Confirm new password"
+        />
+      </template>
+      <template #button>
+        <Button
+          :is-loading="isLoading"
+          variant="primary"
+        >
+          {{ $t('profile.change-password') }}
+        </Button>
+      </template>
+    </ChangePasswordContainer>
+  </Form>
+</template>
+
+<script setup lang="ts">
+import ChangePasswordContainer from '@/containers/ChangePasswordContainer.vue';
+import BigLock from '@/assets/img/bigLock.svg';
+import Field from '@/components/core/field/Field.vue';
+import Button from '@/components/core/button/Button.vue';
+import Form from '@/components/core/form/Form.vue';
+
+import { useI18n } from 'vue-i18n';
+import { useChangePassword } from '@/hooks/useChangePassword';
+
+const { t } = useI18n();
+
+const {
+  isLoading,
+  model,
+  validationSchema,
+  submit,
+} = useChangePassword();
+
+const props = defineProps({
+});
+</script>

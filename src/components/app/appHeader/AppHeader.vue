@@ -13,12 +13,14 @@
           v-if="computedState === HeaderState.PROFILE"
           :class="$style.leftMenu"
         >
-          <Button
-            variant="secondary"
-            icon-before="settings"
-          >
-            {{ $t('header.settings') }}
-          </Button>
+          <router-link to="/settings">
+            <Button
+              variant="secondary"
+              icon-before="settings"
+            >
+              {{ $t('header.settings') }}
+            </Button>
+          </router-link>
           <Button
             variant="simple"
             :class="$style.simpleButton"

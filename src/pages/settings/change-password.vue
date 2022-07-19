@@ -8,6 +8,9 @@
       v-model="model"
       :is-loading="isLoading"
     >
+      <template #menu>
+        <SettingsMenu />
+      </template>
       <template #img>
         <BigLock />
       </template>
@@ -56,6 +59,7 @@ import BigLock from '@/assets/img/bigLock.svg';
 import Field from '@/components/core/field/Field.vue';
 import Button from '@/components/core/button/Button.vue';
 import Form from '@/components/core/form/Form.vue';
+import SettingsMenu from '@/components/core/settingsMenu/SettingsMenu.vue';
 
 import { useI18n } from 'vue-i18n';
 import { useChangePassword } from '@/hooks/useChangePassword';

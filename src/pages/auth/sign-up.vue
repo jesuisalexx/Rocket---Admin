@@ -97,7 +97,7 @@
       <template #bottom-text>
         {{ t('auth-pages.already-have-an-account') }}
       </template>
-      <template #sign-up-button>
+      <template #sign-in-button>
         <Button
           variant="primary-minimalistic"
         >

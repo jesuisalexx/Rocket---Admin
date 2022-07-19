@@ -66,7 +66,9 @@
             <slot name="bottom-text" />
           </div>
           <div :class="$style.signUp">
-            <slot name="sign-up-button" />
+            <router-link to="/auth/sign-in">
+              <slot name="sign-in-button" />
+            </router-link>
           </div>
         </div>
       </div>

@@ -7,7 +7,9 @@
   >
     <div :class="$style.logoWrap">
       <div :class="$style.logo">
-        <Logo :state="isSidebarExpanded ? logoState.FULL : logoState.COMPACT" />
+        <router-link to="/">
+          <Logo :state="isSidebarExpanded ? logoState.FULL : logoState.COMPACT" />
+        </router-link>
       </div>
     </div>
     <SidebarButton

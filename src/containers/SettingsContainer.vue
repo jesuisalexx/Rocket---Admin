@@ -1,15 +1,7 @@
 <template>
   <div :class="$style.root">
-    <div :class="$style.smallCardWrap">
-      <div :class="$style.linkButton">
-        <slot name="profile" />
-      </div>
-      <div :class="$style.linkButton">
-        <slot name="settings" />
-      </div>
-      <div :class="$style.linkButton">
-        <slot name="other" />
-      </div>
+    <div>
+      <slot name="menu" />
     </div>
     <div :class="$style.content">
       <slot name="page" />
@@ -25,13 +17,6 @@
 .root {
   display: flex;
   padding: rem(25px);
-}
-.smallCardWrap {
-  width: rem(300px);
-  height: fit-content;
-  border-radius: rem(30px);
-  padding: rem(30px);
-  background: rgb(var(--color-surface));
 }
 .linkButton {
   width: 100%;

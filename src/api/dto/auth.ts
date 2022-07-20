@@ -17,6 +17,13 @@ export type ChangePasswordDto = {
   newPassword: string,
 }
 
+export type ProfileUpdateDto = {
+  firstName: string,
+  lastName: string,
+  username: string,
+  phone: string,
+}
+
 export type ResetPasswordDto = {
   email: string,
   oldPassword: string,

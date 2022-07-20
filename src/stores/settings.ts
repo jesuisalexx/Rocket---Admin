@@ -7,7 +7,7 @@ export const useSettingsStore = defineStore('settings', () => {
     isSelectOpen.value = !isSelectOpen.value;
   };
 
-  const currentValue = ref('bear');
+  const currentValue = ref('unemployed');
 
   const setSelectValue = (val: string) => {
     currentValue.value = val;

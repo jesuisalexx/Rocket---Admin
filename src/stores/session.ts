@@ -4,8 +4,10 @@ import { defineStore } from 'pinia';
 import { router } from '@/router';
 import { useAuthToken } from '@/hooks/useAuthToken';
 import { RouteLocationRaw } from 'vue-router';
-import { signIn, signUp, changePassword } from '@/api/endpoints/auth';
-import { SignInDto, SignUpDto, ChangePasswordDto } from '@/api/dto/auth';
+import {signIn, signUp, changePassword, profileUpdate} from '@/api/endpoints/auth';
+import {
+  SignInDto, SignUpDto, ChangePasswordDto, ProfileUpdateDto,
+} from '@/api/dto/auth';
 import { useToastStore } from '@/stores/toasts';
 import { useI18n } from 'vue-i18n';
 
@@ -175,6 +177,42 @@ export const useSessionStore = defineStore('session', () => {
       data,
     };
   };
+  const handleUpdateProfile = async (model: ProfileUpdateDto) => {
+    const { result, data } = await profileUpdate(model);
+
+    if (result) {
+      setToken(data);
+      toastStore.showSuccess(
+        {
+          label: 'Success',
+          text: 'Welcome',
+          duration: 5000,
+        },
+      );
+    } else {
+      const isSeveralErrors = Array.isArray(data.message);
+      if (isSeveralErrors) {
+        data.message.forEach((message: string) => toastStore.showDanger({
+          label: 'Error',
+          text: t(message),
+          duration: 5000,
+        }));
+      } else {
+        toastStore.showDanger({
+          label: 'Error',
+          text: t(data.message),
+          duration: 5000,
+        });
+      }
+
+      console.log(data);
+    }
+
+    return {
+      result,
+      data,
+    };
+  };
   // const handleResetPassword = async (model: ResetPasswordDto) => {
   //   const { result, data } = await ResetPassword(model);
   //
@@ -226,6 +264,7 @@ export const useSessionStore = defineStore('session', () => {
     signIn: handleSignIn,
     signUp: handleSignUp,
     ChangePassword: handleChangePassword,
+    ProfileUpdate: handleUpdateProfile,
     // ResetPassword: handleResetPassword,
     logoutUser,
   };

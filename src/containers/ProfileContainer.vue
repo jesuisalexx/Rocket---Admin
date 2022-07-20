@@ -9,17 +9,17 @@
       </div>
     </div>
     <div :class="$style.nameWrap">
-      <slot name="name" />
-      <slot name="last-name" />
+      <slot name="firstName" />
+      <slot name="lastName" />
     </div>
     <div :class="$style.wideFields">
-      <slot name="email" />
+      <slot name="username" />
     </div>
     <div :class="$style.phoneField">
       <slot name="phone" />
     </div>
     <div :class="$style.wideFields">
-      <slot name="status" />
+      <slot name="job" />
     </div>
     <div :class="$style.buttonWrap">
       <slot name="button" />
@@ -82,6 +82,6 @@
 .buttonWrap {
   display: flex;
   justify-content: flex-end;
-  margin-top: rem(130px);
+  margin-top: rem(30px);
 }
 </style>

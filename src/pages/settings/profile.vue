@@ -1,48 +1,54 @@
 <template>
-  <ProfileContainer>
-    <template #heading>
-      {{ $t('profile.profile') }}
-    </template>
-    <template #name>
-      <Field
-        name="name"
-        :label="$t('profile.name')"
-        placeholder="Regina"
-      />
-    </template>
-    <template #last-name>
-      <Field
-        name="last-name"
-        :label="$t('profile.last-name')"
-        placeholder="Cooper"
-      />
-    </template>
-    <template #avatar>
-      <SettingsProfileAvatar />
-    </template>
-    <template #email>
-      <Field
-        name="last-name"
-        :label="$t('profile.email')"
-        placeholder="cooper@example.com"
-      />
-    </template>
-    <template #phone>
-      <TelInput />
-    </template>
-    <template #status>
-      <InputSelect
-        name="last-name"
-        :options="options"
-        :label="$t('profile.status')"
-      />
-    </template>
-    <template #button>
-      <Button variant="primary">
-        {{ $t('profile.next-step') }}
-      </Button>
-    </template>
-  </ProfileContainer>
+  <Form
+    v-model="model"
+    :validation-schema="validationSchema"
+    @submit="submit"
+  >
+    <ProfileContainer v-model="model">
+      <template #heading>
+        {{ $t('profile.profile') }}
+      </template>
+      <template #firstName>
+        <Field
+          name="firstName"
+          :label="$t('profile.name')"
+          placeholder="Regina"
+        />
+      </template>
+      <template #lastName>
+        <Field
+          name="lastName"
+          :label="$t('profile.last-name')"
+          placeholder="Cooper"
+        />
+      </template>
+      <template #avatar>
+        <SettingsProfileAvatar />
+      </template>
+      <template #username>
+        <Field
+          name="username"
+          :label="$t('profile.username')"
+          placeholder="autist228"
+        />
+      </template>
+      <template #phone>
+        <TelInput />
+      </template>
+      <template #job>
+        <Field
+          name="job"
+          :label="$t('profile.job')"
+          placeholder="unemployed"
+        />
+      </template>
+      <template #button>
+        <Button variant="primary">
+          {{ $t('profile.next-step') }}
+        </Button>
+      </template>
+    </ProfileContainer>
+  </Form>
 </template>
 
 <script lang="ts" setup>
@@ -52,25 +58,38 @@ import SettingsProfileAvatar from '@/components/core/settingsProfileAvatar/Setti
 import InputSelect from '@/components/core/inputSelect/InputSelect.vue';
 import TelInput from '@/components/core/telInput/TelInput.vue';
 import Button from '@/components/core/button/Button.vue';
+import Form from '@/components/core/form/Form.vue';
+
+import { useI18n } from 'vue-i18n';
+import { useProfileUpdate } from '@/hooks/useProfileUpdate';
+
+const { t } = useI18n();
+
+const {
+  isLoading,
+  model,
+  validationSchema,
+  submit,
+} = useProfileUpdate();
 
 const options = [
   {
-    value: 'bear',
+    value: 'unemployed',
   },
   {
-    value: 'dog',
+    value: 'freelancer',
   },
   {
-    value: 'cat',
+    value: 'teacher',
   },
   {
-    value: 'duck',
+    value: 'driver',
   },
   {
-    value: 'pigeon',
+    value: 'janitor',
   },
   {
-    value: 'squirrel',
+    value: 'cashier',
   },
 ];
 </script>

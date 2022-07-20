@@ -62,9 +62,10 @@
     "last-name": "Last Name",
     "email": "Email",
     "phone": "Phone",
-    "status": "Status",
+    "job": "Job",
     "next-step": "Next Step",
     "settings": "Settings",
+    "username": "Username",
     "other": "Other shit",
     "change-password": "Change password"
   },

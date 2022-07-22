@@ -19,7 +19,6 @@ export const useToastStore = defineStore('toast', () => {
       type: toastType.SUCCESS,
       ...toast,
     });
-    console.log(list.value);
   };
 
   const showDanger = (toast: Omit<Toast, 'id' | 'type'>) => {

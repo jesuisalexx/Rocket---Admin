@@ -66,7 +66,6 @@
     "next-step": "Next Step",
     "settings": "Settings",
     "username": "Username",
-    "other": "Other shit",
     "change-password": "Change password"
   },
   "auth": {
@@ -78,7 +77,13 @@
       "password-min-length": "Password must contain at least 8 symbols",
       "first-name-min-length": "First name must contain at least 2 symbols",
       "remember-me-empty": "Remember field is empty",
-      "username-min-length": "Username must contain at least 2 symbols "
+      "username-min-length": "Username must contain at least 2 symbols ",
+      "first-name-empty": "First name field is empty",
+      "last-name-empty": "First name field is empty",
+      "username-empty": "First name field is empty",
+      "phone-is-empty": "Phone field is empty",
+      "job-title-is-empty": "Job field is empty",
+      "last-name-min-length": "Last name must contain at least 2 symbols"
     }
   },
   "selectInput": {

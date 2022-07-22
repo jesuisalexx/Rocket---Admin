@@ -3,9 +3,6 @@
     <div>
       <slot name="menu" />
     </div>
-    <div :class="$style.content">
-      <slot name="page" />
-    </div>
   </div>
 </template>
 
@@ -23,8 +20,5 @@
   height: rem(60px);
   display: flex;
   align-items: center;
-}
-.content {
-  margin-left: rem(20px);
 }
 </style>

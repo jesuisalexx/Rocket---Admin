@@ -22,11 +22,12 @@ export type ProfileUpdateDto = {
   lastName: string,
   username: string,
   phone: string,
+  job: string,
 }
 
-export type ResetPasswordDto = {
-  email: string,
-  oldPassword: string,
-  newPassword: string,
-  newPasswordConfirm: string,
-}
+// export type ResetPasswordDto = {
+//   email: string,
+//   oldPassword: string,
+//   newPassword: string,
+//   newPasswordConfirm: string,
+// }

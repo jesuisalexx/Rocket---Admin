@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.root">
-    <router-link to="/settings">
+    <router-link to="/settings/profile">
       <Button
         :class="$style.linkButton"
         variant="secondary-extended"
@@ -16,12 +16,14 @@
         {{ $t('profile.change-password') }}
       </Button>
     </router-link>
-    <Button
-      :class="$style.linkButton"
-      variant="secondary-extended"
-    >
-      {{ $t('profile.other') }}
-    </Button>
+    <router-link to="/settings">
+      <Button
+        :class="$style.linkButton"
+        variant="secondary-extended"
+      >
+        {{ $t('profile.settings') }}
+      </Button>
+    </router-link>
   </div>
 </template>
 

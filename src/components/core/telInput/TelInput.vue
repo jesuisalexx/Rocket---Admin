@@ -13,19 +13,26 @@
         name="tel"
         placeholder="(201) 555-5555"
         :class="$style.input"
+        :value="value"
       >
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import {ref, onMounted, defineProps, PropType} from 'vue';
 import intlTelInput from 'intl-tel-input';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
 const telInput = ref(null);
+const props = defineProps({
+  value: {
+    type: Boolean as PropType<boolean>,
+    default: false,
+  },
+});
 
 onMounted(() => {
   intlTelInput(telInput.value, {

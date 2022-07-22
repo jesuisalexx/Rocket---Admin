@@ -5,7 +5,7 @@ import {
   object, string,
 } from 'yup';
 
-export const useProfileUpdate = () => {
+export const useProfile = () => {
   const sessionStore = useSessionStore();
 
   const model = ref<ProfileUpdateDto>({
@@ -13,6 +13,7 @@ export const useProfileUpdate = () => {
     lastName: '',
     username: '',
     phone: '',
+    job: '',
   });
 
   const validationSchema = object().shape({
@@ -20,6 +21,7 @@ export const useProfileUpdate = () => {
     lastName: string(),
     username: string(),
     phone: string(),
+    job: string(),
   });
 
   const isLoading = ref(false);
@@ -30,10 +32,28 @@ export const useProfileUpdate = () => {
     isLoading.value = false;
   };
 
+  const fetchProfile = async () => {
+    isLoading.value = true;
+    await sessionStore.getProfile();
+    const { data } = await sessionStore.getProfile();
+    isLoading.value = false;
+    console.log(data);
+
+    const setProfile = () => {
+      Object.assign(model.value, data);
+    };
+    setProfile();
+
+    return {
+      data,
+    };
+  };
+
   return {
     model,
     validationSchema,
     isLoading,
     submit,
+    fetchProfile,
   };
 };

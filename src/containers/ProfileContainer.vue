@@ -1,28 +1,33 @@
 <template>
   <div :class="$style.root">
-    <div :class="$style.heading">
-      <slot name="heading" />
+    <div :class="$style.menu">
+      <slot name="menu" />
     </div>
-    <div :class="$style.avatarWrap">
-      <div :class="$style.avatar">
-        <slot name="avatar" />
+    <div :class="$style.cardWrap">
+      <div :class="$style.heading">
+        <slot name="heading" />
       </div>
-    </div>
-    <div :class="$style.nameWrap">
-      <slot name="firstName" />
-      <slot name="lastName" />
-    </div>
-    <div :class="$style.wideFields">
-      <slot name="username" />
-    </div>
-    <div :class="$style.phoneField">
-      <slot name="phone" />
-    </div>
-    <div :class="$style.wideFields">
-      <slot name="job" />
-    </div>
-    <div :class="$style.buttonWrap">
-      <slot name="button" />
+      <div :class="$style.avatarWrap">
+        <div :class="$style.avatar">
+          <slot name="avatar" />
+        </div>
+      </div>
+      <div :class="$style.nameWrap">
+        <slot name="firstName" />
+        <slot name="lastName" />
+      </div>
+      <div :class="$style.wideFields">
+        <slot name="username" />
+      </div>
+      <div :class="$style.phoneField">
+        <slot name="phone" />
+      </div>
+      <div :class="$style.wideFields">
+        <slot name="job" />
+      </div>
+      <div :class="$style.buttonWrap">
+        <slot name="button" />
+      </div>
     </div>
   </div>
 </template>
@@ -34,6 +39,15 @@
 @import "src/assets/styles/utils";
 
 .root {
+  display: flex;
+  padding: rem(25px);
+}
+
+.menu {
+  margin-right: rem(25px);
+}
+
+.cardWrap {
   width: rem(500px);
   height: rem(750px);
   border-radius: rem(30px);

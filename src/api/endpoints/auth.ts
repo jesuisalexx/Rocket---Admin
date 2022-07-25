@@ -11,4 +11,4 @@ export const changePassword = (changePasswordDto: ChangePasswordDto) => patch('/
 
 export const profileUpdate = (profileUpdateDto: ProfileUpdateDto) => patch('/me', profileUpdateDto);
 
-export const profileInfo = () => get('/me');
+export const profileData = () => get('/me');

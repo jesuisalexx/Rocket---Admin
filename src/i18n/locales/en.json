@@ -15,7 +15,7 @@
     "notes": "Notes",
     "contacts": "Contacts"
   },
-  "auth-pages": {
+  "auth": {
     "create-account": "Create Account",
     "sign-up-with-google": "Sign Up with Google",
     "name": "Name",
@@ -25,7 +25,7 @@
     "password": "Password",
     "confirm-password": "Confirm Password",
     "or-sign-up-with-email": "Or Sign Up with email",
-    "i-accept": "I accept",
+    "accept": "I accept",
     "terms-and-conditions": "Terms and Conditions",
     "already-have-an-account": "Already have an account?",
     "login": "Login",
@@ -48,7 +48,36 @@
     "go-back-to": "Go back to",
 
     "recover-your-password": "Recover Your Password",
-    "recover-password": "Recover Password"
+    "recover-password": "Recover Password",
+
+    "error": {
+      "error": "Error",
+      "email-required": "Email is required",
+      "email-invalid": "Email is invalid",
+      "password-required": "Password is required",
+      "wrong-email-or-password": "Wrong email or password",
+      "password-min-length": "Password must contain at least 8 symbols",
+      "first-name-min-length": "First name must contain at least 2 symbols",
+      "remember-me-empty": "Remember field is empty",
+      "username-min-length": "Username must contain at least 2 symbols ",
+      "first-name-empty": "First name field is empty",
+      "last-name-empty": "Last name field is empty",
+      "username-empty": "username field is empty",
+      "phone-is-empty": "Phone field is empty",
+      "phone-required": "Phone required",
+      "job-title-is-empty": "Job field is empty",
+      "job-required": "Job required",
+      "last-name-min-length": "Last name must contain at least 2 symbols",
+      "last-name-required": "Last name is required",
+      "username-required": "Username is required",
+      "first-name-required": "First name is required",
+      "confirm-password-required": "Confirm Password is required",
+      "password-dont-match": "Password fields don't match"
+    },
+    "success": {
+      "success": "Success",
+      "welcome": "Welcome"
+    }
   },
   "header": {
     "settings": "Settings",
@@ -66,25 +95,20 @@
     "next-step": "Next Step",
     "settings": "Settings",
     "username": "Username",
-    "change-password": "Change password"
-  },
-  "auth": {
-    "error": {
-      "email-required": "Email is required",
-      "email-invalid": "Email is invalid",
-      "password-required": "Password is required",
-      "wrong-email-or-password": "Wrong email or password",
-      "password-min-length": "Password must contain at least 8 symbols",
-      "first-name-min-length": "First name must contain at least 2 symbols",
-      "remember-me-empty": "Remember field is empty",
-      "username-min-length": "Username must contain at least 2 symbols ",
-      "first-name-empty": "First name field is empty",
-      "last-name-empty": "First name field is empty",
-      "username-empty": "First name field is empty",
-      "phone-is-empty": "Phone field is empty",
-      "job-title-is-empty": "Job field is empty",
-      "last-name-min-length": "Last name must contain at least 2 symbols"
-    }
+    "change-password": "Change password",
+    "submit": "Submit",
+
+    "name-placeholder": "Regina",
+    "last-name-placeholder": "Cooper",
+    "email-placeholder": "cooper\u0040example.com",
+    "password-placeholder": "Type password",
+    "confirm-password-placeholder": "Confirm password",
+    "old-password-placeholder": "Type old password",
+    "new-password-placeholder": "Type new password",
+    "confirm-new-password-placeholder": "Confirm new password",
+    "username-placeholder": "Milf hunter",
+    "phone-placeholder": "(201) 555-5555",
+    "job-placeholder": "unemployed"
   },
   "selectInput": {
     "status": "Status"

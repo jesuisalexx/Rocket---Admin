@@ -4,33 +4,33 @@
       v-model="model"
     >
       <template #icon>
-        <BigLock />
+        <BigLockIcon />
       </template>
-      <template #label>
-        {{ t('auth-pages.recover-your-password') }}
+      <template #heading>
+        {{ t('auth.recover-your-password') }}
       </template>
       <template #email>
         <Field
           name="login"
-          :label="t('auth-pages.email')"
-          placeholder="cooper@example.com"
+          :label="t('auth.email')"
+          :placeholder="t('profile.email-placeholder')"
         />
       </template>
       <template #submit-button>
         <Button
           variant="primary-extended"
         >
-          {{ t('auth-pages.recover-password') }}
+          {{ t('auth.recover-password') }}
         </Button>
       </template>
-      <template #bottom-text>
-        {{ t('auth-pages.go-back-to') }}
+      <template #login-text>
+        {{ t('auth.go-back-to') }}
       </template>
       <template #login-button>
         <Button
           variant="primary-minimalistic"
         >
-          {{ t('auth-pages.login') }}
+          {{ t('auth.login') }}
         </Button>
       </template>
     </PasswordRecoveryContainer>
@@ -39,10 +39,10 @@
 
 <route>
 {
-name: "password-recovery",
-meta: {
-layout: "auth"
-}
+  name: "password-recovery",
+  meta: {
+  layout: "auth"
+  }
 }
 </route>
 
@@ -50,7 +50,7 @@ layout: "auth"
 import PasswordRecoveryContainer from '@/containers/PasswordRecoveryContainer.vue';
 import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
-import BigLock from '@/components/core/icon/assets/bigLock.svg';
+import BigLockIcon from '@/assets/img/bigLock.svg';
 import { useI18n } from 'vue-i18n';
 
 import { ref } from 'vue';

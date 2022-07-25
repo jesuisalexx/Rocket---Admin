@@ -11,7 +11,7 @@
         ref="telInput"
         type="number"
         name="tel"
-        placeholder="(201) 555-5555"
+        placeholder=""
         :class="$style.input"
         :value="value"
       >
@@ -20,7 +20,9 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted, defineProps, PropType} from 'vue';
+import {
+  ref, onMounted, defineProps, PropType,
+} from 'vue';
 import intlTelInput from 'intl-tel-input';
 import { useI18n } from 'vue-i18n';
 

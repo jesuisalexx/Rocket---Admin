@@ -1,10 +1,5 @@
 <template>
   <div :class="$style.root">
-    <div :class="$style.menuWrap">
-      <router-link to="/settings">
-        <slot name="menu" />
-      </router-link>
-    </div>
     <div :class="$style.contentWrap">
       <div :class="$style.content">
         <div :class="$style.img">

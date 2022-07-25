@@ -8,44 +8,44 @@
       v-model="model"
       :is-loading="isLoading"
     >
-      <template #label>
-        {{ t('auth-pages.login-to-your-account') }}
+      <template #heading>
+        {{ t('auth.login-to-your-account') }}
       </template>
       <template #top-button-icon>
-        <Google />
+        <GoogleAuthIcon />
       </template>
-      <template #top-button>
+      <template #google-login-button>
         <Button
           variant="secondary-google"
         >
-          {{ t('auth-pages.login-with-google') }}
+          {{ t('auth.login-with-google') }}
         </Button>
       </template>
-      <template #top-text>
-        {{ t('auth-pages.or-login-with-email') }}
+      <template #login-text>
+        {{ t('auth.or-login-with-email') }}
       </template>
-      <template #login>
+      <template #email>
         <Field
           name="email"
-          :label="t('auth-pages.email')"
-          placeholder="cooper@example.com"
+          :label="t('auth.email')"
+          :placeholder="t('profile.email-placeholder')"
           :is-loading="isLoading"
         />
       </template>
       <template #password>
         <Field
           name="password"
-          :label="t('auth-pages.password')"
+          :label="t('auth.password')"
           icon-after="hide"
           type="password"
-          placeholder="Type password"
+          :placeholder="t('profile.password-placeholder')"
           :is-loading="isLoading"
         />
       </template>
       <template #checkbox>
         <Checkbox
           v-model="remember"
-          :label="t('auth-pages.remember-me')"
+          :label="t('auth.remember-me')"
           :detach-form="true"
         />
       </template>
@@ -53,7 +53,7 @@
         <Button
           variant="primary-minimalistic"
         >
-          {{ t('auth-pages.forgot-password') }}
+          {{ t('auth.forgot-password') }}
         </Button>
       </template>
       <template #login-button>
@@ -61,18 +61,18 @@
           variant="primary-extended"
           :is-loading="isLoading"
         >
-          {{ t('auth-pages.log-in') }}
+          {{ t('auth.log-in') }}
         </Button>
       </template>
-      <template #bottom-text>
-        {{ t('auth-pages.dont-have-an-account') }}
+      <template #sign-up-text>
+        {{ t('auth.dont-have-an-account') }}
       </template>
       <template #sign-up-button>
         <Button
           variant="primary-minimalistic"
           type="submit"
         >
-          {{ t('auth-pages.sign-up') }}
+          {{ t('auth.sign-up') }}
         </Button>
       </template>
     </SignInPageContainer>
@@ -94,23 +94,11 @@ import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import Form from '@/components/core/form/Form.vue';
-import Google from '@/components/core/icon/assets/google.svg';
+import GoogleAuthIcon from '@/components/core/icon/assets/google.svg';
 import { useI18n } from 'vue-i18n';
 import { useSignIn } from '@/hooks/useSignIn';
 
-import { toastType } from '@/types/toast';
-import { useSessionStore } from '@/stores/session';
-
 const { t } = useI18n();
-const {
-  signIn,
-} = useSessionStore();
-
-const error = {
-  label: 'Error',
-  text: '',
-  type: toastType.DANGER,
-};
 
 const {
   isLoading,

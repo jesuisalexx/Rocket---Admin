@@ -5,7 +5,7 @@ import { router } from '@/router';
 import { useAuthToken } from '@/hooks/useAuthToken';
 import { RouteLocationRaw } from 'vue-router';
 import {
-  signIn, signUp, changePassword, profileUpdate, profileInfo,
+  signIn, signUp, changePassword, profileUpdate, profileData,
 } from '@/api/endpoints/auth';
 import {
   SignInDto, SignUpDto, ChangePasswordDto, ProfileUpdateDto,
@@ -76,11 +76,10 @@ export const useSessionStore = defineStore('session', () => {
 
     if (result) {
       setToken(data, remember);
-      console.log('data', data);
       toastStore.showSuccess(
         {
-          label: 'Success',
-          text: 'Welcome',
+          label: t('auth.success.success'),
+          text: t('auth.success.welcome'),
           duration: 5000,
         },
       );
@@ -115,8 +114,8 @@ export const useSessionStore = defineStore('session', () => {
       setToken(data, accept);
       toastStore.showSuccess(
         {
-          label: 'Success',
-          text: 'Welcome',
+          label: t('auth.success.success'),
+          text: t('auth.success.welcome'),
           duration: 5000,
         },
       );
@@ -124,13 +123,13 @@ export const useSessionStore = defineStore('session', () => {
       const isSeveralErrors = Array.isArray(data.message);
       if (isSeveralErrors) {
         data.message.forEach((message: string) => toastStore.showDanger({
-          label: 'Error',
+          label: t('auth.error.error'),
           text: t(message),
           duration: 5000,
         }));
       } else {
         toastStore.showDanger({
-          label: 'Error',
+          label: t('auth.error.error'),
           text: t(data.message),
           duration: 5000,
         });
@@ -148,11 +147,10 @@ export const useSessionStore = defineStore('session', () => {
     const { result, data } = await changePassword(model);
 
     if (result) {
-      setToken(data);
       toastStore.showSuccess(
         {
-          label: 'Success',
-          text: 'Welcome',
+          label: t('auth.success.success'),
+          text: t('auth.success.welcome'),
           duration: 5000,
         },
       );
@@ -160,13 +158,13 @@ export const useSessionStore = defineStore('session', () => {
       const isSeveralErrors = Array.isArray(data.message);
       if (isSeveralErrors) {
         data.message.forEach((message: string) => toastStore.showDanger({
-          label: 'Error',
+          label: t('auth.error.error'),
           text: t(message),
           duration: 5000,
         }));
       } else {
         toastStore.showDanger({
-          label: 'Error',
+          label: t('auth.error.error'),
           text: t(data.message),
           duration: 5000,
         });
@@ -184,12 +182,10 @@ export const useSessionStore = defineStore('session', () => {
     const { result, data } = await profileUpdate(model);
 
     if (result) {
-      setToken(data);
-      console.log('data', data);
       toastStore.showSuccess(
         {
-          label: 'Success',
-          text: 'Welcome',
+          label: t('auth.success.success'),
+          text: t('auth.success.welcome'),
           duration: 5000,
         },
       );
@@ -197,13 +193,13 @@ export const useSessionStore = defineStore('session', () => {
       const isSeveralErrors = Array.isArray(data.message);
       if (isSeveralErrors) {
         data.message.forEach((message: string) => toastStore.showDanger({
-          label: 'Error',
+          label: t('auth.error.error'),
           text: t(message),
           duration: 5000,
         }));
       } else {
         toastStore.showDanger({
-          label: 'Error',
+          label: t('auth.error.error'),
           text: t(data.message),
           duration: 5000,
         });
@@ -218,19 +214,19 @@ export const useSessionStore = defineStore('session', () => {
     };
   };
 
-  const handleProfileInfo = async () => {
-    const { result, data } = await profileInfo();
+  const handleProfileData = async () => {
+    const { result, data } = await profileData();
     if (!result) {
       const isSeveralErrors = Array.isArray(data.message);
       if (isSeveralErrors) {
         data.message.forEach((message: string) => toastStore.showDanger({
-          label: 'Error',
+          label: t('auth.error.error'),
           text: t(message),
           duration: 5000,
         }));
       } else {
         toastStore.showDanger({
-          label: 'Error',
+          label: t('auth.error.error'),
           text: t(data.message),
           duration: 5000,
         });
@@ -241,42 +237,6 @@ export const useSessionStore = defineStore('session', () => {
       data,
     };
   };
-  // const handleResetPassword = async (model: ResetPasswordDto) => {
-  //   const { result, data } = await ResetPassword(model);
-  //
-  //   if (result) {
-  //     setToken(data);
-  //     toastStore.showSuccess(
-  //       {
-  //         label: 'Success',
-  //         text: 'Password has Successfully changed',
-  //         duration: 5000,
-  //       },
-  //     );
-  //   } else {
-  //     const isSeveralErrors = Array.isArray(data.message);
-  //     if (isSeveralErrors) {
-  //       data.message.forEach((message: string) => toastStore.showDanger({
-  //         label: 'Error',
-  //         text: t(message),
-  //         duration: 5000,
-  //       }));
-  //     } else {
-  //       toastStore.showDanger({
-  //         label: 'Error',
-  //         text: t(data.message),
-  //         duration: 5000,
-  //       });
-  //     }
-  //
-  //     console.log(data);
-  //   }
-  //
-  //   return {
-  //     result,
-  //     data,
-  //   };
-  // };
 
   const logoutUser = () => {
     removeToken();
@@ -291,10 +251,9 @@ export const useSessionStore = defineStore('session', () => {
     checkAuth,
     signIn: handleSignIn,
     signUp: handleSignUp,
-    ChangePassword: handleChangePassword,
-    ProfileUpdate: handleUpdateProfile,
-    getProfile: handleProfileInfo,
-    // ResetPassword: handleResetPassword,
+    changePassword: handleChangePassword,
+    profileUpdate: handleUpdateProfile,
+    getProfile: handleProfileData,
     logoutUser,
   };
 });

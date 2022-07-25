@@ -7,17 +7,17 @@
       ]"
     >
       <div :class="$style.label">
-        <slot name="label" />
+        <slot name="heading" />
       </div>
       <div :class="$style.topButton">
         <div :class="$style.google">
           <slot name="top-button-icon" />
         </div>
-        <slot name="top-button" />
+        <slot name="google-sign-up-button" />
       </div>
       <div :class="$style.topText">
         <div :class="$style.stripe" />
-        <slot name="top-text" />
+        <slot name="sign-up-text" />
         <div :class="$style.stripe" />
       </div>
       <div :class="$style.namesWrap">
@@ -32,7 +32,7 @@
         <slot name="username" />
       </div>
       <div :class="$style.login">
-        <slot name="login" />
+        <slot name="email" />
       </div>
       <div :class="$style.password">
         <slot name="password" />
@@ -41,11 +41,9 @@
         <slot name="password-confirm" />
       </div>
       <div :class="$style.checkboxWrap">
-        <div :class="$style.checkbox">
-          <slot
-            name="accept"
-          />
-        </div>
+        <slot
+          name="accept"
+        />
         <div :class="$style.termsButton">
           <slot
             name="terms-button"
@@ -56,14 +54,14 @@
         <div
           :class="[
             $style.createButton,
-            !isDisabled && $style.disabled,
+            !isDisabled && $style.loading,
           ]"
         >
           <slot name="create-button" />
         </div>
         <div :class="$style.bottomTextWrap">
           <div :class="$style.bottomText">
-            <slot name="bottom-text" />
+            <slot name="login-text" />
           </div>
           <div :class="$style.signUp">
             <router-link to="/auth/sign-in">
@@ -103,9 +101,6 @@ const props = defineProps({
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.disabled {
-  pointer-events: none;
 }
 .loading {
   pointer-events: none;

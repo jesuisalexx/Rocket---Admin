@@ -1,12 +1,14 @@
 import { useSessionStore } from '@/stores/session';
-import { ref, watchEffect } from 'vue';
+import { ref } from 'vue';
 import { ProfileUpdateDto } from '@/api/dto/auth';
 import {
   object, string,
 } from 'yup';
+import { useI18n } from 'vue-i18n';
 
 export const useProfile = () => {
   const sessionStore = useSessionStore();
+  const { t } = useI18n();
 
   const model = ref<ProfileUpdateDto>({
     firstName: '',
@@ -17,19 +19,22 @@ export const useProfile = () => {
   });
 
   const validationSchema = object().shape({
-    firstName: string(),
-    lastName: string(),
-    username: string(),
-    phone: string(),
-    job: string(),
+    firstName: string()
+      .required(t('auth.error.first-name-required')),
+    lastName: string()
+      .required(t('auth.error.last-name-required')),
+    username: string()
+      .required(t('auth.error.username-required')),
+    phone: string()
+      .required(t('auth.error.phone-required')),
+    job: string()
+      .required(t('auth.error.job-required')),
   });
 
   const isLoading = ref(false);
 
-  const submit = async () => {
-    isLoading.value = true;
-    await sessionStore.ProfileUpdate(model.value);
-    isLoading.value = false;
+  const setProfile = (val: object, data: object) => {
+    Object.assign(val, data);
   };
 
   const fetchProfile = async () => {
@@ -37,16 +42,18 @@ export const useProfile = () => {
     await sessionStore.getProfile();
     const { data } = await sessionStore.getProfile();
     isLoading.value = false;
-    console.log(data);
 
-    const setProfile = () => {
-      Object.assign(model.value, data);
-    };
-    setProfile();
+    setProfile(model.value, data);
 
     return {
       data,
     };
+  };
+
+  const submit = async () => {
+    isLoading.value = true;
+    await sessionStore.profileUpdate(model.value);
+    isLoading.value = false;
   };
 
   return {

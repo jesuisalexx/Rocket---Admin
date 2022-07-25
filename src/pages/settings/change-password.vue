@@ -8,37 +8,34 @@
       v-model="model"
       :is-loading="isLoading"
     >
-      <template #menu>
-        <SettingsMenu />
-      </template>
       <template #img>
-        <BigLock />
+        <BigLockIcon />
       </template>
       <template #old-password>
         <Field
           name="oldPassword"
-          :label="t('auth-pages.old-password')"
+          :label="t('auth.old-password')"
           type="password"
           icon-after="hide"
-          placeholder="Type old password"
+          :placeholder="t('profile.old-password-placeholder')"
         />
       </template>
       <template #new-password>
         <Field
           name="newPassword"
-          :label="t('auth-pages.new-password')"
+          :label="t('auth.new-password')"
           type="password"
           icon-after="hide"
-          placeholder="Type new password"
+          :placeholder="t('profile.new-password-placeholder')"
         />
       </template>
       <template #new-password-confirm>
         <Field
           name="newPasswordConfirm"
-          :label="t('auth-pages.new-password-confirm')"
+          :label="t('auth.new-password-confirm')"
           type="password"
           icon-after="hide"
-          placeholder="Confirm new password"
+          :placeholder="t('profile.confirm-new-password-placeholder')"
         />
       </template>
       <template #button>
@@ -46,7 +43,7 @@
           :is-loading="isLoading"
           variant="primary"
         >
-          {{ $t('profile.change-password') }}
+          {{ t('profile.change-password') }}
         </Button>
       </template>
     </ChangePasswordContainer>
@@ -55,11 +52,10 @@
 
 <script setup lang="ts">
 import ChangePasswordContainer from '@/containers/ChangePasswordContainer.vue';
-import BigLock from '@/assets/img/bigLock.svg';
+import BigLockIcon from '@/assets/img/bigLock.svg';
 import Field from '@/components/core/field/Field.vue';
 import Button from '@/components/core/button/Button.vue';
 import Form from '@/components/core/form/Form.vue';
-import SettingsMenu from '@/components/core/settingsMenu/SettingsMenu.vue';
 
 import { useI18n } from 'vue-i18n';
 import { useChangePassword } from '@/hooks/useChangePassword';
@@ -72,7 +68,4 @@ const {
   validationSchema,
   submit,
 } = useChangePassword();
-
-const props = defineProps({
-});
 </script>

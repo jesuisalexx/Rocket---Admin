@@ -9,66 +9,66 @@
       :is-loading="isLoading"
       :is-disabled="isDisabled"
     >
-      <template #label>
-        {{ t('auth-pages.create-account') }}
+      <template #heading>
+        {{ t('auth.create-account') }}
       </template>
       <template #top-button-icon>
-        <Google />
+        <GoogleAuthIcon />
       </template>
-      <template #top-button>
+      <template #google-sign-up-button>
         <Button
           variant="secondary-google"
         >
-          {{ $t('auth-pages.sign-up-with-google') }}
+          {{ t('auth.sign-up-with-google') }}
         </Button>
       </template>
-      <template #top-text>
-        {{ t('auth-pages.or-sign-up-with-email') }}
+      <template #sign-up-text>
+        {{ t('auth.or-sign-up-with-email') }}
       </template>
       <template #first-name>
         <Field
           name="firstName"
-          :label="t('auth-pages.name')"
-          placeholder="Regina"
+          :label="t('auth.name')"
+          :placeholder="t('profile.name-placeholder')"
         />
       </template>
       <template #last-name>
         <Field
           name="lastName"
-          :label="t('auth-pages.last-name')"
-          placeholder="Cooper"
+          :label="t('auth.last-name')"
+          :placeholder="t('profile.last-name-placeholder')"
         />
       </template>
       <template #username>
         <Field
           name="username"
-          :label="t('auth-pages.username')"
-          placeholder="Username"
+          :label="t('auth.username')"
+          :placeholder="t('profile.username-placeholder')"
         />
       </template>
-      <template #login>
+      <template #email>
         <Field
           name="email"
-          :label="t('auth-pages.email')"
-          placeholder="cooper@example.com"
+          :label="t('auth.email')"
+          :placeholder="t('profile.email-placeholder')"
         />
       </template>
       <template #password>
         <Field
           name="password"
-          :label="t('auth-pages.password')"
+          :label="t('auth.password')"
           type="password"
           icon-after="hide"
-          placeholder="Type password"
+          :placeholder="t('profile.password-placeholder')"
         />
       </template>
       <template #password-confirm>
         <Field
           name="confirmPassword"
           type="password"
-          :label="t('auth-pages.confirm-password')"
+          :label="t('auth.confirm-password')"
           icon-after="hide"
-          placeholder="Confirm password"
+          :placeholder="t('profile.confirm-password-placeholder')"
         />
       </template>
       <template #accept>
@@ -76,14 +76,14 @@
           v-model="isDisabled"
           name="accept"
           :detach-form="true"
-          :label="t('auth-pages.i-accept')"
+          :label="t('auth.accept')"
         />
       </template>
       <template #terms-button>
         <Button
           variant="primary-minimalistic"
         >
-          {{ t('auth-pages.terms-and-conditions') }}
+          {{ t('auth.terms-and-conditions') }}
         </Button>
       </template>
       <template #create-button>
@@ -91,17 +91,17 @@
           variant="primary-extended"
           :is-loading="isLoading"
         >
-          {{ t('auth-pages.create-account') }}
+          {{ t('auth.create-account') }}
         </Button>
       </template>
-      <template #bottom-text>
-        {{ t('auth-pages.already-have-an-account') }}
+      <template #login-text>
+        {{ t('auth.already-have-an-account') }}
       </template>
       <template #sign-in-button>
         <Button
           variant="primary-minimalistic"
         >
-          {{ t('auth-pages.login') }}
+          {{ t('auth.login') }}
         </Button>
       </template>
     </SignUpPageContainer>
@@ -122,7 +122,7 @@ import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
 import Form from '@/components/core/form/Form.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
-import Google from '@/components/core/icon/assets/google.svg';
+import GoogleAuthIcon from '@/components/core/icon/assets/google.svg';
 import SignUpPageContainer from '@/containers/SignUpPageContainer.vue';
 import { useI18n } from 'vue-i18n';
 import { useSignUp } from '@/hooks/useSignUp';
@@ -135,7 +135,6 @@ const {
   submit,
   isDisabled,
 } = useSignUp();
-
 </script>
 
 <style lang="scss" module>

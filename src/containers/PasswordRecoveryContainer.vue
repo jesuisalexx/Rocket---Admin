@@ -7,7 +7,7 @@
         <slot name="icon" />
       </div>
       <div :class="$style.label">
-        <slot name="label" />
+        <slot name="heading" />
       </div>
       <div :class="$style.login">
         <slot name="email" />
@@ -17,7 +17,7 @@
       </div>
       <div :class="$style.bottomTextWrap">
         <div :class="$style.bottomText">
-          <slot name="bottom-text" />
+          <slot name="login-text" />
         </div>
         <div :class="$style.signUp">
           <slot name="login-button" />

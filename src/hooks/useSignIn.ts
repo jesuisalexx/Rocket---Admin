@@ -1,10 +1,12 @@
 import { useSessionStore } from '@/stores/session';
-import { ref, watchEffect } from 'vue';
+import { ref } from 'vue';
 import { SignInDto } from '@/api/dto/auth';
 import { boolean, object, string } from 'yup';
+import { useI18n } from 'vue-i18n';
 
 export const useSignIn = () => {
   const sessionStore = useSessionStore();
+  const { t } = useI18n();
 
   const model = ref<SignInDto>({
     email: '',
@@ -16,10 +18,10 @@ export const useSignIn = () => {
 
   const validationSchema = object().shape({
     email: string()
-      .required('auth.error.email-required')
-      .email('auth.error.email-invalid'),
+      .required(t('auth.error.email-required'))
+      .email(t('auth.error.email-invalid')),
     password: string()
-      .required('auth.error.password-required'),
+      .required(t('auth.error.password-required')),
     remember: boolean(),
   });
 
@@ -28,7 +30,6 @@ export const useSignIn = () => {
   const submit = async () => {
     isLoading.value = true;
     await sessionStore.signIn(model.value, remember.value);
-    console.log(remember.value);
     isLoading.value = false;
   };
 

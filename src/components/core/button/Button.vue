@@ -168,6 +168,25 @@ const props = defineProps({
       border: rem(1px) solid rgba(var(--color-primary-accent), 0.1);
     }
   }
+  &.secondary-menu {
+    width: 100%;
+    height: rem(56px);
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    color: rgb(var(--color-body-light));
+    padding-left: rem(20px);
+    border-radius: rem(5px);
+    &:focus {
+      background: rgb(var(--color-border));
+      color: rgb(var(--color-white));
+    }
+
+    &:hover {
+      color: rgb(var(--color-white));
+    }
+  }
 
   &.secondary-google {
     width: 100%;

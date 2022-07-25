@@ -1,13 +1,15 @@
 import { useSessionStore } from '@/stores/session';
-import { ref, watchEffect } from 'vue';
+import { ref } from 'vue';
 import { ChangePasswordDto } from '@/api/dto/auth';
+import { useI18n } from 'vue-i18n';
 import {
-  boolean, object, ref as yupRef, string,
+  object, ref as yupRef, string,
 } from 'yup';
 import * as Yup from 'yup';
 
 export const useChangePassword = () => {
   const sessionStore = useSessionStore();
+  const { t } = useI18n();
 
   const model = ref<ChangePasswordDto>({
     oldPassword: '',
@@ -16,19 +18,19 @@ export const useChangePassword = () => {
 
   const validationSchema = object().shape({
     oldPassword: string()
-      .required('auth.error.password-required'),
+      .required(t('auth.error.password-required')),
     newPassword: string()
-      .required('auth.error.password-required'),
+      .required(t('auth.error.password-required')),
     newPasswordConfirm: Yup.string()
-      .required('Confirm Password is required field')
-      .oneOf([yupRef('newPassword')], 'Passwords does not match field'),
+      .required(t('auth.error.confirm-password-required'))
+      .oneOf([yupRef('newPassword')], t('auth.error.password-dont-match')),
   });
 
   const isLoading = ref(false);
 
   const submit = async () => {
     isLoading.value = true;
-    await sessionStore.ChangePassword(model.value);
+    await sessionStore.changePassword(model.value);
     isLoading.value = false;
   };
 

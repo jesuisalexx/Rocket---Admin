@@ -1,8 +1,5 @@
 <template>
   <div :class="$style.root">
-    <div :class="$style.menu">
-      <slot name="menu" />
-    </div>
     <div :class="$style.cardWrap">
       <div :class="$style.heading">
         <slot name="heading" />
@@ -25,7 +22,7 @@
       <div :class="$style.wideFields">
         <slot name="job" />
       </div>
-      <div :class="$style.buttonWrap">
+      <div :class="$style.button">
         <slot name="button" />
       </div>
     </div>
@@ -42,11 +39,6 @@
   display: flex;
   padding: rem(25px);
 }
-
-.menu {
-  margin-right: rem(25px);
-}
-
 .cardWrap {
   width: rem(500px);
   height: rem(750px);
@@ -93,7 +85,7 @@
   margin-top: rem(27px);
   z-index: 5;
 }
-.buttonWrap {
+.button {
   display: flex;
   justify-content: flex-end;
   margin-top: rem(30px);

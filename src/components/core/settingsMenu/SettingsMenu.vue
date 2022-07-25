@@ -3,25 +3,25 @@
     <router-link to="/settings/profile">
       <Button
         :class="$style.linkButton"
-        variant="secondary-extended"
+        variant="secondary-menu"
       >
-        {{ $t('profile.profile') }}
+        {{ t('profile.profile') }}
       </Button>
     </router-link>
     <router-link to="/settings/change-password">
       <Button
         :class="$style.linkButton"
-        variant="secondary-extended"
+        variant="secondary-menu"
       >
-        {{ $t('profile.change-password') }}
+        {{ t('profile.change-password') }}
       </Button>
     </router-link>
     <router-link to="/settings">
       <Button
         :class="$style.linkButton"
-        variant="secondary-extended"
+        variant="secondary-menu"
       >
-        {{ $t('profile.settings') }}
+        {{ t('profile.settings') }}
       </Button>
     </router-link>
   </div>
@@ -29,6 +29,9 @@
 
 <script lang="ts" setup>
 import Button from '@/components/core/button/Button.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 </script>
 
 <style lang="scss" module>

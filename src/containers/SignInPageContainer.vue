@@ -7,21 +7,21 @@
       ]"
     >
       <div :class="$style.label">
-        <slot name="label" />
+        <slot name="heading" />
       </div>
       <div :class="$style.topButton">
         <div :class="$style.google">
           <slot name="top-button-icon" />
         </div>
-        <slot name="top-button" />
+        <slot name="google-login-button" />
       </div>
       <div :class="$style.topText">
         <div :class="$style.stripe" />
-        <slot name="top-text" />
+        <slot name="login-text" />
         <div :class="$style.stripe" />
       </div>
       <div :class="$style.login">
-        <slot name="login" />
+        <slot name="email" />
       </div>
       <div :class="$style.password">
         <slot name="password" />
@@ -44,7 +44,7 @@
         </div>
         <div :class="$style.bottomTextWrap">
           <div :class="$style.bottomText">
-            <slot name="bottom-text" />
+            <slot name="sign-up-text" />
           </div>
           <div :class="$style.signUp">
             <router-link to="/auth/sign-up">

@@ -9,22 +9,22 @@
       v-model="model"
     >
       <template #icon>
-        <BigLock />
+        <BigLockIcon />
       </template>
-      <template #label>
-        {{ t('auth-pages.reset-your-password') }}
+      <template #heading>
+        {{ t('auth.reset-your-password') }}
       </template>
       <template #email>
         <Field
           name="email"
-          :label="t('auth-pages.email')"
+          :label="t('auth.email')"
           placeholder="cooper@example.com"
         />
       </template>
       <template #old-password>
         <Field
           name="oldPassword"
-          :label="t('auth-pages.old-password')"
+          :label="t('auth.old-password')"
           type="password"
           icon-after="hide"
           placeholder="Type old password"
@@ -33,7 +33,7 @@
       <template #new-password>
         <Field
           name="newPassword"
-          :label="t('auth-pages.new-password')"
+          :label="t('auth.new-password')"
           type="password"
           icon-after="hide"
           placeholder="Type new password"
@@ -42,7 +42,7 @@
       <template #new-password-confirm>
         <Field
           name="newPasswordConfirm"
-          :label="t('auth-pages.new-password-confirm')"
+          :label="t('auth.new-password-confirm')"
           type="password"
           icon-after="hide"
           placeholder="Confirm new password"
@@ -52,17 +52,17 @@
         <Button
           variant="primary-extended"
         >
-          {{ t('auth-pages.reset-password') }}
+          {{ t('auth.reset-password') }}
         </Button>
       </template>
-      <template #bottom-text>
-        {{ t('auth-pages.go-back-to') }}
+      <template #login-text>
+        {{ t('auth.go-back-to') }}
       </template>
       <template #sign-up-button>
         <Button
           variant="primary-minimalistic"
         >
-          {{ t('auth-pages.login') }}
+          {{ t('auth.login') }}
         </Button>
       </template>
     </PasswordResetContainer>
@@ -71,10 +71,10 @@
 
 <route>
 {
-name: "password-reset",
-meta: {
-layout: "auth"
-}
+  name: "password-reset",
+  meta: {
+  layout: "auth"
+  }
 }
 </route>
 
@@ -84,18 +84,9 @@ import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
 import PasswordResetContainer from '@/containers/PasswordResetContainer.vue';
 import { useI18n } from 'vue-i18n';
-import BigLock from '@/assets/img/bigLock.svg';
-// import { useResetPassword } from '@/hooks/useResetPassword';
+import BigLockIcon from '@/assets/img/bigLock.svg';
 
 const { t } = useI18n();
-//
-// const {
-//   isLoading,
-//   model,
-//   validationSchema,
-//   submit,
-// } = useResetPassword();
-
 </script>
 
 <style lang="scss" module>

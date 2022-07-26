@@ -11,10 +11,8 @@
       <template #heading>
         {{ t('auth.login-to-your-account') }}
       </template>
-      <template #top-button-icon>
-        <GoogleAuthIcon />
-      </template>
-      <template #google-login-button>
+      <template #google-login-button="{ buttonIcon }">
+        <GoogleAuthIcon :class="buttonIcon" />
         <Button
           variant="secondary-google"
         >

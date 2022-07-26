@@ -12,10 +12,8 @@
       <template #heading>
         {{ t('auth.create-account') }}
       </template>
-      <template #top-button-icon>
-        <GoogleAuthIcon />
-      </template>
-      <template #google-sign-up-button>
+      <template #google-sign-up-button="{ buttonIcon }">
+        <GoogleAuthIcon :class="buttonIcon" />
         <Button
           variant="secondary-google"
         >

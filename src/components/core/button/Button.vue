@@ -177,7 +177,7 @@ const props = defineProps({
     cursor: pointer;
     color: rgb(var(--color-body-light));
     padding-left: rem(20px);
-    border-radius: rem(5px);
+    border-radius: rem(8px);
     &:focus {
       background: rgb(var(--color-border));
       color: rgb(var(--color-white));

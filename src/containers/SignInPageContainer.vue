@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <Card>
     <div
       :class="[
         $style.root,
@@ -10,10 +10,10 @@
         <slot name="heading" />
       </div>
       <div :class="$style.topButton">
-        <div :class="$style.google">
-          <slot name="top-button-icon" />
-        </div>
-        <slot name="google-login-button" />
+        <slot
+          name="google-login-button"
+          :button-icon="$style.googleIcon"
+        />
       </div>
       <div :class="$style.topText">
         <div :class="$style.stripe" />
@@ -54,11 +54,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </Card>
 </template>
 
 <script lang="ts" setup>
 import { PropType } from 'vue';
+import Card from '@/components/core/card/Card.vue';
 
 const props = defineProps({
   isLoading: {
@@ -72,11 +73,8 @@ const props = defineProps({
 @import "src/assets/styles/utils";
 
 .root {
-  width: rem(600px);
-  height: rem(884px);
-  padding: rem(24px) rem(100px);
-  border-radius: rem(20px);
-  background: rgb(var(--color-surface));
+  width: rem(550px);
+  padding: rem(10px) rem(70px);
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
@@ -88,14 +86,14 @@ const props = defineProps({
 .toast {
   position: absolute;
   z-index: 2;
-  left: 20px;
-  top: 50px;
+  left: rem(20px);
+  top: rem(50px);
 }
 .label {
   color: rgb(var(--color-heading));
   font-size: rem(28px);
   font-weight: 500;
-  margin-top: rem(159px);
+  margin-top: rem(100px);
 }
 .topButton {
   width: 100%;
@@ -104,7 +102,7 @@ const props = defineProps({
   display: flex;
   position: relative;
 }
-.google {
+.googleIcon {
   top: rem(13px);
   left: rem(25px);
   position: absolute;
@@ -150,7 +148,7 @@ const props = defineProps({
 }
 .bottomPartsWrap {
   width: 100%;
-  height: rem(265px);
+  height: rem(180px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

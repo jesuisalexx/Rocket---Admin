@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.root">
+  <Card>
     <div :class="$style.cardWrap">
       <div :class="$style.heading">
         <slot name="heading" />
@@ -26,24 +26,18 @@
         <slot name="button" />
       </div>
     </div>
-  </div>
+  </Card>
 </template>
 
 <script lang="ts" setup>
+import Card from '@/components/core/card/Card.vue';
 </script>
 
 <style lang="scss" module>
 @import "src/assets/styles/utils";
 
-.root {
-  display: flex;
-  padding: rem(25px);
-}
 .cardWrap {
-  width: rem(500px);
-  height: rem(750px);
-  border-radius: rem(30px);
-  padding: rem(30px);
+  width: rem(440px);
   background: rgb(var(--color-surface));
   position: relative;
 }

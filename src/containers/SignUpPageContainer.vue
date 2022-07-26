@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <Card>
     <div
       :class="[
         $style.root,
@@ -10,10 +10,10 @@
         <slot name="heading" />
       </div>
       <div :class="$style.topButton">
-        <div :class="$style.google">
-          <slot name="top-button-icon" />
-        </div>
-        <slot name="google-sign-up-button" />
+        <slot
+          name="google-sign-up-button"
+          :button-icon="$style.buttonIcon"
+        />
       </div>
       <div :class="$style.topText">
         <div :class="$style.stripe" />
@@ -71,11 +71,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </Card>
 </template>
 
 <script lang="ts" setup>
 import { PropType } from 'vue';
+import Card from '@/components/core/card/Card.vue';
 
 const props = defineProps({
   isLoading: {
@@ -93,10 +94,8 @@ const props = defineProps({
 @import "src/assets/styles/utils";
 
 .root {
-  width: rem(600px);
-  padding: rem(18px) rem(90px);
-  border-radius: rem(20px);
-  background: rgb(var(--color-surface));
+  width: rem(550px);
+  padding: rem(10px) rem(70px);
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
@@ -118,7 +117,7 @@ const props = defineProps({
   display: flex;
   position: relative;
 }
-.google {
+.buttonIcon {
   top: rem(13px);
   left: rem(25px);
   position: absolute;
@@ -131,7 +130,7 @@ const props = defineProps({
   color: rgb(var(--color-body-dark));
   text-transform: uppercase;
   font-size: rem(12px);
-  margin-top: rem(30px);
+  margin-top: rem(40px);
 }
 .stripe {
   width: rem(122px);
@@ -142,7 +141,7 @@ const props = defineProps({
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-top: rem(28px);
+  margin-top: rem(35px);
 }
 .name {
   width: 46%;
@@ -152,31 +151,31 @@ const props = defineProps({
 }
 .username {
   width: 100%;
-  margin-top: rem(20px);
+  margin-top: rem(30px);
 }
 .login {
   width: 100%;
-  margin-top: rem(23px);
+  margin-top: rem(30px);
 }
 .password {
   width: 100%;
-  margin-top: rem(23px);
+  margin-top: rem(30px);
 }
 .confirmPassword {
   width: 100%;
-  margin-top: rem(23px);
+  margin-top: rem(30px);
 }
 .checkboxWrap {
   display: flex;
   width: 100%;
-  margin-top: rem(25px);
+  margin-top: rem(30px);
 }
 .termsButton {
   margin-left: rem(7px);
 }
 .createButton {
   width: 100%;
-  margin-top: rem(24px);
+  margin-top: rem(30px);
 }
 .bottomText {
   color: rgb(var(--color-body-dark));

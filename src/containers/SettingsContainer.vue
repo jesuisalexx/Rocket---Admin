@@ -3,6 +3,9 @@
     <div>
       <slot name="menu" />
     </div>
+    <div>
+      <slot name="view" />
+    </div>
   </div>
 </template>
 

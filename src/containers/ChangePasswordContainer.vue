@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.root">
+  <Card>
     <div :class="$style.contentWrap">
       <div :class="$style.content">
         <div :class="$style.img">
@@ -19,32 +19,22 @@
         <slot name="button" />
       </div>
     </div>
-  </div>
+  </Card>
 </template>
 
 <script lang="ts" setup>
+import Card from '@/components/core/card/Card.vue';
 </script>
 
 <style lang="scss" module>
 @import "src/assets/styles/utils";
-.root {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  padding: 25px;
-}
+
 .contentWrap {
-  width: rem(500px);
-  height: rem(750px);
-  border-radius: rem(30px);
-  padding: rem(40px);
+  width: rem(440px);
   background: rgb(var(--color-surface));
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-}
-.menuWrap {
-  margin-right: 25px;
 }
 .content {
   width: 100%;
@@ -52,13 +42,16 @@
   flex-direction: column;
   align-items: center;
 }
+.img {
+  margin-top: rem(50px);
+}
 .oldPassword {
   width: 100%;
   margin-top: rem(40px);
 }
 .newPassword {
   width: 100%;
-  margin-top: rem(24px);
+  margin-top: rem(30px);
 }
 .button {
   margin-top: rem(30px);

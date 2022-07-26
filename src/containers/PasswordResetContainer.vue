@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <Card>
     <div :class="$style.root">
       <div :class="$style.icon">
         <slot name="icon" />
@@ -33,21 +33,19 @@
         </div>
       </div>
     </div>
-  </div>
+  </Card>
 </template>
 
 <script lang="ts" setup>
+import Card from '@/components/core/card/Card.vue';
 </script>
 
 <style lang="scss" module>
 @import "src/assets/styles/utils";
 
 .root {
-  width: rem(600px);
-  height: rem(950px);
-  padding: rem(18px) rem(100px);
-  border-radius: rem(20px);
-  background: rgb(var(--color-surface));
+  width: rem(550px);
+  padding: rem(10px) rem(70px);
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
@@ -109,7 +107,7 @@
 }
 .bottomParts {
   width: 100%;
-  height: 240px;
+  height: 160px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

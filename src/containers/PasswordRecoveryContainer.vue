@@ -1,34 +1,37 @@
 <template>
-  <Form
-    v-model="localModel"
-  >
-    <div :class="$style.root">
-      <div :class="$style.icon">
-        <slot name="icon" />
-      </div>
-      <div :class="$style.label">
-        <slot name="heading" />
-      </div>
-      <div :class="$style.login">
-        <slot name="email" />
-      </div>
-      <div :class="$style.submitButton">
-        <slot name="submit-button" />
-      </div>
-      <div :class="$style.bottomTextWrap">
-        <div :class="$style.bottomText">
-          <slot name="login-text" />
+  <Card>
+    <Form
+      v-model="localModel"
+    >
+      <div :class="$style.root">
+        <div :class="$style.icon">
+          <slot name="icon" />
         </div>
-        <div :class="$style.signUp">
-          <slot name="login-button" />
+        <div :class="$style.label">
+          <slot name="heading" />
+        </div>
+        <div :class="$style.login">
+          <slot name="email" />
+        </div>
+        <div :class="$style.submitButton">
+          <slot name="submit-button" />
+        </div>
+        <div :class="$style.bottomTextWrap">
+          <div :class="$style.bottomText">
+            <slot name="login-text" />
+          </div>
+          <div :class="$style.signUp">
+            <slot name="login-button" />
+          </div>
         </div>
       </div>
-    </div>
-  </Form>
+    </Form>
+  </Card>
 </template>
 
 <script lang="ts" setup>
 import Form from '@/components/core/form/Form.vue';
+import Card from '@/components/core/card/Card.vue';
 import { computed } from 'vue';
 
 const props = defineProps({
@@ -52,29 +55,26 @@ const localModel = computed({
 @import "src/assets/styles/utils";
 
 .root {
-  width: rem(600px);
-  height: rem(884px);
-  padding: rem(18px) rem(100px);
-  border-radius: rem(20px);
-  background: rgb(var(--color-surface));
+  width: rem(550px);
+  padding: rem(10px) rem(70px);
   font-family: 'Poppins', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .icon {
-  margin-top: rem(170px);
+  margin-top: rem(70px);
 }
 .label {
   color: rgb(var(--color-heading));
   font-size: rem(28px);
   font-weight: 500;
-  margin-top: rem(37px);
+  margin-top: rem(40px);
 }
 .topButton {
   width: 100%;
   font-size: rem(15px);
-  margin-top: rem(35px);
+  margin-top: rem(40px);
 }
 .topText {
   width: 100%;
@@ -93,31 +93,31 @@ const localModel = computed({
 }
 .username {
   width: 100%;
-  margin-top: rem(28px);
+  margin-top: rem(35px);
 }
 .login {
   width: 100%;
-  margin-top: rem(23px);
+  margin-top: rem(25px);
 }
 .password {
   width: 100%;
-  margin-top: rem(23px);
+  margin-top: rem(25px);
 }
 .confirmPassword {
   width: 100%;
-  margin-top: rem(23px);
+  margin-top: rem(25px);
 }
 .checkboxWrap {
   display: flex;
   width: 100%;
-  margin-top: rem(24px);
+  margin-top: rem(25px);
 }
 .termsButton {
   margin-left: rem(7px);
 }
 .submitButton {
   width: 100%;
-  margin-top: rem(24px);
+  margin-top: rem(30px);
 }
 .bottomText {
   color: rgb(var(--color-body-dark));

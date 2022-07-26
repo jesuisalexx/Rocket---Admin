@@ -1,72 +1,72 @@
 <template>
-  <!--change div on form-->
-  <Form
+  <!--  &lt;!&ndash;change div on form&ndash;&gt;-->
+  <!--  <Form-->
+  <!--    v-model="model"-->
+  <!--    :validation-schema="validationSchema"-->
+  <!--    @submit="submit"-->
+  <!--  >-->
+  <PasswordResetContainer
     v-model="model"
-    :validation-schema="validationSchema"
-    @submit="submit"
   >
-    <PasswordResetContainer
-      v-model="model"
-    >
-      <template #icon>
-        <BigLockIcon />
-      </template>
-      <template #heading>
-        {{ t('auth.reset-your-password') }}
-      </template>
-      <template #email>
-        <Field
-          name="email"
-          :label="t('auth.email')"
-          placeholder="cooper@example.com"
-        />
-      </template>
-      <template #old-password>
-        <Field
-          name="oldPassword"
-          :label="t('auth.old-password')"
-          type="password"
-          icon-after="hide"
-          placeholder="Type old password"
-        />
-      </template>
-      <template #new-password>
-        <Field
-          name="newPassword"
-          :label="t('auth.new-password')"
-          type="password"
-          icon-after="hide"
-          placeholder="Type new password"
-        />
-      </template>
-      <template #new-password-confirm>
-        <Field
-          name="newPasswordConfirm"
-          :label="t('auth.new-password-confirm')"
-          type="password"
-          icon-after="hide"
-          placeholder="Confirm new password"
-        />
-      </template>
-      <template #create-button>
-        <Button
-          variant="primary-extended"
-        >
-          {{ t('auth.reset-password') }}
-        </Button>
-      </template>
-      <template #login-text>
-        {{ t('auth.go-back-to') }}
-      </template>
-      <template #sign-up-button>
-        <Button
-          variant="primary-minimalistic"
-        >
-          {{ t('auth.login') }}
-        </Button>
-      </template>
-    </PasswordResetContainer>
-  </Form>
+    <template #icon>
+      <BigLockIcon />
+    </template>
+    <template #heading>
+      {{ t('auth.reset-your-password') }}
+    </template>
+    <template #email>
+      <Field
+        name="email"
+        :label="t('auth.email')"
+        placeholder="cooper@example.com"
+      />
+    </template>
+    <template #old-password>
+      <Field
+        name="oldPassword"
+        :label="t('auth.old-password')"
+        type="password"
+        icon-after="hide"
+        placeholder="Type old password"
+      />
+    </template>
+    <template #new-password>
+      <Field
+        name="newPassword"
+        :label="t('auth.new-password')"
+        type="password"
+        icon-after="hide"
+        placeholder="Type new password"
+      />
+    </template>
+    <template #new-password-confirm>
+      <Field
+        name="newPasswordConfirm"
+        :label="t('auth.new-password-confirm')"
+        type="password"
+        icon-after="hide"
+        placeholder="Confirm new password"
+      />
+    </template>
+    <template #create-button>
+      <Button
+        variant="primary-extended"
+      >
+        {{ t('auth.reset-password') }}
+      </Button>
+    </template>
+    <template #login-text>
+      {{ t('auth.go-back-to') }}
+    </template>
+    <template #sign-up-button>
+      <Button
+        variant="primary-minimalistic"
+      >
+        {{ t('auth.login') }}
+      </Button>
+    </template>
+  </PasswordResetContainer>
+<!--  </Form>-->
 </template>
 
 <route>

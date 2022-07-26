@@ -12,6 +12,7 @@ import {
 } from '@/api/dto/auth';
 import { useToastStore } from '@/stores/toasts';
 import { useI18n } from 'vue-i18n';
+import { showServerErrors } from '@/utils/server';
 
 export const checkAuth = (
   isAuthorized: boolean,
@@ -84,22 +85,13 @@ export const useSessionStore = defineStore('session', () => {
         },
       );
     } else {
-      const isSeveralErrors = Array.isArray(data.message);
-      if (isSeveralErrors) {
-        data.message.forEach((message: string) => toastStore.showDanger({
-          label: 'Error',
+      showServerErrors((message: string) => {
+        toastStore.showDanger({
+          label: t('auth.error.error'),
           text: t(message),
           duration: 5000,
-        }));
-      } else {
-        toastStore.showDanger({
-          label: 'Error',
-          text: t(data.message),
-          duration: 5000,
         });
-      }
-
-      console.log(data);
+      }, data.message);
     }
 
     return {
@@ -120,22 +112,13 @@ export const useSessionStore = defineStore('session', () => {
         },
       );
     } else {
-      const isSeveralErrors = Array.isArray(data.message);
-      if (isSeveralErrors) {
-        data.message.forEach((message: string) => toastStore.showDanger({
+      showServerErrors((message: string) => {
+        toastStore.showDanger({
           label: t('auth.error.error'),
           text: t(message),
           duration: 5000,
-        }));
-      } else {
-        toastStore.showDanger({
-          label: t('auth.error.error'),
-          text: t(data.message),
-          duration: 5000,
         });
-      }
-
-      console.log(data);
+      }, data.message);
     }
 
     return {
@@ -150,27 +133,18 @@ export const useSessionStore = defineStore('session', () => {
       toastStore.showSuccess(
         {
           label: t('auth.success.success'),
-          text: t('auth.success.welcome'),
+          text: t('auth.success.password-changed'),
           duration: 5000,
         },
       );
     } else {
-      const isSeveralErrors = Array.isArray(data.message);
-      if (isSeveralErrors) {
-        data.message.forEach((message: string) => toastStore.showDanger({
+      showServerErrors((message: string) => {
+        toastStore.showDanger({
           label: t('auth.error.error'),
           text: t(message),
           duration: 5000,
-        }));
-      } else {
-        toastStore.showDanger({
-          label: t('auth.error.error'),
-          text: t(data.message),
-          duration: 5000,
         });
-      }
-
-      console.log(data);
+      }, data.message);
     }
 
     return {
@@ -180,34 +154,23 @@ export const useSessionStore = defineStore('session', () => {
   };
   const handleUpdateProfile = async (model: ProfileUpdateDto) => {
     const { result, data } = await profileUpdate(model);
-
     if (result) {
       toastStore.showSuccess(
         {
           label: t('auth.success.success'),
-          text: t('auth.success.welcome'),
+          text: t('auth.success.profile-updated'),
           duration: 5000,
         },
       );
     } else {
-      const isSeveralErrors = Array.isArray(data.message);
-      if (isSeveralErrors) {
-        data.message.forEach((message: string) => toastStore.showDanger({
+      showServerErrors((message: string) => {
+        toastStore.showDanger({
           label: t('auth.error.error'),
           text: t(message),
           duration: 5000,
-        }));
-      } else {
-        toastStore.showDanger({
-          label: t('auth.error.error'),
-          text: t(data.message),
-          duration: 5000,
         });
-      }
-
-      console.log(data);
+      }, data.message);
     }
-
     return {
       result,
       data,
@@ -217,20 +180,13 @@ export const useSessionStore = defineStore('session', () => {
   const handleProfileData = async () => {
     const { result, data } = await profileData();
     if (!result) {
-      const isSeveralErrors = Array.isArray(data.message);
-      if (isSeveralErrors) {
-        data.message.forEach((message: string) => toastStore.showDanger({
+      showServerErrors((message: string) => {
+        toastStore.showDanger({
           label: t('auth.error.error'),
           text: t(message),
           duration: 5000,
-        }));
-      } else {
-        toastStore.showDanger({
-          label: t('auth.error.error'),
-          text: t(data.message),
-          duration: 5000,
         });
-      }
+      }, data.message);
     }
     return {
       result,

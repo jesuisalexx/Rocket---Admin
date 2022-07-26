@@ -76,7 +76,9 @@
     },
     "success": {
       "success": "Success",
-      "welcome": "Welcome"
+      "welcome": "Welcome",
+      "profile-updated": "Profile successfully updated",
+      "password-changed": "Password successfully changed"
     }
   },
   "header": {
@@ -100,7 +102,7 @@
 
     "name-placeholder": "Regina",
     "last-name-placeholder": "Cooper",
-    "email-placeholder": "cooper\u0040example.com",
+    "email-placeholder": "cooper@example.com",
     "password-placeholder": "Type password",
     "confirm-password-placeholder": "Confirm password",
     "old-password-placeholder": "Type old password",

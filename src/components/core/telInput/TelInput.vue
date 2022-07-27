@@ -9,11 +9,11 @@
     <div :class="$style.inputWrap">
       <input
         ref="telInput"
+        v-model="modelValue"
         type="number"
         name="tel"
-        placeholder=""
+        :placeholder="t('profile.phone-placeholder')"
         :class="$style.input"
-        :value="value"
       >
     </div>
   </div>
@@ -30,9 +30,9 @@ const { t } = useI18n();
 
 const telInput = ref(null);
 const props = defineProps({
-  value: {
-    type: Boolean as PropType<boolean>,
-    default: false,
+  modelValue: {
+    type: [String, Number] as PropType<string | number>,
+    default: null,
   },
 });
 
@@ -63,8 +63,8 @@ onMounted(() => {
   padding: 0 rem(10px);
 }
 .label {
-  width: 300px;
-  height: 40px;
+  width: rem(300px);
+  height: rem(40px);
   color: rgb(var(--color-body-dark));
 }
 .iti {

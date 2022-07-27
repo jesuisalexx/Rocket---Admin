@@ -112,6 +112,13 @@
     "phone-placeholder": "(201) 555-5555",
     "job-placeholder": "unemployed"
   },
+  "products": {
+    "products": "Products",
+    "export": "Export",
+    "all": "All",
+    "available": "Available",
+    "disabled": "Disabled"
+  },
   "selectInput": {
     "status": "Status"
   },

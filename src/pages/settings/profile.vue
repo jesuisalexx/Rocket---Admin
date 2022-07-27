@@ -37,6 +37,7 @@
       </template>
       <template #phone>
         <TelInput
+          name="phone"
           :model-value="model.phone"
         />
       </template>

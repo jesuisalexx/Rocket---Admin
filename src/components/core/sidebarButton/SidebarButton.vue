@@ -9,7 +9,10 @@
       <component
         :is="computedComponent"
         :to="button.to"
-        :class="$style.button"
+        :class="[
+          $style.button,
+          isSidebarExpanded
+        ]"
       >
         <Icon
           :class="$style.iconBefore"
@@ -125,6 +128,18 @@ const computedComponent = computed(() => componentMap[props.button.type]);
     border-left: rem(4px) solid rgb(var(--color-primary-accent));
     color: rgb(var(--color-heading));
   }
+}
+.active {
+  width: 100%;
+  height: rem(56px);
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  padding-left: 0;
+  background: rgb(var(--color-surface));
+  border-left: rem(4px) solid rgb(var(--color-primary-accent));
+  color: rgb(var(--color-heading));
 }
 
 .iconWrap {

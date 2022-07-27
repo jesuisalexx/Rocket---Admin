@@ -138,6 +138,27 @@ const props = defineProps({
       box-shadow: 0 rem(8px) rem(16px) rgba(var(--color-primary-accent), 0.2);
     }
   }
+  &.primary-empty {
+    color: rgb(var(--color-white));
+    height: rem(38px);
+    background-color: rgb(var(--color-primary-accent));
+    border-radius: rem(14px);
+    padding: rem(6px) rem(24px);
+    padding-top: 13px;
+    box-shadow: 0 rem(2px) rgb(var(--color-primary-accent-dark));
+    transition: 0.27s;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      color: rgb(var(--color-white));
+      background-color: rgb(var(--color-primary-accent));
+      border-radius: rem(14px);
+      padding: rem(6px) rem(24px);
+      padding-top: 13px;
+      box-shadow: 0 rem(8px) rem(16px) rgba(var(--color-primary-accent), 0.2);
+    }
+  }
 
   &.secondary {
     color: rgb(var(--color-body-light));

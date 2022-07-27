@@ -28,6 +28,7 @@ const icons = (Object.entries(
 @import "src/assets/styles/utils";
 
 .root {
-  //display: none;
+  position: fixed;
+  left: rem(-9999px);
 }
 </style>

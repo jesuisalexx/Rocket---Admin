@@ -18,20 +18,20 @@
               variant="secondary"
               icon-before="settings"
             >
-              {{ $t('header.settings') }}
+              {{ t('header.settings') }}
             </Button>
           </router-link>
           <Button
             variant="simple"
             :class="$style.simpleButton"
           >
-            {{ $t('header.activity') }}
+            {{ t('header.activity') }}
           </Button>
           <Button
             variant="simple"
             :class="$style.simpleButton"
           >
-            {{ $t('header.users') }}
+            {{ t('header.users') }}
           </Button>
         </div>
       </template>
@@ -68,7 +68,7 @@
       <template #right-section-profile>
         <UserBarContainer avatar-icon="avatar">
           <template #user-name>
-            {{ $t('header.name') }}
+            {{ t('header.name') }}
           </template>
         </UserBarContainer>
       </template>
@@ -82,7 +82,7 @@ import Icon from '@/components/core/icon/Icon.vue';
 import UserBarContainer from '@/containers/UserBarContainer.vue';
 import Button from '@/components/core/button/Button.vue';
 import { HeaderState } from '@/components/core/header';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { layout } from '@/stores/layout';
 import { useI18n } from 'vue-i18n';

@@ -62,7 +62,7 @@
 </template>
 
 <script lang="ts" setup>
-import ProfileContainer from '@/containers/ProfileContainer.vue';
+import ProfileContainer from '@/containers/profileContainer/ProfileContainer.vue';
 import Field from '@/components/core/field/Field.vue';
 import SettingsProfileAvatar from '@/components/core/settingsProfileAvatar/SettingsProfileAvatar.vue';
 import TelInput from '@/components/core/telInput/TelInput.vue';

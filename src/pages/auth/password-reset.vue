@@ -79,12 +79,11 @@
 </route>
 
 <script lang="ts" setup>
-import Form from '@/components/core/form/Form.vue';
 import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
-import PasswordResetContainer from '@/containers/PasswordResetContainer.vue';
 import { useI18n } from 'vue-i18n';
 import BigLockIcon from '@/assets/img/bigLock.svg';
+import PasswordResetContainer from '@/containers/passwordResetContainer/PasswordResetContainer.vue';
 
 const { t } = useI18n();
 </script>

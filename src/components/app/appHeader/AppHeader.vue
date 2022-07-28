@@ -79,13 +79,13 @@
 <script setup lang="ts">
 import Header from '@/components/core/header/Header.vue';
 import Icon from '@/components/core/icon/Icon.vue';
-import UserBarContainer from '@/containers/UserBarContainer.vue';
 import Button from '@/components/core/button/Button.vue';
 import { HeaderState } from '@/components/core/header';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { layout } from '@/stores/layout';
 import { useI18n } from 'vue-i18n';
+import UserBarContainer from '@/containers/userBarContainer/UserBarContainer.vue';
 
 const { t } = useI18n();
 

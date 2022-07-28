@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.root">
-    <div :class="$style.leftSection">
+    <div>
       <slot name="left-section" />
     </div>
     <div :class="$style.rightSection">

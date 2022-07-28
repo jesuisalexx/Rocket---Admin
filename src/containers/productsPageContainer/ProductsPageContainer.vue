@@ -1,7 +1,9 @@
 <template>
   <div :class="$style.root">
     <div :class="$style.textButtonsWrap">
-      <div :class="$style.heading">
+      <div
+        :class="$style.heading"
+      >
         <slot name="heading" />
       </div>
       <div :class="$style.buttonsWrap">
@@ -18,62 +20,18 @@
           $style.linksFlex
         ]"
       >
-        <div :class="$style.products">
+        <div>
           <slot name="all-products" />
-          <div :class="$style.counter">
-            283
-          </div>
-        </div>
-        <div
-          :class="[
-            $style.products,
-            $style.productsAvailable
-          ]"
-        >
-          <slot name="available-products" />
-          <div :class="$style.counter">
-            268
-          </div>
-        </div>
-        <div
-          :class="[
-            $style.products,
-            $style.productsAvailable
-          ]"
-        >
-          <slot name="disabled-products" />
-          <div :class="$style.counter">
-            15
-          </div>
         </div>
       </div>
       <div :class="$style.listTypeChange">
-        <div
-          :class="$style.list"
-          @click="useProductsStore.listType(listTableType)"
-        >
-          <slot name="list" />
-        </div>
-        <div :class="$style.divider" />
-        <div
-          :class="$style.list"
-          @click="useProductsStore.gridType(gridTableType)"
-        >
-          <slot name="grid" />
-        </div>
+        <slot name="buttons" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { products } from '@/stores/products';
-import { computed } from 'vue';
-import { tableType } from '@/pages/products';
-
-const useProductsStore = products();
-const listTableType = computed(() => tableType.LIST);
-const gridTableType = computed(() => tableType.GRID);
 </script>
 
 <style lang="scss" module>

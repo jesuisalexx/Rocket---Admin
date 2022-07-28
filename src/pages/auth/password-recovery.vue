@@ -47,13 +47,13 @@
 </route>
 
 <script lang="ts" setup>
-import PasswordRecoveryContainer from '@/containers/PasswordRecoveryContainer.vue';
 import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
 import BigLockIcon from '@/assets/img/bigLock.svg';
 import { useI18n } from 'vue-i18n';
 
 import { ref } from 'vue';
+import PasswordRecoveryContainer from '@/containers/passwordRecoveryContainer/PasswordRecoveryContainer.vue';
 
 const { t } = useI18n();
 

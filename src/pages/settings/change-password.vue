@@ -51,7 +51,6 @@
 </template>
 
 <script setup lang="ts">
-import ChangePasswordContainer from '@/containers/ChangePasswordContainer.vue';
 import BigLockIcon from '@/assets/img/bigLock.svg';
 import Field from '@/components/core/field/Field.vue';
 import Button from '@/components/core/button/Button.vue';
@@ -59,6 +58,7 @@ import Form from '@/components/core/form/Form.vue';
 
 import { useI18n } from 'vue-i18n';
 import { useChangePassword } from '@/hooks/useChangePassword';
+import ChangePasswordContainer from '@/containers/changePasswordContainer/ChangePasswordContainer.vue';
 
 const { t } = useI18n();
 

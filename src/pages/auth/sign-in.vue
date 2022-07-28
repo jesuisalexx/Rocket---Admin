@@ -87,7 +87,6 @@
 </route>
 
 <script lang="ts" setup>
-import SignInPageContainer from '@/containers/SignInPageContainer.vue';
 import Button from '@/components/core/button/Button.vue';
 import Field from '@/components/core/field/Field.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
@@ -95,6 +94,7 @@ import Form from '@/components/core/form/Form.vue';
 import GoogleAuthIcon from '@/components/core/icon/assets/google.svg';
 import { useI18n } from 'vue-i18n';
 import { useSignIn } from '@/hooks/useSignIn';
+import SignInPageContainer from '@/containers/signInPageContainer/SignInPageContainer.vue';
 
 const { t } = useI18n();
 

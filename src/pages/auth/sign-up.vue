@@ -121,9 +121,9 @@ import Field from '@/components/core/field/Field.vue';
 import Form from '@/components/core/form/Form.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import GoogleAuthIcon from '@/components/core/icon/assets/google.svg';
-import SignUpPageContainer from '@/containers/SignUpPageContainer.vue';
 import { useI18n } from 'vue-i18n';
 import { useSignUp } from '@/hooks/useSignUp';
+import SignUpPageContainer from '@/containers/signUpPageContainer/SignUpPageContainer.vue';
 
 const { t } = useI18n();
 const {

@@ -40,7 +40,7 @@
 <script setup lang="ts">
 import Icon from '@/components/core/icon/Icon.vue';
 import Loader from '@/components/core/loader/Loader.vue';
-import { computed, defineProps, PropType } from 'vue';
+import { defineProps, PropType } from 'vue';
 import { buttonVariant } from './index';
 
 const props = defineProps({

@@ -15,10 +15,7 @@
     </div>
     <div :class="$style.linksWrap">
       <div
-        :class="[
-          $style.links,
-          $style.linksFlex
-        ]"
+        :class="$style.links"
       >
         <div>
           <slot name="all-products" />
@@ -27,6 +24,9 @@
       <div :class="$style.listTypeChange">
         <slot name="buttons" />
       </div>
+    </div>
+    <div>
+      <slot name="view" />
     </div>
   </div>
 </template>
@@ -64,9 +64,6 @@
   border-bottom: rem(1px) solid rgb(var(--color-border));
 }
 .links {
-  display: inline-block;
-}
-.linksFlex {
   display: flex;
 }
 .products {
@@ -104,13 +101,5 @@
   width: rem(18px);
   height: rem(18px);
   cursor: pointer;
-  &:hover {
-  }
-}
-.divider {
-  width: rem(1px);
-  height: rem(18px);
-  background: rgb(var(--color-border));
-  margin: 0 rem(16px);
 }
 </style>

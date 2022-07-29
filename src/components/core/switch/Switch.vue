@@ -2,10 +2,9 @@
   <div
     :class="$style.root"
   >
-    <!-- exact active class-->
     <template
-      v-for="(button, index) in buttons"
-      :key="index"
+      v-for="(button, i) in buttons"
+      :key="i"
       v-model="localModel"
     >
       <div
@@ -13,8 +12,11 @@
         @click="listType(button.value)"
       >
         <Icon :icon="button.icon" />
-        {{ button.value }}
       </div>
+      <div
+        v-if="i + 1 !== buttons.length"
+        :class="$style.divider"
+      ></div>
     </template>
   </div>
 </template>
@@ -46,15 +48,22 @@ const listType = (button: any) => {
 </script>
 
 <style lang="scss" module>
+@import "src/assets/styles/utils";
+
 .root {
-  width: 100px;
-  height: 20px;
+  height: rem(20px);
   display: flex;
 }
 .button {
   cursor: pointer;
-  width: 20px;
-  height: 20px;
-  margin-right: 20px;
+  width: rem(20px);
+  height: rem(20px);
+  display: flex;
+}
+.divider {
+  width: rem(1px);
+  height: rem(18px);
+  background: rgb(var(--color-border));
+  margin: 0 rem(16px);
 }
 </style>

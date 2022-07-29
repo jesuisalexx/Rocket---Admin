@@ -5,14 +5,19 @@
     <div
       v-for="(tab, index) in tabs"
       :key="index"
-      :class="$style.tab"
     >
-      <div :class="$style.text">
-        {{ tab.label }}
-      </div>
-      <div :class="$style.counter">
-        {{ tab.counter }}
-      </div>
+      <router-link
+        :to="tab.to"
+        :exact-active-class="$style.active"
+        :class="$style.tab"
+      >
+        <div :class="$style.text">
+          {{ tab.label }}
+        </div>
+        <div :class="$style.counter">
+          {{ tab.counter }}
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -37,11 +42,6 @@ const props = defineProps<{
   cursor: pointer;
   transition: 0.2s;
   margin-right: 20px;
-
-  &:hover {
-    color: rgb(var(--color-heading));
-    border-bottom: rem(2px) solid rgb(var(--color-primary-accent));
-  }
 }
 .counter {
   padding: rem(8px);
@@ -55,5 +55,9 @@ const props = defineProps<{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.active {
+  color: rgb(var(--color-heading));
+  border-bottom: rem(2px) solid rgb(var(--color-primary-accent));
 }
 </style>

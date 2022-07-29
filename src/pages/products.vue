@@ -28,6 +28,9 @@
       <template #buttons>
         <Switch :buttons="buttons" />
       </template>
+      <template #view>
+        <router-view />
+      </template>
     </ProductsPageContainer>
   </div>
 </template>

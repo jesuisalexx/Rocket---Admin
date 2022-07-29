@@ -6,9 +6,10 @@
     ]"
   >
     <div :class="$style.buttonWrap">
-      <component
+      <router-link
         :is="computedComponent"
         :to="button.to"
+        :exact-active-class="$style.active"
         :class="[
           $style.button,
           isSidebarExpanded
@@ -31,7 +32,7 @@
           :class="$style.iconAfter"
           :icon="button.iconAfter"
         />
-      </component>
+      </router-link>
     </div>
   </div>
 </template>
@@ -84,9 +85,6 @@ const computedComponent = computed(() => componentMap[props.button.type]);
       padding: 0;
       border: 0;
       background: none;
-      &:focus {
-        background: rgb(var(--color-surface));
-      }
     }
     .iconWrap {
       height: rem(44px);
@@ -122,12 +120,6 @@ const computedComponent = computed(() => componentMap[props.button.type]);
   cursor: pointer;
   color: rgb(var(--color-body-light));
   padding-left: rem(4px);
-  &:focus {
-    padding-left: 0;
-    background: rgb(var(--color-surface));
-    border-left: rem(4px) solid rgb(var(--color-primary-accent));
-    color: rgb(var(--color-heading));
-  }
 }
 .active {
   width: 100%;

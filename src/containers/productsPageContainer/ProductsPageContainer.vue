@@ -15,10 +15,10 @@
     </div>
     <div :class="$style.linksWrap">
       <div
-        :class="$style.links"
+        :class="$style.tabs"
       >
         <div>
-          <slot name="all-products" />
+          <slot name="tabs" />
         </div>
       </div>
       <div :class="$style.listTypeChange">
@@ -63,7 +63,7 @@
   margin-top: rem(35px);
   border-bottom: rem(1px) solid rgb(var(--color-border));
 }
-.links {
+.tabs {
   display: flex;
 }
 .products {

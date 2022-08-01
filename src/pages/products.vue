@@ -22,7 +22,7 @@
           <PlusIcon />
         </Button>
       </template>
-      <template #all-products>
+      <template #tabs>
         <Tabs :tabs="tabs" />
       </template>
       <template #buttons>

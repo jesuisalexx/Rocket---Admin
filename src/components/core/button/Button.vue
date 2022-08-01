@@ -166,6 +166,7 @@ const props = defineProps({
     padding: rem(8px) rem(24px);
     border: rem(1px) solid rgb(var(--color-border));
     transition: 0.27s;
+    height: rem(43px);
 
     &:hover {
       color: rgb(var(--color-primary-accent));

@@ -208,7 +208,6 @@ defineExpose({
   position: relative;
   display: flex;
   align-items: center;
-  margin-top: rem(10px);
 }
 
 .input {

@@ -15,7 +15,10 @@
         </Button>
       </div>
       <div :class="$style.table">
-        <Table :columns="columns" />
+        <Table
+          :columns="columns"
+          :records="records"
+        />
       </div>
       <div :class="$style.pagination" />
     </Card>
@@ -31,46 +34,63 @@ import Button from '@/components/core/button/Button.vue';
 const columns = [
   {
     label: 'product name',
-    size: 3,
+    size: 3.5,
     value: 'name',
     sortable: false,
   },
   {
     label: 'product no.',
-    size: 1,
-    value: 'name',
+    size: 2.5,
+    value: 'number',
     sortable: false,
   },
   {
     label: 'category',
-    size: 2,
-    value: 'name',
+    size: 2.5,
+    value: 'category',
     sortable: false,
   },
   {
     label: 'date',
-    size: 1,
-    value: 'name',
+    size: 1.4,
+    value: 'date',
     sortable: false,
   },
   {
     label: 'price',
-    size: 1,
-    value: 'name',
+    size: 1.4,
+    value: 'price',
     sortable: false,
   },
   {
     label: 'status',
-    size: 1,
-    value: 'name',
+    size: 1.4,
+    value: 'status',
     sortable: false,
+  },
+];
+const records = [
+  {
+    id: '1',
+    name: 'iPhone 13 Pro',
+    data: {
+      value: 'name',
+      label: 'iPhone 13 Pro 256GB',
+      number: '#1',
+      category: 'Phone',
+      date: '21.09.2020',
+      price: '1000$',
+      status: 'available',
+    },
   },
 ];
 </script>
 
 <style lang="scss" module>
+@import "src/assets/styles/utils";
+
 .root {
-  padding-top: 35px;
+  padding-top: rem(25px);
 }
 .fieldWrap {
   display: flex;
@@ -81,11 +101,10 @@ const columns = [
   width: 89%;
 }
 .table {
-  margin-top: 33px;
+  margin-top: rem(33px);
 }
 .pagination {
   width: 100%;
-  height: 90px;
-  background: #000;
+  height: rem(90px);
 }
 </style>

@@ -10,8 +10,8 @@
         :style="size"
       >
         <div
-          v-for="(column, i) in columns"
-          :key="i"
+          v-for="column in columns"
+          :key="column.label"
           :class="$style.columns"
         >
           <div :class="$style.colLabel">
@@ -22,13 +22,24 @@
       </div>
     </div>
     <div
-      v-for="(record, i) in records"
-      :key="i"
-      :class="$style.records"
+      v-for="record in records"
+      :key="record.id"
+      :class="$style.recordWrap"
+      :style="size"
     >
-      <div :class="$style.record">
-        {{ record.name }}
+      <slot name="checkbox" />
+      <div
+        v-for="column in columns"
+        :key="column.label"
+        :class="$style.record"
+      >
+        <slot
+          :name="`cell(${column.value})`"
+          :record="record"
+          :data="record.data[column.value]"
+        />
       </div>
+      <slot name="more-button" />
     </div>
   </div>
 </template>
@@ -73,7 +84,7 @@ const size = computed(() => ({
   display: grid;
   align-items: flex-end;
   width: 100%;
-
+  margin-right: 30px;
 }
 .columns {
   width: 100%;
@@ -90,14 +101,16 @@ const size = computed(() => ({
 .check {
   margin-right: rem(30px);
 }
-.records {
-  display: flex;
-  flex-direction: column;
-}
-.record {
+.recordWrap {
   width: 100%;
   height: rem(64px);
+  padding-left: rem(48px);
+  padding-right: rem(30px);
   border-bottom: rem(1px) solid rgb(var(--color-border));
+  display: grid;
+  position: relative;
+}
+.record {
   display: flex;
   align-items: center;
 }

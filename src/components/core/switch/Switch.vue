@@ -43,7 +43,6 @@ const type = ref('list');
 
 const listType = (button: any) => {
   type.value = button;
-  console.log(type.value);
 };
 </script>
 

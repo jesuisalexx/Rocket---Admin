@@ -63,15 +63,11 @@
           <template
             #cell(status)="{ record }"
           >
-            <div
-              :class="{
-                [$style.recStatus]: true,
-                [$style.recStatusAvailable]: record.data.status === 'available',
-                [$style.recStatusDisabled]: record.data.status === 'disabled',
-              }"
+            <Badge
+              :variant="statusMap[record.data.status]"
             >
               {{ record.data.status }}
-            </div>
+            </Badge>
           </template>
         </Table>
       </div>
@@ -84,9 +80,11 @@
 import Table from '@/components/core/table/Table.vue';
 import Field from '@/components/core/field/Field.vue';
 import Card from '@/components/core/card/Card.vue';
+import Badge from '@/components/core/badge/Badge.vue';
 import Button from '@/components/core/button/Button.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import More from '@/components/core/icon/assets/more.svg';
+import { ref } from 'vue';
 
 const columns = [
   {
@@ -164,6 +162,10 @@ const records = [
     },
   },
 ];
+const statusMap = {
+  available: 'success',
+  disabled: 'warning',
+};
 </script>
 
 <style lang="scss" module>
@@ -207,20 +209,5 @@ const records = [
   font-size: rem(15px);
   font-weight: 400;
   color: rgb(var(--color-body-dark));
-}
-.recStatusAvailable {
-  color: rgb(var(--color-dark-green));
-  background: rgba(88, 215, 134, 0.2);
-}
-.recStatusDisabled {
-  background: rgba(255, 149, 92, 0.2);
-  color: rgb(var(--color-dark-orange));
-}
-.recStatus {
-  font-size: rem(12px);
-  font-weight: 400;
-  text-transform: capitalize;
-  padding: rem(5px) rem(12px);
-  border-radius: rem(9px);
 }
 </style>

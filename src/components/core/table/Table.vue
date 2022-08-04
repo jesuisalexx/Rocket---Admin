@@ -61,7 +61,6 @@ const sizeComputed = computed(() => {
     const normalizedValue = typeof val === 'number' ? `${val}fr` : `${val}`;
     return `${acc} ${normalizedValue}`;
   }, '');
-  console.log(colSize);
   return colSize;
 });
 const size = computed(() => ({

@@ -16,14 +16,15 @@
       <div
         v-if="i + 1 !== buttons.length"
         :class="$style.divider"
-      ></div>
+      />
     </template>
   </div>
 </template>
 
 <script lang="ts" setup>
 import Icon from '@/components/core/icon/Icon.vue';
-import { computed, defineProps, ref } from 'vue';
+import { computed, defineProps } from 'vue';
+import { products } from '@/stores/products';
 
 const props = defineProps<{
   buttons: [],
@@ -39,11 +40,7 @@ const localModel = computed({
   },
 });
 
-const type = ref('list');
-
-const listType = (button: any) => {
-  type.value = button;
-};
+const { listType } = products();
 </script>
 
 <style lang="scss" module>

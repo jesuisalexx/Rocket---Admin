@@ -1,45 +1,92 @@
 <template>
   <div :class="$style.root">
-    <div :class="$style.tableHat">
-      <Checkbox
-        model-value="true"
-        :class="$style.check"
-      />
+    <div
+      v-if="type === 'list'"
+      :class="$style.listTable"
+    >
+      <div :class="$style.tableHat">
+        <Checkbox
+          model-value="true"
+          :class="$style.check"
+        />
+        <div
+          :class="$style.columnsWrap"
+          :style="size"
+        >
+          <div
+            v-for="column in columns"
+            :key="column.label"
+            :class="$style.columns"
+          >
+            <div :class="$style.colLabel">
+              {{ column.label }}
+            </div>
+            <Arrow />
+          </div>
+        </div>
+      </div>
       <div
-        :class="$style.columnsWrap"
+        v-for="record in records"
+        :key="record.id"
+        :class="$style.recordWrap"
         :style="size"
       >
+        <slot name="checkbox" />
         <div
           v-for="column in columns"
           :key="column.label"
-          :class="$style.columns"
+          :class="$style.record"
         >
-          <div :class="$style.colLabel">
-            {{ column.label }}
-          </div>
-          <Arrow />
+          <slot
+            :name="`cell(${column.value})`"
+            :record="record"
+            :data="record.data[column.value]"
+          />
         </div>
+        <slot name="more-button" />
       </div>
     </div>
     <div
-      v-for="record in records"
-      :key="record.id"
-      :class="$style.recordWrap"
-      :style="size"
+      v-else-if="type === 'grid'"
+      :class="$style.gridTable"
+      :style="gridSize"
     >
-      <slot name="checkbox" />
       <div
-        v-for="column in columns"
-        :key="column.label"
-        :class="$style.record"
+        v-for="record in records"
+        :key="record.id"
+        :class="$style.gridRecord"
       >
-        <slot
-          :name="`cell(${column.value})`"
-          :record="record"
-          :data="record.data[column.value]"
-        />
+        <div :class="$style.gridRecordPicWrap">
+          <div :class="$style.badgeWrap">
+            <Badge :variant="statusMap[record.data.status]">
+              {{ record.data.status }}
+            </Badge>
+            <div :class="$style.gridCheckWrap">
+              <div
+                v-if="check"
+                :class="$style.gridCheck"
+              />
+              <Check v-else />
+            </div>
+          </div>
+        </div>
+        <div :class="$style.gridRecordData">
+          <div :class="$style.recordName">
+            {{ record.data.name }}
+          </div>
+          <div :class="$style.recordFlexDataWrap">
+            <div :class="$style.recordFlexData">
+              {{ record.data.date }}
+            </div>
+            <div :class="$style.recordFlexData">
+              {{ record.data.category }}
+            </div>
+            <div :class="$style.recordFlexData">
+              {{ record.data.price }}
+            </div>
+          </div>
+        </div>
       </div>
-      <slot name="more-button" />
     </div>
   </div>
 </template>
@@ -48,13 +95,16 @@
 import { computed, defineProps } from 'vue';
 import { columnType } from '@/components/core/table/index';
 import Arrow from '@/components/core/icon/assets/arrowDown.svg';
+import Check from '@/components/core/icon/assets/checked.svg';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
+import Badge from '@/components/core/badge/Badge.vue';
+import { products } from '@/stores/products';
 
 const props = defineProps<{
   columns: columnType[],
   records: [],
 }>();
-
+const check = false;
 const sizeComputed = computed(() => {
   const columnsMap = props.columns.map((item: any) => item.size);
   const colSize = columnsMap.reduce((acc, val) => {
@@ -67,6 +117,14 @@ const size = computed(() => ({
   gridTemplateColumns: sizeComputed.value,
 }));
 
+const gridSize = {
+  gridTemplateColumns: '1fr 1fr 1fr 1fr',
+};
+const statusMap = {
+  available: 'success',
+  disabled: 'warning',
+};
+const type = computed(() => products().type);
 </script>
 
 <style lang="scss" module>
@@ -83,7 +141,7 @@ const size = computed(() => ({
   display: grid;
   align-items: flex-end;
   width: 100%;
-  margin-right: 30px;
+  margin-right: rem(30px);
 }
 .columns {
   width: 100%;
@@ -112,5 +170,64 @@ const size = computed(() => ({
 .record {
   display: flex;
   align-items: center;
+}
+.gridTable {
+  display: grid;
+  grid-gap: rem(20px);
+}
+.gridRecord {
+  width: 100%;
+  height: rem(367px);
+  border: rem(1px) solid rgb(var(--color-border));
+  border-radius: rem(17px);
+}
+.gridRecordPicWrap {
+  position: relative;
+  height: rem(267px);
+  border-bottom: rem(1px solid rgb(var(--color-border));
+  padding: rem(16px);
+}
+.gridRecordData {
+  width: 100%;
+  padding: rem(16px);
+}
+.badgeWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+
+}
+.gridCheckWrap {
+  width: rem(16px);
+  height: rem(16px);
+}
+.gridCheck {
+  width: rem(16px);
+  height: rem(16px);
+  border-radius: 50%;
+  border: rem(1px) solid grey;
+}
+.recordName {
+  width: 100%;
+  font-size: rem(14px);
+  font-weight: 400;
+  color: rgb(var(--color-heading));
+}
+.recordFlexDataWrap {
+  display: flex;
+  justify-content: space-between;
+}
+.recordFlexData {
+  color: rgb(var(--color-body-dark));
+  font-size: rem(14px);
+  font-weight: 400;
+  margin-top: rem(25px);
+}
+.recordPic {
+  position: absolute;
+  width: 89%;
+  height: 89%;
+  z-index: 1;
 }
 </style>

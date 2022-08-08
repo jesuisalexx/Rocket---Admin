@@ -84,7 +84,6 @@ import Badge from '@/components/core/badge/Badge.vue';
 import Button from '@/components/core/button/Button.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import More from '@/components/core/icon/assets/more.svg';
-import { ref } from 'vue';
 
 const columns = [
   {
@@ -135,6 +134,7 @@ const records = [
       date: '21.09.2020',
       price: '1000$',
       status: 'available',
+      pic: '',
     },
   },
   {
@@ -147,6 +147,7 @@ const records = [
       date: '25.01.2021',
       price: '2200$',
       status: 'disabled',
+      pic: '',
     },
   },
   {
@@ -159,6 +160,20 @@ const records = [
       date: '11.01.2022',
       price: '800$',
       status: 'available',
+      pic: '',
+    },
+  },
+  {
+    id: '4',
+    data: {
+      isChecked: false,
+      name: 'iPhone X',
+      number: '#3311',
+      category: 'Phone',
+      date: '12.02.2022',
+      price: '500$',
+      status: 'available',
+      pic: '',
     },
   },
 ];

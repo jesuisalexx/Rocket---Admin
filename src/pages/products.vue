@@ -35,6 +35,17 @@
   </div>
 </template>
 
+<route>
+{
+  "meta": {
+    "authRequired": true,
+  },
+  "redirect": {
+    "name": "products-all"
+  },
+}
+</route>
+
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n';
 import Button from '@/components/core/button/Button.vue';

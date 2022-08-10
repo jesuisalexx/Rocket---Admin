@@ -5,10 +5,6 @@
       :class="$style.listTable"
     >
       <div :class="$style.tableHat">
-        <Checkbox
-          model-value="true"
-          :class="$style.check"
-        />
         <div
           :class="$style.columnsWrap"
           :style="size"
@@ -19,31 +15,41 @@
             :class="$style.columns"
           >
             <div :class="$style.colLabel">
-              {{ column.label }}
+              <slot
+                :name="`col(${column.value})`"
+                :column="column"
+              />
             </div>
-            <Arrow />
           </div>
         </div>
       </div>
       <div
-        v-for="record in records"
+        v-for="record in computedRecords"
         :key="record.id"
-        :class="$style.recordWrap"
-        :style="size"
+        :class="$style.records"
       >
-        <slot name="checkbox" />
         <div
-          v-for="column in columns"
-          :key="column.label"
-          :class="$style.record"
+          :class="$style.recordWrap"
+          :style="size"
+          @click="toggleSelect(record.id, record.isSelected)"
         >
           <slot
-            :name="`cell(${column.value})`"
-            :record="record"
-            :data="record.data[column.value]"
+            name="selectCell"
+            :is-selected="record.isSelected"
           />
+          <div
+            v-for="column in columns"
+            :key="column.label"
+            :class="$style.record"
+          >
+            <slot
+              :name="`cell(${column.value})`"
+              :record="record"
+              :data="record.data[column.value]"
+            />
+          </div>
+          <slot name="more-button" />
         </div>
-        <slot name="more-button" />
       </div>
     </div>
     <div
@@ -93,7 +99,7 @@
 
 <script lang="ts" setup>
 import { computed, defineProps } from 'vue';
-import { columnType } from '@/components/core/table/index';
+import { columnType, TableRecord } from '@/components/core/table/index';
 import Arrow from '@/components/core/icon/assets/arrowDown.svg';
 import Check from '@/components/core/icon/assets/checked.svg';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
@@ -102,7 +108,8 @@ import { products } from '@/stores/products';
 
 const props = defineProps<{
   columns: columnType[],
-  records: [],
+  records: Omit<TableRecord, 'isSelected'>[],
+  selectedRecords: [],
 }>();
 const check = false;
 const sizeComputed = computed(() => {
@@ -125,6 +132,28 @@ const statusMap = {
   disabled: 'warning',
 };
 const type = computed(() => products().type);
+const emit = defineEmits([
+  'update:selectedRecords',
+]);
+
+const localSelectedRecords = computed<string[]>({
+  get: () => props.selectedRecords,
+
+  set: (value) => {
+    emit('update:selectedRecords', value);
+  },
+});
+// eslint-disable-next-line max-len
+const computedRecords = computed<TableRecord[]>(() => props.records.map((el: any) => ({ ...el, isSelected: false })));
+const toggleSelect = (id: string, sel: any) => {
+  if (localSelectedRecords.value.includes(id)) {
+    localSelectedRecords.value = localSelectedRecords.value.filter((item) => item !== id);
+    console.log('if', sel, localSelectedRecords.value);
+  } else {
+    localSelectedRecords.value.push(id);
+    console.log('else', sel, localSelectedRecords.value);
+  }
+};
 </script>
 
 <style lang="scss" module>
@@ -156,16 +185,17 @@ const type = computed(() => products().type);
   margin-right: rem(5px);
 }
 .check {
-  margin-right: rem(30px);
 }
-.recordWrap {
+.records {
   width: 100%;
   height: rem(64px);
-  padding-left: rem(48px);
   padding-right: rem(30px);
   border-bottom: rem(1px) solid rgb(var(--color-border));
   display: grid;
-  position: relative;
+}
+.recordWrap {
+  display: grid;
+  cursor: pointer;
 }
 .record {
   display: flex;
@@ -184,7 +214,7 @@ const type = computed(() => products().type);
 .gridRecordPicWrap {
   position: relative;
   height: rem(267px);
-  border-bottom: rem(1px solid rgb(var(--color-border));
+  border-bottom: rem(1px) solid rgb(var(--color-border));
   padding: rem(16px);
 }
 .gridRecordData {

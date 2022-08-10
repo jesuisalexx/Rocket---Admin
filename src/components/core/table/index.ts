@@ -4,3 +4,8 @@ export type columnType = {
     sortable: boolean,
     value: string
 }
+export type TableRecord = {
+    id: string,
+    isSelected: boolean,
+    data: any
+}

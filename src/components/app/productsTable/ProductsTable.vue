@@ -16,14 +16,44 @@
       </div>
       <div :class="$style.table">
         <Table
+          v-model:selectedRecords="selectedRecords"
           :columns="columns"
           :records="records"
         >
-          <template #checkbox>
-            <Checkbox :class="$style.checkbox" />
+          <template #col(select)="{ column }">
+            <Checkbox
+              :model-value="column.sortable"
+              :class="$style.checkbox"
+            />
+          </template>
+          <template #col(name)="{ column }">
+            <div>{{ column.label }}</div>
+          </template>
+          <template #col(number)="{ column }">
+            <div>{{ column.label }}</div>
+          </template>
+          <template #col(category)="{ column }">
+            <div>{{ column.label }}</div>
+          </template>
+          <template #col(date)="{ column }">
+            <div>{{ column.label }}</div>
+          </template>
+          <template #col(price)="{ column }">
+            <div>{{ column.label }}</div>
+          </template>
+          <template #col(status)="{ column }">
+            <div>{{ column.label }}</div>
           </template>
           <template #more-button>
             <More :class="$style.moreBtn" />
+          </template>
+          <template
+            #cell(select)="{ record }"
+          >
+            <Checkbox
+              :model-value="record"
+              :class="$style.checkbox"
+            />
           </template>
           <template
             #cell(name)="{ record }"
@@ -87,6 +117,12 @@ import More from '@/components/core/icon/assets/more.svg';
 
 const columns = [
   {
+    label: 'select',
+    size: 0.5,
+    value: 'select',
+    sortable: false,
+  },
+  {
     label: 'product name',
     size: 3.5,
     value: 'name',
@@ -127,7 +163,6 @@ const records = [
   {
     id: '1',
     data: {
-      isChecked: false,
       name: 'iPhone 13 Pro 256GB',
       number: '#1123',
       category: 'Phone',
@@ -140,7 +175,6 @@ const records = [
   {
     id: '2',
     data: {
-      isChecked: false,
       name: 'MacBook Pro 13',
       number: '#2321',
       category: 'Laptop',
@@ -153,7 +187,6 @@ const records = [
   {
     id: '3',
     data: {
-      isChecked: false,
       name: 'iPhone 11 Pro 256GB',
       number: '#3321',
       category: 'Phone',
@@ -166,7 +199,6 @@ const records = [
   {
     id: '4',
     data: {
-      isChecked: false,
       name: 'iPhone X',
       number: '#3311',
       category: 'Phone',
@@ -177,6 +209,8 @@ const records = [
     },
   },
 ];
+const selectedRecords = [];
+
 const statusMap = {
   available: 'success',
   disabled: 'warning',
@@ -206,8 +240,6 @@ const statusMap = {
   height: rem(90px);
 }
 .checkbox {
-  position: absolute;
-  top: rem(22px);
 }
 .moreBtn {
   position: absolute;

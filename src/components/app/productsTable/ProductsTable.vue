@@ -19,6 +19,7 @@
           v-model:selectedRecords="selectedRecords"
           :columns="columns"
           :records="records"
+          :selectable="true"
         >
           <template #col(select)="{ column }">
             <Checkbox
@@ -27,22 +28,40 @@
             />
           </template>
           <template #col(name)="{ column }">
-            <div>{{ column.label }}</div>
+            <div :class="$style.columnArrow">
+              {{ column.label }}
+              <Arrow />
+            </div>
           </template>
           <template #col(number)="{ column }">
-            <div>{{ column.label }}</div>
+            <div :class="$style.columnArrow">
+              {{ column.label }}
+              <Arrow />
+            </div>
           </template>
           <template #col(category)="{ column }">
-            <div>{{ column.label }}</div>
+            <div :class="$style.columnArrow">
+              {{ column.label }}
+              <Arrow />
+            </div>
           </template>
           <template #col(date)="{ column }">
-            <div>{{ column.label }}</div>
+            <div :class="$style.columnArrow">
+              {{ column.label }}
+              <Arrow />
+            </div>
           </template>
           <template #col(price)="{ column }">
-            <div>{{ column.label }}</div>
+            <div :class="$style.columnArrow">
+              {{ column.label }}
+              <Arrow />
+            </div>
           </template>
           <template #col(status)="{ column }">
-            <div>{{ column.label }}</div>
+            <div :class="$style.columnArrow">
+              {{ column.label }}
+              <Arrow />
+            </div>
           </template>
           <template #more-button>
             <More :class="$style.moreBtn" />
@@ -113,6 +132,7 @@ import Card from '@/components/core/card/Card.vue';
 import Badge from '@/components/core/badge/Badge.vue';
 import Button from '@/components/core/button/Button.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
+import Arrow from '@/components/core/icon/assets/arrowDown.svg';
 import More from '@/components/core/icon/assets/more.svg';
 import { ref } from 'vue';
 
@@ -257,5 +277,9 @@ const statusMap = {
   font-size: rem(15px);
   font-weight: 400;
   color: rgb(var(--color-body-dark));
+}
+.columnArrow {
+  display: flex;
+  align-items: center;
 }
 </style>

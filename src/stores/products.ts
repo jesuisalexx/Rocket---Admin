@@ -12,8 +12,6 @@ export const products = defineStore('products', () => {
     }
     console.log(type.value);
   };
-  const isChecked = ref(false);
-
   return {
     type,
     listType,

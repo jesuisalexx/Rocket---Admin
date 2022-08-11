@@ -30,12 +30,12 @@
         <div
           :class="$style.recordWrap"
           :style="size"
-          @click="toggleSelect(record.id, record.isSelected)"
         >
           <div
             v-for="column in columns"
             :key="column.label"
             :class="$style.record"
+            @click="toggleSelect(record.id, record.isSelected)"
           >
             <slot
               :name="`cell(${column.value})`"
@@ -92,13 +92,12 @@
     </div>
   </div>
 </template>
+//
 
 <script lang="ts" setup>
 import { computed, defineProps } from 'vue';
 import { columnType, TableRecord } from '@/components/core/table/index';
-import Arrow from '@/components/core/icon/assets/arrowDown.svg';
 import Check from '@/components/core/icon/assets/checked.svg';
-import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import Badge from '@/components/core/badge/Badge.vue';
 import { products } from '@/stores/products';
 
@@ -108,7 +107,6 @@ const props = defineProps<{
   selectedRecords: [],
   selectable: boolean
 }>();
-const check = false;
 const sizeComputed = computed(() => {
   const columnsMap = props.columns.map((item: any) => item.size);
   const colSize = columnsMap.reduce((acc, val) => {
@@ -165,7 +163,6 @@ const toggleSelect = (id: string) => {
   display: grid;
   align-items: flex-end;
   width: 100%;
-  margin-right: rem(30px);
 }
 .columns {
   width: 100%;
@@ -184,13 +181,13 @@ const toggleSelect = (id: string) => {
 .records {
   width: 100%;
   height: rem(64px);
-  padding-right: rem(30px);
   border-bottom: rem(1px) solid rgb(var(--color-border));
   display: grid;
 }
 .recordWrap {
   display: grid;
   cursor: pointer;
+  position: relative;
 }
 .record {
   display: flex;
@@ -221,7 +218,6 @@ const toggleSelect = (id: string) => {
   justify-content: space-between;
   align-items: center;
   z-index: 5;
-
 }
 .recordCheckbox {
   width: 100px;

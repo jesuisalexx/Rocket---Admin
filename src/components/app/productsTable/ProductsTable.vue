@@ -22,7 +22,7 @@
         >
           <template #col(select)="{ column }">
             <Checkbox
-              :model-value="column.sortable"
+              :model-value="column"
               :class="$style.checkbox"
             />
           </template>
@@ -48,10 +48,10 @@
             <More :class="$style.moreBtn" />
           </template>
           <template
-            #cell(select)="{ record }"
+            #cell(select)="{ isSelected }"
           >
             <Checkbox
-              :model-value="record"
+              :model-value="isSelected"
               :class="$style.checkbox"
             />
           </template>
@@ -114,6 +114,7 @@ import Badge from '@/components/core/badge/Badge.vue';
 import Button from '@/components/core/button/Button.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import More from '@/components/core/icon/assets/more.svg';
+import { ref } from 'vue';
 
 const columns = [
   {
@@ -209,7 +210,7 @@ const records = [
     },
   },
 ];
-const selectedRecords = [];
+const selectedRecords = ref([]);
 
 const statusMap = {
   available: 'success',

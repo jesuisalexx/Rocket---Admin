@@ -2,7 +2,6 @@
   <div :class="$style.root">
     <div
       v-if="type === 'list'"
-      :class="$style.listTable"
     >
       <div :class="$style.tableHat">
         <div
@@ -33,10 +32,6 @@
           :style="size"
           @click="toggleSelect(record.id, record.isSelected)"
         >
-          <slot
-            name="selectCell"
-            :is-selected="record.isSelected"
-          />
           <div
             v-for="column in columns"
             :key="column.label"
@@ -46,6 +41,7 @@
               :name="`cell(${column.value})`"
               :record="record"
               :data="record.data[column.value]"
+              :is-selected="record.isSelected"
             />
           </div>
           <slot name="more-button" />
@@ -110,6 +106,7 @@ const props = defineProps<{
   columns: columnType[],
   records: Omit<TableRecord, 'isSelected'>[],
   selectedRecords: [],
+  selectable: boolean
 }>();
 const check = false;
 const sizeComputed = computed(() => {
@@ -144,14 +141,12 @@ const localSelectedRecords = computed<string[]>({
   },
 });
 // eslint-disable-next-line max-len
-const computedRecords = computed<TableRecord[]>(() => props.records.map((el: any) => ({ ...el, isSelected: false })));
-const toggleSelect = (id: string, sel: any) => {
+const computedRecords = computed<TableRecord[]>(() => props.records.map((el: any) => ({ ...el, isSelected: localSelectedRecords.value.includes(el.id) })));
+const toggleSelect = (id: string) => {
   if (localSelectedRecords.value.includes(id)) {
-    localSelectedRecords.value = localSelectedRecords.value.filter((item) => item !== id);
-    console.log('if', sel, localSelectedRecords.value);
+    localSelectedRecords.value = localSelectedRecords.value.filter((currentId) => currentId !== id);
   } else {
     localSelectedRecords.value.push(id);
-    console.log('else', sel, localSelectedRecords.value);
   }
 };
 </script>
@@ -227,6 +222,9 @@ const toggleSelect = (id: string, sel: any) => {
   align-items: center;
   z-index: 5;
 
+}
+.recordCheckbox {
+  width: 100px;
 }
 .gridCheckWrap {
   width: rem(16px);

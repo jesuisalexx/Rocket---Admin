@@ -3,6 +3,7 @@ export type columnType = {
     size: string | number,
     sortable: boolean,
     value: string
+    selectable: boolean;
 }
 export type TableRecord = {
     id: string,

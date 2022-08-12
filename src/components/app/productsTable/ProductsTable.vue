@@ -21,9 +21,9 @@
           :records="records"
           :selectable="true"
         >
-          <template #col(select)="{ column }">
+          <template #col(select)="{ isSelected }">
             <Checkbox
-              :model-value="column"
+              :model-value="isSelected"
               :class="$style.checkbox"
             />
           </template>
@@ -142,6 +142,7 @@ const columns = [
     size: 0.5,
     value: 'select',
     sortable: false,
+    selectable: true,
   },
   {
     label: 'product name',

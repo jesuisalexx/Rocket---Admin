@@ -13,10 +13,14 @@
             :key="column.label"
             :class="$style.columns"
           >
-            <div :class="$style.colLabel">
+            <div
+              :class="$style.colLabel"
+              @click="toggleSelectAll(column.selectable, recordIds)"
+            >
               <slot
                 :name="`col(${column.value})`"
                 :column="column"
+                :is-selected="localSelectedRecords"
               />
             </div>
           </div>
@@ -35,7 +39,7 @@
             v-for="column in columns"
             :key="column.label"
             :class="$style.record"
-            @click="toggleSelect(record.id, record.isSelected)"
+            @click="toggleSelect(column.selectable, record.id)"
           >
             <slot
               :name="`cell(${column.value})`"
@@ -92,7 +96,6 @@
     </div>
   </div>
 </template>
-//
 
 <script lang="ts" setup>
 import { computed, defineProps } from 'vue';
@@ -140,11 +143,29 @@ const localSelectedRecords = computed<string[]>({
 });
 // eslint-disable-next-line max-len
 const computedRecords = computed<TableRecord[]>(() => props.records.map((el: any) => ({ ...el, isSelected: localSelectedRecords.value.includes(el.id) })));
-const toggleSelect = (id: string) => {
-  if (localSelectedRecords.value.includes(id)) {
-    localSelectedRecords.value = localSelectedRecords.value.filter((currentId) => currentId !== id);
-  } else {
-    localSelectedRecords.value.push(id);
+const toggleSelect = (selectable: any, id: string) => {
+  if (selectable === true) {
+    if (localSelectedRecords.value.includes(id)) {
+      // eslint-disable-next-line max-len
+      localSelectedRecords.value = localSelectedRecords.value.filter((currentId) => currentId !== id);
+    } else {
+      localSelectedRecords.value.push(id);
+    }
+  }
+};
+
+const recordIds = props.records.map((record) => record.id);
+
+const toggleSelectAll = (selectable: any, recordIds: any) => {
+  if (selectable === true) {
+    if (localSelectedRecords.value.length >= 1) {
+      localSelectedRecords.value = [];
+      console.log('if', localSelectedRecords.value);
+    } else {
+      localSelectedRecords.value = [];
+      localSelectedRecords.value = recordIds;
+      console.log('else', localSelectedRecords.value);
+    }
   }
 };
 </script>

@@ -20,7 +20,7 @@
               <slot
                 :name="`col(${column.value})`"
                 :column="column"
-                :is-selected="localSelectedRecords"
+                :is-selected="isCheckedAll"
               />
             </div>
           </div>
@@ -58,7 +58,7 @@
       :style="gridSize"
     >
       <div
-        v-for="record in records"
+        v-for="record in computedRecords"
         :key="record.id"
         :class="$style.gridRecord"
       >
@@ -67,9 +67,12 @@
             <Badge :variant="statusMap[record.data.status]">
               {{ record.data.status }}
             </Badge>
-            <div :class="$style.gridCheckWrap">
+            <div
+              :class="$style.gridCheckWrap"
+              @click="toggleSelectGrid(record.id)"
+            >
               <div
-                v-if="check"
+                v-if="!record.isSelected"
                 :class="$style.gridCheck"
               />
               <Check v-else />
@@ -98,7 +101,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineProps } from 'vue';
+import {
+  computed, defineProps, ref, watchEffect,
+} from 'vue';
 import { columnType, TableRecord } from '@/components/core/table/index';
 import Check from '@/components/core/icon/assets/checked.svg';
 import Badge from '@/components/core/badge/Badge.vue';
@@ -153,21 +158,35 @@ const toggleSelect = (selectable: any, id: string) => {
     }
   }
 };
+const toggleSelectGrid = (id: string) => {
+  if (localSelectedRecords.value.includes(id)) {
+    // eslint-disable-next-line max-len
+    localSelectedRecords.value = localSelectedRecords.value.filter((currentId) => currentId !== id);
+  } else {
+    localSelectedRecords.value.push(id);
+  }
+  console.log(localSelectedRecords.value);
+};
 
 const recordIds = props.records.map((record) => record.id);
+const isCheckedAll = ref(false);
 
 const toggleSelectAll = (selectable: any, recordIds: any) => {
   if (selectable === true) {
     if (localSelectedRecords.value.length >= 1) {
+      isCheckedAll.value = false;
       localSelectedRecords.value = [];
-      console.log('if', localSelectedRecords.value);
     } else {
+      isCheckedAll.value = true;
       localSelectedRecords.value = [];
       localSelectedRecords.value = recordIds;
-      console.log('else', localSelectedRecords.value);
     }
   }
 };
+watchEffect(() => {
+  isCheckedAll.value = localSelectedRecords.value.length === recordIds.length;
+  console.log(localSelectedRecords.value);
+});
 </script>
 
 <style lang="scss" module>
@@ -223,6 +242,7 @@ const toggleSelectAll = (selectable: any, recordIds: any) => {
   height: rem(367px);
   border: rem(1px) solid rgb(var(--color-border));
   border-radius: rem(17px);
+  cursor: pointer;
 }
 .gridRecordPicWrap {
   position: relative;
@@ -241,7 +261,7 @@ const toggleSelectAll = (selectable: any, recordIds: any) => {
   z-index: 5;
 }
 .recordCheckbox {
-  width: 100px;
+  width: rem(100px);
 }
 .gridCheckWrap {
   width: rem(16px);

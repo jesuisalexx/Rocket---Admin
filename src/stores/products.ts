@@ -10,7 +10,6 @@ export const products = defineStore('products', () => {
     } else {
       type.value = 'grid';
     }
-    console.log(type.value);
   };
   return {
     type,

@@ -104,6 +104,7 @@ const computedState = computed(() => route.meta.headerState || HeaderState.PROFI
   width: 100%;
   height: rem(65px);
   border-bottom: 1px solid rgb(var(--color-border));
+  padding-right: rem(30px);
 }
 
 .menuButton {

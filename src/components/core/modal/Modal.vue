@@ -55,8 +55,8 @@ const close = (e: Event) => {
 @import "src/assets/styles/utils";
 
 .root {
+  width: fit-content;
   position: relative;
-  max-width: 600px;
 }
 
 .head {
@@ -66,7 +66,6 @@ const close = (e: Event) => {
 }
 
 .content {
-  margin-top: 20px;
 }
 
 .closeButton {

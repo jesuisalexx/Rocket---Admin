@@ -185,7 +185,6 @@ const toggleSelectAll = (selectable: any, recordIds: any) => {
 };
 watchEffect(() => {
   isCheckedAll.value = localSelectedRecords.value.length === recordIds.length;
-  console.log(localSelectedRecords.value);
 });
 </script>
 

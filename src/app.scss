@@ -19,4 +19,12 @@
       pointer-events: all;
     }
   }
+  &__modal-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    .modal {
+      pointer-events: all;
+    }
+  }
 }

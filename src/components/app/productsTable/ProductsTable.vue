@@ -28,7 +28,9 @@
             />
           </template>
           <template #col(name)="{ column }">
-            <div :class="$style.columnArrow">
+            <div
+              :class="$style.columnArrow"
+            >
               {{ column.label }}
               <Arrow />
             </div>
@@ -77,7 +79,10 @@
           <template
             #cell(name)="{ record }"
           >
-            <div :class="$style.recLightText">
+            <div
+              :class="$style.recLightText"
+              @click="showProductModal"
+            >
               {{ record.data.name }}
             </div>
           </template>
@@ -134,7 +139,13 @@ import Button from '@/components/core/button/Button.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import Arrow from '@/components/core/icon/assets/arrowDown.svg';
 import More from '@/components/core/icon/assets/more.svg';
+import { useModalStore } from '@/stores/modals';
 import { ref } from 'vue';
+import { modalType } from '@/types/modal';
+
+const modalsStore = useModalStore();
+
+const showProductModal = () => modalsStore.showModal({ type: modalType.PRODUCT, payload: {} });
 
 const columns = [
   {
@@ -246,39 +257,48 @@ const statusMap = {
   padding-top: rem(25px);
   font-family: 'Poppins', sans-serif;
 }
+
 .fieldWrap {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
+
 .field {
   width: 89%;
 }
+
 .table {
   margin-top: rem(33px);
 }
+
 .pagination {
   width: 100%;
   height: rem(90px);
 }
+
 .checkbox {
 }
+
 .moreBtn {
   position: absolute;
   top: rem(18px);
   right: 0;
   cursor: pointer;
 }
+
 .recLightText {
   font-size: rem(15px);
   font-weight: 400;
   color: rgb(var(--color-heading));
 }
+
 .recDarkText {
   font-size: rem(15px);
   font-weight: 400;
   color: rgb(var(--color-body-dark));
 }
+
 .columnArrow {
   display: flex;
   align-items: center;

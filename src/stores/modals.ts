@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { uuid } from '@/utils/uuid';
-import { Modal, modalType } from '@/types/modal';
+import { Modal } from '@/types/modal';
 
 export const useModalStore = defineStore('modal', () => {
   const list = ref<Modal[]>([]);
@@ -18,25 +18,25 @@ export const useModalStore = defineStore('modal', () => {
     list.value.splice(modalIndex, 1);
   };
 
-  const awaitUserConfirm = ({
-    label = '',
-    text = '',
-  } = {}) => new Promise((resolve) => {
-    showModal({
-      type: modalType.CONFIRM,
-      payload: {
-        label,
-        text,
-        onSubmit: () => resolve(true),
-        onCancel: () => resolve(false),
-      },
-    });
-  });
+  // const awaitUserConfirm = ({
+  //   label = '',
+  //   text = '',
+  // } = {}) => new Promise((resolve) => {
+  //   showModal({
+  //     type: modalType.CONFIRM,
+  //     payload: {
+  //       label,
+  //       text,
+  //       onSubmit: () => resolve(true),
+  //       onCancel: () => resolve(false),
+  //     },
+  //   });
+  // });
 
   return {
     list,
     showModal,
     removeModal,
-    awaitUserConfirm,
+    // awaitUserConfirm,
   };
 });

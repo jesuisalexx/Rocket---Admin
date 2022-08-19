@@ -23,12 +23,12 @@
 import { computed } from 'vue';
 import { useModalStore } from '@/stores/modals';
 import { Modal, modalType } from '@/types/modal';
-import ConfirmModal from '@/components/app/confirmModal/ConfirmModal.vue';
+import ProductModal from '@/components/app/productModal/ProductModal.vue';
 
 const modalsStore = useModalStore();
 
 const modalsMap = {
-  [modalType.CONFIRM]: ConfirmModal,
+  [modalType.PRODUCT]: ProductModal,
 };
 
 const modals = computed(() => modalsStore.list.map((modal) => ({
@@ -48,6 +48,9 @@ const closeModal = (modalId: Modal['id']) => {
 @import "src/assets/styles/utils";
 
 .root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   pointer-events: none;
   &.active {
     pointer-events: all;
@@ -67,6 +70,5 @@ const closeModal = (modalId: Modal['id']) => {
 }
 
 .module {
-  width: 100%;
 }
 </style>

@@ -245,6 +245,23 @@ const props = defineProps({
     font-size: rem(14px);
     background: none;
   }
+  &.primary-orange {
+    color: rgb(var(--color-white));
+    background-color: rgb(var(--color-orange));
+    border-radius: rem(14px);
+    padding: rem(8px) rem(24px);
+    box-shadow: 0 rem(2px) rgb(var(--color-dark-orange));
+    transition: 0.27s;
+
+    &:hover {
+      color: rgb(var(--color-white));
+      background-color: rgb(var(--color-orange));
+      border-radius: rem(14px);
+      padding: rem(8px) rem(24px);
+      box-shadow: 0 rem(8px) rem(16px) rgba(var(--color-dark-orange), 0.2);
+    }
+  }
+
 }
 
 .loaderWrap {

@@ -2,10 +2,14 @@
   <div :class="$style.root">
     <div :class="$style.mainPic"></div>
     <div :class="$style.smallPics">
-      <div :class="$style.smallPic"></div>
-      <div :class="$style.smallPic"></div>
-      <div :class="$style.smallPic"></div>
-      <div :class="$style.smallPicLast"></div>
+      <div :class="$style.smallPic">
+      </div>
+      <div :class="$style.smallPic">
+      </div>
+      <div :class="$style.smallPic">
+      </div>
+      <div :class="$style.smallPicLast">
+      </div>
     </div>
   </div>
 </template>
@@ -23,23 +27,21 @@
 }
 .smallPics {
   margin-top: rem(16px);
-  width: rem(400px);
+  max-width: rem(400px);
   height: rem(100px);
   background: #000;
   display: flex;
-  justify-content: space-between;
+  overflow: hidden;
 }
 .smallPic {
-  width: rem(100px);
+  width: rem(200px);
   height: rem(100px);
   background: white;
-  overflow: hidden;
   margin-right: rem(16px);
 }
 .smallPicLast {
   width: rem(100px);
   height: rem(100px);
   background: white;
-  overflow: hidden;
 }
 </style>

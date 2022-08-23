@@ -81,7 +81,6 @@
           >
             <div
               :class="$style.recLightText"
-              @click="showProductModal"
             >
               {{ record.data.name }}
             </div>
@@ -125,7 +124,9 @@
           </template>
         </Table>
       </div>
-      <div :class="$style.pagination" />
+      <div :class="$style.pagination">
+        <Pagination :pages="1" />
+      </div>
     </Card>
   </div>
 </template>
@@ -139,13 +140,8 @@ import Button from '@/components/core/button/Button.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import Arrow from '@/components/core/icon/assets/arrowDown.svg';
 import More from '@/components/core/icon/assets/more.svg';
-import { useModalStore } from '@/stores/modals';
 import { ref } from 'vue';
-import { modalType } from '@/types/modal';
-
-const modalsStore = useModalStore();
-
-const showProductModal = () => modalsStore.showModal({ type: modalType.PRODUCT, payload: {} });
+import Pagination from '@/components/core/pagination/Pagination.vue';
 
 const columns = [
   {
@@ -274,7 +270,10 @@ const statusMap = {
 
 .pagination {
   width: 100%;
-  height: rem(90px);
+  height: rem(35px);
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
 
 .checkbox {

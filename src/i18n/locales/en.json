@@ -124,5 +124,11 @@
   },
   "telInput": {
     "phone": "Phone"
+  },
+  "productsModal": {
+    "quantity": "Quantity",
+    "specifications": "Specifications",
+    "number": "SKU:",
+    "add-to-cart": "Add to Cart"
   }
 }

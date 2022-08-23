@@ -6,10 +6,11 @@
           <PhotoGallery />
           <div :class="$style.modalInfo">
             <div :class="$style.heading">
-              Apple iPhone 11 64GB Purple
+              {{ name.data.name }}
             </div>
             <div :class="$style.number">
-              SKU: 0547081
+              {{ t('productsModal.number') }}
+              {{ name.data.number }}
             </div>
             <div :class="$style.description">
               A new dual‑camera system captures more of what you <br>
@@ -21,18 +22,18 @@
             <div :class="$style.priceWrap">
               <div>
                 <div :class="$style.quantity">
-                  Quantity
+                  {{ t('productsModal.quantity') }}
                 </div>
                 <CounterInput :class="$style.counter" />
               </div>
               <div :class="$style.price">
-                $699
+                {{ name.data.price }}
               </div>
             </div>
             <div :class="$style.buttons">
               <div :class="$style.cartAddBtn">
                 <Button variant="primary-extended">
-                  Add to Cart
+                  {{ t('productsModal.add-to-cart') }}
                 </Button>
               </div>
               <div :class="$style.favAddBtn">
@@ -45,7 +46,7 @@
             </div>
             <div :class="$style.specificationsWrap">
               <div :class="$style.specHeading">
-                Specifications
+                {{ t('productsModal.specifications') }}
               </div>
               <div
                 v-for="spec in specifications"
@@ -74,6 +75,14 @@ import PhotoGallery from '@/components/core/photoGallery/PhotoGallery.vue';
 import CounterInput from '@/components/core/counterInput/CounterInput.vue';
 import Button from '@/components/core/button/Button.vue';
 import Like from '@/components/core/icon/assets/like.svg';
+import { defineProps } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+
+const props = defineProps<{
+  name: {}
+}>();
 
 const emit = defineEmits(['close']);
 const close = (e: Event) => {
@@ -194,5 +203,11 @@ const specifications = [
   font-weight: 400;
   font-family: 'Poppins', sans-serif;
   color: rgb(var(--color-body-dark));
+}
+.specVal {
+  font-size: rem(14px);
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+  color: rgb(var(--color-heading));
 }
 </style>

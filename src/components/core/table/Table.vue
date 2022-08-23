@@ -34,6 +34,7 @@
         <div
           :class="$style.recordWrap"
           :style="size"
+          @click="showProductModal(record)"
         >
           <div
             v-for="column in columns"
@@ -61,6 +62,7 @@
         v-for="record in computedRecords"
         :key="record.id"
         :class="$style.gridRecord"
+        @click="showProductModal(record)"
       >
         <div :class="$style.gridRecordPicWrap">
           <div :class="$style.badgeWrap">
@@ -108,6 +110,8 @@ import { columnType, TableRecord } from '@/components/core/table/index';
 import Check from '@/components/core/icon/assets/checked.svg';
 import Badge from '@/components/core/badge/Badge.vue';
 import { products } from '@/stores/products';
+import { useModalStore } from '@/stores/modals';
+import { modalType } from '@/types/modal';
 
 const props = defineProps<{
   columns: columnType[],
@@ -115,6 +119,12 @@ const props = defineProps<{
   selectedRecords: [],
   selectable: boolean
 }>();
+
+const modalsStore = useModalStore();
+
+// eslint-disable-next-line max-len
+const showProductModal = (product: any) => modalsStore.showModal({ type: modalType.PRODUCT, payload: { name: product } });
+
 const sizeComputed = computed(() => {
   const columnsMap = props.columns.map((item: any) => item.size);
   const colSize = columnsMap.reduce((acc, val) => {

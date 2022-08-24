@@ -7,14 +7,14 @@
       [$style.select]: type.select
     }"
   >
-    <span
+    <div
       v-if="('label' in $slots) || label"
       :class="$style.label"
     >
       <slot name="label">
         {{ label }}
       </slot>
-    </span>
+    </div>
     <div :class="$style.field">
       <div
         v-if="'before' in $slots || iconBefore"
@@ -202,6 +202,7 @@ defineExpose({
 
 .label {
   color: rgb(var(--color-body-dark));
+  margin-bottom: 10px;
 }
 
 .field {
@@ -211,7 +212,6 @@ defineExpose({
 }
 
 .input {
-  height: 100%;
   width: 100%;
   border: rem(1px) solid rgb(var(--color-border));
   border-radius: rem(14px);

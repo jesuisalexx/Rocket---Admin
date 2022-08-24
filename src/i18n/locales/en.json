@@ -130,5 +130,8 @@
     "specifications": "Specifications",
     "number": "SKU:",
     "add-to-cart": "Add to Cart"
+  },
+  "pagination": {
+    "showing": "Showing 1 - 10 of 100"
   }
 }

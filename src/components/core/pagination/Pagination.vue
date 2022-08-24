@@ -1,5 +1,13 @@
 <template>
-  <div>
+  <div :class="$style.root">
+    <div :class="$style.selectWrap">
+      <div :class="$style.select">
+        <Select />
+      </div>
+      <div :class="$style.text">
+        {{ t('pagination.showing') }}
+      </div>
+    </div>
     <paginate
       :page-count="pages"
       :prev-link-class="$style.prev"
@@ -16,7 +24,11 @@
 
 <script lang="ts" setup>
 import Paginate from 'vuejs-paginate-next';
+import Select from '@/components/core/select/Select.vue';
 import { defineProps } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps<{
   pages: any
@@ -26,6 +38,11 @@ const props = defineProps<{
 <style lang="scss" module>
 @import "src/assets/styles/utils";
 
+.root {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 .pagination {
   display: flex;
 }
@@ -77,5 +94,19 @@ const props = defineProps<{
   color: rgb(var(--color-heading));
   font-size: rem(15px);
   font-weight: 400;
+}
+.text {
+  font-size: rem(15px);
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+  color: rgb(var(--color-body-dark));
+  margin-left: rem(15px);
+}
+.select {
+  width: rem(66px);
+}
+.selectWrap {
+  display: flex;
+  align-items: center;
 }
 </style>

@@ -1,71 +1,69 @@
 <template>
-  <div>
-    <Modal v-click-outside="close">
-      <ProductsModalContainer>
-        <div :class="$style.root">
-          <PhotoGallery />
-          <div :class="$style.modalInfo">
-            <div :class="$style.heading">
-              {{ name.data.name }}
-            </div>
-            <div :class="$style.number">
-              {{ t('productsModal.number') }}
-              {{ name.data.number }}
-            </div>
-            <div :class="$style.description">
-              A new dual‑camera system captures more of what you <br>
-              see and love. The fastest chip ever in a smartphone and <br>
-              all‑day battery life let you do more and charge less. And <br>
-              the highest‑quality video in a smartphone, so your <br>
-              memories look better than ever.
-            </div>
-            <div :class="$style.priceWrap">
-              <div>
-                <div :class="$style.quantity">
-                  {{ t('productsModal.quantity') }}
-                </div>
-                <CounterInput :class="$style.counter" />
+  <Modal v-click-outside="close">
+    <ProductsModalContainer>
+      <div :class="$style.root">
+        <PhotoGallery />
+        <div :class="$style.modalInfo">
+          <div :class="$style.heading">
+            {{ name.data.name }}
+          </div>
+          <div :class="$style.number">
+            {{ t('productsModal.number') }}
+            {{ name.data.number }}
+          </div>
+          <div :class="$style.description">
+            A new dual‑camera system captures more of what you <br>
+            see and love. The fastest chip ever in a smartphone and <br>
+            all‑day battery life let you do more and charge less. And <br>
+            the highest‑quality video in a smartphone, so your <br>
+            memories look better than ever.
+          </div>
+          <div :class="$style.priceWrap">
+            <div>
+              <div :class="$style.quantity">
+                {{ t('productsModal.quantity') }}
               </div>
-              <div :class="$style.price">
-                {{ name.data.price }}
-              </div>
+              <CounterInput :class="$style.counter" />
             </div>
-            <div :class="$style.buttons">
-              <div :class="$style.cartAddBtn">
-                <Button variant="primary-extended">
-                  {{ t('productsModal.add-to-cart') }}
-                </Button>
-              </div>
-              <div :class="$style.favAddBtn">
-                <Button
-                  variant="primary-orange"
-                >
-                  <Like :class="$style.likeIcon" />
-                </Button>
-              </div>
+            <div :class="$style.price">
+              {{ name.data.price }}
             </div>
-            <div :class="$style.specificationsWrap">
-              <div :class="$style.specHeading">
-                {{ t('productsModal.specifications') }}
-              </div>
-              <div
-                v-for="spec in specifications"
-                :key="spec"
-                :class="$style.specWrap"
+          </div>
+          <div :class="$style.buttons">
+            <div :class="$style.cartAddBtn">
+              <Button variant="primary-extended">
+                {{ t('productsModal.add-to-cart') }}
+              </Button>
+            </div>
+            <div :class="$style.favAddBtn">
+              <Button
+                variant="primary-orange"
               >
-                <div :class="$style.specName">
-                  {{ spec.name }}
-                </div>
-                <div :class="$style.specVal">
-                  {{ spec.value }}
-                </div>
+                <Like :class="$style.likeIcon" />
+              </Button>
+            </div>
+          </div>
+          <div :class="$style.specificationsWrap">
+            <div :class="$style.specHeading">
+              {{ t('productsModal.specifications') }}
+            </div>
+            <div
+              v-for="spec in specifications"
+              :key="spec"
+              :class="$style.specWrap"
+            >
+              <div :class="$style.specName">
+                {{ spec.name }}
+              </div>
+              <div :class="$style.specVal">
+                {{ spec.value }}
               </div>
             </div>
           </div>
         </div>
-      </ProductsModalContainer>
-    </Modal>
-  </div>
+      </div>
+    </ProductsModalContainer>
+  </Modal>
 </template>
 
 <script lang="ts" setup>

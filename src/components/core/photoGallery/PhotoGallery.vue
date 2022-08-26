@@ -1,15 +1,11 @@
 <template>
   <div :class="$style.root">
-    <div :class="$style.mainPic"></div>
+    <div :class="$style.mainPic" />
     <div :class="$style.smallPics">
-      <div :class="$style.smallPic">
-      </div>
-      <div :class="$style.smallPic">
-      </div>
-      <div :class="$style.smallPic">
-      </div>
-      <div :class="$style.smallPicLast">
-      </div>
+      <div :class="$style.smallPic" />
+      <div :class="$style.smallPic" />
+      <div :class="$style.smallPic" />
+      <div :class="$style.smallPicLast" />
     </div>
   </div>
 </template>

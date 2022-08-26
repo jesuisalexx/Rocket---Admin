@@ -1,5 +1,5 @@
 export enum modalType {
-    PRODUCT = 'product'
+    PRODUCT = 'product',
 }
 
 export type Modal = {

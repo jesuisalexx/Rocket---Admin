@@ -1,6 +1,14 @@
 <template>
   <div :class="$style.root">
     <div
+      v-if="('label' in $slots) || label"
+      :class="$style.label"
+    >
+      <slot name="label">
+        {{ label }}
+      </slot>
+    </div>
+    <div
       :class="$style.select"
       @click="isOpen = !isOpen"
     >
@@ -41,6 +49,10 @@ const passVal = (val: number) => {
   isOpen.value = false;
 };
 
+const props = defineProps<{
+  label: string
+}>();
+
 const options = [
   {
     val: 1,
@@ -80,11 +92,12 @@ const options = [
 
 .root {
   position: relative;
+  z-index: 3;
 }
 .select {
   border: rem(1px) solid rgb(var(--color-border));
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: rem(40px);
@@ -123,5 +136,9 @@ const options = [
   &:hover {
     background: black;
   }
+}
+.label {
+  color: rgb(var(--color-body-dark));
+  margin-bottom: 10px;
 }
 </style>

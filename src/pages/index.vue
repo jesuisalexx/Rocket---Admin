@@ -8,7 +8,6 @@
     >
       Logout
     </Button>
-    <DragNDrop />
     <div style="position: absolute; right: 0; top: 0;">
       <AddProductSidebar />
     </div>

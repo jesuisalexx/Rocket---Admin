@@ -26,6 +26,9 @@
         />
       </div>
     </div>
+    <div :class="$style.dragNdrop">
+      <DragNDrop />
+    </div>
   </div>
 </template>
 
@@ -33,36 +36,39 @@
 import Field from '@/components/core/field/Field.vue';
 import Select from '@/components/core/select/Select.vue';
 import Editor from '@/components/core/editor/Editor.vue';
+import DragNDrop from '@/components/core/dragNdrop/DragNDrop.vue';
 </script>
 
 <style lang="scss" module>
+@import "src/assets/styles/utils";
+
 .root {
-  width: 490px;
+  width: rem(490px);
   height: 100vh;
   background: rgb(var(--color-surface));
-  padding: 30px;
+  padding: rem(30px);
 }
 .heading {
-  font-size: 28px;
+  font-size: rem(28px);
   font-weight: 500;
   font-family: 'Poppins', sans-serif;
   color: rgb(var(--color-heading));
 }
 .productName {
   width: 100%;
-  margin-top: 25px;
+  margin-top: rem(25px);
 }
 .editor {
   width: 100%;
-  height: 220px;
-  margin-top: 25px;
+  height: rem(220px);
+  margin-top: rem(25px);
   background: none;
 }
 .select {
-  margin-top: 25px;
+  margin-top: rem(25px);
 }
 .priceWrap {
-  margin-top: 25px;
+  margin-top: rem(25px);
   display: flex;
   justify-content: space-between;
 }
@@ -71,5 +77,9 @@ import Editor from '@/components/core/editor/Editor.vue';
 }
 .discount {
   width: 47%;
+}
+.dragNdrop {
+  width: 100%;
+  margin-top: rem(25px);
 }
 </style>

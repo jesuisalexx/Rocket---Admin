@@ -45,7 +45,6 @@ const currentVal = ref(1);
 
 const passVal = (val: number) => {
   currentVal.value = val;
-  console.log(currentVal.value);
   isOpen.value = false;
 };
 
@@ -139,6 +138,6 @@ const options = [
 }
 .label {
   color: rgb(var(--color-body-dark));
-  margin-bottom: 10px;
+  margin-bottom: rem(10px);
 }
 </style>

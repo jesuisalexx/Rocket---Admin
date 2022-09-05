@@ -18,18 +18,18 @@ import '@vueup/vue-quill/dist/vue-quill.snow.prod.css';
 
 .root {
   width: 100%;
-  height: 200px;
+  height: rem(160px);
   overflow: hidden;
-  border: 1px solid rgb(var(--color-border));
-  border-radius: 15px;
+  border: rem(1px) solid rgb(var(--color-border));
+  border-radius: rem(15px);
   position: relative;
-  padding-top: -1px;
+  padding-top: rem(-1px);
 }
 .editor {
   color: rgb(var(--color-body-light));
   border: none;
   position: absolute;
   width: 101%;
-  left: -2px;
+  left: rem(-2px);
 }
 </style>

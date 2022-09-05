@@ -29,6 +29,20 @@
     <div :class="$style.dragNdrop">
       <DragNDrop />
     </div>
+    <div :class="$style.tags">
+      <Tags />
+    </div>
+    <div :class="$style.buttons">
+      <Button variant="primary">
+        Save
+      </Button>
+      <Button
+        :class="$style.cancelButton"
+        variant="secondary"
+      >
+        Cancel
+      </Button>
+    </div>
   </div>
 </template>
 
@@ -37,6 +51,8 @@ import Field from '@/components/core/field/Field.vue';
 import Select from '@/components/core/select/Select.vue';
 import Editor from '@/components/core/editor/Editor.vue';
 import DragNDrop from '@/components/core/dragNdrop/DragNDrop.vue';
+import Tags from '@/components/core/tags/Tags.vue';
+import Button from '@/components/core/button/Button.vue';
 </script>
 
 <style lang="scss" module>
@@ -60,7 +76,7 @@ import DragNDrop from '@/components/core/dragNdrop/DragNDrop.vue';
 }
 .editor {
   width: 100%;
-  height: rem(220px);
+  height: rem(160px);
   margin-top: rem(25px);
   background: none;
 }
@@ -81,5 +97,15 @@ import DragNDrop from '@/components/core/dragNdrop/DragNDrop.vue';
 .dragNdrop {
   width: 100%;
   margin-top: rem(25px);
+}
+.tags {
+  margin-top: 25px;
+}
+.buttons {
+  display: flex;
+  margin-top: 20px;
+}
+.cancelButton {
+  margin-left: 17px;
 }
 </style>

@@ -19,8 +19,10 @@
         <div :class="$style.uploadWrap">
           <Upload :class="$style.uploadPic" />
           <input
+            ref="imgInp"
             type="file"
             :class="$style.fileUpload"
+            @change="drop"
           >
         </div>
         <div :class="$style.textWrap">
@@ -41,12 +43,16 @@
       <div :class="$style.pictures">
         <div :class="$style.picture">
           {{ file.name }}
-          <img :src="file" alt="">
+          <img
+            ref="img"
+            :src="img"
+            alt=""
+          >
         </div>
-        <div :class="$style.picture"></div>
-        <div :class="$style.picture"></div>
-        <div :class="$style.picture"></div>
-        <div :class="$style.picture"></div>
+        <div :class="$style.picture" />
+        <div :class="$style.picture" />
+        <div :class="$style.picture" />
+        <div :class="$style.picture" />
       </div>
     </div>
   </div>
@@ -62,10 +68,13 @@ const toggleActive = () => {
   isActive.value = !isActive.value;
 };
 const file = ref('');
+const imgInp = ref(null);
+const img = ref('');
 const drop = (e: any) => {
+  // eslint-disable-next-line prefer-destructuring
   file.value = e.dataTransfer.files[0];
   isActive.value = false;
-  console.log(e.dataTransfer.files);
+  console.log(img.value);
 };
 </script>
 

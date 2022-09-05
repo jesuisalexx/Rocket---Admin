@@ -202,7 +202,7 @@ defineExpose({
 
 .label {
   color: rgb(var(--color-body-dark));
-  margin-bottom: 10px;
+  margin-bottom: rem(10px);
 }
 
 .field {
@@ -221,7 +221,7 @@ defineExpose({
   font-family: 'Poppins', sans-serif;
   color: rgba(var(--color-body-light));
   cursor: text;
-  letter-spacing: 1px;
+  letter-spacing: rem(1px);
 
   &::placeholder {
     color: rgb(var(--color-body-dark));

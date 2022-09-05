@@ -22,7 +22,7 @@
             ref="imgInp"
             type="file"
             :class="$style.fileUpload"
-            @change="drop"
+            @change="uploadFile"
           >
         </div>
         <div :class="$style.textWrap">
@@ -42,10 +42,10 @@
       </div>
       <div :class="$style.pictures">
         <div :class="$style.picture">
-          {{ file.name }}
           <img
+            v-if="imgSrc"
             ref="img"
-            :src="img"
+            :src="imgSrc"
             alt=""
           >
         </div>
@@ -69,12 +69,16 @@ const toggleActive = () => {
 };
 const file = ref('');
 const imgInp = ref(null);
-const img = ref('');
+const imgSrc = ref('');
 const drop = (e: any) => {
-  // eslint-disable-next-line prefer-destructuring
   file.value = e.dataTransfer.files[0];
   isActive.value = false;
-  console.log(img.value);
+  imgSrc.value = URL.createObjectURL(file.value);
+};
+const uploadFile = (e: any) => {
+  file.value = e.target.files[0];
+  isActive.value = false;
+  imgSrc.value = URL.createObjectURL(file.value);
 };
 </script>
 
@@ -159,5 +163,6 @@ const drop = (e: any) => {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 </style>

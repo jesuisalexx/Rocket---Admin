@@ -118,7 +118,7 @@ const options = [
 .dropdown {
   position: absolute;
   width: 100%;
-  height: 100px;
+  height: rem(100px);
   overflow-y: scroll;
   background: rgb(var(--color-border));
   border-bottom-right-radius: rem(10px);

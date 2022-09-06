@@ -19,7 +19,6 @@
         <div :class="$style.uploadWrap">
           <Upload :class="$style.uploadPic" />
           <input
-            ref="imgInp"
             type="file"
             :class="$style.fileUpload"
             @change="uploadFile"
@@ -41,18 +40,34 @@
         </div>
       </div>
       <div :class="$style.pictures">
-        <div :class="$style.picture">
+        <div
+          v-for="(pic, index) in images"
+          :key="index"
+          :class="$style.picture"
+        >
           <img
-            v-if="imgSrc"
-            ref="img"
-            :src="imgSrc"
+            v-if="pic"
+            :src="pic"
             alt=""
           >
+          <div
+            :class="$style.deletePic"
+          >
+            <div
+              :class="$style.bin"
+              @click="removeImg(index)"
+            >
+              <Bin />
+            </div>
+          </div>
         </div>
-        <div :class="$style.picture" />
-        <div :class="$style.picture" />
-        <div :class="$style.picture" />
-        <div :class="$style.picture" />
+        <div :class="$style.pictureFrames">
+          <div :class="$style.pictureFrame" />
+          <div :class="$style.pictureFrame" />
+          <div :class="$style.pictureFrame" />
+          <div :class="$style.pictureFrame" />
+          <div :class="$style.pictureFrame" />
+        </div>
       </div>
     </div>
   </div>
@@ -61,6 +76,7 @@
 <script lang="ts" setup>
 import Upload from '@/components/core/icon/assets/upload.svg';
 import Button from '@/components/core/button/Button.vue';
+import Bin from '@/components/core/icon/assets/delete.svg';
 import { ref } from 'vue';
 
 const isActive = ref(false);
@@ -68,17 +84,30 @@ const toggleActive = () => {
   isActive.value = !isActive.value;
 };
 const file = ref('');
-const imgInp = ref(null);
+const images = ref([]);
 const imgSrc = ref('');
 const drop = (e: any) => {
-  file.value = e.dataTransfer.files[0];
-  isActive.value = false;
-  imgSrc.value = URL.createObjectURL(file.value);
+  if (images.value.length < 5) {
+    file.value = e.dataTransfer.files[0];
+    isActive.value = false;
+    imgSrc.value = URL.createObjectURL(file.value);
+    images.value.push(imgSrc.value);
+  } else {
+    isActive.value = false;
+  }
 };
 const uploadFile = (e: any) => {
-  file.value = e.target.files[0];
-  isActive.value = false;
-  imgSrc.value = URL.createObjectURL(file.value);
+  if (images.value.length < 5) {
+    file.value = e.target.files[0];
+    isActive.value = false;
+    imgSrc.value = URL.createObjectURL(file.value);
+    images.value.push(imgSrc.value);
+  } else {
+    isActive.value = false;
+  }
+};
+const removeImg = (id: any) => {
+  images.value.splice(id, 1);
 };
 </script>
 
@@ -113,24 +142,25 @@ const uploadFile = (e: any) => {
   justify-content: center;
   align-items: center;
   position: relative;
-  cursor: pointer;
-  overflow: hidden;
+  z-index: 3;
 }
 .fileUpload {
   opacity: 0;
+  position: absolute;
   width: rem(30px);
+  z-index: 4;
+  cursor: wait;
 }
 .uploadPic {
   width: rem(20px);
   height: rem(20px);
   position: absolute;
-  cursor: pointer;
 }
 .dropzoneText {
   display: flex;
 }
 .dropzoneActive {
-  border: rem(1px)solid rgb(var(--color-heading));
+  border: rem(1px) solid rgb(var(--color-heading));
 }
 .textWrap {
   display: flex;
@@ -148,11 +178,11 @@ const uploadFile = (e: any) => {
   margin-top: rem(2px);
 }
 .pictures {
-  width: 100%;
+  width: 105%;
   height: rem(74px);
   margin-top: rem(18px);
   display: flex;
-  justify-content: space-between;
+  position: relative;
 }
 .picture {
   width: rem(74px);
@@ -164,5 +194,58 @@ const uploadFile = (e: any) => {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  margin-right: 15px;
+}
+.deletePic {
+  width: rem(74px);
+  height: rem(74px);
+  border-radius: rem(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  position: absolute;
+  z-index: 3;
+  transition: 0.3s;
+  &:hover {
+    opacity: 1;
+    background: rgb(var(--color-hover-background));
+    transition: 0.3s;
+  }
+}
+.bin {
+  width: rem(32px);
+  height: rem(32px);
+  border-radius: rem(7px);
+  background: rgb(var(--color-overlay-light));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pictureFrames {
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  padding-right: rem(22px);
+  z-index: 1;
+}
+.pictureFrame {
+  width: rem(74px);
+  height: rem(74px);
+  border-radius: rem(10px);
+  border: rem(1px)solid rgb(var(--color-border));
+  background: rgb(var(--color-background));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
 }
 </style>

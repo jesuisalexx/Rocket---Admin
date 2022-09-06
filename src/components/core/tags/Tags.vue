@@ -61,8 +61,10 @@ watch(tags, () => nextTick(setLeftPadding), { deep: true });
 .tags {
   display: flex;
   position: absolute;
-  top: rem(6px);
+  max-width: 80%;
+  top: rem(35px);
   left: rem(6px);
+  overflow: auto;
 }
 .tag {
   padding: rem(5px) rem(10px);

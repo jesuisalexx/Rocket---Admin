@@ -99,13 +99,13 @@ import Button from '@/components/core/button/Button.vue';
   margin-top: rem(25px);
 }
 .tags {
-  margin-top: 25px;
+  margin-top: rem(25px);
 }
 .buttons {
   display: flex;
-  margin-top: 20px;
+  margin-top: rem(20px);
 }
 .cancelButton {
-  margin-left: 17px;
+  margin-left: rem(17px);
 }
 </style>

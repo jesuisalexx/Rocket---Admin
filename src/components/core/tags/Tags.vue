@@ -39,8 +39,10 @@ const paddingLeft = ref(10);
 const tags = ref([]);
 const newTag = ref('');
 const addTag = (tag: string) => {
-  tags.value.push(tag);
-  newTag.value = '';
+  if (tag !== '') {
+    tags.value.push(tag);
+    newTag.value = '';
+  }
 };
 const removeTag = (id: any) => {
   tags.value.splice(id, 1);

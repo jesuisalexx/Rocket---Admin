@@ -4,7 +4,10 @@
       Add Product
     </div>
     <div :class="$style.productName">
-      <Field label="Product Name" />
+      <Field
+        label="Product Name"
+        placeholder="Andrew"
+      />
     </div>
     <div :class="$style.editor">
       <Editor />

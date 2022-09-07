@@ -13,6 +13,19 @@ import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.prod.css';
 </script>
 
+<style lang="scss">
+.ql-toolbar.ql-snow {
+  border: none;
+  border-bottom: 1px solid rgb(var(--color-border));
+  background: rgb(var(--color-background));
+}
+.ql-container.ql-snow {
+  border: none;
+}
+.ql-editor.ql-blank {
+}
+</style>
+
 <style lang="scss" module>
 @import "src/assets/styles/utils";
 
@@ -22,14 +35,9 @@ import '@vueup/vue-quill/dist/vue-quill.snow.prod.css';
   overflow: hidden;
   border: rem(1px) solid rgb(var(--color-border));
   border-radius: rem(15px);
-  position: relative;
-  padding-top: rem(-1px);
 }
 .editor {
   color: rgb(var(--color-body-light));
-  border: none;
-  position: absolute;
-  width: 101%;
-  left: rem(-2px);
+  font-family: 'Poppins', sans-serif;
 }
 </style>

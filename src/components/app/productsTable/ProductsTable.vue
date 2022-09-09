@@ -81,6 +81,7 @@
           >
             <div
               :class="$style.recLightText"
+              @click="showProductModal(record)"
             >
               {{ record.data.name }}
             </div>
@@ -142,6 +143,8 @@ import Arrow from '@/components/core/icon/assets/arrowDown.svg';
 import More from '@/components/core/icon/assets/more.svg';
 import { ref } from 'vue';
 import Pagination from '@/components/core/pagination/Pagination.vue';
+import { modalType } from '@/types/modal';
+import { useModalStore } from '@/stores/modals';
 
 const columns = [
   {
@@ -244,6 +247,11 @@ const statusMap = {
   available: 'success',
   disabled: 'warning',
 };
+const modalsStore = useModalStore();
+
+// eslint-disable-next-line max-len
+const showProductModal = (product: any) => modalsStore.showModal({ type: modalType.PRODUCT, payload: { name: product } });
+
 </script>
 
 <style lang="scss" module>

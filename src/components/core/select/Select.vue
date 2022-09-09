@@ -91,7 +91,7 @@ const options = [
 
 .root {
   position: relative;
-  z-index: 3;
+  z-index: 0;
 }
 .select {
   border: rem(1px) solid rgb(var(--color-border));

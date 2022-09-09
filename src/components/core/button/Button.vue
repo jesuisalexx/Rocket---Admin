@@ -12,9 +12,6 @@
     >
       <Loader :class="$style.loader" />
     </div>
-    <div :class="iconBeforeSpecial">
-      <slot name="icon-before-special" />
-    </div>
     <div
       v-if="'before' in $slots || iconBefore"
       :class="$style.iconBefore"
@@ -53,7 +50,7 @@ const props = defineProps({
     type: String as PropType<string>,
     default: '',
   },
-  iconBeforeSpecial: {
+  icon: {
     type: String as PropType<string>,
     default: '',
   },
@@ -137,6 +134,14 @@ const props = defineProps({
       padding: rem(8px) rem(24px);
       box-shadow: 0 rem(8px) rem(16px) rgba(var(--color-primary-accent), 0.2);
     }
+  }
+  &.grey-simple {
+    font-size: rem(14px);
+    font-weight: 500;
+    color: rgb(var(--color-body-light));
+    background-color: rgb(var(--color-surface));
+    border-radius: rem(14px);
+    padding: rem(10px) rem(16px);
   }
   &.primary-empty {
     color: rgb(var(--color-white));
@@ -284,7 +289,6 @@ const props = defineProps({
   justify-content: center;
   align-items: center;
 }
-
 .iconAfter {
   width: rem(20px);
   height: rem(20px);

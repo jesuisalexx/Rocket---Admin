@@ -34,7 +34,6 @@
         <div
           :class="$style.recordWrap"
           :style="size"
-          @click="showProductModal(record)"
         >
           <div
             v-for="column in columns"
@@ -82,7 +81,9 @@
           </div>
         </div>
         <div :class="$style.gridRecordData">
-          <div :class="$style.recordName">
+          <div
+            :class="$style.recordName"
+          >
             {{ record.data.name }}
           </div>
           <div :class="$style.recordFlexDataWrap">

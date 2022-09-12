@@ -4,7 +4,7 @@
       <slot name="left-section" />
     </div>
     <div :class="$style.rightSection">
-      <slot name="right-section-icons" />
+      <slot name="right-section-actions" />
       <slot name="divider" />
       <slot name="right-section-profile" />
     </div>

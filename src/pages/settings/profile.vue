@@ -4,7 +4,7 @@
     :validation-schema="validationSchema"
     @submit="submit"
   >
-    <ProfileContainer v-model="model">
+    <ProfileContainer>
       <template #heading>
         {{ t('profile.profile') }}
       </template>
@@ -39,6 +39,7 @@
         <TelInput
           name="phone"
           :model-value="model.phone"
+          :label="t('telInput.phone')"
         />
       </template>
       <template #job>

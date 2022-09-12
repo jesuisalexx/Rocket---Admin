@@ -35,7 +35,7 @@
           </Button>
         </div>
       </template>
-      <template #right-section-icons>
+      <template #right-section-actions>
         <div
           v-if="computedState === HeaderState.DEFAULT"
           :class="$style.rightSectionIcons"
@@ -83,16 +83,17 @@ import Button from '@/components/core/button/Button.vue';
 import { HeaderState } from '@/components/core/header';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { layout } from '@/stores/layout';
+import { layoutStore } from '@/stores/layout';
 import { useI18n } from 'vue-i18n';
 import UserBarContainer from '@/containers/userBarContainer/UserBarContainer.vue';
 
 const { t } = useI18n();
 
 const route = useRoute();
-const layoutStore = layout();
 
-const openChatBar = computed(() => layoutStore.openChatBar);
+const layout = layoutStore();
+
+const openChatBar = computed(() => layout.openChatBar);
 
 const computedState = computed(() => route.meta.headerState || HeaderState.PROFILE);
 </script>

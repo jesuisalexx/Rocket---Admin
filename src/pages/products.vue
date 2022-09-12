@@ -53,11 +53,10 @@ import PlusIcon from '@/components/core/icon/assets/plus.svg';
 import Tabs from '@/components/core/tabs/Tabs.vue';
 import ProductsPageContainer from '@/containers/productsPageContainer/ProductsPageContainer.vue';
 import Switch from '@/components/core/switch/Switch.vue';
-import { computed } from 'vue';
 import { tableType } from '@/containers/productsPageContainer';
 
-const listType = computed(() => tableType.LIST);
-const gridType = computed(() => tableType.GRID);
+const listType = tableType.LIST;
+const gridType = tableType.GRID;
 const { t } = useI18n();
 const tabs = [
   {
@@ -79,11 +78,11 @@ const tabs = [
 const buttons = [
   {
     icon: 'list2',
-    value: listType.value,
+    value: listType,
   },
   {
     icon: 'grid',
-    value: gridType.value,
+    value: gridType,
   },
 ];
 </script>

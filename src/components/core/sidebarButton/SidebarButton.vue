@@ -23,7 +23,7 @@
           {{ button.label }}
         </div>
         <div
-          v-if="typeof button.counter === 'number' "
+          v-if="button.counter"
           :class="$style.counter"
         >
           {{ button.counter }}

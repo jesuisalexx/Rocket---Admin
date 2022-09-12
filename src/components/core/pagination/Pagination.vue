@@ -2,7 +2,7 @@
   <div :class="$style.root">
     <div :class="$style.selectWrap">
       <div :class="$style.select">
-        <Select />
+        <Select :options="ops" />
       </div>
       <div :class="$style.text">
         {{ t('pagination.showing') }}
@@ -33,6 +33,24 @@ const { t } = useI18n();
 const props = defineProps<{
   pages: any
 }>();
+
+const ops = [
+  {
+    val: 1,
+  },
+  {
+    val: 2,
+  },
+  {
+    val: 3,
+  },
+  {
+    val: 4,
+  },
+  {
+    val: 5,
+  },
+];
 </script>
 
 <style lang="scss" module>

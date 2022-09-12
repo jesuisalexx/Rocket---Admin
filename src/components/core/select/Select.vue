@@ -20,16 +20,17 @@
       </div>
     </div>
     <div
-      v-if="isOpen === true"
+      v-if="isOpen"
       :class="$style.dropdown"
     >
       <div
         v-for="option in options"
         :key="option"
         :class="$style.option"
-        @click="passVal(option.val)"
+        @click="setVal(option.val)"
       >
         {{ option.val }}
+        <slot name="option" />
       </div>
     </div>
   </div>
@@ -43,47 +44,15 @@ const isOpen = ref(false);
 
 const currentVal = ref(1);
 
-const passVal = (val: number) => {
+const setVal = (val: number) => {
   currentVal.value = val;
   isOpen.value = false;
 };
 
 const props = defineProps<{
-  label: string
+  label: '',
+  options: []
 }>();
-
-const options = [
-  {
-    val: 1,
-  },
-  {
-    val: 2,
-  },
-  {
-    val: 3,
-  },
-  {
-    val: 4,
-  },
-  {
-    val: 5,
-  },
-  {
-    val: 6,
-  },
-  {
-    val: 7,
-  },
-  {
-    val: 8,
-  },
-  {
-    val: 9,
-  },
-  {
-    val: 10,
-  },
-];
 </script>
 
 <style lang="scss" module>

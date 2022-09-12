@@ -4,7 +4,7 @@
       :class="$style.label"
       for="phone"
     >
-      {{ t('telInput.phone') }}
+      {{ label }}
     </label>
     <div :class="$style.inputWrap">
       <input
@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import {
-  ref, onMounted, defineProps, PropType,
+  ref, onMounted, defineProps,
 } from 'vue';
 import intlTelInput from 'intl-tel-input';
 import { useI18n } from 'vue-i18n';
@@ -29,12 +29,10 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 
 const telInput = ref(null);
-const props = defineProps({
-  modelValue: {
-    type: [String, Number] as PropType<string | number>,
-    default: null,
-  },
-});
+const props = defineProps<{
+  modelValue: string | number,
+  label: string,
+}>();
 
 onMounted(() => {
   intlTelInput(telInput.value, {

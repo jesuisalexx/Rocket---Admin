@@ -1,14 +1,12 @@
 <template>
-  <div>
-    <SettingsContainer>
-      <template #menu>
-        <SettingsMenu />
-      </template>
-      <template #view>
-        <router-view />
-      </template>
-    </SettingsContainer>
-  </div>
+  <SettingsContainer>
+    <template #menu>
+      <SettingsMenu />
+    </template>
+    <template #view>
+      <router-view />
+    </template>
+  </SettingsContainer>
 </template>
 
 <route>

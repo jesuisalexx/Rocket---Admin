@@ -10,14 +10,14 @@ import Sidebar from '@/components/core/sidebar/Sidebar.vue';
 import { SidebarButtonType } from '@/components/core/sidebarButton';
 import { computed } from 'vue';
 
-import { layout } from '@/stores/layout';
+import { layoutStore } from '@/stores/layout';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
-const layoutStore = layout();
+const layout = layoutStore();
 
-const isSidebarWide = computed(() => layoutStore.isSidebarExpanded);
+const isSidebarWide = computed(() => layout.isSidebarExpanded);
 
 const buttons = computed(() => [
   {

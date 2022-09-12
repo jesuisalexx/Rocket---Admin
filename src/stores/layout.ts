@@ -3,7 +3,7 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 
-export const layout = defineStore('layout', () => {
+export const layoutStore = defineStore('layout', () => {
   const isSidebarExpanded = ref(true);
   const isChatBarOpened = ref(false);
 

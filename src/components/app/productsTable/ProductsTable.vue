@@ -126,7 +126,7 @@
         </Table>
       </div>
       <div :class="$style.pagination">
-        <Pagination :pages="1" />
+        <PaginationBlock :pages="1" />
       </div>
     </Card>
   </div>
@@ -142,7 +142,7 @@ import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import Arrow from '@/components/core/icon/assets/arrowDown.svg';
 import More from '@/components/core/icon/assets/more.svg';
 import { ref } from 'vue';
-import Pagination from '@/components/core/pagination/Pagination.vue';
+import PaginationBlock from '@/components/core/paginationBlock/PaginationBlock.vue';
 import { modalType } from '@/types/modal';
 import { useModalStore } from '@/stores/modals';
 

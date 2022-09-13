@@ -26,11 +26,11 @@ import { SidebarButton as TSidebarButton } from '@/components/core/sidebarButton
 import { computed } from 'vue';
 import { logoState } from '@/components/core/logo';
 import Logo from '@/components/core/logo/Logo.vue';
-import { layout } from '@/stores/layout';
+import { layoutStore } from '@/stores/layout';
 
-const layoutStore = layout();
+const layout = layoutStore();
 
-const isSidebarExpanded = computed(() => layoutStore.isSidebarExpanded);
+const isSidebarExpanded = computed(() => layout.isSidebarExpanded);
 
 const props = defineProps<{
   buttons: TSidebarButton[],

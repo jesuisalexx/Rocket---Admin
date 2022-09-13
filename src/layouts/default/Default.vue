@@ -21,19 +21,17 @@
 import AppSidebar from '@/components/app/appSidebar/AppSidebar.vue';
 import AppHeader from '@/components/app/appHeader/AppHeader.vue';
 import ChatSheet from '@/components/core/chatSheet/ChatSheet.vue';
-import { layout } from '@/stores/layout';
+import { layoutStore } from '@/stores/layout';
 import { computed } from 'vue';
 
-const layoutStore = layout();
-const isChatBarOpened = computed(() => layoutStore.isChatBarOpened);
+const layout = layoutStore();
+const isChatBarOpened = computed(() => layout.isChatBarOpened);
 
 const onClickOutside = (event: MouseEvent) => {
-  // узнать как получить класс элемента в js
-  // смотреть .includes("chatButton")
   if ((event.target as HTMLDivElement).classList.contains('chatButton')) {
-    layoutStore.openChatBar();
+    layout.openChatBar();
   } else {
-    layoutStore.closeChatBar();
+    layout.closeChatBar();
   }
 };
 </script>

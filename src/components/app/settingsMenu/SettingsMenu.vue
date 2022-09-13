@@ -1,28 +1,16 @@
 <template>
   <Card :class="$style.card">
     <div :class="$style.root">
-      <router-link to="/settings/profile">
+      <router-link
+        v-for="button in buttons"
+        :key="button"
+        :to="button.path"
+      >
         <Button
           :class="$style.linkButton"
           variant="secondary-menu"
         >
-          {{ t('profile.profile') }}
-        </Button>
-      </router-link>
-      <router-link to="/settings/change-password">
-        <Button
-          :class="$style.linkButton"
-          variant="secondary-menu"
-        >
-          {{ t('profile.change-password') }}
-        </Button>
-      </router-link>
-      <router-link to="/settings">
-        <Button
-          :class="$style.linkButton"
-          variant="secondary-menu"
-        >
-          {{ t('profile.settings') }}
+          {{ t(button.text) }}
         </Button>
       </router-link>
     </div>
@@ -35,6 +23,9 @@ import { useI18n } from 'vue-i18n';
 import Card from '@/components/core/card/Card.vue';
 
 const { t } = useI18n();
+const props = defineProps<{
+  buttons: []
+}>();
 </script>
 
 <style lang="scss" module>

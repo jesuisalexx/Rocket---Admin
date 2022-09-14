@@ -2,23 +2,20 @@
   <div
     :class="$style.root"
   >
-    <div
+    <router-link
       v-for="(tab, index) in tabs"
       :key="index"
+      :to="tab.to"
+      :exact-active-class="$style.active"
+      :class="$style.tab"
     >
-      <router-link
-        :to="tab.to"
-        :exact-active-class="$style.active"
-        :class="$style.tab"
-      >
-        <div :class="$style.text">
-          {{ tab.label }}
-        </div>
-        <div :class="$style.counter">
-          {{ tab.counter }}
-        </div>
-      </router-link>
-    </div>
+      <div :class="$style.text">
+        {{ tab.label }}
+      </div>
+      <div :class="$style.counter">
+        {{ tab.counter }}
+      </div>
+    </router-link>
   </div>
 </template>
 

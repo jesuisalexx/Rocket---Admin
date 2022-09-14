@@ -1,30 +1,33 @@
 <template>
   <div :class="$style.root">
     <div :class="$style.heading">
-      Add Product
+      {{ t('add-product.add-product') }}
     </div>
     <div :class="$style.productName">
       <Field
-        label="Product Name"
-        placeholder="Andrew"
+        :label="t('add-product.product-name')"
+        :placeholder="t('add-product.placeholder')"
       />
     </div>
     <div :class="$style.editor">
       <Editor />
     </div>
     <div :class="$style.select">
-      <Select label="Category" />
+      <Select
+        label="Category"
+        :options="categories"
+      />
     </div>
     <div :class="$style.priceWrap">
       <div :class="$style.price">
         <Field
-          label="Price"
+          :label="t('add-product.price')"
           icon-before="dollar"
         />
       </div>
       <div :class="$style.discount">
         <Field
-          label="Discount"
+          :label="t('add-product.discount')"
           icon-before="discount"
         />
       </div>
@@ -37,13 +40,13 @@
     </div>
     <div :class="$style.buttons">
       <Button variant="primary">
-        Save
+        {{ t('add-product.save') }}
       </Button>
       <Button
         :class="$style.cancelButton"
         variant="secondary"
       >
-        Cancel
+        {{ t('add-product.cancel') }}
       </Button>
     </div>
   </div>
@@ -56,6 +59,27 @@ import Editor from '@/components/core/editor/Editor.vue';
 import DragNDrop from '@/components/core/dragNdrop/DragNDrop.vue';
 import Tags from '@/components/core/tags/Tags.vue';
 import Button from '@/components/core/button/Button.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+
+const categories = [
+  {
+    val: 'Phone',
+  },
+  {
+    val: 'Laptop',
+  },
+  {
+    val: 'Tv',
+  },
+  {
+    val: 'Console',
+  },
+  {
+    val: 'Other',
+  },
+];
 </script>
 
 <style lang="scss" module>
@@ -85,6 +109,7 @@ import Button from '@/components/core/button/Button.vue';
 }
 .select {
   margin-top: rem(25px);
+  z-index: 6;
 }
 .priceWrap {
   margin-top: rem(25px);

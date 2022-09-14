@@ -29,8 +29,9 @@
         :class="$style.option"
         @click="setVal(option.val)"
       >
-        {{ option.val }}
-        <slot name="option" />
+        <slot name="option">
+          {{ option.val }}
+        </slot>
       </div>
     </div>
   </div>
@@ -40,19 +41,21 @@
 import ArrowDown from '@/components/core/icon/assets/arrowDown2.svg';
 import { ref } from 'vue';
 
-const isOpen = ref(false);
-
-const currentVal = ref(1);
-
-const setVal = (val: number) => {
-  currentVal.value = val;
-  isOpen.value = false;
-};
-
 const props = defineProps<{
   label: '',
   options: []
 }>();
+
+const isOpen = ref(false);
+
+const firstElem = props.options[0].val;
+
+const currentVal = ref(firstElem);
+
+const setVal = (val: any) => {
+  currentVal.value = val;
+  isOpen.value = false;
+};
 </script>
 
 <style lang="scss" module>

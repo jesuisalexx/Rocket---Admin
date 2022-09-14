@@ -133,5 +133,14 @@
   },
   "pagination": {
     "showing": "Showing 1 - 10 of 100"
+  },
+  "add-product": {
+    "add-product": "Add Product",
+    "product-name": "Product Name",
+    "placeholder": "Iphone 7",
+    "price": "Price",
+    "discount": "Discount",
+    "cancel": "Cancel",
+    "save": "Save"
   }
 }

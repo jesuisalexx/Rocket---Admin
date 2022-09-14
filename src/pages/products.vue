@@ -2,6 +2,9 @@
   <div
     class="index"
   >
+    <div :class="$style.productSidebar">
+      <AddProductSidebar />
+    </div>
     <ProductsPageContainer>
       <template #heading>
         {{ t('products.products') }}
@@ -54,6 +57,7 @@ import Tabs from '@/components/core/tabs/Tabs.vue';
 import ProductsPageContainer from '@/containers/productsPageContainer/ProductsPageContainer.vue';
 import Switch from '@/components/core/switch/Switch.vue';
 import { tableType } from '@/containers/productsPageContainer';
+import AddProductSidebar from '@/components/core/addProductSidebar/AddProductSidebar.vue';
 
 const listType = tableType.LIST;
 const gridType = tableType.GRID;
@@ -86,3 +90,12 @@ const buttons = [
   },
 ];
 </script>
+
+<style lang="scss" module>
+.productSidebar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 5;
+}
+</style>

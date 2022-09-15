@@ -36,7 +36,7 @@
       <DragNDrop />
     </div>
     <div :class="$style.tags">
-      <Tags />
+      <Tags :label="t('add-product.tags')" />
     </div>
     <div :class="$style.buttons">
       <Button variant="primary">
@@ -45,6 +45,7 @@
       <Button
         :class="$style.cancelButton"
         variant="secondary"
+        @click="close"
       >
         {{ t('add-product.cancel') }}
       </Button>
@@ -60,8 +61,16 @@ import DragNDrop from '@/components/core/dragNdrop/DragNDrop.vue';
 import Tags from '@/components/core/tags/Tags.vue';
 import Button from '@/components/core/button/Button.vue';
 import { useI18n } from 'vue-i18n';
+import { defineEmits } from 'vue';
 
 const { t } = useI18n();
+
+const emit = defineEmits([
+  'close',
+]);
+const close = () => {
+  emit('close');
+};
 
 const categories = [
   {

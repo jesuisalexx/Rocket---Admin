@@ -117,7 +117,8 @@
     "export": "Export",
     "all": "All",
     "available": "Available",
-    "disabled": "Disabled"
+    "disabled": "Disabled",
+    "actions": "Actions"
   },
   "selectInput": {
     "status": "Status"
@@ -141,6 +142,7 @@
     "price": "Price",
     "discount": "Discount",
     "cancel": "Cancel",
-    "save": "Save"
+    "save": "Save",
+    "tags": "Tags"
   }
 }

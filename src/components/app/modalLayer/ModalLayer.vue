@@ -6,7 +6,10 @@
     }"
   >
     <div
-      :class="$style.module"
+      :class="{
+        [$style.module]: true,
+        [$style.layer]: true
+      }"
     >
       <component
         :is="displayModal.component"
@@ -55,7 +58,7 @@ const closeModal = (modalId: Modal['id']) => {
   &.active {
     pointer-events: all;
     .layer {
-      background-color: rgba(0,0,0, 0.2);
+      background-color: rgba(0,0,0, 0.7);
     }
   }
 }
@@ -66,6 +69,7 @@ const closeModal = (modalId: Modal['id']) => {
   justify-content: center;
   align-items: center;
   min-height: 100%;
+  min-width: 100%;
   @include useCustomScrollbar();
 }
 

@@ -2,15 +2,21 @@
   <div :class="$style.root">
     <div :class="$style.mainPic" />
     <div :class="$style.smallPics">
-      <div :class="$style.smallPic" />
-      <div :class="$style.smallPic" />
-      <div :class="$style.smallPic" />
-      <div :class="$style.smallPicLast" />
+      <div
+        v-for="pic in pictures"
+        :key="pic"
+        :class="$style.smallPic"
+      >
+        {{ pic.val }}
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+const props = defineProps<{
+  pictures: []
+}>();
 </script>
 
 <style lang="scss" module>
@@ -25,18 +31,12 @@
   margin-top: rem(16px);
   max-width: rem(400px);
   height: rem(100px);
-  background: #000;
   display: flex;
+  justify-content: space-between;
   overflow: hidden;
 }
 .smallPic {
-  width: rem(200px);
-  height: rem(100px);
-  background: white;
-  margin-right: rem(16px);
-}
-.smallPicLast {
-  width: rem(100px);
+  width: rem(90px);
   height: rem(100px);
   background: white;
 }

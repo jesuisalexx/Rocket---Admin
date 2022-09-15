@@ -2,7 +2,7 @@
   <Modal v-click-outside="close">
     <ProductsModalContainer>
       <div :class="$style.root">
-        <PhotoGallery />
+        <PhotoGallery :pictures="pics" />
         <div :class="$style.modalInfo">
           <div :class="$style.heading">
             {{ name.data.name }}
@@ -81,7 +81,20 @@ const { t } = useI18n();
 const props = defineProps<{
   name: {}
 }>();
-
+const pics = [
+  {
+    val: 'pic1',
+  },
+  {
+    val: 'pic2',
+  },
+  {
+    val: 'pic3',
+  },
+  {
+    val: 'pic4',
+  },
+];
 const emit = defineEmits(['close']);
 const close = (e: Event) => {
   emit('close', e);

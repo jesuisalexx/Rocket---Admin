@@ -1,9 +1,12 @@
 <template>
   <div
-    class="index"
+    :class="$style.root"
   >
-    <div :class="$style.productSidebar">
-      <AddProductSidebar />
+    <div
+      v-if="isProductSidebarOpen"
+      :class="$style.productSidebar"
+    >
+      <AddProductSidebar @close="close" />
     </div>
     <ProductsPageContainer>
       <template #heading>
@@ -21,6 +24,7 @@
       <template #import-button>
         <Button
           variant="primary-empty"
+          @click="isProductSidebarOpen = true"
         >
           <PlusIcon />
         </Button>
@@ -58,6 +62,7 @@ import ProductsPageContainer from '@/containers/productsPageContainer/ProductsPa
 import Switch from '@/components/core/switch/Switch.vue';
 import { tableType } from '@/containers/productsPageContainer';
 import AddProductSidebar from '@/components/core/addProductSidebar/AddProductSidebar.vue';
+import { defineEmits, ref } from 'vue';
 
 const listType = tableType.LIST;
 const gridType = tableType.GRID;
@@ -79,6 +84,11 @@ const tabs = [
     to: '/products/disabled',
   },
 ];
+
+const isProductSidebarOpen = ref(false);
+const close = () => {
+  isProductSidebarOpen.value = false;
+};
 const buttons = [
   {
     icon: 'list2',

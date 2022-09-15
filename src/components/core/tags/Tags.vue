@@ -1,7 +1,7 @@
 <template>
   <div :class="$style.root">
     <div :class="$style.label">
-      Tags
+      {{ label }}
     </div>
     <input
       v-model="newTag"
@@ -10,7 +10,7 @@
       @keydown.enter="addTag(newTag)"
     >
     <div
-      ref="tagsComponent"
+      ref="tagsList"
       :class="$style.tags"
     >
       <div
@@ -34,9 +34,13 @@
 import Cross from '@/components/core/icon/assets/cross.svg';
 import { nextTick, ref, watch } from 'vue';
 
-const tagsComponent = ref(null);
+const props = defineProps<{
+  label: ''
+}>();
+
+const tagsList = ref(null);
 const paddingLeft = ref(10);
-const tags = ref([]);
+const tags = ref<string[]>([]);
 const newTag = ref('');
 const addTag = (tag: string) => {
   if (tag !== '') {
@@ -49,7 +53,7 @@ const removeTag = (id: any) => {
 };
 const setLeftPadding = () => {
   const extraSpace = 10;
-  paddingLeft.value = tagsComponent.value.clientWidth + extraSpace;
+  paddingLeft.value = tagsList.value.clientWidth + extraSpace;
 };
 watch(tags, () => nextTick(setLeftPadding), { deep: true });
 </script>
@@ -61,9 +65,13 @@ watch(tags, () => nextTick(setLeftPadding), { deep: true });
   position: relative;
 }
 .tags {
+  @include useCustomScrollbar;
   display: flex;
+  height: rem(31px);
+  flex-wrap: wrap;
+  gap: rem(5px);
   position: absolute;
-  max-width: 80%;
+  max-width: 85%;
   top: rem(35px);
   left: rem(6px);
   overflow: auto;

@@ -21,6 +21,12 @@
                 :name="`col(${column.value})`"
                 :column="column"
                 :is-selected="isCheckedAll"
+              >
+                {{ column.label }}
+              </slot>
+              <Arrow
+                v-if="column.sortable"
+                :class="$style.sortable"
               />
             </div>
           </div>
@@ -110,6 +116,7 @@ import {
 import { columnType, TableRecord } from '@/components/core/table/index';
 import Check from '@/components/core/icon/assets/checked.svg';
 import Badge from '@/components/core/badge/Badge.vue';
+import Arrow from '@/components/core/icon/assets/arrowDown.svg';
 import { products } from '@/stores/products';
 import { useModalStore } from '@/stores/modals';
 import { modalType } from '@/types/modal';
@@ -225,8 +232,10 @@ watchEffect(() => {
 }
 .colLabel {
   margin-right: rem(5px);
+  display: flex;
 }
-.check {
+.sortable {
+  margin-left: rem(7px);
 }
 .records {
   width: 100%;

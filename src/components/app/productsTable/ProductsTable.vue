@@ -11,7 +11,7 @@
           variant="secondary"
           icon-after="arrowDown2"
         >
-          Actions
+          {{ t('products.actions') }}
         </Button>
       </div>
       <div :class="$style.table">
@@ -27,43 +27,17 @@
               :class="$style.checkbox"
             />
           </template>
-          <template #col(name)="{ column }">
-            <div
-              :class="$style.columnArrow"
-            >
-              {{ column.label }}
-              <Arrow />
-            </div>
+          <template #col(name)>
           </template>
-          <template #col(number)="{ column }">
-            <div :class="$style.columnArrow">
-              {{ column.label }}
-              <Arrow />
-            </div>
+          <template #col(number)>
           </template>
-          <template #col(category)="{ column }">
-            <div :class="$style.columnArrow">
-              {{ column.label }}
-              <Arrow />
-            </div>
+          <template #col(category)>
           </template>
-          <template #col(date)="{ column }">
-            <div :class="$style.columnArrow">
-              {{ column.label }}
-              <Arrow />
-            </div>
+          <template #col(date)>
           </template>
-          <template #col(price)="{ column }">
-            <div :class="$style.columnArrow">
-              {{ column.label }}
-              <Arrow />
-            </div>
+          <template #col(price)>
           </template>
-          <template #col(status)="{ column }">
-            <div :class="$style.columnArrow">
-              {{ column.label }}
-              <Arrow />
-            </div>
+          <template #col(status)>
           </template>
           <template #more-button>
             <More :class="$style.moreBtn" />
@@ -80,7 +54,7 @@
             #cell(name)="{ record }"
           >
             <div
-              :class="$style.recLightText"
+              :class="$style.recordLightText"
               @click="showProductModal(record)"
             >
               {{ record.data.name }}
@@ -89,28 +63,28 @@
           <template
             #cell(number)="{ record }"
           >
-            <div :class="$style.recDarkText">
+            <div :class="$style.recordDarkText">
               {{ record.data.number }}
             </div>
           </template>
           <template
             #cell(category)="{ record }"
           >
-            <div :class="$style.recLightText">
+            <div :class="$style.recordLightText">
               {{ record.data.category }}
             </div>
           </template>
           <template
             #cell(date)="{ record }"
           >
-            <div :class="$style.recDarkText">
+            <div :class="$style.recordDarkText">
               {{ record.data.date }}
             </div>
           </template>
           <template
             #cell(price)="{ record }"
           >
-            <div :class="$style.recLightText">
+            <div :class="$style.recordLightText">
               {{ record.data.price }}
             </div>
           </template>
@@ -139,12 +113,14 @@ import Card from '@/components/core/card/Card.vue';
 import Badge from '@/components/core/badge/Badge.vue';
 import Button from '@/components/core/button/Button.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
-import Arrow from '@/components/core/icon/assets/arrowDown.svg';
 import More from '@/components/core/icon/assets/more.svg';
 import { ref } from 'vue';
 import PaginationBlock from '@/components/core/paginationBlock/PaginationBlock.vue';
 import { modalType } from '@/types/modal';
 import { useModalStore } from '@/stores/modals';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const columns = [
   {
@@ -158,37 +134,37 @@ const columns = [
     label: 'product name',
     size: 3.5,
     value: 'name',
-    sortable: false,
+    sortable: true,
   },
   {
     label: 'product no.',
     size: 2.5,
     value: 'number',
-    sortable: false,
+    sortable: true,
   },
   {
     label: 'category',
     size: 2.5,
     value: 'category',
-    sortable: false,
+    sortable: true,
   },
   {
     label: 'date',
     size: 2,
     value: 'date',
-    sortable: false,
+    sortable: true,
   },
   {
     label: 'price',
     size: 1.4,
     value: 'price',
-    sortable: false,
+    sortable: true,
   },
   {
     label: 'status',
     size: 1.4,
     value: 'status',
-    sortable: false,
+    sortable: true,
   },
 ];
 const records = [
@@ -294,13 +270,13 @@ const showProductModal = (product: any) => modalsStore.showModal({ type: modalTy
   cursor: pointer;
 }
 
-.recLightText {
+.recordLightText {
   font-size: rem(15px);
   font-weight: 400;
   color: rgb(var(--color-heading));
 }
 
-.recDarkText {
+.recordDarkText {
   font-size: rem(15px);
   font-weight: 400;
   color: rgb(var(--color-body-dark));

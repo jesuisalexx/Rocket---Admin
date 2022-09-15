@@ -88,6 +88,7 @@ const setVal = (val: any) => {
   margin-left: rem(10px);
 }
 .dropdown {
+  @include useCustomScrollbar;
   position: absolute;
   width: 100%;
   height: rem(100px);

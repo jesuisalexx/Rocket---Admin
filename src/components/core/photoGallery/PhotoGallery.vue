@@ -7,7 +7,6 @@
         :key="pic"
         :class="$style.smallPic"
       >
-        {{ pic.val }}
       </div>
     </div>
   </div>

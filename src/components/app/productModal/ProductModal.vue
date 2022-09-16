@@ -5,11 +5,11 @@
         <PhotoGallery :pictures="pics" />
         <div :class="$style.modalInfo">
           <div :class="$style.heading">
-            {{ name.data.name }}
+            {{ product.data.name }}
           </div>
           <div :class="$style.number">
             {{ t('productsModal.number') }}
-            {{ name.data.number }}
+            {{ product.data.number }}
           </div>
           <div :class="$style.description">
             A new dual‑camera system captures more of what you <br>
@@ -23,10 +23,15 @@
               <div :class="$style.quantity">
                 {{ t('productsModal.quantity') }}
               </div>
-              <CounterInput :class="$style.counter" />
+              <CounterInput
+                :model-value="counter"
+                :class="$style.counter"
+                @increase="increaseCounter"
+                @decrease="decreaseCounter"
+              />
             </div>
             <div :class="$style.price">
-              {{ name.data.price }}
+              {{ product.data.price }}
             </div>
           </div>
           <div :class="$style.buttons">
@@ -44,19 +49,19 @@
             </div>
           </div>
           <div :class="$style.specificationsWrap">
-            <div :class="$style.specHeading">
+            <div :class="$style.specificationHeading">
               {{ t('productsModal.specifications') }}
             </div>
             <div
-              v-for="spec in specifications"
-              :key="spec"
-              :class="$style.specWrap"
+              v-for="specification in specifications"
+              :key="specification"
+              :class="$style.specificationWrap"
             >
-              <div :class="$style.specName">
-                {{ spec.name }}
+              <div :class="$style.specificationName">
+                {{ specification.name }}
               </div>
-              <div :class="$style.specVal">
-                {{ spec.value }}
+              <div :class="$style.specificationVal">
+                {{ specification.value }}
               </div>
             </div>
           </div>
@@ -73,14 +78,22 @@ import PhotoGallery from '@/components/core/photoGallery/PhotoGallery.vue';
 import CounterInput from '@/components/core/counterInput/CounterInput.vue';
 import Button from '@/components/core/button/Button.vue';
 import Like from '@/components/core/icon/assets/like.svg';
-import { defineProps } from 'vue';
+import { defineProps, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
 const props = defineProps<{
-  name: {}
+  product: {}
 }>();
+
+const counter = ref(1);
+const increaseCounter = () => counter.value++;
+const decreaseCounter = () => {
+  if (counter.value !== 1) {
+    counter.value -= 1;
+  }
+};
 const pics = [
   {
     val: 'pic1',
@@ -96,9 +109,7 @@ const pics = [
   },
 ];
 const emit = defineEmits(['close']);
-const close = (e: Event) => {
-  emit('close', e);
-};
+const close = () => emit('close');
 
 const specifications = [
   {
@@ -128,10 +139,9 @@ const specifications = [
 @import "src/assets/styles/utils";
 
 .root {
-  width: rem(1024px);
-  height: rem(756px);
+  width: 100%;
+  height: 100%;
   color: white;
-  padding: rem(30px) rem(60px);
   display: flex;
 }
 .modalInfo {
@@ -194,14 +204,14 @@ const specifications = [
 .specificationsWrap {
   margin-top: rem(30px);
 }
-.specHeading {
+.specificationHeading {
   font-size: rem(15px);
   font-weight: 500;
   font-family: 'Poppins', sans-serif;
   color: rgb(var(--color-heading));
   margin-bottom: rem(10px);
 }
-.specWrap {
+.specificationWrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -209,13 +219,13 @@ const specifications = [
   width: 100%;
   height: rem(50px);
 }
-.specName {
+.specificationName {
   font-size: rem(14px);
   font-weight: 400;
   font-family: 'Poppins', sans-serif;
   color: rgb(var(--color-body-dark));
 }
-.specVal {
+.specificationVal {
   font-size: rem(14px);
   font-weight: 400;
   font-family: 'Poppins', sans-serif;

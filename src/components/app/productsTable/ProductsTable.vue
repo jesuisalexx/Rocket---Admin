@@ -226,7 +226,7 @@ const statusMap = {
 const modalsStore = useModalStore();
 
 // eslint-disable-next-line max-len
-const showProductModal = (product: any) => modalsStore.showModal({ type: modalType.PRODUCT, payload: { name: product } });
+const showProductModal = (product: any) => modalsStore.showModal({ type: modalType.PRODUCT, payload: { product } });
 
 </script>
 

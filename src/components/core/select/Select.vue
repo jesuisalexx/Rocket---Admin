@@ -63,7 +63,7 @@ const setVal = (val: any) => {
 
 .root {
   position: relative;
-  z-index: 0;
+  z-index: 3;
 }
 .select {
   border: rem(1px) solid rgb(var(--color-border));

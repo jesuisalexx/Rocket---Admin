@@ -2,16 +2,20 @@
   <div :class="$style.root">
     <div
       :class="$style.button"
-      @click="decreaseVal"
+      @click="decrease"
     >
       <Minus />
     </div>
     <div :class="$style.val">
-      {{ val }}
+      <input
+        v-model="localValue"
+        :class="$style.input"
+        type="text"
+      >
     </div>
     <div
       :class="$style.button"
-      @click="increaseVal"
+      @click="increase"
     >
       <Plus />
     </div>
@@ -21,26 +25,34 @@
 <script lang="ts" setup>
 import Minus from '@/components/core/icon/assets/minus.svg';
 import Plus from '@/components/core/icon/assets/plus.svg';
-import { ref } from 'vue';
+import { defineProps, ref } from 'vue';
+import { useField } from '@/hooks/useField';
 
-const val = ref(1);
-const increaseVal = () => {
-  val.value += 1;
-};
-const decreaseVal = () => {
-  if (val.value !== 1) {
-    val.value -= 1;
-  }
-};
+const props = defineProps<{
+  modelValue: number
+}>();
+const emit = defineEmits([
+  'update:modelValue',
+  'increase',
+  'decrease',
+]);
+const increase = () => emit('increase');
+const decrease = () => emit('decrease');
+const {
+  localValue,
+} = useField(
+  props,
+  emit,
+);
 </script>
 
 <style lang="scss" module>
 @import "src/assets/styles/utils";
 
 .root {
-  width: rem(112px);
+  width: rem(122px);
   height: rem(40px);
-  border: 1px solid rgb(var(--color-border));
+  border: rem(1px) solid rgb(var(--color-border));
   border-radius: rem(12px);
   display: flex;
   align-items: center;
@@ -50,8 +62,11 @@ const decreaseVal = () => {
 .button {
   cursor: pointer;
 }
+.input {
+  width: 30px;
+  text-align: center;
+}
 .val {
-  width: rem(30px);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -23,7 +23,7 @@
         <div :class="$style.createButton">
           <slot name="create-button" />
         </div>
-        <div :class="$style.bottomTextWrap">
+        <div :class="$style.bottomTextWrapper">
           <div :class="$style.bottomText">
             <slot name="login-text" />
           </div>
@@ -75,7 +75,7 @@ import Card from '@/components/core/card/Card.vue';
 .stripe {
   width: rem(122px);
   height: rem(1px);
-  background: rgb(var(--color-border));
+  background-color: rgb(var(--color-border));
 }
 .username {
   width: 100%;
@@ -97,7 +97,7 @@ import Card from '@/components/core/card/Card.vue';
   width: 100%;
   margin-top: rem(23px);
 }
-.checkboxWrap {
+.checkboxWrapper {
   display: flex;
   width: 100%;
   margin-top: rem(24px);
@@ -124,7 +124,7 @@ import Card from '@/components/core/card/Card.vue';
 .signUp {
   margin-left: rem(7px);
 }
-.bottomTextWrap {
+.bottomTextWrapper {
   display: flex;
 }
 </style>

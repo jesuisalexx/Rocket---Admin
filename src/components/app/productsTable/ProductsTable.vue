@@ -27,18 +27,12 @@
               :class="$style.checkbox"
             />
           </template>
-          <template #col(name)>
-          </template>
-          <template #col(number)>
-          </template>
-          <template #col(category)>
-          </template>
-          <template #col(date)>
-          </template>
-          <template #col(price)>
-          </template>
-          <template #col(status)>
-          </template>
+          <template #col(name) />
+          <template #col(number) />
+          <template #col(category) />
+          <template #col(date) />
+          <template #col(price) />
+          <template #col(status) />
           <template #more-button>
             <More :class="$style.moreBtn" />
           </template>
@@ -225,8 +219,9 @@ const statusMap = {
 };
 const modalsStore = useModalStore();
 
-// eslint-disable-next-line max-len
-const showProductModal = (product: any) => modalsStore.showModal({ type: modalType.PRODUCT, payload: { product } });
+const showProductModal = (product: any) => modalsStore.showModal(
+  { type: modalType.PRODUCT, payload: { product } },
+);
 
 </script>
 
@@ -259,10 +254,6 @@ const showProductModal = (product: any) => modalsStore.showModal({ type: modalTy
   justify-content: center;
   margin-top: 30px;
 }
-
-.checkbox {
-}
-
 .moreBtn {
   position: absolute;
   top: rem(18px);

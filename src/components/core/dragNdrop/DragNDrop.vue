@@ -4,7 +4,7 @@
       :class="$style.root"
     >
       <div :class="$style.label">
-        Product Images
+        {{ t('drag.product-images') }}
       </div>
       <div
         :class="{
@@ -24,18 +24,18 @@
             @change="uploadFile"
           >
         </div>
-        <div :class="$style.textWrap">
+        <div :class="$style.textWrapper">
           <div :class="$style.text">
-            Drag and Drop or
+            {{ t('drag.drag-n-drop') }}
           </div>
           <Button
             :class="$style.button"
             variant="primary-minimalistic"
           >
-            Browse
+            {{ t('drag.browse') }}
           </Button>
           <div :class="$style.text">
-            to upload
+            {{ t('drag.upload') }}
           </div>
         </div>
       </div>
@@ -78,7 +78,9 @@ import Upload from '@/components/core/icon/assets/upload.svg';
 import Button from '@/components/core/button/Button.vue';
 import Bin from '@/components/core/icon/assets/delete.svg';
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 
+const t = useI18n();
 const isActive = ref(false);
 const toggleActive = () => {
   isActive.value = !isActive.value;
@@ -128,7 +130,7 @@ const removeImg = (id: any) => {
   width: 100%;
   height: rem(100px);
   border: rem(1px)dashed rgb(var(--color-body-dark));
-  background: rgb(var(--color-background));
+  background-color: rgb(var(--color-background));
   border-radius: rem(12px);
   display: flex;
   flex-direction: column;
@@ -162,7 +164,7 @@ const removeImg = (id: any) => {
 .dropzoneActive {
   border: rem(1px) solid rgb(var(--color-heading));
 }
-.textWrap {
+.textWrapper {
   display: flex;
   align-items: center;
   font-size: rem(14px);
@@ -189,7 +191,7 @@ const removeImg = (id: any) => {
   height: rem(74px);
   border-radius: rem(10px);
   border: rem(1px)solid rgb(var(--color-border));
-  background: rgb(var(--color-background));
+  background-color: rgb(var(--color-background));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -212,7 +214,7 @@ const removeImg = (id: any) => {
   transition: 0.3s;
   &:hover {
     opacity: 1;
-    background: rgb(var(--color-hover-background));
+    background-color: rgb(var(--color-hover-background));
     transition: 0.3s;
   }
 }
@@ -220,7 +222,7 @@ const removeImg = (id: any) => {
   width: rem(32px);
   height: rem(32px);
   border-radius: rem(7px);
-  background: rgb(var(--color-overlay-light));
+  background-color: rgb(var(--color-overlay-light));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -239,7 +241,7 @@ const removeImg = (id: any) => {
   height: rem(74px);
   border-radius: rem(10px);
   border: rem(1px)solid rgb(var(--color-border));
-  background: rgb(var(--color-background));
+  background-color: rgb(var(--color-background));
   display: flex;
   justify-content: center;
   align-items: center;

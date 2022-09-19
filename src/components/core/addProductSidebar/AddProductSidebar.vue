@@ -97,7 +97,7 @@ const categories = [
 .root {
   width: rem(490px);
   height: 100vh;
-  background: rgb(var(--color-surface));
+  background-color: rgb(var(--color-surface));
   padding: rem(30px);
 }
 .heading {

@@ -77,7 +77,7 @@ const handleSubmit = () => {
 @import "src/assets/styles/utils";
 
 .root {
-  max-width: 400px;
+  max-width: rem(400px);
 }
 
 .content {

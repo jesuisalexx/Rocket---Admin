@@ -89,7 +89,7 @@ const localModel = computed({
 .stripe {
   width: rem(122px);
   height: rem(1px);
-  background: rgb(var(--color-border));
+  background-color: rgb(var(--color-border));
 }
 .username {
   width: 100%;

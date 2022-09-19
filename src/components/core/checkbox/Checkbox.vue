@@ -94,14 +94,14 @@ const {
   border-radius: rem(5px);
   cursor: pointer;
   border: rem(1px) solid rgb(var(--color-border));
-  background: rgb(var(--color-background));
+  background-color: rgb(var(--color-background));
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .checked {
-  background: rgb(var(--color-primary-accent));
+  background-color: rgb(var(--color-primary-accent));
   border: rem(1px) solid rgb(var(--color-primary-accent));
 }
 .input {

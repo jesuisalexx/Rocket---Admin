@@ -5,7 +5,7 @@
       isSidebarExpanded && $style.expanded,
     ]"
   >
-    <div :class="$style.logoWrap">
+    <div :class="$style.logoWrapper">
       <div :class="$style.logo">
         <router-link to="/">
           <Logo :state="isSidebarExpanded ? logoState.FULL : logoState.COMPACT" />
@@ -53,7 +53,7 @@ const props = defineProps<{
     min-width: rem(270px);
     height: 100vh;
 
-    .logoWrap {
+    .logoWrapper {
       width: 100%;
       height: rem(65px);
       display: flex;
@@ -71,7 +71,7 @@ const props = defineProps<{
   }
 }
 
-.logoWrap {
+.logoWrapper {
   width: 100%;
   height: rem(65px);
   display: flex;

@@ -23,7 +23,7 @@
       <div
         v-if="isOpen"
         :class="{
-          [$style.optionsWrap]: isOpen
+          [$style.optionsWrapper]: isOpen
         }"
       >
         <div
@@ -95,14 +95,14 @@ const props = defineProps<{
 .label {
   color: rgb(var(--color-body-dark));
 }
-.optionsWrap {
+.optionsWrapper {
   width: 100%;
   height: rem(200px);
   overflow: auto;
   margin-top: rem(2px);
 }
 .option {
-  background: rgb(var(--color-body-dark));
+  background-color: rgb(var(--color-body-dark));
   color: rgb(var(--color-light-black));
   font-weight: 500;
   width: 100%;
@@ -112,7 +112,7 @@ const props = defineProps<{
   padding-left: rem(20px);
   cursor: pointer;
   &:hover {
-    background: rgb(var(--color-body-light));
+    background-color: rgb(var(--color-body-light));
   }
 }
 </style>

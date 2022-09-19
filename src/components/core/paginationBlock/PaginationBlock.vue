@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.root">
-    <div :class="$style.selectWrap">
+    <div :class="$style.selectWrapper">
       <div :class="$style.select">
         <Select :options="ops" />
       </div>
@@ -68,7 +68,7 @@ const ops = [
   border-radius: rem(10px);
   width: rem(34px);
   height: rem(34px);
-  background: rgb(var(--color-overlay-light));
+  background-color: rgb(var(--color-overlay-light));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,7 +80,7 @@ const ops = [
   border-radius: rem(10px);
   width: rem(34px);
   height: rem(34px);
-  background: rgba(0, 144, 255, 0.2);
+  background-color: rgba(0, 144, 255, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,7 +104,7 @@ const ops = [
   border-radius: rem(10px);
   width: rem(34px);
   height: rem(34px);
-  background: rgb(var(--color-primary-accent));
+  background-color: rgb(var(--color-primary-accent));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,7 +123,7 @@ const ops = [
 .select {
   width: rem(66px);
 }
-.selectWrap {
+.selectWrapper {
   display: flex;
   align-items: center;
 }

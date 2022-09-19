@@ -24,7 +24,7 @@ const props = defineProps<{
 .mainPic {
   width: rem(400px);
   height: rem(556px);
-  background: #000;
+  background-color: #000;
 }
 .smallPics {
   margin-top: rem(16px);
@@ -37,6 +37,6 @@ const props = defineProps<{
 .smallPic {
   width: rem(90px);
   height: rem(100px);
-  background: white;
+  background-color: white;
 }
 </style>

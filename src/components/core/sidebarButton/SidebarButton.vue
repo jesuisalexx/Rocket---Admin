@@ -5,7 +5,7 @@
       !isSidebarExpanded && $style.expanded,
     ]"
   >
-    <div :class="$style.buttonWrap">
+    <div :class="$style.buttonWrapper">
       <router-link
         :is="computedComponent"
         :to="button.to"
@@ -66,7 +66,7 @@ const computedComponent = computed(() => componentMap[props.button.type]);
   &.expanded {
     display: flex;
     justify-content: center;
-    .buttonWrap {
+    .buttonWrapper {
       width: rem(44px);
       height: rem(56px);
       display: flex;
@@ -86,7 +86,7 @@ const computedComponent = computed(() => componentMap[props.button.type]);
       border: 0;
       background: none;
     }
-    .iconWrap {
+    .iconWrapper {
       height: rem(44px);
       width: rem(44px);
       display: flex;
@@ -129,12 +129,12 @@ const computedComponent = computed(() => componentMap[props.button.type]);
   position: relative;
   cursor: pointer;
   padding-left: 0;
-  background: rgb(var(--color-surface));
+  background-color: rgb(var(--color-surface));
   border-left: rem(4px) solid rgb(var(--color-primary-accent));
   color: rgb(var(--color-heading));
 }
 
-.iconWrap {
+.iconWrapper {
   height: rem(44px);
   width: rem(44px);
   border-radius: rem(10px);
@@ -143,7 +143,7 @@ const computedComponent = computed(() => componentMap[props.button.type]);
   align-items: center;
   cursor: pointer;
   &:hover {
-    background: rgb(var(--color-surface));
+    background-color: rgb(var(--color-surface));
   }
 }
 
@@ -169,7 +169,7 @@ const computedComponent = computed(() => componentMap[props.button.type]);
   width: rem(18px);
   height: rem(18px);
   border-radius: rem(6px);
-  background: rgb(var(--color-red));
+  background-color: rgb(var(--color-red));
   font-family: 'Poppins', sans-serif;
   font-size: rem(10px);
   color: rgb(var(--color-heading));

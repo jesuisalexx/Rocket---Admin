@@ -56,7 +56,7 @@ if (duration) {
 .root {
   height: 76px;
   border-radius: 12px;
-  background: rgb(var(--color-overlay-light));
+  background-color: rgb(var(--color-overlay-light));
   display: flex;
   align-items: center;
   position: relative;
@@ -66,7 +66,7 @@ if (duration) {
   cursor: pointer;
 
   &.success {
-    background: rgb(var(--color-overlay-light));
+    background-color: rgb(var(--color-overlay-light));
 
     .label {
       color: rgb(var(--color-green));
@@ -77,7 +77,7 @@ if (duration) {
     }
   }
   &.danger {
-    background: rgb(var(--color-overlay-light));
+    background-color: rgb(var(--color-overlay-light));
 
     .label {
       color: rgb(var(--color-red));
@@ -107,7 +107,7 @@ if (duration) {
   align-items: center;
   justify-content: center;
   border-radius: rem(7px);
-  background: rgb(var(--color-surface));
+  background-color: rgb(var(--color-surface));
   position: absolute;
   top: rem(15px);
   right: rem(15px);

@@ -1,6 +1,6 @@
 <template>
   <Card>
-    <div :class="$style.contentWrap">
+    <div :class="$style.contentWrapper">
       <div :class="$style.content">
         <div :class="$style.img">
           <slot name="img" />
@@ -29,9 +29,9 @@ import Card from '@/components/core/card/Card.vue';
 <style lang="scss" module>
 @import "src/assets/styles/utils";
 
-.contentWrap {
+.contentWrapper {
   width: rem(440px);
-  background: rgb(var(--color-surface));
+  background-color: rgb(var(--color-surface));
   display: flex;
   flex-direction: column;
   align-items: flex-end;

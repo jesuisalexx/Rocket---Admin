@@ -59,7 +59,7 @@ const { listType } = products();
 .divider {
   width: rem(1px);
   height: rem(18px);
-  background: rgb(var(--color-border));
+  background-color: rgb(var(--color-border));
   margin: 0 rem(16px);
 }
 </style>

@@ -206,7 +206,7 @@ const props = defineProps({
     padding-left: rem(20px);
     border-radius: rem(8px);
     &:focus {
-      background: rgb(var(--color-border));
+      background-color: rgb(var(--color-border));
       color: rgb(var(--color-white));
     }
 

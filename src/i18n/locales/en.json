@@ -130,7 +130,9 @@
     "quantity": "Quantity",
     "specifications": "Specifications",
     "number": "SKU:",
-    "add-to-cart": "Add to Cart"
+    "add-to-cart": "Add to Cart",
+    "description": "A new dual‑camera system captures more of what you see and love. The fastest chip ever in a smartphone and all‑day battery life let you do more and charge less. And the highest‑quality video in a smartphone, so your memories look better than ever."
+
   },
   "pagination": {
     "showing": "Showing 1 - 10 of 100"
@@ -144,5 +146,11 @@
     "cancel": "Cancel",
     "save": "Save",
     "tags": "Tags"
+  },
+  "drag": {
+    "product-images": "Product Images",
+    "drag-n-drop": "Drag and Drop or",
+    "browse": "Browse",
+    "upload": "to upload"
   }
 }

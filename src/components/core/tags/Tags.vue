@@ -78,7 +78,7 @@ watch(tags, () => nextTick(setLeftPadding), { deep: true });
 }
 .tag {
   padding: rem(5px) rem(10px);
-  background: rgb(var(--color-background));
+  background-color: rgb(var(--color-background));
   border: rem(1px) solid rgb(var(--color-border));
   border-radius: rem(8px);
   margin-right: rem(5px);

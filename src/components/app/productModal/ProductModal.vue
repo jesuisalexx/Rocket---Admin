@@ -12,13 +12,9 @@
             {{ product.data.number }}
           </div>
           <div :class="$style.description">
-            A new dual‑camera system captures more of what you <br>
-            see and love. The fastest chip ever in a smartphone and <br>
-            all‑day battery life let you do more and charge less. And <br>
-            the highest‑quality video in a smartphone, so your <br>
-            memories look better than ever.
+            {{ t('productsModal.description') }}
           </div>
-          <div :class="$style.priceWrap">
+          <div :class="$style.priceWrapper">
             <div>
               <div :class="$style.quantity">
                 {{ t('productsModal.quantity') }}
@@ -48,14 +44,14 @@
               </Button>
             </div>
           </div>
-          <div :class="$style.specificationsWrap">
+          <div :class="$style.specificationsWrapper">
             <div :class="$style.specificationHeading">
               {{ t('productsModal.specifications') }}
             </div>
             <div
               v-for="specification in specifications"
               :key="specification"
-              :class="$style.specificationWrap"
+              :class="$style.specificationWrapper"
             >
               <div :class="$style.specificationName">
                 {{ specification.name }}
@@ -167,7 +163,7 @@ const specifications = [
   font-family: 'Poppins', sans-serif;
   color: rgb(var(--color-body-light));
 }
-.priceWrap {
+.priceWrapper {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -201,7 +197,7 @@ const specifications = [
 .cartAddBtn {
   width: 75%;
 }
-.specificationsWrap {
+.specificationsWrapper {
   margin-top: rem(30px);
 }
 .specificationHeading {
@@ -211,7 +207,7 @@ const specifications = [
   color: rgb(var(--color-heading));
   margin-bottom: rem(10px);
 }
-.specificationWrap {
+.specificationWrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;

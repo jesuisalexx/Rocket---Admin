@@ -57,5 +57,4 @@ defineExpose({
 </script>
 
 <style lang="scss" module>
-.form {}
 </style>

@@ -1,15 +1,15 @@
 <template>
   <Card>
-    <div :class="$style.cardWrap">
+    <div :class="$style.cardWrapper">
       <div :class="$style.heading">
         <slot name="heading" />
       </div>
-      <div :class="$style.avatarWrap">
+      <div :class="$style.avatarWrapper">
         <div :class="$style.avatar">
           <slot name="avatar" />
         </div>
       </div>
-      <div :class="$style.nameWrap">
+      <div :class="$style.nameWrapper">
         <slot name="firstName" />
         <slot name="lastName" />
       </div>
@@ -36,9 +36,9 @@ import Card from '@/components/core/card/Card.vue';
 <style lang="scss" module>
 @import "src/assets/styles/utils";
 
-.cardWrap {
+.cardWrapper {
   width: rem(440px);
-  background: rgb(var(--color-surface));
+  background-color: rgb(var(--color-surface));
   position: relative;
 }
 .heading {
@@ -47,7 +47,7 @@ import Card from '@/components/core/card/Card.vue';
   font-family: 'Poppins', sans-serif;
   color: rgb(var(--color-heading));
 }
-.avatarWrap {
+.avatarWrapper {
   margin-top: rem(20px);
   width: 100%;
   display: flex;
@@ -64,7 +64,7 @@ import Card from '@/components/core/card/Card.vue';
   border-radius: 50%;
   border: rem(2px) dashed rgb(var(--color-body-dark));
 }
-.nameWrap {
+.nameWrapper {
   margin-top: rem(25px);
   width: 100%;
   display: flex;

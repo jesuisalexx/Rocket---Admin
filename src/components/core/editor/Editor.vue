@@ -17,7 +17,7 @@ import '@vueup/vue-quill/dist/vue-quill.snow.prod.css';
 .ql-toolbar.ql-snow {
   border: none;
   border-bottom: 1px solid rgb(var(--color-border));
-  background: rgb(var(--color-background));
+  background-color: rgb(var(--color-background));
 }
 .ql-container.ql-snow {
   border: none;

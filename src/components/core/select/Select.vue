@@ -93,7 +93,7 @@ const setVal = (val: any) => {
   width: 100%;
   height: rem(100px);
   overflow-y: scroll;
-  background: rgb(var(--color-border));
+  background-color: rgb(var(--color-border));
   border-bottom-right-radius: rem(10px);
   border-bottom-left-radius: rem(10px);
 }
@@ -106,7 +106,7 @@ const setVal = (val: any) => {
   align-items: center;
   cursor: pointer;
   &:hover {
-    background: black;
+    background-color: black;
   }
 }
 .label {

@@ -44,7 +44,7 @@ const props = defineProps<{
   padding: rem(8px);
   height: rem(18px);
   border-radius: rem(6px);
-  background: rgb(var(--color-border));
+  background-color: rgb(var(--color-border));
   font-family: 'Poppins', sans-serif;
   font-size: rem(10px);
   color: rgb(var(--color-heading));

@@ -20,7 +20,7 @@
         <slot name="sign-up-text" />
         <div :class="$style.stripe" />
       </div>
-      <div :class="$style.namesWrap">
+      <div :class="$style.namesWrapper">
         <div :class="$style.name">
           <slot name="first-name" />
         </div>
@@ -40,7 +40,7 @@
       <div :class="$style.confirmPassword">
         <slot name="password-confirm" />
       </div>
-      <div :class="$style.checkboxWrap">
+      <div :class="$style.checkboxWrapper">
         <slot
           name="accept"
         />
@@ -50,7 +50,7 @@
           />
         </div>
       </div>
-      <div :class="$style.bottomPartWrap">
+      <div :class="$style.bottomPartWrapper">
         <div
           :class="[
             $style.createButton,
@@ -59,7 +59,7 @@
         >
           <slot name="create-button" />
         </div>
-        <div :class="$style.bottomTextWrap">
+        <div :class="$style.bottomTextWrapper">
           <div :class="$style.bottomText">
             <slot name="login-text" />
           </div>
@@ -135,9 +135,9 @@ const props = defineProps({
 .stripe {
   width: rem(122px);
   height: rem(1px);
-  background: rgb(var(--color-border));
+  background-color: rgb(var(--color-border));
 }
-.namesWrap {
+.namesWrapper {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -165,7 +165,7 @@ const props = defineProps({
   width: 100%;
   margin-top: rem(30px);
 }
-.checkboxWrap {
+.checkboxWrapper {
   display: flex;
   width: 100%;
   margin-top: rem(30px);
@@ -181,7 +181,7 @@ const props = defineProps({
   color: rgb(var(--color-body-dark));
   font-size: rem(14px);
 }
-.bottomPartWrap {
+.bottomPartWrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -192,7 +192,7 @@ const props = defineProps({
 .signUp {
   margin-left: rem(7px);
 }
-.bottomTextWrap {
+.bottomTextWrapper {
   display: flex;
 }
 </style>

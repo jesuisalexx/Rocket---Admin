@@ -63,7 +63,7 @@ const {
   cursor: pointer;
 }
 .input {
-  width: 30px;
+  width: rem(30px);
   text-align: center;
 }
 .val {

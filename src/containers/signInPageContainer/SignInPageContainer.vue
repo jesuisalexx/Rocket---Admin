@@ -26,7 +26,7 @@
       <div :class="$style.password">
         <slot name="password" />
       </div>
-      <div :class="$style.checkboxWrap">
+      <div :class="$style.checkboxWrapper">
         <div :class="$style.checkbox">
           <slot
             name="checkbox"
@@ -38,11 +38,11 @@
           />
         </div>
       </div>
-      <div :class="$style.bottomPartsWrap">
+      <div :class="$style.bottomPartsWrapper">
         <div :class="$style.loginButton">
           <slot name="login-button" />
         </div>
-        <div :class="$style.bottomTextWrap">
+        <div :class="$style.bottomTextWrapper">
           <div :class="$style.bottomText">
             <slot name="sign-up-text" />
           </div>
@@ -120,7 +120,7 @@ const props = defineProps({
 .stripe {
   width: rem(122px);
   height: rem(1px);
-  background: rgb(var(--color-border));
+  background-color: rgb(var(--color-border));
 }
 .login {
   width: 100%;
@@ -130,7 +130,7 @@ const props = defineProps({
   width: 100%;
   margin-top: rem(27px);
 }
-.checkboxWrap {
+.checkboxWrapper {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -146,7 +146,7 @@ const props = defineProps({
   color: rgb(var(--color-body-dark));
   font-size: rem(14px);
 }
-.bottomPartsWrap {
+.bottomPartsWrapper {
   width: 100%;
   height: rem(180px);
   display: flex;
@@ -157,7 +157,7 @@ const props = defineProps({
 .signUp {
   margin-left: rem(7px);
 }
-.bottomTextWrap {
+.bottomTextWrapper {
   display: flex;
 }
 </style>

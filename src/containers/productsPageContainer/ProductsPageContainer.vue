@@ -1,19 +1,19 @@
 <template>
   <div :class="$style.root">
-    <div :class="$style.textButtonsWrap">
+    <div :class="$style.textButtonsWrapper">
       <div
         :class="$style.heading"
       >
         <slot name="heading" />
       </div>
-      <div :class="$style.buttonsWrap">
+      <div :class="$style.buttonsWrapper">
         <div :class="$style.exportBtn">
           <slot name="export-button" />
         </div>
         <slot name="import-button" />
       </div>
     </div>
-    <div :class="$style.linksWrap">
+    <div :class="$style.linksWrapper">
       <div
         :class="$style.tabs"
       >
@@ -39,12 +39,12 @@
 .root {
   padding: rem(30px);
 }
-.textButtonsWrap {
+.textButtonsWrapper {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.buttonsWrap {
+.buttonsWrapper {
   height: rem(40px);
   display: flex;
 }
@@ -57,7 +57,7 @@
 .exportBtn {
   margin-right: rem(17px);
 }
-.linksWrap {
+.linksWrapper {
   display: flex;
   justify-content: space-between;
   margin-top: rem(35px);
@@ -85,7 +85,7 @@
   padding: rem(8px);
   height: rem(18px);
   border-radius: rem(6px);
-  background: rgb(var(--color-border));
+  background-color: rgb(var(--color-border));
   font-family: 'Poppins', sans-serif;
   font-size: rem(10px);
   color: rgb(var(--color-heading));

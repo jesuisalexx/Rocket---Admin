@@ -14,7 +14,7 @@
             :class="$style.columns"
           >
             <div
-              :class="$style.colLabel"
+              :class="$style.columnsLabel"
               @click="toggleSelectAll(column.selectable, recordIds)"
             >
               <slot
@@ -130,8 +130,9 @@ const props = defineProps<{
 
 const modalsStore = useModalStore();
 
-// eslint-disable-next-line max-len
-const showProductModal = (product: any) => modalsStore.showModal({ type: modalType.PRODUCT, payload: { name: product } });
+const showProductModal = (product: any) => modalsStore.showModal(
+  { type: modalType.PRODUCT, payload: { name: product } },
+);
 
 const sizeComputed = computed(() => {
   const columnsMap = props.columns.map((item: any) => item.size);
@@ -164,13 +165,15 @@ const localSelectedRecords = computed<string[]>({
     emit('update:selectedRecords', value);
   },
 });
-// eslint-disable-next-line max-len
-const computedRecords = computed<TableRecord[]>(() => props.records.map((el: any) => ({ ...el, isSelected: localSelectedRecords.value.includes(el.id) })));
+const computedRecords = computed<TableRecord[]>(() => props.records.map((el: any) => (
+  { ...el, isSelected: localSelectedRecords.value.includes(el.id) }
+)));
 const toggleSelect = (selectable: any, id: string) => {
   if (selectable === true) {
     if (localSelectedRecords.value.includes(id)) {
-      // eslint-disable-next-line max-len
-      localSelectedRecords.value = localSelectedRecords.value.filter((currentId) => currentId !== id);
+      localSelectedRecords.value = localSelectedRecords.value.filter(
+        (currentId) => currentId !== id,
+      );
     } else {
       localSelectedRecords.value.push(id);
     }
@@ -178,8 +181,9 @@ const toggleSelect = (selectable: any, id: string) => {
 };
 const toggleSelectGrid = (id: string) => {
   if (localSelectedRecords.value.includes(id)) {
-    // eslint-disable-next-line max-len
-    localSelectedRecords.value = localSelectedRecords.value.filter((currentId) => currentId !== id);
+    localSelectedRecords.value = localSelectedRecords.value.filter(
+      (currentId) => currentId !== id,
+    );
   } else {
     localSelectedRecords.value.push(id);
   }
@@ -230,7 +234,7 @@ watchEffect(() => {
   font-size: rem(14px);
   font-weight: 500;
 }
-.colLabel {
+.columnLabel {
   margin-right: rem(5px);
   display: flex;
 }

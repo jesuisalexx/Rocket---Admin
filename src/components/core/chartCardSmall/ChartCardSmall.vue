@@ -8,7 +8,7 @@
         <div :class="$style.stat">
           {{ stat }}
         </div>
-        <div :class="$style.percentsWrap">
+        <div :class="$style.percentsWrapper">
           <ArrowUp />
           <div :class="$style.percents">
             {{ percents }} %
@@ -45,7 +45,7 @@ const props = defineProps<{
   width: rem(350px);
   height: rem(120px);
   padding: rem(16px);
-  background: rgb(var(--color-surface));
+  background-color: rgb(var(--color-surface));
   border-radius: rem(20px);
   font-family: 'Poppins', sans-serif;
   display: flex;
@@ -69,7 +69,7 @@ const props = defineProps<{
   font-weight: 500;
   color: rgb(var(--color-heading));
 }
-.percentsWrap {
+.percentsWrapper {
   display: flex;
   margin-bottom: rem(7px);
   align-items: center;

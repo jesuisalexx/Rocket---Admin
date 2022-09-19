@@ -188,13 +188,13 @@ defineExpose({
 
   &.select {
     .input {
-      background: rgb(var(--color-green));
+      background-color: rgb(var(--color-green));
       color: rgb(var(--color-body-dark));
     }
   }
   &.disabled {
     .input {
-      background: rgb(var(--color-border));
+      background-color: rgb(var(--color-border));
       color: rgb(var(--color-body-dark));
     }
   }
@@ -243,10 +243,6 @@ defineExpose({
 .inputIconAfter {
   padding-right: rem(48px);
 }
-
-.fieldLabel {
-}
-
 .error {
   color: rgb(var(--color-orange));
 

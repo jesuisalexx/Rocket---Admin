@@ -82,7 +82,7 @@ watch(tags, () => nextTick(setLeftPadding), { deep: true });
   border: rem(1px) solid rgb(var(--color-border));
   border-radius: rem(8px);
   margin-right: rem(5px);
-  color: rgb(var(--color-body-light));
+  color: rgb(var(--color-body-dark));
   display: flex;
   align-items: center;
 }

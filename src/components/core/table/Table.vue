@@ -234,7 +234,7 @@ watchEffect(() => {
   font-size: rem(14px);
   font-weight: 500;
 }
-.columnLabel {
+.columnsLabel {
   margin-right: rem(5px);
   display: flex;
 }

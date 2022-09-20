@@ -16,13 +16,14 @@ import '@vueup/vue-quill/dist/vue-quill.snow.prod.css';
 <style lang="scss">
 .ql-toolbar.ql-snow {
   border: none;
-  border-bottom: 1px solid rgb(var(--color-border));
+  border-bottom: rem(1px) solid rgb(var(--color-border));
   background-color: rgb(var(--color-background));
 }
 .ql-container.ql-snow {
   border: none;
 }
-.ql-editor.ql-blank {
+.ql-editor.ql-blank::before{
+  color: rgb(var(--color-body-dark));
 }
 </style>
 

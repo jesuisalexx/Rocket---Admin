@@ -57,16 +57,16 @@
               :class="$style.bin"
               @click="removeImg(index)"
             >
-              <Bin />
+              <DeleteIcon />
             </div>
           </div>
         </div>
         <div :class="$style.pictureFrames">
-          <div :class="$style.pictureFrame" />
-          <div :class="$style.pictureFrame" />
-          <div :class="$style.pictureFrame" />
-          <div :class="$style.pictureFrame" />
-          <div :class="$style.pictureFrame" />
+          <div
+            v-for="frame in frames"
+            :key="frame"
+            :class="$style.pictureFrame"
+          />
         </div>
       </div>
     </div>
@@ -76,11 +76,11 @@
 <script lang="ts" setup>
 import Upload from '@/components/core/icon/assets/upload.svg';
 import Button from '@/components/core/button/Button.vue';
-import Bin from '@/components/core/icon/assets/delete.svg';
+import DeleteIcon from '@/components/core/icon/assets/delete.svg';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
-const t = useI18n();
+const { t } = useI18n();
 const isActive = ref(false);
 const toggleActive = () => {
   isActive.value = !isActive.value;
@@ -108,6 +108,7 @@ const uploadFile = (e: any) => {
     isActive.value = false;
   }
 };
+const frames = [1, 2, 3, 4, 5];
 const removeImg = (id: any) => {
   images.value.splice(id, 1);
 };

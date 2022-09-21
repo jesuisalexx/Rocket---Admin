@@ -3,10 +3,10 @@
     <div
       v-if="type === 'list'"
     >
-      <div :class="$style.tableHat">
+      <div :class="$style.tableHead">
         <div
           :class="$style.columnsWrap"
-          :style="size"
+          :style="computedRowStyles"
         >
           <div
             v-for="column in columns"
@@ -18,7 +18,7 @@
               @click="toggleSelectAll(column.selectable, recordIds)"
             >
               <slot
-                :name="`col(${column.value})`"
+                :name="`column(${column.value})`"
                 :column="column"
                 :is-selected="isCheckedAll"
               >
@@ -39,13 +39,13 @@
       >
         <div
           :class="$style.recordWrap"
-          :style="size"
+          :style="computedRowStyles"
         >
           <div
             v-for="column in columns"
-            :key="column.label"
+            :key="column.value"
             :class="$style.record"
-            @click="toggleSelect(column.selectable, record.id)"
+            @click="toggleSelect(record.id)"
           >
             <slot
               :name="`cell(${column.value})`"
@@ -53,8 +53,8 @@
               :data="record.data[column.value]"
               :is-selected="record.isSelected"
             />
+            <slot :name="`cell(options)`" />
           </div>
-          <slot name="more-button" />
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@
             </Badge>
             <div
               :class="$style.gridCheckWrap"
-              @click="toggleSelectGrid(record.id)"
+              @click="toggleSelect(record.id)"
             >
               <div
                 v-if="!record.isSelected"
@@ -113,7 +113,7 @@
 import {
   computed, defineProps, ref, watchEffect,
 } from 'vue';
-import { columnType, TableRecord } from '@/components/core/table/index';
+import { TableColumn, TableRecord } from '@/components/core/table/index';
 import Check from '@/components/core/icon/assets/checked.svg';
 import Badge from '@/components/core/badge/Badge.vue';
 import Arrow from '@/components/core/icon/assets/arrowDown.svg';
@@ -122,7 +122,7 @@ import { useModalStore } from '@/stores/modals';
 import { modalType } from '@/types/modal';
 
 const props = defineProps<{
-  columns: columnType[],
+  columns: TableColumn[],
   records: Omit<TableRecord, 'isSelected'>[],
   selectedRecords: [],
   selectable: boolean
@@ -134,16 +134,16 @@ const showProductModal = (product: any) => modalsStore.showModal(
   { type: modalType.PRODUCT, payload: { name: product } },
 );
 
-const sizeComputed = computed(() => {
+const computedColumns = computed(() => {
   const columnsMap = props.columns.map((item: any) => item.size);
-  const colSize = columnsMap.reduce((acc, val) => {
+  const columnSize = columnsMap.reduce((acc, val) => {
     const normalizedValue = typeof val === 'number' ? `${val}fr` : `${val}`;
     return `${acc} ${normalizedValue}`;
   }, '');
-  return colSize;
+  return columnSize;
 });
-const size = computed(() => ({
-  gridTemplateColumns: sizeComputed.value,
+const computedRowStyles = computed(() => ({
+  gridTemplateColumns: computedColumns.value,
 }));
 
 const gridSize = {
@@ -168,18 +168,7 @@ const localSelectedRecords = computed<string[]>({
 const computedRecords = computed<TableRecord[]>(() => props.records.map((el: any) => (
   { ...el, isSelected: localSelectedRecords.value.includes(el.id) }
 )));
-const toggleSelect = (selectable: any, id: string) => {
-  if (selectable === true) {
-    if (localSelectedRecords.value.includes(id)) {
-      localSelectedRecords.value = localSelectedRecords.value.filter(
-        (currentId) => currentId !== id,
-      );
-    } else {
-      localSelectedRecords.value.push(id);
-    }
-  }
-};
-const toggleSelectGrid = (id: string) => {
+const toggleSelect = (id: string) => {
   if (localSelectedRecords.value.includes(id)) {
     localSelectedRecords.value = localSelectedRecords.value.filter(
       (currentId) => currentId !== id,
@@ -187,14 +176,13 @@ const toggleSelectGrid = (id: string) => {
   } else {
     localSelectedRecords.value.push(id);
   }
-  console.log(localSelectedRecords.value);
 };
 
 const recordIds = props.records.map((record) => record.id);
 const isCheckedAll = ref(false);
 
 const toggleSelectAll = (selectable: any, recordIds: any) => {
-  if (selectable === true) {
+  if (selectable) {
     if (localSelectedRecords.value.length >= 1) {
       isCheckedAll.value = false;
       localSelectedRecords.value = [];
@@ -215,7 +203,7 @@ watchEffect(() => {
 
 .root {
 }
-.tableHat {
+.tableHead {
   display: flex;
   border-bottom: rem(1px) solid rgb(var(--color-border));
   padding-bottom: rem(16px);

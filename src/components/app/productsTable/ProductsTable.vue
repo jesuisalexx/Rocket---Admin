@@ -21,19 +21,19 @@
           :records="records"
           :selectable="true"
         >
-          <template #col(select)="{ isSelected }">
+          <template #column(select)="{ isSelected }">
             <Checkbox
               :model-value="isSelected"
               :class="$style.checkbox"
             />
           </template>
-          <template #col(name) />
-          <template #col(number) />
-          <template #col(category) />
-          <template #col(date) />
-          <template #col(price) />
-          <template #col(status) />
-          <template #more-button>
+          <template #column(name) />
+          <template #column(number) />
+          <template #column(category) />
+          <template #column(date) />
+          <template #column(price) />
+          <template #column(status) />
+          <template #cell(options)>
             <More :class="$style.moreBtn" />
           </template>
           <template

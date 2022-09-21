@@ -1,9 +1,9 @@
-export type columnType = {
+export type TableColumn = {
     label: string,
     size: string | number,
-    sortable: boolean,
+    sortable?: boolean,
     value: string
-    selectable: boolean;
+    selectable?: boolean;
 }
 export type TableRecord = {
     id: string,

@@ -53,7 +53,7 @@
               :data="record.data[column.value]"
               :is-selected="record.isSelected"
             />
-            <slot :name="`cell(options)`" />
+            <slot name="cell(options)" />
           </div>
         </div>
       </div>
@@ -69,41 +69,10 @@
         :class="$style.gridRecord"
         @click="showProductModal(record)"
       >
-        <div :class="$style.gridRecordPicWrap">
-          <div :class="$style.badgeWrap">
-            <Badge :variant="statusMap[record.data.status]">
-              {{ record.data.status }}
-            </Badge>
-            <div
-              :class="$style.gridCheckWrap"
-              @click="toggleSelect(record.id)"
-            >
-              <div
-                v-if="!record.isSelected"
-                :class="$style.gridCheck"
-              />
-              <Check v-else />
-            </div>
-          </div>
-        </div>
-        <div :class="$style.gridRecordData">
-          <div
-            :class="$style.recordName"
-          >
-            {{ record.data.name }}
-          </div>
-          <div :class="$style.recordFlexDataWrap">
-            <div :class="$style.recordFlexData">
-              {{ record.data.date }}
-            </div>
-            <div :class="$style.recordFlexData">
-              {{ record.data.category }}
-            </div>
-            <div :class="$style.recordFlexData">
-              {{ record.data.price }}
-            </div>
-          </div>
-        </div>
+        <slot
+          :name="`cell(${ 'recordId' + record.id })`"
+          :record="record"
+        />
       </div>
     </div>
   </div>
@@ -114,8 +83,6 @@ import {
   computed, defineProps, ref, watchEffect,
 } from 'vue';
 import { TableColumn, TableRecord } from '@/components/core/table/index';
-import Check from '@/components/core/icon/assets/checked.svg';
-import Badge from '@/components/core/badge/Badge.vue';
 import Arrow from '@/components/core/icon/assets/arrowDown.svg';
 import { products } from '@/stores/products';
 import { useModalStore } from '@/stores/modals';
@@ -148,10 +115,6 @@ const computedRowStyles = computed(() => ({
 
 const gridSize = {
   gridTemplateColumns: '1fr 1fr 1fr 1fr',
-};
-const statusMap = {
-  available: 'success',
-  disabled: 'warning',
 };
 const type = computed(() => products().type);
 const emit = defineEmits([
@@ -255,50 +218,8 @@ watchEffect(() => {
   border-radius: rem(17px);
   cursor: pointer;
 }
-.gridRecordPicWrap {
-  position: relative;
-  height: rem(267px);
-  border-bottom: rem(1px) solid rgb(var(--color-border));
-  padding: rem(16px);
-}
-.gridRecordData {
-  width: 100%;
-  padding: rem(16px);
-}
-.badgeWrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 5;
-}
 .recordCheckbox {
   width: rem(100px);
-}
-.gridCheckWrap {
-  width: rem(16px);
-  height: rem(16px);
-}
-.gridCheck {
-  width: rem(16px);
-  height: rem(16px);
-  border-radius: 50%;
-  border: rem(1px) solid grey;
-}
-.recordName {
-  width: 100%;
-  font-size: rem(14px);
-  font-weight: 400;
-  color: rgb(var(--color-heading));
-}
-.recordFlexDataWrap {
-  display: flex;
-  justify-content: space-between;
-}
-.recordFlexData {
-  color: rgb(var(--color-body-dark));
-  font-size: rem(14px);
-  font-weight: 400;
-  margin-top: rem(25px);
 }
 .recordPic {
   position: absolute;

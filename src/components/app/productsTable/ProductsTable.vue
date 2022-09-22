@@ -16,6 +16,7 @@
       </div>
       <div :class="$style.table">
         <Table
+          v-if="table"
           v-model:selectedRecords="selectedRecords"
           :columns="columns"
           :records="records"
@@ -92,6 +93,178 @@
             </Badge>
           </template>
         </Table>
+        <Table
+          v-else-if="!table"
+          v-model:selectedRecords="selectedRecords"
+          :columns="columns"
+          :records="records"
+          :selectable="true"
+        >
+          <template
+            #cell(recordId1)="{ record }"
+          >
+            <div
+              :class="$style.gridRecordPicWrap"
+            >
+              <div :class="$style.badgeWrap">
+                <Badge :variant="statusMap[record.data.status]">
+                  {{ record.data.status }}
+                </Badge>
+                <div
+                  :class="$style.gridCheckWrap"
+                  @click="toggleSelect(record.id)"
+                >
+                  <div
+                    v-if="!record.isSelected"
+                    :class="$style.gridCheck"
+                  />
+                  <Check v-else />
+                </div>
+              </div>
+            </div>
+            <div :class="$style.gridRecordData">
+              <div
+                :class="$style.recordName"
+              >
+                {{ record.data.name }}
+              </div>
+              <div :class="$style.recordFlexDataWrap">
+                <div :class="$style.recordFlexData">
+                  {{ record.data.date }}
+                </div>
+                <div :class="$style.recordFlexData">
+                  {{ record.data.category }}
+                </div>
+                <div :class="$style.recordFlexData">
+                  {{ record.data.price }}
+                </div>
+              </div>
+            </div>
+          </template>
+          <template
+            #cell(recordId2)="{ record }"
+          >
+            <div
+              :class="$style.gridRecordPicWrap"
+            >
+              <div :class="$style.badgeWrap">
+                <Badge :variant="statusMap[record.data.status]">
+                  {{ record.data.status }}
+                </Badge>
+                <div
+                  :class="$style.gridCheckWrap"
+                  @click="toggleSelect(record.id)"
+                >
+                  <div
+                    v-if="!record.isSelected"
+                    :class="$style.gridCheck"
+                  />
+                  <Check v-else />
+                </div>
+              </div>
+            </div>
+            <div :class="$style.gridRecordData">
+              <div
+                :class="$style.recordName"
+              >
+                {{ record.data.name }}
+              </div>
+              <div :class="$style.recordFlexDataWrap">
+                <div :class="$style.recordFlexData">
+                  {{ record.data.date }}
+                </div>
+                <div :class="$style.recordFlexData">
+                  {{ record.data.category }}
+                </div>
+                <div :class="$style.recordFlexData">
+                  {{ record.data.price }}
+                </div>
+              </div>
+            </div>
+          </template>
+          <template
+            #cell(recordId3)="{ record }"
+          >
+            <div
+              :class="$style.gridRecordPicWrap"
+            >
+              <div :class="$style.badgeWrap">
+                <Badge :variant="statusMap[record.data.status]">
+                  {{ record.data.status }}
+                </Badge>
+                <div
+                  :class="$style.gridCheckWrap"
+                  @click="toggleSelect(record.id)"
+                >
+                  <div
+                    v-if="!record.isSelected"
+                    :class="$style.gridCheck"
+                  />
+                  <Check v-else />
+                </div>
+              </div>
+            </div>
+            <div :class="$style.gridRecordData">
+              <div
+                :class="$style.recordName"
+              >
+                {{ record.data.name }}
+              </div>
+              <div :class="$style.recordFlexDataWrap">
+                <div :class="$style.recordFlexData">
+                  {{ record.data.date }}
+                </div>
+                <div :class="$style.recordFlexData">
+                  {{ record.data.category }}
+                </div>
+                <div :class="$style.recordFlexData">
+                  {{ record.data.price }}
+                </div>
+              </div>
+            </div>
+          </template>
+          <template
+            #cell(recordId4)="{ record }"
+          >
+            <div
+              :class="$style.gridRecordPicWrap"
+            >
+              <div :class="$style.badgeWrap">
+                <Badge :variant="statusMap[record.data.status]">
+                  {{ record.data.status }}
+                </Badge>
+                <div
+                  :class="$style.gridCheckWrap"
+                  @click="toggleSelect(record.id)"
+                >
+                  <div
+                    v-if="!record.isSelected"
+                    :class="$style.gridCheck"
+                  />
+                  <Check v-else />
+                </div>
+              </div>
+            </div>
+            <div :class="$style.gridRecordData">
+              <div
+                :class="$style.recordName"
+              >
+                {{ record.data.name }}
+              </div>
+              <div :class="$style.recordFlexDataWrap">
+                <div :class="$style.recordFlexData">
+                  {{ record.data.date }}
+                </div>
+                <div :class="$style.recordFlexData">
+                  {{ record.data.category }}
+                </div>
+                <div :class="$style.recordFlexData">
+                  {{ record.data.price }}
+                </div>
+              </div>
+            </div>
+          </template>
+        </Table>
       </div>
       <div :class="$style.pagination">
         <PaginationBlock :pages="1" />
@@ -104,6 +277,7 @@
 import Table from '@/components/core/table/Table.vue';
 import Field from '@/components/core/field/Field.vue';
 import Card from '@/components/core/card/Card.vue';
+import Check from '@/components/core/icon/assets/checked.svg';
 import Badge from '@/components/core/badge/Badge.vue';
 import Button from '@/components/core/button/Button.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
@@ -115,10 +289,14 @@ import { useModalStore } from '@/stores/modals';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
-
+const table = false;
+const statusMap = {
+  available: 'success',
+  disabled: 'warning',
+};
 const columns = [
   {
-    label: 'select',
+    label: '',
     size: 0.5,
     value: 'select',
     sortable: false,
@@ -213,10 +391,6 @@ const records = [
 ];
 const selectedRecords = ref([]);
 
-const statusMap = {
-  available: 'success',
-  disabled: 'warning',
-};
 const modalsStore = useModalStore();
 
 const showProductModal = (product: any) => modalsStore.showModal(
@@ -276,5 +450,47 @@ const showProductModal = (product: any) => modalsStore.showModal(
 .columnArrow {
   display: flex;
   align-items: center;
+}
+.gridRecordPicWrap {
+  position: relative;
+  height: rem(267px);
+  border-bottom: rem(1px) solid rgb(var(--color-border));
+  padding: rem(16px);
+}
+.gridCheck {
+  width: rem(16px);
+  height: rem(16px);
+  border-radius: 50%;
+  border: rem(1px) solid grey;
+}
+.gridRecordData {
+  width: 100%;
+  padding: rem(16px);
+}
+.badgeWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+}
+.gridCheckWrap {
+  width: rem(16px);
+  height: rem(16px);
+}
+.recordFlexDataWrap {
+  display: flex;
+  justify-content: space-between;
+}
+.recordFlexData {
+  color: rgb(var(--color-body-dark));
+  font-size: rem(14px);
+  font-weight: 400;
+  margin-top: rem(25px);
+}
+.recordName {
+  width: 100%;
+  font-size: rem(14px);
+  font-weight: 400;
+  color: rgb(var(--color-heading));
 }
 </style>

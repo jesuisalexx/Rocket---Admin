@@ -50,7 +50,10 @@
         </Tabs>
       </template>
       <template #buttons>
-        <Switch :buttons="buttons" />
+        <Switch
+          v-model:model-value="val"
+          :buttons="buttons"
+        />
       </template>
       <template #view>
         <router-view />
@@ -103,6 +106,8 @@ const tabs = [
 ];
 
 const isProductSidebarOpen = ref(false);
+const val = ref('');
+console.log(val);
 const close = () => {
   isProductSidebarOpen.value = false;
 };

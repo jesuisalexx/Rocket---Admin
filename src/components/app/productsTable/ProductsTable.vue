@@ -16,11 +16,12 @@
       </div>
       <div :class="$style.table">
         <Table
-          v-if="table"
+          v-if="type === 'list'"
           v-model:selectedRecords="selectedRecords"
           :columns="columns"
           :records="records"
           :selectable="true"
+          :type="type"
         >
           <template #column(select)="{ isSelected }">
             <Checkbox
@@ -34,7 +35,7 @@
           <template #column(date) />
           <template #column(price) />
           <template #column(status) />
-          <template #cell(options)>
+          <template #options>
             <More :class="$style.moreBtn" />
           </template>
           <template
@@ -94,14 +95,15 @@
           </template>
         </Table>
         <Table
-          v-else-if="!table"
+          v-else-if="type === 'grid'"
           v-model:selectedRecords="selectedRecords"
           :columns="columns"
           :records="records"
           :selectable="true"
+          :type="type"
         >
           <template
-            #cell(recordId1)="{ record }"
+            #record="{ record, isSelected }"
           >
             <div
               :class="$style.gridRecordPicWrap"
@@ -115,137 +117,17 @@
                   @click="toggleSelect(record.id)"
                 >
                   <div
-                    v-if="!record.isSelected"
+                    v-if="!isSelected"
                     :class="$style.gridCheck"
                   />
                   <Check v-else />
                 </div>
               </div>
             </div>
-            <div :class="$style.gridRecordData">
-              <div
-                :class="$style.recordName"
-              >
-                {{ record.data.name }}
-              </div>
-              <div :class="$style.recordFlexDataWrap">
-                <div :class="$style.recordFlexData">
-                  {{ record.data.date }}
-                </div>
-                <div :class="$style.recordFlexData">
-                  {{ record.data.category }}
-                </div>
-                <div :class="$style.recordFlexData">
-                  {{ record.data.price }}
-                </div>
-              </div>
-            </div>
-          </template>
-          <template
-            #cell(recordId2)="{ record }"
-          >
             <div
-              :class="$style.gridRecordPicWrap"
+              :class="$style.gridRecordData"
+              @click="showProductModal(record)"
             >
-              <div :class="$style.badgeWrap">
-                <Badge :variant="statusMap[record.data.status]">
-                  {{ record.data.status }}
-                </Badge>
-                <div
-                  :class="$style.gridCheckWrap"
-                  @click="toggleSelect(record.id)"
-                >
-                  <div
-                    v-if="!record.isSelected"
-                    :class="$style.gridCheck"
-                  />
-                  <Check v-else />
-                </div>
-              </div>
-            </div>
-            <div :class="$style.gridRecordData">
-              <div
-                :class="$style.recordName"
-              >
-                {{ record.data.name }}
-              </div>
-              <div :class="$style.recordFlexDataWrap">
-                <div :class="$style.recordFlexData">
-                  {{ record.data.date }}
-                </div>
-                <div :class="$style.recordFlexData">
-                  {{ record.data.category }}
-                </div>
-                <div :class="$style.recordFlexData">
-                  {{ record.data.price }}
-                </div>
-              </div>
-            </div>
-          </template>
-          <template
-            #cell(recordId3)="{ record }"
-          >
-            <div
-              :class="$style.gridRecordPicWrap"
-            >
-              <div :class="$style.badgeWrap">
-                <Badge :variant="statusMap[record.data.status]">
-                  {{ record.data.status }}
-                </Badge>
-                <div
-                  :class="$style.gridCheckWrap"
-                  @click="toggleSelect(record.id)"
-                >
-                  <div
-                    v-if="!record.isSelected"
-                    :class="$style.gridCheck"
-                  />
-                  <Check v-else />
-                </div>
-              </div>
-            </div>
-            <div :class="$style.gridRecordData">
-              <div
-                :class="$style.recordName"
-              >
-                {{ record.data.name }}
-              </div>
-              <div :class="$style.recordFlexDataWrap">
-                <div :class="$style.recordFlexData">
-                  {{ record.data.date }}
-                </div>
-                <div :class="$style.recordFlexData">
-                  {{ record.data.category }}
-                </div>
-                <div :class="$style.recordFlexData">
-                  {{ record.data.price }}
-                </div>
-              </div>
-            </div>
-          </template>
-          <template
-            #cell(recordId4)="{ record }"
-          >
-            <div
-              :class="$style.gridRecordPicWrap"
-            >
-              <div :class="$style.badgeWrap">
-                <Badge :variant="statusMap[record.data.status]">
-                  {{ record.data.status }}
-                </Badge>
-                <div
-                  :class="$style.gridCheckWrap"
-                  @click="toggleSelect(record.id)"
-                >
-                  <div
-                    v-if="!record.isSelected"
-                    :class="$style.gridCheck"
-                  />
-                  <Check v-else />
-                </div>
-              </div>
-            </div>
-            <div :class="$style.gridRecordData">
               <div
                 :class="$style.recordName"
               >
@@ -282,14 +164,15 @@ import Badge from '@/components/core/badge/Badge.vue';
 import Button from '@/components/core/button/Button.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import More from '@/components/core/icon/assets/more.svg';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import PaginationBlock from '@/components/core/paginationBlock/PaginationBlock.vue';
 import { modalType } from '@/types/modal';
 import { useModalStore } from '@/stores/modals';
 import { useI18n } from 'vue-i18n';
 
+const type = 'list';
+
 const { t } = useI18n();
-const table = false;
 const statusMap = {
   available: 'success',
   disabled: 'warning',

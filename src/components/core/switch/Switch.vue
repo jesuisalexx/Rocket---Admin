@@ -4,8 +4,7 @@
   >
     <template
       v-for="(button, i) in buttons"
-      :key="i"
-      v-model="localModel"
+      :key="button"
     >
       <div
         :class="$style.button"
@@ -23,24 +22,33 @@
 
 <script lang="ts" setup>
 import Icon from '@/components/core/icon/Icon.vue';
-import { computed, defineProps } from 'vue';
-import { products } from '@/stores/products';
+import { computed, defineProps, ref } from 'vue';
 
 const props = defineProps<{
   buttons: [],
+  modelValue: String,
 }>();
 const emit = defineEmits([
   'update:modelValue',
 ]);
+const type = ref('list');
+
 const localModel = computed({
-  get: () => props.buttons,
+  get: () => props.modelValue,
 
   set: (value) => {
     emit('update:modelValue', value);
   },
 });
-
-const { listType } = products();
+const listType = (val: any) => {
+  if (val === 'list') {
+    localModel.value = 'list';
+    console.log(localModel.value);
+  } else {
+    localModel.value = 'grid';
+    console.log(localModel.value);
+  }
+};
 </script>
 
 <style lang="scss" module>

@@ -53,7 +53,7 @@
               :data="record.data[column.value]"
               :is-selected="record.isSelected"
             />
-            <slot name="cell(options)" />
+            <slot name="options" />
           </div>
         </div>
       </div>
@@ -67,11 +67,12 @@
         v-for="record in computedRecords"
         :key="record.id"
         :class="$style.gridRecord"
-        @click="showProductModal(record)"
+        @click="toggleSelect(record.id)"
       >
         <slot
-          :name="`cell(${ 'recordId' + record.id })`"
+          name="record"
           :record="record"
+          :is-selected="record.isSelected"
         />
       </div>
     </div>
@@ -84,22 +85,14 @@ import {
 } from 'vue';
 import { TableColumn, TableRecord } from '@/components/core/table/index';
 import Arrow from '@/components/core/icon/assets/arrowDown.svg';
-import { products } from '@/stores/products';
-import { useModalStore } from '@/stores/modals';
-import { modalType } from '@/types/modal';
 
 const props = defineProps<{
   columns: TableColumn[],
   records: Omit<TableRecord, 'isSelected'>[],
   selectedRecords: [],
-  selectable: boolean
+  selectable: boolean,
+  type: '',
 }>();
-
-const modalsStore = useModalStore();
-
-const showProductModal = (product: any) => modalsStore.showModal(
-  { type: modalType.PRODUCT, payload: { name: product } },
-);
 
 const computedColumns = computed(() => {
   const columnsMap = props.columns.map((item: any) => item.size);
@@ -116,7 +109,6 @@ const computedRowStyles = computed(() => ({
 const gridSize = {
   gridTemplateColumns: '1fr 1fr 1fr 1fr',
 };
-const type = computed(() => products().type);
 const emit = defineEmits([
   'update:selectedRecords',
 ]);

@@ -50,7 +50,7 @@
         </Tabs>
       </template>
       <template #buttons>
-        <Switch
+        <ListTypeSwitch
           v-model="val"
           :buttons="buttons"
         />
@@ -79,7 +79,7 @@ import Button from '@/components/core/button/Button.vue';
 import PlusIcon from '@/components/core/icon/assets/plus.svg';
 import Tabs from '@/components/core/tabs/Tabs.vue';
 import ProductsPageContainer from '@/containers/productsPageContainer/ProductsPageContainer.vue';
-import Switch from '@/components/core/listTypeSwitch/Switch.vue';
+import ListTypeSwitch from '@/components/core/listTypeSwitch/ListTypeSwitch.vue';
 import { tableType } from '@/components/core/listTypeSwitch';
 import AddProductSidebar from '@/components/core/addProductSidebar/AddProductSidebar.vue';
 import { ref } from 'vue';

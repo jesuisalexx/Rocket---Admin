@@ -22,7 +22,7 @@
 
 <script lang="ts" setup>
 import Icon from '@/components/core/icon/Icon.vue';
-import { computed, defineProps, ref } from 'vue';
+import { computed, defineProps } from 'vue';
 
 const props = defineProps<{
   buttons: [],
@@ -40,7 +40,6 @@ const localModel = computed({
 });
 const setListType = (val: any) => {
   localModel.value = val;
-  console.log(localModel.value);
 };
 </script>
 

@@ -132,8 +132,7 @@ const toggleSelect = (id: string) => {
     localSelectedRecords.value.push(id);
   }
 };
-
-const recordIds = props.records.map((record) => record.id);
+const recordIds = ref(props.records.map((record) => record.id));
 const isCheckedAll = ref(false);
 
 const toggleSelectAll = (selectable: any, recordIds: any) => {
@@ -149,7 +148,7 @@ const toggleSelectAll = (selectable: any, recordIds: any) => {
   }
 };
 watchEffect(() => {
-  isCheckedAll.value = localSelectedRecords.value.length === recordIds.length;
+  isCheckedAll.value = localSelectedRecords.value.length === recordIds.value.length;
 });
 </script>
 

@@ -164,7 +164,7 @@ import Badge from '@/components/core/badge/Badge.vue';
 import Button from '@/components/core/button/Button.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import More from '@/components/core/icon/assets/more.svg';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import PaginationBlock from '@/components/core/paginationBlock/PaginationBlock.vue';
 import { modalType } from '@/types/modal';
 import { useModalStore } from '@/stores/modals';

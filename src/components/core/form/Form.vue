@@ -1,7 +1,6 @@
 <template>
   <form
     ref="form"
-    :class="$style.form"
     @submit.prevent="handleSubmit"
   >
     <slot />

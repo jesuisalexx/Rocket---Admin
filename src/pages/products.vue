@@ -51,7 +51,7 @@
       </template>
       <template #buttons>
         <Switch
-          v-model:model-value="val"
+          v-model="val"
           :buttons="buttons"
         />
       </template>
@@ -79,13 +79,11 @@ import Button from '@/components/core/button/Button.vue';
 import PlusIcon from '@/components/core/icon/assets/plus.svg';
 import Tabs from '@/components/core/tabs/Tabs.vue';
 import ProductsPageContainer from '@/containers/productsPageContainer/ProductsPageContainer.vue';
-import Switch from '@/components/core/switch/Switch.vue';
-import { tableType } from '@/containers/productsPageContainer';
+import Switch from '@/components/core/listTypeSwitch/Switch.vue';
+import { tableType } from '@/components/core/listTypeSwitch';
 import AddProductSidebar from '@/components/core/addProductSidebar/AddProductSidebar.vue';
-import { defineEmits, ref } from 'vue';
+import { ref } from 'vue';
 
-const listType = tableType.LIST;
-const gridType = tableType.GRID;
 const { t } = useI18n();
 const tabs = [
   {
@@ -106,7 +104,7 @@ const tabs = [
 ];
 
 const isProductSidebarOpen = ref(false);
-const val = ref('');
+const val = ref('list');
 console.log(val);
 const close = () => {
   isProductSidebarOpen.value = false;
@@ -114,11 +112,11 @@ const close = () => {
 const buttons = [
   {
     icon: 'list2',
-    value: listType,
+    value: tableType.LIST,
   },
   {
     icon: 'grid',
-    value: gridType,
+    value: tableType.GRID,
   },
 ];
 </script>

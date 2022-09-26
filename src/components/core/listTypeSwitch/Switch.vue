@@ -3,17 +3,17 @@
     :class="$style.root"
   >
     <template
-      v-for="(button, i) in buttons"
+      v-for="(button, index) in buttons"
       :key="button"
     >
       <div
         :class="$style.button"
-        @click="listType(button.value)"
+        @click="setListType(button.value)"
       >
         <Icon :icon="button.icon" />
       </div>
       <div
-        v-if="i + 1 !== buttons.length"
+        v-if="index + 1 !== buttons.length"
         :class="$style.divider"
       />
     </template>
@@ -31,8 +31,6 @@ const props = defineProps<{
 const emit = defineEmits([
   'update:modelValue',
 ]);
-const type = ref('list');
-
 const localModel = computed({
   get: () => props.modelValue,
 
@@ -40,14 +38,9 @@ const localModel = computed({
     emit('update:modelValue', value);
   },
 });
-const listType = (val: any) => {
-  if (val === 'list') {
-    localModel.value = 'list';
-    console.log(localModel.value);
-  } else {
-    localModel.value = 'grid';
-    console.log(localModel.value);
-  }
+const setListType = (val: any) => {
+  localModel.value = val;
+  console.log(localModel.value);
 };
 </script>
 

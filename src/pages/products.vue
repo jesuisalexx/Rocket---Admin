@@ -1,6 +1,7 @@
 <template>
   <div
     :class="$style.root"
+    @click="show"
   >
     <div
       v-if="isProductSidebarOpen"
@@ -51,7 +52,7 @@
       </template>
       <template #buttons>
         <ListTypeSwitch
-          v-model="val"
+          v-model="switchVal"
           :buttons="buttons"
         />
       </template>
@@ -82,7 +83,8 @@ import ProductsPageContainer from '@/containers/productsPageContainer/ProductsPa
 import ListTypeSwitch from '@/components/core/listTypeSwitch/ListTypeSwitch.vue';
 import { tableType } from '@/components/core/listTypeSwitch';
 import AddProductSidebar from '@/components/core/addProductSidebar/AddProductSidebar.vue';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { useProductsStorage } from '@/stores/products';
 
 const { t } = useI18n();
 const tabs = [
@@ -104,8 +106,11 @@ const tabs = [
 ];
 
 const isProductSidebarOpen = ref(false);
-const val = ref('list');
-console.log(val);
+const productsStorage = useProductsStorage();
+const switchVal = ref('list');
+watch(switchVal, () => {
+  productsStorage.changeSwitchValue(switchVal.value);
+});
 const close = () => {
   isProductSidebarOpen.value = false;
 };

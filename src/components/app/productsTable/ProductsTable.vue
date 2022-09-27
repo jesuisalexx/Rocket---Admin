@@ -16,12 +16,12 @@
       </div>
       <div :class="$style.table">
         <Table
-          v-if="type === 'list'"
+          v-if="switchTableValue === 'list'"
           v-model:selectedRecords="selectedRecords"
           :columns="columns"
           :records="records"
           :selectable="true"
-          :type="type"
+          :type="switchTableValue"
         >
           <template #column(select)="{ isSelected }">
             <Checkbox
@@ -95,12 +95,12 @@
           </template>
         </Table>
         <Table
-          v-else-if="type === 'grid'"
+          v-else-if="switchTableValue === 'grid'"
           v-model:selectedRecords="selectedRecords"
           :columns="columns"
           :records="records"
           :selectable="true"
-          :type="type"
+          :type="switchTableValue"
         >
           <template
             #record="{ record, isSelected }"
@@ -164,14 +164,16 @@ import Badge from '@/components/core/badge/Badge.vue';
 import Button from '@/components/core/button/Button.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import More from '@/components/core/icon/assets/more.svg';
-import { ref } from 'vue';
+import {computed, ref} from 'vue';
 import PaginationBlock from '@/components/core/paginationBlock/PaginationBlock.vue';
 import { modalType } from '@/types/modal';
 import { useModalStore } from '@/stores/modals';
 import { useI18n } from 'vue-i18n';
+import { useProductsStorage } from '@/stores/products';
 
-const type = 'list';
-
+const productsStorage = useProductsStorage();
+const switchTableValue = computed(() => productsStorage.switchValue);
+console.log(switchTableValue.value);
 const { t } = useI18n();
 const statusMap = {
   available: 'success',

@@ -5,7 +5,7 @@
         <div
           v-if="computedState === HeaderState.DEFAULT"
           :class="$style.menuButton"
-          @click="layoutStore.switchSidebar()"
+          @click="layout.switchSidebar()"
         >
           <Icon icon="menu" />
         </div>

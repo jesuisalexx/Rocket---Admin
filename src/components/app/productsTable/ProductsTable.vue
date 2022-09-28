@@ -105,43 +105,44 @@
           <template
             #record="{ record, isSelected }"
           >
-            <div
-              :class="$style.gridRecordPicWrap"
-            >
-              <div :class="$style.badgeWrap">
-                <Badge :variant="statusMap[record.data.status]">
-                  {{ record.data.status }}
-                </Badge>
-                <div
-                  :class="$style.gridCheckWrap"
-                  @click="toggleSelect(record.id)"
-                >
-                  <div
-                    v-if="!isSelected"
-                    :class="$style.gridCheck"
-                  />
-                  <Check v-else />
-                </div>
-              </div>
-            </div>
-            <div
-              :class="$style.gridRecordData"
-              @click="showProductModal(record)"
-            >
+            <div @click="showProductModal(record)">
               <div
-                :class="$style.recordName"
+                :class="$style.gridRecordPicWrap"
               >
-                {{ record.data.name }}
+                <div :class="$style.badgeWrap">
+                  <Badge :variant="statusMap[record.data.status]">
+                    {{ record.data.status }}
+                  </Badge>
+                  <div
+                    :class="$style.gridCheckWrap"
+                    @click.self="toggleSelect(record.id)"
+                  >
+                    <div
+                      v-if="!isSelected"
+                      :class="$style.gridCheck"
+                    />
+                    <Check v-else />
+                  </div>
+                </div>
               </div>
-              <div :class="$style.recordFlexDataWrap">
-                <div :class="$style.recordFlexData">
-                  {{ record.data.date }}
+              <div
+                :class="$style.gridRecordData"
+              >
+                <div
+                  :class="$style.recordName"
+                >
+                  {{ record.data.name }}
                 </div>
-                <div :class="$style.recordFlexData">
-                  {{ record.data.category }}
-                </div>
-                <div :class="$style.recordFlexData">
-                  {{ record.data.price }}
+                <div :class="$style.recordFlexDataWrap">
+                  <div :class="$style.recordFlexData">
+                    {{ record.data.date }}
+                  </div>
+                  <div :class="$style.recordFlexData">
+                    {{ record.data.category }}
+                  </div>
+                  <div :class="$style.recordFlexData">
+                    {{ record.data.price }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -164,7 +165,7 @@ import Badge from '@/components/core/badge/Badge.vue';
 import Button from '@/components/core/button/Button.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import More from '@/components/core/icon/assets/more.svg';
-import {computed, ref} from 'vue';
+import { computed, ref } from 'vue';
 import PaginationBlock from '@/components/core/paginationBlock/PaginationBlock.vue';
 import { modalType } from '@/types/modal';
 import { useModalStore } from '@/stores/modals';
@@ -172,8 +173,7 @@ import { useI18n } from 'vue-i18n';
 import { useProductsStorage } from '@/stores/products';
 
 const productsStorage = useProductsStorage();
-const switchTableValue = computed(() => productsStorage.switchValue);
-console.log(switchTableValue.value);
+const switchTableValue = computed(() => productsStorage.localSwitchValue);
 const { t } = useI18n();
 const statusMap = {
   available: 'success',
@@ -275,6 +275,16 @@ const records = [
   },
 ];
 const selectedRecords = ref([]);
+const toggleSelect = (id: any) => {
+  console.log(id);
+  if (selectedRecords.value.includes(id)) {
+    selectedRecords.value = selectedRecords.value.filter(
+      (currentId) => currentId !== id,
+    );
+  } else {
+    selectedRecords.value.push(id);
+  }
+};
 
 const modalsStore = useModalStore();
 
@@ -361,6 +371,7 @@ const showProductModal = (product: any) => modalsStore.showModal(
 .gridCheckWrap {
   width: rem(16px);
   height: rem(16px);
+  z-index: 5;
 }
 .recordFlexDataWrap {
   display: flex;

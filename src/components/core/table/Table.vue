@@ -67,7 +67,6 @@
         v-for="record in computedRecords"
         :key="record.id"
         :class="$style.gridRecord"
-        @click="toggleSelect(record.id)"
       >
         <slot
           name="record"

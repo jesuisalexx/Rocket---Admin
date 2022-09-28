@@ -73,7 +73,7 @@ const setVal = (val: any) => {
   width: 100%;
   height: rem(40px);
   border-radius: rem(14px);
-  padding: rem(10px) rem(16px);
+  padding: rem(10px) rem(15px);
   color: rgb(var(--color-body-light));
   font-size: rem(14px);
   font-weight: 400;

@@ -107,7 +107,7 @@ const tabs = [
 
 const isProductSidebarOpen = ref(false);
 const productsStorage = useProductsStorage();
-const switchVal = ref('list');
+const switchVal = ref('');
 watch(switchVal, () => {
   productsStorage.changeSwitchValue(switchVal.value);
 });

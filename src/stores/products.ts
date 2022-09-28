@@ -1,19 +1,14 @@
 import { defineStore } from 'pinia';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { useStorage } from '@vueuse/core';
 
 export const useProductsStorage = defineStore('products', () => {
-  const switchValue = ref('list');
-  const localSwitchValue = ref(useStorage('switchVal', switchValue.value));
+  const localSwitchValue = ref(useStorage('switchVal', 'list'));
   const changeSwitchValue = (value: any) => {
-    switchValue.value = value;
-    console.log(switchValue.value);
+    localSwitchValue.value = value;
   };
-  watch(switchValue, () => {
-    localSwitchValue.value = switchValue.value;
-  });
   return {
-    switchValue,
     changeSwitchValue,
+    localSwitchValue,
   };
 });

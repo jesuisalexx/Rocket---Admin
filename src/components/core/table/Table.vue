@@ -90,6 +90,7 @@ const props = defineProps<{
   records: Omit<TableRecord, 'isSelected'>[],
   selectedRecords: [],
   selectable: boolean,
+  gridColumns: {},
   type: '',
 }>();
 
@@ -105,9 +106,7 @@ const computedRowStyles = computed(() => ({
   gridTemplateColumns: computedColumns.value,
 }));
 
-const gridSize = {
-  gridTemplateColumns: '1fr 1fr 1fr 1fr',
-};
+const gridSize = props.gridColumns;
 const emit = defineEmits([
   'update:selectedRecords',
 ]);

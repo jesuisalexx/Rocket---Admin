@@ -22,6 +22,7 @@
           :records="records"
           :selectable="true"
           :type="switchTableValue"
+          :grid-columns="gridColumns"
         >
           <template #column(select)="{ isSelected }">
             <Checkbox
@@ -101,6 +102,7 @@
           :records="records"
           :selectable="true"
           :type="switchTableValue"
+          :grid-columns="gridColumns"
         >
           <template
             #record="{ record, isSelected }"
@@ -115,7 +117,7 @@
                   </Badge>
                   <div
                     :class="$style.gridCheckWrap"
-                    @click.self="toggleSelect(record.id)"
+                    @click.capture="toggleSelect(record.id)"
                   >
                     <div
                       v-if="!isSelected"
@@ -178,6 +180,9 @@ const { t } = useI18n();
 const statusMap = {
   available: 'success',
   disabled: 'warning',
+};
+const gridColumns = {
+  gridTemplateColumns: '1fr 1fr 1fr 1fr',
 };
 const columns = [
   {

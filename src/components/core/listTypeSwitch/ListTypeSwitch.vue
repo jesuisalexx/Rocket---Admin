@@ -32,7 +32,7 @@ const emit = defineEmits([
   'update:modelValue',
 ]);
 const localModel = computed({
-  get: () => props.modelValue,
+  get: () => props.buttons,
 
   set: (value) => {
     emit('update:modelValue', value);

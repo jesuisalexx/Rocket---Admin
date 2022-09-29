@@ -31,7 +31,10 @@
         </Button>
       </template>
       <template #tabs>
-        <Tabs :tabs="tabs">
+        <Tabs
+          v-model="tabsActive"
+          :tabs="tabs"
+        >
           <template #tab>
             <router-link
               v-for="(tab, index) in tabs"
@@ -104,6 +107,7 @@ const tabs = [
     to: '/products/disabled',
   },
 ];
+const tabsActive = '';
 
 const isProductSidebarOpen = ref(false);
 const productsStorage = useProductsStorage();

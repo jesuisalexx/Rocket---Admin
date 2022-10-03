@@ -28,6 +28,9 @@
 <script lang="ts" setup>
 import ArrowUp from '@/components/core/icon/assets/arrow-up.svg';
 import Icon from '@/components/core/icon/Icon.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps<{
   heading: '',
@@ -42,7 +45,7 @@ const props = defineProps<{
 @import "src/assets/styles/utils";
 
 .root {
-  width: rem(350px);
+  width: 100%;
   height: rem(120px);
   padding: rem(16px);
   background-color: rgb(var(--color-surface));

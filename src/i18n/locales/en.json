@@ -152,5 +152,9 @@
     "drag-n-drop": "Drag and Drop or",
     "browse": "Browse",
     "upload": "to upload"
+  },
+  "main-page": {
+    "overview": "Overview",
+    "last-days": "Last 7 days"
   }
 }

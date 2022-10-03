@@ -2,7 +2,7 @@
   <div :class="$style.root">
     <div :class="$style.topBar">
       <div :class="$style.heading">
-        Overview
+        {{ t('main-page.overview') }}
       </div>
       <div :class="$style.buttons">
         <Button
@@ -15,7 +15,7 @@
           variant="grey-simple"
           icon-after="arrowDown2"
         >
-          Last 7 days
+          {{ t('main-page.last-days') }}
         </Button>
       </div>
     </div>
@@ -39,6 +39,10 @@
         icon="dollarFill"
       />
     </div>
+    <div :class="$style.midCards">
+      <ChartStatistics />
+      <ChartAnalytics />
+    </div>
   </div>
 </template>
 
@@ -51,13 +55,16 @@
 </route>
 
 <script setup lang="ts">
-import { GChart } from 'vue-google-charts';
 import { useSessionStore } from '@/stores/session';
 import { computed } from 'vue';
 import ChartCardSmall from '@/components/core/chartCardSmall/ChartCardSmall.vue';
 import Button from '@/components/core/button/Button.vue';
 import Download from '@/components/core/icon/assets/download.svg';
+import ChartAnalytics from '@/components/core/chartAnalytics/ChartAnalytics.vue';
+import { useI18n } from 'vue-i18n';
+import ChartStatistics from '@/components/core/chartStatistics/ChartStatistics.vue';
 
+const { t } = useI18n();
 const sessionStore = useSessionStore();
 
 const logout = computed(() => sessionStore.logoutUser);
@@ -72,8 +79,9 @@ const logout = computed(() => sessionStore.logoutUser);
 }
 .topCards {
   width: 100%;
-  justify-content: space-between;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: rem(30px);
   margin-top: rem(30px);
 }
 .topBar {
@@ -91,5 +99,12 @@ const logout = computed(() => sessionStore.logoutUser);
 }
 .dowloadBtn {
   margin-right: rem(16px);
+}
+.midCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: rem(30px);
+  width: 100%;
+  margin-top: rem(30px);
 }
 </style>

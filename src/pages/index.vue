@@ -40,8 +40,13 @@
       />
     </div>
     <div :class="$style.midCards">
-      <ChartStatistics />
-      <ChartAnalytics />
+      <div :class="$style.midTopCards">
+        <ChartStatistics />
+        <ChartAnalytics />
+      </div>
+      <div :class="$style.midBottomCards">
+        <ChartSales />
+      </div>
     </div>
   </div>
 </template>
@@ -61,8 +66,9 @@ import ChartCardSmall from '@/components/core/chartCardSmall/ChartCardSmall.vue'
 import Button from '@/components/core/button/Button.vue';
 import Download from '@/components/core/icon/assets/download.svg';
 import ChartAnalytics from '@/components/core/chartAnalytics/ChartAnalytics.vue';
-import { useI18n } from 'vue-i18n';
 import ChartStatistics from '@/components/core/chartStatistics/ChartStatistics.vue';
+import ChartSales from '@/components/core/chartSales/ChartSales.vue';
+import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 const sessionStore = useSessionStore();
@@ -101,10 +107,16 @@ const logout = computed(() => sessionStore.logoutUser);
   margin-right: rem(16px);
 }
 .midCards {
+  margin-top: rem(30px);
+}
+.midTopCards {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: rem(30px);
   width: 100%;
-  margin-top: rem(30px);
+}
+.midBottomCards {
+  width: 400px;
+  margin-top: 30px;
 }
 </style>

@@ -121,6 +121,7 @@ const series = [35, 65];
 }
 .statsHeadingWrapper {
   display: flex;
+  width: rem(130px);
   align-items: center;
 }
 .statsHeading {

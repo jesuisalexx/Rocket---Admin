@@ -64,6 +64,18 @@ const chartOptions = {
       'Fri', 'Sat', 'Sun',
     ],
   },
+  grid: {
+    xaxis: {
+      lines: {
+        show: true,
+      },
+    },
+    yaxis: {
+      lines: {
+        show: false,
+      },
+    },
+  },
   zoom: {
     enabled: false,
   },

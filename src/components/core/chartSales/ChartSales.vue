@@ -76,6 +76,9 @@ const series = [35, 65];
 
 <style lang="scss" module>
 @import "src/assets/styles/utils";
+* {
+  font-family: 'Poppins', sans-serif;
+}
 .root {
   width: auto;
   height: auto;
@@ -94,7 +97,6 @@ const series = [35, 65];
 .heading {
   font-size: rem(20px);
   font-weight: 500;
-  font-family: 'Poppins', sans-serif;
   color: rgb(var(--color-heading));
   margin-left: rem(15px);
 }

@@ -8,18 +8,18 @@
         <div
           :class="[
             $style.option,
-            $style.incomeOption
+            $style.expenseOption
           ]"
         >
-          <div :class="$style.incomeOptionSign" />
-          <div :class="$style.optionText">
-            Income
-          </div>
-        </div>
-        <div :class="$style.option">
           <div :class="$style.expenseOptionSign" />
           <div :class="$style.optionText">
             Expense
+          </div>
+        </div>
+        <div :class="$style.option">
+          <div :class="$style.incomeOptionSign" />
+          <div :class="$style.optionText">
+            Income
           </div>
         </div>
       </div>
@@ -58,15 +58,13 @@ const chartOptions = {
   },
   xaxis: {
     categories: [
-      '19', '20', '21', '22', '23',
-      '24', '25',
+      '25', '24', '23', '22', '21',
+      '20', '19',
     ],
   },
   yaxis: {
     max: 400,
     min: -400,
-    opposite: false,
-    reversed: true,
   },
   grid: {
     xaxis: {
@@ -90,11 +88,11 @@ const chartOptions = {
 const series = [
   {
     name: 'Income',
-    data: [120, 250, 220, 190, 200, 180, 150],
+    data: [150, 180, 200, 190, 220, 250, 120],
     color: '#0090FF',
   }, {
     name: 'Expenses',
-    data: [-90, -175, -171, -80, -170, -140, -60],
+    data: [-60, -140, -170, -80, -171, -175, -90],
     color: '#FF955C',
   },
 ];
@@ -102,6 +100,9 @@ const series = [
 
 <style lang="scss" module>
 @import "src/assets/styles/utils";
+* {
+  font-family: 'Poppins', sans-serif;
+}
 .root {
   width: auto;
   height: rem(400px);
@@ -119,24 +120,23 @@ const series = [
 .heading {
   font-size: rem(20px);
   font-weight: 500;
-  font-family: 'Poppins', sans-serif;
   color: rgb(var(--color-heading));
   margin-left: rem(15px);
 }
 .optionsWrapper {
   display: flex;
+  margin-left: rem(120px);
 }
 .option {
   display: flex;
   align-items: center;
 }
-.incomeOption {
+.expenseOption {
   margin-right: rem(40px);
 }
 .optionText {
   font-size: rem(14px);
   font-weight: 400;
-  font-family: 'Roboto', sans-serif;
   color: rgb(var(--color-body-dark));
 }
 .incomeOptionSign {

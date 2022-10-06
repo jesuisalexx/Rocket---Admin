@@ -2,7 +2,7 @@
   <div :class="$style.root">
     <div :class="$style.headingWrap">
       <div :class="$style.heading">
-        Statistics
+        Last Orders
       </div>
       <Button
         variant="secondary"
@@ -12,45 +12,31 @@
         19 Aug – 25 Aug
       </Button>
     </div>
-    <VueApexCharts
-      width="100%"
-      height="300"
-      type="bar"
-      :options="chartOptions"
-      :series="series"
-    />
+    <div :class="$style.table">
+      <div :class="$style.tableColumns">
+        <div :class="$style.column">
+          Customer Name
+        </div>
+        <div :class="$style.column">
+          Order No.
+        </div>
+        <div :class="$style.column">
+          Amount
+        </div>
+        <div :class="$style.column">
+          Payment Type
+        </div>
+        <div :class="$style.column">
+          Date
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import VueApexCharts from 'vue3-apexcharts';
 import Button from '@/components/core/button/Button.vue';
 
-const chartOptions = {
-  chart: {
-    type: 'bar',
-    stacked: true,
-    toolbar: {
-      show: false,
-    },
-  },
-  xaxis: {
-    categories: ['Mon', 'Tue', 'Wed', 'Thu',
-      'Fri', 'Sat', 'Sun',
-    ],
-  },
-};
-const series = [
-  {
-    name: 'Income',
-    data: [200, 100, 220, 190, 200, 180, 150],
-    color: '#0090FF',
-  }, {
-    name: 'Expenses',
-    data: [190, 172, 171, 80, 170, 140, 60],
-    color: '#FF955C',
-  },
-];
 </script>
 
 <style lang="scss" module>
@@ -77,5 +63,22 @@ const series = [
   font-weight: 500;
   color: rgb(var(--color-heading));
   margin-left: rem(15px);
+}
+.table {
+  width: 100%;
+  height: rem(300px);
+  margin-top: rem(30px);
+  background: #000;
+}
+.tableColumns {
+  width: 100%;
+  font-size: rem(14px);
+  font-weight: 400;
+  color: rgb(var(--color-body-dark));
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr 1.5fr 1fr;
+}
+.column {
+  background: red;
 }
 </style>

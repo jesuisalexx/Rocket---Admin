@@ -100,6 +100,10 @@ const series = [
 
 <style lang="scss" module>
 @import "src/assets/styles/utils";
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
 .root {
   width: auto;
   height: auto;
@@ -117,7 +121,6 @@ const series = [
 .heading {
   font-size: rem(20px);
   font-weight: 500;
-  font-family: 'Poppins', sans-serif;
   color: rgb(var(--color-heading));
   margin-left: rem(15px);
 }
@@ -156,7 +159,6 @@ const series = [
 .numbers {
   font-size: rem(18px);
   font-weight: 400;
-  font-family: 'Poppins', sans-serif;
   color: rgb(var(--color-heading));
   margin-left: rem(16px);
 }

@@ -42,7 +42,7 @@ const props = defineProps<{
 
 .root {
   width: rem(65px);
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,7 +51,7 @@ const props = defineProps<{
   &.expanded {
     width: rem(270px);
     min-width: rem(270px);
-    height: 100vh;
+    min-height: 100vh;
 
     .logoWrapper {
       width: 100%;

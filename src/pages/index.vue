@@ -49,6 +49,10 @@
         <ChartStatisticsBar />
       </div>
     </div>
+    <div :class="$style.bottomCards">
+      <OrdersTable />
+      <TransactionsCard />
+    </div>
   </div>
 </template>
 
@@ -70,6 +74,8 @@ import ChartAnalytics from '@/components/core/chartAnalytics/ChartAnalytics.vue'
 import ChartStatisticsColumn from '@/components/core/chartStatisticsColumn/ChartStatisticsColumn.vue';
 import ChartStatisticsBar from '@/components/core/chartStatisticsBar/ChartStatisticsBar.vue';
 import ChartSales from '@/components/core/chartSales/ChartSales.vue';
+import TransactionsCard from '@/components/core/transactionsCard/TransactionsCard.vue';
+import OrdersTable from '@/components/core/ordersTable/OrdersTable.vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
@@ -118,10 +124,17 @@ const logout = computed(() => sessionStore.logoutUser);
   width: 100%;
 }
 .midBottomCards {
-  width: auto;
+  width: 100%;
   margin-top: rem(30px);
   display: grid;
   grid-template-columns: 1fr 2fr;
+  grid-column-gap: rem(30px);
+}
+.bottomCards {
+  width: 100%;
+  margin-top: rem(30px);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
   grid-column-gap: rem(30px);
 }
 </style>

@@ -13,7 +13,7 @@
     <img
       v-else
       :class="$style.source"
-      :src="src"
+      :src="`src/assets/img/` + src + `.svg`"
       alt=""
     >
   </div>

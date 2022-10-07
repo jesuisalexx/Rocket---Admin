@@ -41,7 +41,7 @@
     </div>
     <div :class="$style.midCards">
       <div :class="$style.midTopCards">
-        <ChartStatisticsColumn />
+        <ChartStatisticsColumn :chart-data="chartData" />
         <ChartAnalytics />
       </div>
       <div :class="$style.midBottomCards">
@@ -82,6 +82,24 @@ const { t } = useI18n();
 const sessionStore = useSessionStore();
 
 const logout = computed(() => sessionStore.logoutUser);
+const chartData = {
+  categories: [
+    'Mon', 'Tue', 'Wed', 'Thu',
+    'Fri', 'Sat', 'Sun',
+  ],
+  data: [
+    {
+      name: 'Income',
+      data: [200, 100, 220, 190, 200, 180, 150],
+      color: '#0090FF',
+    },
+    {
+      name: 'Expenses',
+      data: [190, 172, 171, 80, 170, 140, 60],
+      color: '#FF955C',
+    },
+  ],
+};
 </script>
 
 <style lang="scss" module>

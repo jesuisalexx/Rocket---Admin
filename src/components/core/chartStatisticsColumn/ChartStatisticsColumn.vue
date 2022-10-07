@@ -29,6 +29,10 @@ import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
+const props = defineProps<{
+  chartData: [],
+}>();
+
 const chartOptions = {
   chart: {
     type: 'bar',
@@ -38,9 +42,6 @@ const chartOptions = {
     },
   },
   xaxis: {
-    categories: ['Mon', 'Tue', 'Wed', 'Thu',
-      'Fri', 'Sat', 'Sun',
-    ],
   },
 };
 const series = [
@@ -48,7 +49,8 @@ const series = [
     name: 'Income',
     data: [200, 100, 220, 190, 200, 180, 150],
     color: '#0090FF',
-  }, {
+  },
+  {
     name: 'Expenses',
     data: [190, 172, 171, 80, 170, 140, 60],
     color: '#FF955C',

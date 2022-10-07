@@ -156,5 +156,28 @@
   "main-page": {
     "overview": "Overview",
     "last-days": "Last 7 days"
+  },
+  "orders-table": {
+    "last-orders": "Last Orders",
+    "name": "Customer Name",
+    "number": "Order No.",
+    "amount": "Amount",
+    "type": "Payment Type",
+    "date": "Date"
+  },
+  "transactions-card": {
+    "transactions": "Transactions"
+  },
+  "charts": {
+    "sales": "Sales",
+    "statistics": "Statistics",
+    "analytics": "Analytics",
+    "income": "Income",
+    "expense": "Expense",
+    "current-week": "Current Week",
+    "last-week": "Last Week",
+    "total-income": "Total Income",
+    "total-sales": "Total Sales",
+    "new-clients": "New Clients"
   }
 }

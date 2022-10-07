@@ -23,7 +23,6 @@ defineExpose(props);
 @import "@/assets/styles/utils";
 
 .root {
-  flex-direction: column;
   width: 100%;
   height: 100%;
   pointer-events: none;

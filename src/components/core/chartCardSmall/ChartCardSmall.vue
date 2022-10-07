@@ -94,8 +94,8 @@ const props = defineProps<{
 
 }
 .icon {
-  width: rem(40px);
-  height: rem(50px);
+  width: rem(60px);
+  height: rem(60px);
   display: flex;
   justify-content: center;
   align-items: center;

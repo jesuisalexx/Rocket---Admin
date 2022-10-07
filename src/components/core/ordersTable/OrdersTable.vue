@@ -2,7 +2,7 @@
   <div :class="$style.root">
     <div :class="$style.headingWrap">
       <div :class="$style.heading">
-        Last Orders
+        {{ t('orders-table.last-orders') }}
       </div>
       <Button
         variant="secondary"
@@ -15,19 +15,58 @@
     <div :class="$style.table">
       <div :class="$style.tableColumns">
         <div :class="$style.column">
-          Customer Name
+          {{ t('orders-table.name') }}
         </div>
         <div :class="$style.column">
-          Order No.
+          {{ t('orders-table.number') }}
         </div>
         <div :class="$style.column">
-          Amount
+          {{ t('orders-table.amount') }}
         </div>
         <div :class="$style.column">
-          Payment Type
+          {{ t('orders-table.type') }}
         </div>
         <div :class="$style.column">
-          Date
+          {{ t('orders-table.date') }}
+        </div>
+      </div>
+      <div :class="$style.tableOrders">
+        <div
+          v-for="order in orders"
+          :key="order"
+          :class="$style.order"
+        >
+          <div :class="$style.nameWrapper">
+            <div :class="$style.avatar">
+              <Avatar
+                size="xs"
+                shape="circle"
+              />
+            </div>
+            <div
+              :class="[
+                $style.name,
+                $style.orderLightText,
+              ]"
+            >
+              {{ order.name }}
+            </div>
+          </div>
+          <div :class="$style.orderDarkText">
+            #{{ order.number }}
+          </div>
+          <div :class="$style.orderLightText">
+            ${{ order.amount }}
+          </div>
+          <div :class="$style.orderDarkText">
+            {{ order.type }}
+          </div>
+          <div :class="$style.orderLightText">
+            {{ order.date }}
+          </div>
+          <div :class="$style.options">
+            <Options />
+          </div>
         </div>
       </div>
     </div>
@@ -36,7 +75,42 @@
 
 <script lang="ts" setup>
 import Button from '@/components/core/button/Button.vue';
+import Avatar from '@/components/core/avatar/Avatar.vue';
+import Options from '@/components/core/icon/assets/more.svg';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
+
+const orders = [
+  {
+    name: 'Regina Cooper',
+    number: 790841,
+    amount: '2.500',
+    type: 'Credit Card',
+    date: '12.09.2019',
+  },
+  {
+    name: 'Robert Edwards',
+    number: 799894,
+    amount: '2.500',
+    type: 'PayPal',
+    date: '12.09.2019',
+  },
+  {
+    name: 'Gloria Mckinney',
+    number: 790857,
+    amount: '5.600',
+    type: 'Credit Card',
+    date: '12.09.2019',
+  },
+  {
+    name: 'Randall Fisher',
+    number: 790687,
+    amount: '2.850',
+    type: 'PayPal',
+    date: '12.09.2019',
+  },
+];
 </script>
 
 <style lang="scss" module>
@@ -62,13 +136,11 @@ import Button from '@/components/core/button/Button.vue';
   font-size: rem(20px);
   font-weight: 500;
   color: rgb(var(--color-heading));
-  margin-left: rem(15px);
 }
 .table {
   width: 100%;
   height: rem(300px);
   margin-top: rem(30px);
-  background: #000;
 }
 .tableColumns {
   width: 100%;
@@ -78,7 +150,49 @@ import Button from '@/components/core/button/Button.vue';
   display: grid;
   grid-template-columns: 2.5fr 1fr 1fr 1.5fr 1fr;
 }
-.column {
-  background: red;
+.tableOrders {
+  margin-top: rem(12px);
+  width: 100%;
+  display: grid;
+  grid-row-gap: rem(10px);
+}
+.order {
+  width: 100%;
+  height: rem(56px);
+  background-color: rgb(var(--color-background));
+  border-radius: rem(13px);
+  display: grid;
+  align-items: center;
+  grid-template-columns: 2.5fr 1fr 1fr 1.5fr 1fr;
+  position: relative;
+  cursor: pointer;
+}
+.nameWrapper {
+  display: flex;
+  align-items: center;
+}
+.avatar {
+  width: rem(30px);
+  height: rem(30px);
+  margin-left: rem(15px);
+}
+.name {
+  margin-left: rem(15px);
+}
+.orderDarkText {
+  font-size: rem(14px);
+  font-weight: 400;
+  color: rgb(var(--color-body-dark));
+}
+.orderLightText {
+  font-size: rem(14px);
+  font-weight: 400;
+  color: rgb(var(--color-heading));
+}
+.options {
+  position: absolute;
+  right: rem(10px);
+  top: rem(15px);
+  cursor: pointer;
 }
 </style>

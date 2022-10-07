@@ -21,22 +21,22 @@
     </div>
     <div :class="$style.topCards">
       <ChartCardSmall
-        heading="Total Income"
+        :heading="t('charts.total-income')"
         stat="$8500"
         percents="50.8"
         icon="dollarFill"
       />
       <ChartCardSmall
-        heading="Total Sales"
+        :heading="t('charts.total-sales')"
         stat="3.500K"
         percents="50.8"
-        icon="dollarFill"
+        icon="chart"
       />
       <ChartCardSmall
-        heading="New Clients"
+        :heading="t('charts.new-clients')"
         stat="2.500K"
         percents="50.8"
-        icon="dollarFill"
+        icon="userFill"
       />
     </div>
     <div :class="$style.midCards">

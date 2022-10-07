@@ -2,7 +2,7 @@
   <div :class="$style.root">
     <div :class="$style.headingWrap">
       <div :class="$style.heading">
-        Statistics
+        {{ t('charts.statistics') }}
       </div>
       <Button
         variant="secondary"
@@ -25,6 +25,9 @@
 <script lang="ts" setup>
 import VueApexCharts from 'vue3-apexcharts';
 import Button from '@/components/core/button/Button.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const chartOptions = {
   chart: {

@@ -2,7 +2,7 @@
   <div :class="$style.root">
     <div :class="$style.headingWrap">
       <div :class="$style.heading">
-        Sales
+        {{ t('charts.sales') }}
       </div>
       <div :class="$style.options">
         <Options />
@@ -20,7 +20,7 @@
         <div :class="$style.statsHeadingWrapper">
           <div :class="$style.optionColorBlue" />
           <div :class="$style.statsHeading">
-            Current Week
+            {{ t('charts.current-week') }}
           </div>
         </div>
         <div :class="$style.statsNumber">
@@ -33,12 +33,12 @@
           </div>
         </div>
       </div>
-      <div :class="$style.divider"></div>
+      <div :class="$style.divider" />
       <div :class="$style.weekStats">
         <div :class="$style.statsHeadingWrapper">
           <div :class="$style.optionColorOrange" />
           <div :class="$style.statsHeading">
-            Last Week
+            {{ t('charts.last-week') }}
           </div>
         </div>
         <div :class="$style.statsNumber">
@@ -59,7 +59,9 @@
 import VueApexCharts from 'vue3-apexcharts';
 import Options from '@/components/core/icon/assets/moreHorizontal.svg';
 import ArrowUp from '@/components/core/icon/assets/arrow-up.svg';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const chartOptions = {
   chart: {
     type: 'donut',

@@ -45,7 +45,6 @@
             v-for="column in columns"
             :key="column.value"
             :class="$style.record"
-            @click="toggleSelect(record.id)"
           >
             <slot
               :name="`cell(${column.value})`"
@@ -121,15 +120,6 @@ const localSelectedRecords = computed<string[]>({
 const computedRecords = computed<TableRecord[]>(() => props.records.map((el: any) => (
   { ...el, isSelected: localSelectedRecords.value.includes(el.id) }
 )));
-const toggleSelect = (id: string) => {
-  if (localSelectedRecords.value.includes(id)) {
-    localSelectedRecords.value = localSelectedRecords.value.filter(
-      (currentId) => currentId !== id,
-    );
-  } else {
-    localSelectedRecords.value.push(id);
-  }
-};
 const recordIds = ref(props.records.map((record) => record.id));
 const isCheckedAll = ref(false);
 

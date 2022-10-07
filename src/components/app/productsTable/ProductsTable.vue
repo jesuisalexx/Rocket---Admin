@@ -40,11 +40,12 @@
             <More :class="$style.moreBtn" />
           </template>
           <template
-            #cell(select)="{ isSelected }"
+            #cell(select)="{ isSelected, record }"
           >
             <Checkbox
               :model-value="isSelected"
               :class="$style.checkbox"
+              @click="toggleSelect(record.id)"
             />
           </template>
           <template
@@ -107,44 +108,43 @@
           <template
             #record="{ record, isSelected }"
           >
-            <div @click="showProductModal(record)">
-              <div
-                :class="$style.gridRecordPicWrap"
-              >
-                <div :class="$style.badgeWrap">
-                  <Badge :variant="statusMap[record.data.status]">
-                    {{ record.data.status }}
-                  </Badge>
+            <div
+              :class="$style.gridRecordPicWrap"
+            >
+              <div :class="$style.badgeWrap">
+                <Badge :variant="statusMap[record.data.status]">
+                  {{ record.data.status }}
+                </Badge>
+                <div
+                  :class="$style.gridCheckWrap"
+                  @click="toggleSelect(record.id)"
+                >
                   <div
-                    :class="$style.gridCheckWrap"
-                    @click.capture="toggleSelect(record.id)"
-                  >
-                    <div
-                      v-if="!isSelected"
-                      :class="$style.gridCheck"
-                    />
-                    <Check v-else />
-                  </div>
+                    v-if="!isSelected"
+                    :class="$style.gridCheck"
+                  />
+                  <Check v-else />
                 </div>
               </div>
+            </div>
+            <div
+              :class="$style.gridRecordData"
+              @click="showProductModal(record)"
+            >
               <div
-                :class="$style.gridRecordData"
+                :class="$style.recordName"
               >
-                <div
-                  :class="$style.recordName"
-                >
-                  {{ record.data.name }}
+                {{ record.data.name }}
+              </div>
+              <div :class="$style.recordFlexDataWrap">
+                <div :class="$style.recordFlexData">
+                  {{ record.data.date }}
                 </div>
-                <div :class="$style.recordFlexDataWrap">
-                  <div :class="$style.recordFlexData">
-                    {{ record.data.date }}
-                  </div>
-                  <div :class="$style.recordFlexData">
-                    {{ record.data.category }}
-                  </div>
-                  <div :class="$style.recordFlexData">
-                    {{ record.data.price }}
-                  </div>
+                <div :class="$style.recordFlexData">
+                  {{ record.data.category }}
+                </div>
+                <div :class="$style.recordFlexData">
+                  {{ record.data.price }}
                 </div>
               </div>
             </div>
@@ -281,7 +281,6 @@ const records = [
 ];
 const selectedRecords = ref([]);
 const toggleSelect = (id: any) => {
-  console.log(id);
   if (selectedRecords.value.includes(id)) {
     selectedRecords.value = selectedRecords.value.filter(
       (currentId) => currentId !== id,

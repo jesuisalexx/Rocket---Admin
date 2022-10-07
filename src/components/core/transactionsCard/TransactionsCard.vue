@@ -2,7 +2,7 @@
   <div :class="$style.root">
     <div :class="$style.headingWrap">
       <div :class="$style.heading">
-        Transactions
+        {{ t('transactions-card.transactions') }}
       </div>
       <Options />
     </div>
@@ -44,7 +44,9 @@
 <script lang="ts" setup>
 import Options from '@/components/core/icon/assets/moreHorizontal.svg';
 import Avatar from '@/components/core/avatar/Avatar.vue';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const transactions = [
   {
     name: 'Devon Williamson',
@@ -117,6 +119,7 @@ const transactions = [
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: rem(12px);
 }
 .heading {
   font-size: rem(20px);
@@ -125,11 +128,18 @@ const transactions = [
   color: rgb(var(--color-heading));
 }
 .transactionWrapper {
-  margin-top: rem(23px);
+  padding: rem(12px);
   width: 100%;
-  height: rem(40px);
   display: flex;
   justify-content: space-between;
+  border-radius: rem(10px);
+  transition: 0.4s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(var(--color-background));
+    transition: 0.4s;
+  }
 }
 .mainInfoWrapper {
   display: flex;

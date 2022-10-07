@@ -2,7 +2,7 @@
   <div :class="$style.root">
     <div :class="$style.headingWrapper">
       <div :class="$style.heading">
-        Analytics
+        {{ t('charts.analytics') }}
       </div>
       <Button
         variant="secondary"
@@ -45,7 +45,9 @@ import VueApexCharts from 'vue3-apexcharts';
 import Button from '@/components/core/button/Button.vue';
 import ArrowUp from '@/components/core/icon/assets/arrow-up-accent.svg';
 import ArrowDown from '@/components/core/icon/assets/arrow-down-orange.svg';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const chartOptions = {
   chart: {
     height: 350,

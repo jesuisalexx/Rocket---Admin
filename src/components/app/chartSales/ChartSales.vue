@@ -15,6 +15,7 @@
       :options="chartOptions"
       :series="series"
     />
+    <Chart :data="data" />
     <div :class="$style.statsWrapper">
       <div :class="$style.weekStats">
         <div :class="$style.statsHeadingWrapper">
@@ -56,24 +57,27 @@
 </template>
 
 <script lang="ts" setup>
-import VueApexCharts from 'vue3-apexcharts';
+import Chart from '@/components/core/chart/Chart.vue';
 import Options from '@/components/core/icon/assets/moreHorizontal.svg';
 import ArrowUp from '@/components/core/icon/assets/arrow-up.svg';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
-const chartOptions = {
-  chart: {
-    type: 'donut',
+const data = {
+  height: 200,
+  type: 'donut',
+  chartOptions: {
+    chart: {
+      type: 'donut',
+    },
+    labels: ['Last Week', 'Current Week'],
+    colors: ['#FF955C', '#0090FF'],
+    legend: {
+      show: false,
+    },
   },
-  labels: ['Last Week', 'Current Week'],
-  colors: ['#FF955C', '#0090FF'],
-  legend: {
-    show: false,
-  },
+  series: [35, 65],
 };
-const series = [35, 65];
-
 </script>
 
 <style lang="scss" module>

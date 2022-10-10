@@ -30,74 +30,70 @@
         </div>
       </div>
     </div>
-    <VueApexCharts
-      width="100%"
-      height="250"
-      type="area"
-      :options="chartOptions"
-      :series="series"
-    />
+    <Chart :data="data" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import VueApexCharts from 'vue3-apexcharts';
+import Chart from '@/components/core/chart/Chart.vue';
 import Button from '@/components/core/button/Button.vue';
 import ArrowUp from '@/components/core/icon/assets/arrow-up-accent.svg';
 import ArrowDown from '@/components/core/icon/assets/arrow-down-orange.svg';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
-const chartOptions = {
-  chart: {
-    height: 350,
-    type: 'area',
-    toolbar: {
-      show: false,
-    },
-    align: 'left',
-  },
-  legend: {
-    show: false,
-  },
-  xaxis: {
-    categories: [
-      'Mon', 'Tue', 'Wed', 'Thu',
-      'Fri', 'Sat', 'Sun',
-    ],
-  },
-  grid: {
-    xaxis: {
-      lines: {
-        show: true,
-      },
-    },
-    yaxis: {
-      lines: {
+const data = {
+  height: 250,
+  type: 'area',
+  chartOptions: {
+    chart: {
+      toolbar: {
         show: false,
       },
+      align: 'left',
+    },
+    legend: {
+      show: false,
+    },
+    xaxis: {
+      categories: [
+        'Mon', 'Tue', 'Wed', 'Thu',
+        'Fri', 'Sat', 'Sun',
+      ],
+    },
+    grid: {
+      xaxis: {
+        lines: {
+          show: true,
+        },
+      },
+      yaxis: {
+        lines: {
+          show: false,
+        },
+      },
+    },
+    zoom: {
+      enabled: false,
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    stroke: {
+      curve: 'straight',
     },
   },
-  zoom: {
-    enabled: false,
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  stroke: {
-    curve: 'straight',
-  },
+  series: [
+    {
+      data: [0, 350, 270, 1000, 500, 1500, 2100],
+      color: '#0090FF',
+    },
+    {
+      data: [0, 250, 600, 850, 550, 400, 300],
+      color: '#FF955C',
+    },
+  ],
 };
-const series = [
-  {
-    data: [0, 350, 270, 1000, 500, 1500, 2100],
-    color: '#0090FF',
-  },
-  {
-    data: [0, 250, 600, 850, 550, 400, 300],
-    color: '#FF955C',
-  },
-];
 </script>
 
 <style lang="scss" module>

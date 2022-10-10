@@ -12,50 +12,43 @@
         19 Aug – 25 Aug
       </Button>
     </div>
-    <VueApexCharts
-      width="100%"
-      height="300"
-      type="bar"
-      :options="chartOptions"
-      :series="series"
-    />
+    <Chart :data="data" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import VueApexCharts from 'vue3-apexcharts';
+import Chart from '@/components/core/chart/Chart.vue';
 import Button from '@/components/core/button/Button.vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 
-const props = defineProps<{
-  chartData: [],
-}>();
-
-const chartOptions = {
-  chart: {
-    type: 'bar',
-    stacked: true,
-    toolbar: {
-      show: false,
+const data = {
+  height: 300,
+  type: 'bar',
+  chartOptions: {
+    chart: {
+      type: 'bar',
+      stacked: true,
+      toolbar: {
+        show: false,
+      },
     },
   },
-  xaxis: {
-  },
+  series: [
+    {
+      name: 'Income',
+      data: [200, 100, 220, 190, 200, 180, 150],
+      color: '#0090FF',
+    },
+    {
+      name: 'Expenses',
+      data: [190, 172, 171, 80, 170, 140, 60],
+      color: '#FF955C',
+    },
+  ],
 };
-const series = [
-  {
-    name: 'Income',
-    data: [200, 100, 220, 190, 200, 180, 150],
-    color: '#0090FF',
-  },
-  {
-    name: 'Expenses',
-    data: [190, 172, 171, 80, 170, 140, 60],
-    color: '#FF955C',
-  },
-];
+
 </script>
 
 <style lang="scss" module>

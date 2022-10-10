@@ -2,7 +2,7 @@
   <div :class="$style.root">
     <div :class="$style.topBar">
       <div :class="$style.heading">
-        {{ t('main-page.overview') }}
+        {{ t('dashboard.overview') }}
       </div>
       <div :class="$style.buttons">
         <Button
@@ -15,24 +15,24 @@
           variant="grey-simple"
           icon-after="arrowDown2"
         >
-          {{ t('main-page.last-days') }}
+          {{ t('dashboard.last-days') }}
         </Button>
       </div>
     </div>
     <div :class="$style.topCards">
-      <ChartCardSmall
+      <StatsCardSmall
         :heading="t('charts.total-income')"
         stat="$8500"
         percents="50.8"
         icon="dollarFill"
       />
-      <ChartCardSmall
+      <StatsCardSmall
         :heading="t('charts.total-sales')"
         stat="3.500K"
         percents="50.8"
         icon="chart"
       />
-      <ChartCardSmall
+      <StatsCardSmall
         :heading="t('charts.new-clients')"
         stat="2.500K"
         percents="50.8"
@@ -41,7 +41,7 @@
     </div>
     <div :class="$style.midCards">
       <div :class="$style.midTopCards">
-        <ChartStatisticsColumn :chart-data="chartData" />
+        <ChartStatisticsColumn />
         <ChartAnalytics />
       </div>
       <div :class="$style.midBottomCards">
@@ -67,13 +67,13 @@
 <script setup lang="ts">
 import { useSessionStore } from '@/stores/session';
 import { computed } from 'vue';
-import ChartCardSmall from '@/components/core/chartCardSmall/ChartCardSmall.vue';
+import StatsCardSmall from '@/components/core/statsCardSmall/StatsCardSmall.vue';
 import Button from '@/components/core/button/Button.vue';
 import Download from '@/components/core/icon/assets/download.svg';
-import ChartAnalytics from '@/components/core/chartAnalytics/ChartAnalytics.vue';
-import ChartStatisticsColumn from '@/components/core/chartStatisticsColumn/ChartStatisticsColumn.vue';
-import ChartStatisticsBar from '@/components/core/chartStatisticsBar/ChartStatisticsBar.vue';
-import ChartSales from '@/components/core/chartSales/ChartSales.vue';
+import ChartAnalytics from '@/components/app/chartAnalytics/ChartAnalytics.vue';
+import ChartStatisticsColumn from '@/components/app/chartStatisticsColumn/ChartStatisticsColumn.vue';
+import ChartStatisticsBar from '@/components/app/chartStatisticsBar/ChartStatisticsBar.vue';
+import ChartSales from '@/components/app/chartSales/ChartSales.vue';
 import TransactionsCard from '@/components/core/transactionsCard/TransactionsCard.vue';
 import OrdersTable from '@/components/core/ordersTable/OrdersTable.vue';
 import { useI18n } from 'vue-i18n';
@@ -82,24 +82,6 @@ const { t } = useI18n();
 const sessionStore = useSessionStore();
 
 const logout = computed(() => sessionStore.logoutUser);
-const chartData = {
-  categories: [
-    'Mon', 'Tue', 'Wed', 'Thu',
-    'Fri', 'Sat', 'Sun',
-  ],
-  data: [
-    {
-      name: 'Income',
-      data: [200, 100, 220, 190, 200, 180, 150],
-      color: '#0090FF',
-    },
-    {
-      name: 'Expenses',
-      data: [190, 172, 171, 80, 170, 140, 60],
-      color: '#FF955C',
-    },
-  ],
-};
 </script>
 
 <style lang="scss" module>

@@ -31,73 +31,72 @@
         19 Aug – 25 Aug
       </Button>
     </div>
-    <VueApexCharts
-      width="100%"
-      height="300"
-      type="bar"
-      :options="chartOptions"
-      :series="series"
-    />
+    <Chart :data="data" />
   </div>
 </template>
 
 <script lang="ts" setup>
-import VueApexCharts from 'vue3-apexcharts';
+import Chart from '@/components/core/chart/Chart.vue';
 import Button from '@/components/core/button/Button.vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
-const chartOptions = {
-  chart: {
-    type: 'bar',
-    stacked: true,
-    toolbar: {
-      show: false,
-    },
-  },
-  legend: {
-    show: false,
-  },
-  xaxis: {
-    categories: [
-      '25', '24', '23', '22', '21',
-      '20', '19',
-    ],
-  },
-  yaxis: {
-    max: 400,
-    min: -400,
-  },
-  grid: {
-    xaxis: {
-      lines: {
-        show: true,
-      },
-    },
-    yaxis: {
-      lines: {
+
+const data = {
+  height: 300,
+  type: 'bar',
+  chartOptions: {
+    chart: {
+      type: 'bar',
+      stacked: true,
+      toolbar: {
         show: false,
       },
     },
-  },
-  plotOptions: {
-    bar: {
-      horizontal: true,
-      barHeight: '80%',
+    legend: {
+      show: false,
+    },
+    xaxis: {
+      categories: [
+        '25', '24', '23', '22', '21',
+        '20', '19',
+      ],
+    },
+    yaxis: {
+      max: 400,
+      min: -400,
+    },
+    grid: {
+      xaxis: {
+        lines: {
+          show: true,
+        },
+      },
+      yaxis: {
+        lines: {
+          show: false,
+        },
+      },
+    },
+    plotOptions: {
+      bar: {
+        horizontal: true,
+        barHeight: '80%',
+      },
     },
   },
+  series: [
+    {
+      name: 'Income',
+      data: [150, 180, 200, 190, 220, 250, 120],
+      color: '#0090FF',
+    }, {
+      name: 'Expenses',
+      data: [-60, -140, -170, -80, -171, -175, -90],
+      color: '#FF955C',
+    },
+  ],
 };
-const series = [
-  {
-    name: 'Income',
-    data: [150, 180, 200, 190, 220, 250, 120],
-    color: '#0090FF',
-  }, {
-    name: 'Expenses',
-    data: [-60, -140, -170, -80, -171, -175, -90],
-    color: '#FF955C',
-  },
-];
 </script>
 
 <style lang="scss" module>

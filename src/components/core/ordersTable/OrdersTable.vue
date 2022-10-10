@@ -80,37 +80,9 @@ import Options from '@/components/core/icon/assets/more.svg';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
-
-const orders = [
-  {
-    name: 'Regina Cooper',
-    number: 790841,
-    amount: '2.500',
-    type: 'Credit Card',
-    date: '12.09.2019',
-  },
-  {
-    name: 'Robert Edwards',
-    number: 799894,
-    amount: '2.500',
-    type: 'PayPal',
-    date: '12.09.2019',
-  },
-  {
-    name: 'Gloria Mckinney',
-    number: 790857,
-    amount: '5.600',
-    type: 'Credit Card',
-    date: '12.09.2019',
-  },
-  {
-    name: 'Randall Fisher',
-    number: 790687,
-    amount: '2.850',
-    type: 'PayPal',
-    date: '12.09.2019',
-  },
-];
+const props = defineProps<{
+  orders: [],
+}>();
 </script>
 
 <style lang="scss" module>

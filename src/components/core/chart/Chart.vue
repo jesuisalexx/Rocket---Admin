@@ -1,13 +1,11 @@
 <template>
-  <div :class="$style.root">
-    <VueApexCharts
-      width="100%"
-      :height="data.height"
-      :type="data.type"
-      :options="data.chartOptions"
-      :series="data.series"
-    />
-  </div>
+  <VueApexCharts
+    width="100%"
+    :height="data.height"
+    :type="data.type"
+    :options="data.chartOptions"
+    :series="data.series"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -20,8 +18,4 @@ const props = defineProps<{
 
 <style lang="scss" module>
 @import "src/assets/styles/utils";
-
-.root {
-
-}
 </style>

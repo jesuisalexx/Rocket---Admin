@@ -2,23 +2,23 @@
   <div :class="$style.root">
     <div :class="$style.data">
       <div :class="$style.heading">
-        {{ heading }}
+        {{ statistics.text }}
       </div>
       <div :class="$style.statWrap">
         <div :class="$style.stat">
-          {{ stat }}
+          {{ statistics.value }}
         </div>
         <div :class="$style.percentsWrapper">
           <ArrowUp />
           <div :class="$style.percents">
-            {{ percents }} %
+            {{ statistics.percents.value }} %
           </div>
         </div>
       </div>
     </div>
     <div :class="$style.iconWrap">
       <Icon
-        :icon="icon"
+        :icon="statistics.icon"
         :class="$style.icon"
       />
     </div>
@@ -33,10 +33,7 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 
 const props = defineProps<{
-  heading: '',
-  stat: '',
-  icon: '',
-  percents: '',
+  statistics: [],
 }>();
 
 </script>

@@ -4,7 +4,9 @@
       <div :class="$style.heading">
         {{ t('transactions-card.transactions') }}
       </div>
-      <Options />
+      <div :class="$style.options">
+        <Options />
+      </div>
     </div>
     <div
       v-for="transaction in transactions"
@@ -47,58 +49,9 @@ import Avatar from '@/components/core/avatar/Avatar.vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
-const transactions = [
-  {
-    name: 'Devon Williamson',
-    time: '08:00 AM  —  19 August',
-    amount: {
-      isProfit: true,
-      data: '+$1.400',
-    },
-    type: 'Payment',
-    avatar: 'womanAvatar',
-  },
-  {
-    name: 'Debra Wilson',
-    time: '09:45 AM  —  19 August',
-    amount: {
-      isProfit: false,
-      data: '-$850',
-    },
-    type: 'Refund',
-    avatar: 'womanAvatar',
-  },
-  {
-    name: 'Judith Black',
-    time: '10:15 AM  —  20 August',
-    amount: {
-      isProfit: true,
-      data: '+$2.050',
-    },
-    type: 'Payment',
-    avatar: 'womanAvatar',
-  },
-  {
-    name: 'Philip Henry',
-    time: '10:50 AM  —  23 August',
-    amount: {
-      isProfit: true,
-      data: '+$650',
-    },
-    type: 'Payment',
-    avatar: 'womanAvatar',
-  },
-  {
-    name: 'Mitchell Cooper',
-    time: '12:45 AM  —  25 August',
-    amount: {
-      isProfit: true,
-      data: '+$900',
-    },
-    type: 'Payment',
-    avatar: 'womanAvatar',
-  },
-];
+const props = defineProps<{
+  transactions: [],
+}>();
 </script>
 
 <style lang="scss" module>
@@ -112,6 +65,9 @@ const transactions = [
   padding: rem(20px);
   background-color: rgb(var(--color-surface));
   border-radius: rem(20px);
+}
+.options {
+  cursor: pointer;
 }
 .headingWrap {
   width: 100%;

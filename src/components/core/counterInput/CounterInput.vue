@@ -10,7 +10,7 @@
       <input
         v-model="localValue"
         :class="$style.input"
-        type="text"
+        type="number"
       >
     </div>
     <div
@@ -25,11 +25,11 @@
 <script lang="ts" setup>
 import Minus from '@/components/core/icon/assets/minus.svg';
 import Plus from '@/components/core/icon/assets/plus.svg';
-import { defineProps, ref } from 'vue';
+import { defineProps, watchEffect } from 'vue';
 import { useField } from '@/hooks/useField';
 
 const props = defineProps<{
-  modelValue: number
+  modelValue: Number,
 }>();
 const emit = defineEmits([
   'update:modelValue',
@@ -38,12 +38,16 @@ const emit = defineEmits([
 ]);
 const increase = () => emit('increase');
 const decrease = () => emit('decrease');
+
 const {
   localValue,
 } = useField(
   props,
   emit,
 );
+
+watchEffect(() => console.log(props.modelValue));
+
 </script>
 
 <style lang="scss" module>

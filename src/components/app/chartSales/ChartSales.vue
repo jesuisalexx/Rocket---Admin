@@ -8,13 +8,6 @@
         <Options />
       </div>
     </div>
-    <VueApexCharts
-      width="100%"
-      height="200"
-      type="donut"
-      :options="chartOptions"
-      :series="series"
-    />
     <Chart :data="data" />
     <div :class="$style.statsWrapper">
       <div :class="$style.weekStats">
@@ -25,7 +18,7 @@
           </div>
         </div>
         <div :class="$style.statsNumber">
-          2.500
+          {{ data.series[1] }}
         </div>
         <div :class="$style.statsPercentageWrapper">
           <ArrowUp />
@@ -76,7 +69,7 @@ const data = {
       show: false,
     },
   },
-  series: [35, 65],
+  series: [1000, 2500],
 };
 </script>
 
@@ -99,6 +92,9 @@ const data = {
   justify-content: space-between;
   align-items: center;
   margin-bottom: rem(10px);
+}
+.options {
+  cursor: pointer;
 }
 .heading {
   font-size: rem(20px);

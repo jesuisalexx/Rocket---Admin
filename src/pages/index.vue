@@ -20,24 +20,9 @@
       </div>
     </div>
     <div :class="$style.topCards">
-      <StatsCardSmall
-        :heading="t('charts.total-income')"
-        stat="$8500"
-        percents="50.8"
-        icon="dollarFill"
-      />
-      <StatsCardSmall
-        :heading="t('charts.total-sales')"
-        stat="3.500K"
-        percents="50.8"
-        icon="chart"
-      />
-      <StatsCardSmall
-        :heading="t('charts.new-clients')"
-        stat="2.500K"
-        percents="50.8"
-        icon="userFill"
-      />
+      <StatsCardSmall :statistics="statsCards[0]" />
+      <StatsCardSmall :statistics="statsCards[1]" />
+      <StatsCardSmall :statistics="statsCards[2]" />
     </div>
     <div :class="$style.midCards">
       <div :class="$style.midTopCards">
@@ -50,8 +35,8 @@
       </div>
     </div>
     <div :class="$style.bottomCards">
-      <OrdersTable />
-      <TransactionsCard />
+      <OrdersTable :orders="orders" />
+      <TransactionsCard :transactions="transactions" />
     </div>
   </div>
 </template>
@@ -82,6 +67,118 @@ const { t } = useI18n();
 const sessionStore = useSessionStore();
 
 const logout = computed(() => sessionStore.logoutUser);
+
+const statsCards = [
+  {
+    text: 'Total Income',
+    value: '$8500',
+    percents: {
+      isIncrease: true,
+      value: '50.8',
+    },
+    icon: 'dollarFill',
+  },
+  {
+    text: 'Total Sales',
+    value: '3500K',
+    percents: {
+      isIncrease: true,
+      value: '10.5',
+    },
+    icon: 'chart',
+  },
+  {
+    text: 'New Clients',
+    value: '2500K',
+    percents: {
+      isIncrease: true,
+      value: '24.9',
+    },
+    icon: 'userFill',
+  },
+];
+const transactions = [
+  {
+    name: 'Devon Williamson',
+    time: '08:00 AM  —  19 August',
+    amount: {
+      isProfit: true,
+      data: '+$1.400',
+    },
+    type: 'Payment',
+    avatar: 'womanAvatar',
+  },
+  {
+    name: 'Debra Wilson',
+    time: '09:45 AM  —  19 August',
+    amount: {
+      isProfit: false,
+      data: '-$850',
+    },
+    type: 'Refund',
+    avatar: 'womanAvatar',
+  },
+  {
+    name: 'Judith Black',
+    time: '10:15 AM  —  20 August',
+    amount: {
+      isProfit: true,
+      data: '+$2.050',
+    },
+    type: 'Payment',
+    avatar: 'womanAvatar',
+  },
+  {
+    name: 'Philip Henry',
+    time: '10:50 AM  —  23 August',
+    amount: {
+      isProfit: true,
+      data: '+$650',
+    },
+    type: 'Payment',
+    avatar: 'womanAvatar',
+  },
+  {
+    name: 'Mitchell Cooper',
+    time: '12:45 AM  —  25 August',
+    amount: {
+      isProfit: true,
+      data: '+$900',
+    },
+    type: 'Payment',
+    avatar: 'womanAvatar',
+  },
+];
+const orders = [
+  {
+    name: 'Regina Cooper',
+    number: 790841,
+    amount: '2.500',
+    type: 'Credit Card',
+    date: '12.09.2019',
+  },
+  {
+    name: 'Robert Edwards',
+    number: 799894,
+    amount: '2.500',
+    type: 'PayPal',
+    date: '12.09.2019',
+  },
+  {
+    name: 'Gloria Mckinney',
+    number: 790857,
+    amount: '5.600',
+    type: 'Credit Card',
+    date: '12.09.2019',
+  },
+  {
+    name: 'Randall Fisher',
+    number: 790687,
+    amount: '2.850',
+    type: 'PayPal',
+    date: '12.09.2019',
+  },
+];
 </script>
 
 <style lang="scss" module>

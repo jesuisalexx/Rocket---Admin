@@ -34,6 +34,12 @@ const data = {
         show: false,
       },
     },
+    xaxis: {
+      categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    },
+    legend: {
+      horizontalAlign: 'right',
+    },
   },
   series: [
     {

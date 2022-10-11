@@ -71,7 +71,7 @@ const logout = computed(() => sessionStore.logoutUser);
 const statsCards = [
   {
     text: 'Total Income',
-    value: '$8500',
+    value: '$8.500',
     percents: {
       isIncrease: true,
       value: '50.8',
@@ -80,16 +80,16 @@ const statsCards = [
   },
   {
     text: 'Total Sales',
-    value: '3500K',
+    value: '3.500K',
     percents: {
-      isIncrease: true,
+      isIncrease: false,
       value: '10.5',
     },
     icon: 'chart',
   },
   {
     text: 'New Clients',
-    value: '2500K',
+    value: '2.500K',
     percents: {
       isIncrease: true,
       value: '24.9',

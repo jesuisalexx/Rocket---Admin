@@ -55,6 +55,9 @@ const data = {
     legend: {
       show: false,
     },
+    yaxis: {
+      show: false,
+    },
     xaxis: {
       categories: [
         'Mon', 'Tue', 'Wed', 'Thu',
@@ -85,10 +88,12 @@ const data = {
   },
   series: [
     {
+      name: 'Income',
       data: [0, 350, 270, 1000, 500, 1500, 2100],
       color: '#0090FF',
     },
     {
+      name: 'Expense',
       data: [0, 250, 600, 850, 550, 400, 300],
       color: '#FF955C',
     },
@@ -120,12 +125,10 @@ const data = {
   font-size: rem(20px);
   font-weight: 500;
   color: rgb(var(--color-heading));
-  margin-left: rem(15px);
 }
 .arrowsWrapper {
   width: 100%;
   display: flex;
-  margin-left: rem(15px);
 }
 .incomeWrapper {
   display: flex;

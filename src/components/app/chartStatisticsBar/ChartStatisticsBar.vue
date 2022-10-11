@@ -131,6 +131,7 @@ const data = {
 .option {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .expenseOption {
   margin-right: rem(40px);

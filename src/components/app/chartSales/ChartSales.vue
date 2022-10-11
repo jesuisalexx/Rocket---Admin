@@ -21,9 +21,21 @@
           {{ data.series[1] }}
         </div>
         <div :class="$style.statsPercentageWrapper">
-          <ArrowUp />
-          <div :class="$style.statsPercentage">
-            8.8%
+          <div
+            :class="{
+              [$style.arrowGreen]: data.percents[1].isIncrease,
+              [$style.arrowRed]: !data.percents[1].isIncrease
+            }"
+          >
+            <Icon icon="arrow" />
+          </div>
+          <div
+            :class="{
+              [$style.statsPercentageGreen]: data.percents[1].isIncrease,
+              [$style.statsPercentageRed]: !data.percents[1].isIncrease
+            }"
+          >
+            {{ data.percents[1].value }}%
           </div>
         </div>
       </div>
@@ -36,12 +48,24 @@
           </div>
         </div>
         <div :class="$style.statsNumber">
-          1.000
+          {{ data.series[0] }}
         </div>
         <div :class="$style.statsPercentageWrapper">
-          <ArrowUp />
-          <div :class="$style.statsPercentage">
-            5.8%
+          <div
+            :class="{
+              [$style.arrowGreen]: data.percents[0].isIncrease,
+              [$style.arrowRed]: !data.percents[0].isIncrease
+            }"
+          >
+            <Icon icon="arrow" />
+          </div>
+          <div
+            :class="{
+              [$style.statsPercentageGreen]: data.percents[0].isIncrease,
+              [$style.statsPercentageRed]: !data.percents[0].isIncrease
+            }"
+          >
+            {{ data.percents[0].value }}%
           </div>
         </div>
       </div>
@@ -52,11 +76,21 @@
 <script lang="ts" setup>
 import Chart from '@/components/core/chart/Chart.vue';
 import Options from '@/components/core/icon/assets/moreHorizontal.svg';
-import ArrowUp from '@/components/core/icon/assets/arrow-up.svg';
+import Icon from '@/components/core/icon/Icon.vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 const data = {
+  percents: [
+    {
+      isIncrease: false,
+      value: 5.8,
+    },
+    {
+      isIncrease: true,
+      value: 8.8,
+    },
+  ],
   height: 200,
   type: 'donut',
   chartOptions: {
@@ -100,7 +134,6 @@ const data = {
   font-size: rem(20px);
   font-weight: 500;
   color: rgb(var(--color-heading));
-  margin-left: rem(15px);
 }
 .statsWrapper {
   width: 100%;
@@ -117,6 +150,20 @@ const data = {
   height: rem(10px);
   border-radius: 50%;
   background-color: rgb(var(--color-orange));
+}
+.arrowGreen {
+  width: rem(12px);
+  height: rem(11px);
+  rotate: 90deg;
+  color: rgb(var(--color-green));
+  margin-right: rem(2px);
+}
+.arrowRed {
+  width: rem(12px);
+  height: rem(11px);
+  rotate: 270deg;
+  color: rgb(var(--color-red));
+  margin-right: rem(2px);
 }
 .weekStats {
   display: flex;
@@ -143,8 +190,11 @@ const data = {
   display: flex;
   align-items: center;
 }
-.statsPercentage {
+.statsPercentageGreen {
   color: rgb(var(--color-green));
+}
+.statsPercentageRed {
+  color: rgb(var(--color-red));
 }
 .divider {
   width: 100%;

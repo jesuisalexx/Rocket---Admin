@@ -9,9 +9,21 @@
           {{ statistics.value }}
         </div>
         <div :class="$style.percentsWrapper">
-          <ArrowUp />
-          <div :class="$style.percents">
-            {{ statistics.percents.value }} %
+          <div
+            :class="{
+              [$style.arrowGreen]: statistics.percents.isIncrease,
+              [$style.arrowRed]: !statistics.percents.isIncrease
+            }"
+          >
+            <Icon icon="arrow" />
+          </div>
+          <div
+            :class="{
+              [$style.percentsGreen]: statistics.percents.isIncrease,
+              [$style.percentsRed]: !statistics.percents.isIncrease,
+            }"
+          >
+            {{ statistics.percents.value }}%
           </div>
         </div>
       </div>
@@ -26,7 +38,6 @@
 </template>
 
 <script lang="ts" setup>
-import ArrowUp from '@/components/core/icon/assets/arrow-up.svg';
 import Icon from '@/components/core/icon/Icon.vue';
 import { useI18n } from 'vue-i18n';
 
@@ -75,10 +86,32 @@ const props = defineProps<{
   align-items: center;
   margin-left: rem(11px);
 }
-.percents {
+.percentsGreen {
   font-size: rem(15px);
   font-weight: 400;
   color: rgb(var(--color-green));
+  &:hover {
+    color: rgb(var(--color-blue));
+  }
+}
+.percentsRed {
+  font-size: rem(15px);
+  font-weight: 400;
+  color: rgb(var(--color-red));
+}
+.arrowGreen {
+  width: rem(12px);
+  height: rem(11px);
+  rotate: 90deg;
+  color: rgb(var(--color-green));
+  margin-right: rem(3px);
+}
+.arrowRed {
+  width: rem(12px);
+  height: rem(11px);
+  rotate: 270deg;
+  color: rgb(var(--color-red));
+  margin-right: rem(3px);
 }
 .iconWrap {
   width: rem(88px);
@@ -93,6 +126,7 @@ const props = defineProps<{
 .icon {
   width: rem(60px);
   height: rem(60px);
+  color: rgb(var(--color-orange));
   display: flex;
   justify-content: center;
   align-items: center;

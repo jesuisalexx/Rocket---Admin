@@ -16,7 +16,7 @@
         {{ currentVal }}
       </div>
       <div :class="$style.arrow">
-        <ArrowDown />
+        <Icon icon="arrowDown2" />
       </div>
     </div>
     <div
@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import ArrowDown from '@/components/core/icon/assets/arrowDown2.svg';
+import Icon from '@/components/core/icon/Icon.vue';
 import { ref } from 'vue';
 
 const props = defineProps<{

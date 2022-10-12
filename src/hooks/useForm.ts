@@ -7,47 +7,56 @@ import {
   onMounted,
   reactive,
 } from 'vue';
+import { isSchema } from 'yup';
 import {
   createObjectWithValues,
-  getValueByPath,
-  setValueByPath,
 } from '@/utils/object';
+import { FormProps, touchTrigger } from '@/components/core/form';
+import cloneDeep from 'lodash/cloneDeep';
+
+export const getFormInjectKey = (key: string) => `form[${key}]`;
+
+type FormModel = Ref<Record<any, any>>;
+export interface FormProvide {
+  model: FormModel,
+  isValidated: Ref<boolean>,
+  errorsMap: Ref<Record<string, string>>,
+  touchedMap: Record<string, boolean>,
+  touchBy: touchTrigger | undefined,
+  permanentValidate: () => void,
+}
 
 export const useForm = (
-  props: Record<any, any>,
+  props: FormProps,
   emit: any,
   form: Ref<HTMLElement | null>,
 ) => {
-  // TODO: make better
-  const primaryModelState = JSON.stringify(props.modelValue);
-  const isValidated = ref(false);
-  provide('isValidated', isValidated);
+  if (!isSchema(props.validationSchema)) {
+    throw new Error('Form error: invalid yup schema');
+  }
 
   const model = computed({
     get: () => props.modelValue,
     set: (modelValue) => emit('update:modelValue', modelValue),
   });
-
+  const primaryModelState = cloneDeep(props.modelValue);
   const resetModel = () => {
-    model.value = JSON.parse(primaryModelState);
+    model.value = cloneDeep(primaryModelState);
   };
 
   // errors
   const errorsList = ref<Array<{ path: string, message: string }>>([]);
-  const errorsMap = computed(() => errorsList.value.reduce((map, error) => {
-    setValueByPath(map, error.path, error.message);
-    return map;
-  }, {}));
+  const errorsMap = computed(() => errorsList.value.reduce((map, error) => ({
+    ...map,
+    [error.path]: error.message,
+  }), {}));
+
   const isFormValid = computed(() => !errorsList.value.length);
-  provide('errorsMap', errorsMap);
 
   // touch
   const touchedMap = reactive<Record<string, boolean>>(
     createObjectWithValues(model.value, false),
   );
-  const touch = (path: string) => {
-    setValueByPath(touchedMap, path, true);
-  };
   const touchMany = (value: boolean) => {
     Object.assign(
       touchedMap,
@@ -60,11 +69,10 @@ export const useForm = (
   const clearTouchedMap = () => {
     touchMany(false);
   };
-  provide('touchedMap', touchedMap);
-  provide('touch', touch);
-  provide('touchBy', props.touchBy);
 
   // validation
+  const isValidated = ref(false);
+
   const validate = async () => {
     isValidated.value = true;
     try {
@@ -77,8 +85,7 @@ export const useForm = (
           // we need to get path like menus.0.title
           path: path.replaceAll('[', '.').replaceAll(']', ''),
           message,
-        }))
-        .filter(({ path }: any) => getValueByPath(touchedMap, path));
+        }));
     }
     return isFormValid.value;
   };
@@ -86,14 +93,12 @@ export const useForm = (
     if (!props.permanent) return;
     await validate();
   };
-  provide('permanentValidate', permanentValidate);
 
   watch([model, touchedMap], async () => {
     if (props.permanent) {
       await validate();
     }
   });
-  provide('model', model);
 
   const handleSubmit = async () => {
     touchAll();
@@ -111,6 +116,15 @@ export const useForm = (
     clearTouchedMap();
   };
 
+  provide<FormProvide>(getFormInjectKey(props.formKey), {
+    model,
+    isValidated,
+    errorsMap,
+    touchedMap,
+    touchBy: props.touchBy,
+    permanentValidate,
+  });
+
   onMounted(() => {
     // Append hidden button type submit to form.
     // For situations when submit button is outside form
@@ -125,7 +139,6 @@ export const useForm = (
   return {
     model,
     validate,
-    touch,
     touchAll,
     clearTouchedMap,
     errorsList,

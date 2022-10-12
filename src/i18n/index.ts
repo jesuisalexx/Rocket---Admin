@@ -7,6 +7,7 @@ const messages = {
 export type Locales = keyof typeof messages;
 
 export const i18n = createI18n({
+  legacy: false,
   locale: 'en',
   messages,
 });

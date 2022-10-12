@@ -43,7 +43,7 @@
 import { PropType } from 'vue';
 import Icon from '@/components/core/icon/Icon.vue';
 import { uuid } from '@/utils/uuid';
-import { useField } from '@/hooks/useField';
+import { useInput } from '@/hooks/useField';
 
 const props = defineProps({
   modelValue: {
@@ -75,7 +75,7 @@ const {
   onFocus,
   onBlur,
   error,
-} = useField(
+} = useInput(
   props,
   emit,
 );

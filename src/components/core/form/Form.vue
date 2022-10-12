@@ -1,6 +1,7 @@
 <template>
   <form
     ref="form"
+    :class="$style.form"
     @submit.prevent="handleSubmit"
   >
     <slot />
@@ -10,36 +11,24 @@
 <script setup lang="ts">
 import {
   ref,
-  PropType,
   VueElement,
+  defineProps,
 } from 'vue';
 import { useForm } from '@/hooks/useForm';
-import { touchTrigger } from '@/types/form';
+import { DefaultFormKey, FormProps, touchTrigger } from './index';
 
 const form = ref<VueElement | null>(null);
 
-const props = defineProps({
-  modelValue: {
-    type: Object,
-    required: true,
+const props = withDefaults(
+  defineProps<FormProps>(),
+  {
+    permanent: true,
+    touchBy: 'blur' as touchTrigger.BLUR,
+    submitOnEnter: false,
+    formKey: 'default' as DefaultFormKey,
   },
-  validationSchema: {
-    type: Object,
-    required: true,
-  },
-  permanent: {
-    type: Boolean as PropType<boolean>,
-    default: true,
-  },
-  touchBy: {
-    type: String as PropType<touchTrigger>,
-    default: touchTrigger.BLUR,
-  },
-  submitOnEnter: {
-    type: Boolean,
-    default: false,
-  },
-});
+);
+
 const emit = defineEmits(['update:modelValue', 'submit', 'validate']);
 
 const {
@@ -56,4 +45,5 @@ defineExpose({
 </script>
 
 <style lang="scss" module>
+.form {}
 </style>

@@ -2,26 +2,28 @@
   <label
     :class="{
       [$style.root]: true,
+      [$style[state]]: true,
+      [$style[size]]: true,
       [$style.disabled]: isDisabled,
       [$style.error]: error,
-      [$style.select]: type.select
+      [$style.focus]: isFocused,
     }"
   >
-    <div
+    <span
       v-if="('label' in $slots) || label"
       :class="$style.label"
     >
       <slot name="label">
         {{ label }}
       </slot>
-    </div>
+    </span>
     <div :class="$style.field">
       <div
-        v-if="'before' in $slots || iconBefore"
+        v-if="'before' in $slots || props.iconBefore"
         :class="$style.iconBefore"
       >
         <slot name="before">
-          <Icon :icon="iconBefore" />
+          <Icon :icon="props.iconBefore" />
         </slot>
       </div>
       <input
@@ -30,8 +32,8 @@
         v-mask="mask"
         :class="{
           [$style.input]: true,
-          [$style.inputIconBefore]: iconBefore,
-          [$style.inputIconAfter]: iconAfter,
+          [$style.inputIconBefore]: props.iconBefore,
+          [$style.inputIconAfter]: props.iconAfter,
         }"
         :tabindex="(disableTabNavigation || isDisabled) ? -1 : tabIndex"
         :type="computedType"
@@ -53,12 +55,12 @@
         />
       </div>
       <div
-        v-else-if="'after' in $slots || iconAfter"
+        v-else-if="'after' in $slots || props.iconAfter"
         :class="$style.iconAfter"
       >
         <slot name="after">
           <Icon
-            :icon="iconAfter"
+            :icon="props.iconAfter"
           />
         </slot>
       </div>
@@ -73,100 +75,57 @@
 </template>
 
 <script setup lang="ts">
-import Icon from '@/components/core/icon/Icon.vue';
-
+import { computed, nextTick, ref } from 'vue';
+import { useInput } from '@/hooks/useInput';
 import {
-  nextTick, PropType, ref,
-} from 'vue';
-import { useField } from '@/hooks/useField';
-import { inputType } from '@/types/form';
-import { useI18n } from 'vue-i18n';
+  inputType,
+  InputProps,
+  inputState,
+  inputSize,
+} from './index';
 
-const { t } = useI18n();
+const props = withDefaults(
+  defineProps<InputProps>(),
+  {
+    modelValue: '',
+    name: undefined,
+    label: undefined,
+    placeholder: undefined,
+    isDisabled: false,
+    tabIndex: 0,
+    disableTabNavigation: false,
+    type: 'text' as inputType.TEXT,
+    autocomplete: undefined,
+    inputmode: undefined,
+    mask: '',
+    state: 'primary' as inputState.PRIMARY,
+    size: 'md' as inputSize.MD,
+    iconBefore: '',
+    iconAfter: '',
+  },
+);
 
-const props = defineProps({
-  modelValue: {
-    type: [String, Number] as PropType<string | number>,
-    default: null,
-  },
-  name: {
-    type: String as PropType<string>,
-    default: null,
-  },
-  label: {
-    type: String as PropType<string>,
-    default: null,
-  },
-  placeholder: {
-    type: String as PropType<string>,
-    default: null,
-  },
-  isDisabled: {
-    type: Boolean as PropType<boolean>,
-    default: false,
-  },
-  tabIndex: {
-    type: Number as PropType<number>,
-    default: 0,
-  },
-  disableTabNavigation: {
-    type: Boolean as PropType<boolean>,
-    default: false,
-  },
-  type: {
-    type: String as PropType<inputType>,
-    default: inputType.TEXT,
-  },
-  autocomplete: {
-    type: String as PropType<string>,
-    default: undefined,
-  },
-  inputmode: {
-    type: String as PropType<string>,
-    default: undefined,
-  },
-  isGoogleMapsAutocomplete: {
-    type: Boolean as PropType<boolean>,
-    default: false,
-  },
-  detachForm: {
-    type: Boolean as PropType<boolean>,
-    default: false,
-  },
-  mask: {
-    type: String as PropType<string>,
-    default: '',
-  },
-  iconBefore: {
-    type: String as PropType<string>,
-    default: '',
-  },
-  iconAfter: {
-    type: String as PropType<string>,
-    default: '',
-  },
-});
 const emit = defineEmits([
   'update:modelValue',
+  'input',
+  'focus',
   'blur',
-  'gMapAutocomplete',
 ]);
-
-const input = ref<HTMLElement | null>(null);
 
 const {
   localValue,
-  touch,
-  onInput,
-  onFocus,
-  onBlur,
-  computedType,
-  error,
   isPasswordVisible,
   togglePassword,
-} = useField(
-  props,
-  emit,
+  computedType,
+  onInput,
+  isFocused,
+  onFocus,
+  onBlur,
+} = useInput(props, emit);
+
+const input = ref<HTMLElement | null>(null);
+const computedTabIndex = computed(
+  () => ((props.disableTabNavigation || props.isDisabled) ? -1 : props.tabIndex),
 );
 
 const focus = async () => {
@@ -175,8 +134,9 @@ const focus = async () => {
 };
 
 defineExpose({
-  touch,
   focus,
+  togglePassword,
+  isPasswordVisible,
 });
 </script>
 

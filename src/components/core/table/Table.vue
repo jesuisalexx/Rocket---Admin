@@ -125,7 +125,7 @@ const isCheckedAll = ref(false);
 
 const toggleSelectAll = (selectable: any, recordIds: any) => {
   if (selectable) {
-    if (localSelectedRecords.value.length >= 1) {
+    if (localSelectedRecords.value === recordIds) {
       isCheckedAll.value = false;
       localSelectedRecords.value = [];
     } else {

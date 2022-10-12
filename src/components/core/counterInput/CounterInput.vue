@@ -26,7 +26,7 @@
 import Minus from '@/components/core/icon/assets/minus.svg';
 import Plus from '@/components/core/icon/assets/plus.svg';
 import { defineProps, watchEffect } from 'vue';
-import { useField } from '@/hooks/useField';
+import { useInput } from '@/hooks/useInput';
 
 const props = defineProps<{
   modelValue: Number,
@@ -41,7 +41,7 @@ const decrease = () => emit('decrease');
 
 const {
   localValue,
-} = useField(
+} = useInput(
   props,
   emit,
 );

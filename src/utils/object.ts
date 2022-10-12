@@ -24,6 +24,8 @@ export const setValueByPath = (
   }, object);
 };
 
+export const isObject = (item: any) => (typeof item === 'object' && !Array.isArray(item) && item !== null);
+
 export const createObjectWithValues = (
   object: Record<any, any>,
   setValue: any,
@@ -31,7 +33,7 @@ export const createObjectWithValues = (
   .entries(object)
   .reduce((acc, [key, value]) => ({
     ...acc,
-    [key]: (typeof value === 'object' && value !== null)
+    [key]: isObject(value)
       ? createObjectWithValues(value, setValue)
       : setValue,
   }), {});

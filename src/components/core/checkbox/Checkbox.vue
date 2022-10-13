@@ -43,7 +43,7 @@
 import { PropType } from 'vue';
 import Icon from '@/components/core/icon/Icon.vue';
 import { uuid } from '@/utils/uuid';
-import { useInput } from '@/hooks/useField';
+import { useInput } from '@/hooks/useInput';
 
 const props = defineProps({
   modelValue: {

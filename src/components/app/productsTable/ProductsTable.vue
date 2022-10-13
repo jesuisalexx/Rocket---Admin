@@ -2,7 +2,7 @@
   <div :class="$style.root">
     <Card>
       <div :class="$style.fieldWrap">
-        <Field
+        <Input
           icon-before="search"
           icon-after="filter"
           :class="$style.field"
@@ -160,7 +160,7 @@
 
 <script lang="ts" setup>
 import Table from '@/components/core/table/Table.vue';
-import Field from '@/components/core/field/Field.vue';
+import Input from '@/components/core/input/Input.vue';
 import Card from '@/components/core/card/Card.vue';
 import Check from '@/components/core/icon/assets/checked.svg';
 import Badge from '@/components/core/badge/Badge.vue';

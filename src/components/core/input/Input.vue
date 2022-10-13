@@ -77,6 +77,8 @@
 <script setup lang="ts">
 import { computed, nextTick, ref } from 'vue';
 import { useInput } from '@/hooks/useInput';
+import Icon from '@/components/core/icon/Icon.vue';
+import { useI18n } from 'vue-i18n';
 import {
   inputType,
   InputProps,
@@ -122,6 +124,8 @@ const {
   onFocus,
   onBlur,
 } = useInput(props, emit);
+
+const { t } = useI18n();
 
 const input = ref<HTMLElement | null>(null);
 const computedTabIndex = computed(

@@ -12,7 +12,7 @@
         <BigLockIcon />
       </template>
       <template #old-password>
-        <Field
+        <FormInput
           name="oldPassword"
           :label="t('auth.old-password')"
           type="password"
@@ -21,7 +21,7 @@
         />
       </template>
       <template #new-password>
-        <Field
+        <FormInput
           name="newPassword"
           :label="t('auth.new-password')"
           type="password"
@@ -30,7 +30,7 @@
         />
       </template>
       <template #new-password-confirm>
-        <Field
+        <FormInput
           name="newPasswordConfirm"
           :label="t('auth.new-password-confirm')"
           type="password"
@@ -52,7 +52,7 @@
 
 <script setup lang="ts">
 import BigLockIcon from '@/assets/img/bigLock.svg';
-import Field from '@/components/core/field/Field.vue';
+import FormInput from '@/components/core/formInput/FormInput.vue';
 import Button from '@/components/core/button/Button.vue';
 import Form from '@/components/core/form/Form.vue';
 

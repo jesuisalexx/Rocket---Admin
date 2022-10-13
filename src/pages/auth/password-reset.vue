@@ -15,14 +15,14 @@
       {{ t('auth.reset-your-password') }}
     </template>
     <template #email>
-      <Field
+      <FormInput
         name="email"
         :label="t('auth.email')"
         placeholder="cooper@example.com"
       />
     </template>
     <template #old-password>
-      <Field
+      <FormInput
         name="oldPassword"
         :label="t('auth.old-password')"
         type="password"
@@ -31,7 +31,7 @@
       />
     </template>
     <template #new-password>
-      <Field
+      <FormInput
         name="newPassword"
         :label="t('auth.new-password')"
         type="password"
@@ -40,7 +40,7 @@
       />
     </template>
     <template #new-password-confirm>
-      <Field
+      <FormInput
         name="newPasswordConfirm"
         :label="t('auth.new-password-confirm')"
         type="password"
@@ -80,7 +80,7 @@
 
 <script lang="ts" setup>
 import Button from '@/components/core/button/Button.vue';
-import Field from '@/components/core/field/Field.vue';
+import FormInput from '@/components/core/formInput/FormInput.vue';
 import { useI18n } from 'vue-i18n';
 import BigLockIcon from '@/assets/img/bigLock.svg';
 import PasswordResetContainer from '@/containers/passwordResetContainer/PasswordResetContainer.vue';
@@ -89,5 +89,4 @@ const { t } = useI18n();
 </script>
 
 <style lang="scss" module>
-
 </style>

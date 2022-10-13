@@ -24,35 +24,35 @@
         {{ t('auth.or-sign-up-with-email') }}
       </template>
       <template #first-name>
-        <Field
+        <FormInput
           name="firstName"
           :label="t('auth.name')"
           :placeholder="t('profile.name-placeholder')"
         />
       </template>
       <template #last-name>
-        <Field
+        <FormInput
           name="lastName"
           :label="t('auth.last-name')"
           :placeholder="t('profile.last-name-placeholder')"
         />
       </template>
       <template #username>
-        <Field
+        <FormInput
           name="username"
           :label="t('auth.username')"
           :placeholder="t('profile.username-placeholder')"
         />
       </template>
       <template #email>
-        <Field
+        <FormInput
           name="email"
           :label="t('auth.email')"
           :placeholder="t('profile.email-placeholder')"
         />
       </template>
       <template #password>
-        <Field
+        <FormInput
           name="password"
           :label="t('auth.password')"
           type="password"
@@ -61,7 +61,7 @@
         />
       </template>
       <template #password-confirm>
-        <Field
+        <FormInput
           name="confirmPassword"
           type="password"
           :label="t('auth.confirm-password')"
@@ -117,7 +117,7 @@
 
 <script lang="ts" setup>
 import Button from '@/components/core/button/Button.vue';
-import Field from '@/components/core/field/Field.vue';
+import FormInput from '@/components/core/formInput/FormInput.vue';
 import Form from '@/components/core/form/Form.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import GoogleAuthIcon from '@/components/core/icon/assets/google.svg';

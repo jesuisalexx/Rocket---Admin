@@ -10,7 +10,7 @@
         {{ t('auth.recover-your-password') }}
       </template>
       <template #email>
-        <Field
+        <FormInput
           name="login"
           :label="t('auth.email')"
           :placeholder="t('profile.email-placeholder')"
@@ -48,7 +48,7 @@
 
 <script lang="ts" setup>
 import Button from '@/components/core/button/Button.vue';
-import Field from '@/components/core/field/Field.vue';
+import FormInput from '@/components/core/formInput/FormInput.vue';
 import BigLockIcon from '@/assets/img/bigLock.svg';
 import { useI18n } from 'vue-i18n';
 

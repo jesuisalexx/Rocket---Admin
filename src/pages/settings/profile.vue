@@ -9,7 +9,7 @@
         {{ t('profile.profile') }}
       </template>
       <template #firstName>
-        <Input
+        <FormInput
           name="firstName"
           :label="t('profile.name')"
           :placeholder="t('profile.name-placeholder')"
@@ -17,7 +17,7 @@
         />
       </template>
       <template #lastName>
-        <Input
+        <FormInput
           name="lastName"
           :label="t('profile.last-name')"
           :placeholder="t('profile.last-name-placeholder')"
@@ -28,7 +28,7 @@
         <SettingsProfileAvatar />
       </template>
       <template #username>
-        <Input
+        <FormInput
           name="username"
           :label="t('profile.username')"
           :placeholder="t('profile.username-placeholder')"
@@ -43,7 +43,7 @@
         />
       </template>
       <template #job>
-        <Input
+        <FormInput
           name="job"
           :label="t('profile.job')"
           :placeholder="t('profile.job-placeholder')"
@@ -64,7 +64,7 @@
 
 <script lang="ts" setup>
 import ProfileContainer from '@/containers/profileContainer/ProfileContainer.vue';
-import Input from '@/components/core/input/Input.vue';
+import FormInput from '@/components/core/formInput/FormInput.vue';
 import SettingsProfileAvatar from '@/components/core/settingsProfileAvatar/SettingsProfileAvatar.vue';
 import TelInput from '@/components/core/telInput/TelInput.vue';
 import Button from '@/components/core/button/Button.vue';

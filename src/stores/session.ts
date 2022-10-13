@@ -186,7 +186,7 @@ export const useSessionStore = defineStore('session', () => {
           text: t(message),
           duration: 5000,
         });
-      }, data.message);
+      }, data?.message);
     }
     return {
       result,

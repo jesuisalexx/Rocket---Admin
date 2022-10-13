@@ -9,14 +9,14 @@
       [$style.focus]: isFocused,
     }"
   >
-    <span
+    <div
       v-if="('label' in $slots) || label"
       :class="$style.label"
     >
       <slot name="label">
         {{ label }}
       </slot>
-    </span>
+    </div>
     <div :class="$style.field">
       <div
         v-if="'before' in $slots || props.iconBefore"

@@ -39,6 +39,7 @@ export const useProfile = () => {
 
   const fetchProfile = async () => {
     isLoading.value = true;
+    console.log('pika');
     await sessionStore.getProfile();
     const { data } = await sessionStore.getProfile();
     isLoading.value = false;

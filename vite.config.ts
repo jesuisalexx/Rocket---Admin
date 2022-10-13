@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import eslintPlugin from 'vite-plugin-eslint';
 import pagesPlugin from 'vite-plugin-pages';
+import VueTypeImports from 'vite-plugin-vue-type-imports';
 import svgLoader from 'vite-svg-loader';
 import path from 'path';
 
@@ -20,6 +21,7 @@ export default defineConfig({
       svgo: false,
     }),
     pagesPlugin(),
+    VueTypeImports(),
   ],
   resolve: {
     alias: {

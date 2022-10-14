@@ -9,11 +9,13 @@
           variant="grey-simple"
           :class="$style.dowloadBtn"
         >
-          <Download />
+          <div :class="$style.iconWrap">
+            <Icon icon="download" />
+          </div>
         </Button>
         <Button
           variant="grey-simple"
-          icon-after="arrowDown2"
+          icon-after="arrowDown3"
         >
           {{ t('dashboard.last-days') }}
         </Button>
@@ -54,7 +56,7 @@ import { useSessionStore } from '@/stores/session';
 import { computed } from 'vue';
 import StatsCardSmall from '@/components/core/statsCardSmall/StatsCardSmall.vue';
 import Button from '@/components/core/button/Button.vue';
-import Download from '@/components/core/icon/assets/download.svg';
+import Icon from '@/components/core/icon/Icon.vue';
 import ChartAnalytics from '@/components/app/chartAnalytics/ChartAnalytics.vue';
 import ChartStatisticsColumn from '@/components/app/chartStatisticsColumn/ChartStatisticsColumn.vue';
 import ChartStatisticsBar from '@/components/app/chartStatisticsBar/ChartStatisticsBar.vue';
@@ -208,8 +210,13 @@ const orders = [
 .buttons {
   display: flex;
 }
+.iconWrap {
+  width: rem(20px);
+  height: rem(20px);
+}
 .dowloadBtn {
   margin-right: rem(16px);
+  color: rgb(var(--color-body-dark));
 }
 .midCards {
   margin-top: rem(30px);

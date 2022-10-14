@@ -55,6 +55,7 @@ const setListType = (val: any) => {
   width: rem(20px);
   height: rem(20px);
   display: flex;
+  color: rgb(var(--color-body-dark));
 }
 .divider {
   width: rem(1px);

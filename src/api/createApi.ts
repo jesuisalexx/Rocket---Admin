@@ -30,6 +30,8 @@ export const createApi = ({
         headers: headers || null,
       };
     } catch (err: any) {
+      console.log(err);
+
       return {
         result: false,
         status: err.response?.status,

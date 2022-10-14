@@ -1,7 +1,6 @@
 <template>
   <div
     :class="$style.root"
-    @click="show"
   >
     <div
       v-if="isProductSidebarOpen"
@@ -17,7 +16,7 @@
         <Button
           variant="secondary"
           icon-before="download"
-          icon-after="arrowDown2"
+          icon-after="arrowDown3"
         >
           {{ t('products.export') }}
         </Button>

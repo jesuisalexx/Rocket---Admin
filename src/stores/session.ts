@@ -180,13 +180,13 @@ export const useSessionStore = defineStore('session', () => {
   const handleProfileData = async () => {
     const { result, data } = await profileData();
     if (!result) {
-      showServerErrors((message: string) => {
-        toastStore.showDanger({
-          label: t('auth.error.error'),
-          text: t(message),
-          duration: 5000,
-        });
-      }, data?.message);
+      // showServerErrors((message: string) => {
+      //   toastStore.showDanger({
+      //     label: t('auth.error.error'),
+      //     text: t(message),
+      //     duration: 5000,
+      //   });
+      // }, data?.message);
     }
     return {
       result,

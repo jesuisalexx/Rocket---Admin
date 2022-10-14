@@ -9,7 +9,7 @@
         />
         <Button
           variant="secondary"
-          icon-after="arrowDown2"
+          icon-after="arrowDown3"
         >
           {{ t('products.actions') }}
         </Button>

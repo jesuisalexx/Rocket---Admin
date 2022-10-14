@@ -26,7 +26,7 @@
       <Button
         variant="secondary"
         icon-before="calendar"
-        icon-after="arrowDown2"
+        icon-after="arrowDown3"
       >
         19 Aug – 25 Aug
       </Button>

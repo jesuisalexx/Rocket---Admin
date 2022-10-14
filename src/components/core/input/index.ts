@@ -26,4 +26,6 @@ export interface InputProps {
     error?: string,
     state?: inputState,
     size?: inputSize,
+    iconBefore?: string,
+    iconAfter?: string,
 }

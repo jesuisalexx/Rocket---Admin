@@ -138,7 +138,7 @@ const props = defineProps({
   &.grey-simple {
     font-size: rem(14px);
     font-weight: 500;
-    color: rgb(var(--color-body-light));
+    color: rgb(var(--color-body-dark));
     background-color: rgb(var(--color-surface));
     border-radius: rem(14px);
     padding: rem(10px) rem(16px);

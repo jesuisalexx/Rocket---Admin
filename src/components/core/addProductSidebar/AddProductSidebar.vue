@@ -4,7 +4,7 @@
       {{ t('add-product.add-product') }}
     </div>
     <div :class="$style.productName">
-      <Field
+      <Input
         :label="t('add-product.product-name')"
         :placeholder="t('add-product.placeholder')"
       />
@@ -20,13 +20,13 @@
     </div>
     <div :class="$style.priceWrap">
       <div :class="$style.price">
-        <Field
+        <Input
           :label="t('add-product.price')"
           icon-before="dollar"
         />
       </div>
       <div :class="$style.discount">
-        <Field
+        <Input
           :label="t('add-product.discount')"
           icon-before="discount"
         />
@@ -54,7 +54,7 @@
 </template>
 
 <script lang="ts" setup>
-import Field from '@/components/core/field/Field.vue';
+import Input from '@/components/core/input/Input.vue';
 import Select from '@/components/core/select/Select.vue';
 import Editor from '@/components/core/editor/Editor.vue';
 import DragNDrop from '@/components/core/dragNdrop/DragNDrop.vue';

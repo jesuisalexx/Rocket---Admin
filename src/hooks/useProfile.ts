@@ -38,6 +38,7 @@ export const useProfile = () => {
   };
 
   const fetchProfile = async () => {
+    console.log('fetchProfile');
     isLoading.value = true;
     await sessionStore.getProfile();
     const { data } = await sessionStore.getProfile();

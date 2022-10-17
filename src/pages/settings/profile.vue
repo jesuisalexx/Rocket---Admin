@@ -36,7 +36,7 @@
         />
       </template>
       <template #phone>
-        <TelInput
+        <FormInput
           name="phone"
           :model-value="model.phone"
           :label="t('telInput.phone')"

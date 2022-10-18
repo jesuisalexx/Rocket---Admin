@@ -25,11 +25,11 @@
 <script lang="ts" setup>
 import Minus from '@/components/core/icon/assets/minus.svg';
 import Plus from '@/components/core/icon/assets/plus.svg';
-import { defineProps, watchEffect } from 'vue';
+import { defineProps } from 'vue';
 import { useInput } from '@/hooks/useInput';
 
 const props = defineProps<{
-  modelValue: Number,
+  modelValue: number,
 }>();
 const emit = defineEmits([
   'update:modelValue',
@@ -45,9 +45,6 @@ const {
   props,
   emit,
 );
-
-watchEffect(() => console.log(props.modelValue));
-
 </script>
 
 <style lang="scss" module>

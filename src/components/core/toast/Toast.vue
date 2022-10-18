@@ -54,15 +54,15 @@ if (duration) {
 @import "src/assets/styles/utils";
 
 .root {
-  height: 76px;
-  border-radius: 12px;
+  height: rem(76px);
+  border-radius: rem(12px);
   background-color: rgb(var(--color-overlay-light));
   display: flex;
   align-items: center;
   position: relative;
   color: white;
-  padding-left: 20px;
-  padding-right: 100px;
+  padding-left: rem(20px);
+  padding-right: rem(100px);
   cursor: pointer;
 
   &.success {

@@ -55,7 +55,7 @@ const closeModal = (modalId: Modal['id']) => {
   justify-content: center;
   align-items: center;
   pointer-events: none;
-  z-index: 5;
+  z-index: 10;
   &.active {
     pointer-events: all;
     .layer {

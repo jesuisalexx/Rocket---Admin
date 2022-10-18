@@ -109,7 +109,7 @@ const computedState = computed(() => route.meta.headerState || HeaderState.PROFI
   padding-right: rem(30px);
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 5;
 }
 
 .menuButton {

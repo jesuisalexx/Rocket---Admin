@@ -45,6 +45,7 @@ const hideToast = (toastId: ToastType['id']) => {
   justify-content: flex-end;
   align-items: flex-end;
   flex-direction: column;
+  z-index: 15;
 }
 
 .toast {

@@ -20,6 +20,7 @@
                 {{ t('productsModal.quantity') }}
               </div>
               <CounterInput
+                v-model="counter"
                 :model-value="counter"
                 :class="$style.counter"
                 @increase="increaseCounter"

@@ -55,44 +55,44 @@
               :class="$style.recordLightText"
               @click="showProductModal(record)"
             >
-              {{ record.data.name }}
+              {{ record.name }}
             </div>
           </template>
           <template
             #cell(number)="{ record }"
           >
             <div :class="$style.recordDarkText">
-              {{ record.data.number }}
+              {{ record.code }}
             </div>
           </template>
           <template
             #cell(category)="{ record }"
           >
             <div :class="$style.recordLightText">
-              {{ record.data.category }}
+              {{ record.category }}
             </div>
           </template>
           <template
             #cell(date)="{ record }"
           >
             <div :class="$style.recordDarkText">
-              {{ record.data.date }}
+              {{ record.createDate }}
             </div>
           </template>
           <template
             #cell(price)="{ record }"
           >
             <div :class="$style.recordLightText">
-              {{ record.data.price }}
+              {{ record.price }}
             </div>
           </template>
           <template
             #cell(status)="{ record }"
           >
             <Badge
-              :variant="statusMap[record.data.status]"
+              :variant="statusMap[record.status]"
             >
-              {{ record.data.status }}
+              {{ record.status }}
             </Badge>
           </template>
         </Table>
@@ -113,11 +113,11 @@
             >
               <div :class="$style.badgeWrap">
                 <Badge :variant="statusMap[record.data.status]">
-                  {{ record.data.status }}
+                  {{ record.status }}
                 </Badge>
                 <div
                   :class="$style.gridCheckWrap"
-                  @click="toggleSelect(record.id)"
+                  @click="toggleSelect(record.code)"
                 >
                   <div
                     v-if="!isSelected"
@@ -134,17 +134,17 @@
               <div
                 :class="$style.recordName"
               >
-                {{ record.data.name }}
+                {{ record.name }}
               </div>
               <div :class="$style.recordFlexDataWrap">
                 <div :class="$style.recordFlexData">
-                  {{ record.data.date }}
+                  {{ record.date }}
                 </div>
                 <div :class="$style.recordFlexData">
-                  {{ record.data.category }}
+                  {{ record.category }}
                 </div>
                 <div :class="$style.recordFlexData">
-                  {{ record.data.price }}
+                  {{ record.price }}
                 </div>
               </div>
             </div>
@@ -172,13 +172,19 @@ import PaginationBlock from '@/components/core/paginationBlock/PaginationBlock.v
 import { modalType } from '@/types/modal';
 import { useModalStore } from '@/stores/modals';
 import { useI18n } from 'vue-i18n';
+import { useProducts } from '@/hooks/useProducts';
 import { useProductsStorage } from '@/stores/products';
 
 const productsStorage = useProductsStorage();
+
+const { fetchProducts, records } = useProducts();
+
+fetchProducts();
+
 const switchTableValue = computed(() => productsStorage.localSwitchValue);
 const { t } = useI18n();
 const statusMap = {
-  available: 'success',
+  active: 'success',
   disabled: 'warning',
 };
 const gridColumns = {
@@ -229,56 +235,56 @@ const columns = [
     sortable: true,
   },
 ];
-const records = [
-  {
-    id: '1',
-    data: {
-      name: 'iPhone 13 Pro 256GB',
-      number: '#1123',
-      category: 'Phone',
-      date: '21.09.2020',
-      price: '1000$',
-      status: 'available',
-      pic: '',
-    },
-  },
-  {
-    id: '2',
-    data: {
-      name: 'MacBook Pro 13',
-      number: '#2321',
-      category: 'Laptop',
-      date: '25.01.2021',
-      price: '2200$',
-      status: 'disabled',
-      pic: '',
-    },
-  },
-  {
-    id: '3',
-    data: {
-      name: 'iPhone 11 Pro 256GB',
-      number: '#3321',
-      category: 'Phone',
-      date: '11.01.2022',
-      price: '800$',
-      status: 'available',
-      pic: '',
-    },
-  },
-  {
-    id: '4',
-    data: {
-      name: 'iPhone X',
-      number: '#3311',
-      category: 'Phone',
-      date: '12.02.2022',
-      price: '500$',
-      status: 'available',
-      pic: '',
-    },
-  },
-];
+// const records = [
+//   {
+//     id: '1',
+//     data: {
+//       name: 'iPhone 13 Pro 256GB',
+//       number: '#1123',
+//       category: 'Phone',
+//       date: '21.09.2020',
+//       price: '1000$',
+//       status: 'available',
+//       pic: '',
+//     },
+//   },
+//   {
+//     id: '2',
+//     data: {
+//       name: 'MacBook Pro 13',
+//       number: '#2321',
+//       category: 'Laptop',
+//       date: '25.01.2021',
+//       price: '2200$',
+//       status: 'disabled',
+//       pic: '',
+//     },
+//   },
+//   {
+//     id: '3',
+//     data: {
+//       name: 'iPhone 11 Pro 256GB',
+//       number: '#3321',
+//       category: 'Phone',
+//       date: '11.01.2022',
+//       price: '800$',
+//       status: 'available',
+//       pic: '',
+//     },
+//   },
+//   {
+//     id: '4',
+//     data: {
+//       name: 'iPhone X',
+//       number: '#3311',
+//       category: 'Phone',
+//       date: '12.02.2022',
+//       price: '500$',
+//       status: 'available',
+//       pic: '',
+//     },
+//   },
+// ];
 const selectedRecords = ref([]);
 const toggleSelect = (id: any) => {
   if (selectedRecords.value.includes(id)) {

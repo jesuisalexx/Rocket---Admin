@@ -49,7 +49,7 @@
             <slot
               :name="`cell(${column.value})`"
               :record="record"
-              :data="record.data[column.value]"
+              :data="record[column.value]"
               :is-selected="record.isSelected"
             />
             <slot name="options" />
@@ -92,7 +92,6 @@ const props = defineProps<{
   gridColumns: {},
   type: '',
 }>();
-
 const computedColumns = computed(() => {
   const columnsMap = props.columns.map((item: any) => item.size);
   const columnSize = columnsMap.reduce((acc, val) => {

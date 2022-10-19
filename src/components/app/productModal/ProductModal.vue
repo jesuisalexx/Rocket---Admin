@@ -5,11 +5,11 @@
         <PhotoGallery :pictures="pics" />
         <div :class="$style.modalInfo">
           <div :class="$style.heading">
-            {{ product.data.name }}
+            {{ product.name }}
           </div>
           <div :class="$style.number">
             {{ t('productsModal.number') }}
-            {{ product.data.number }}
+            {{ product.number }}
           </div>
           <div :class="$style.description">
             {{ t('productsModal.description') }}
@@ -28,7 +28,7 @@
               />
             </div>
             <div :class="$style.price">
-              {{ product.data.price }}
+              {{ product.price }}
             </div>
           </div>
           <div :class="$style.buttons">
@@ -79,7 +79,6 @@ import { defineProps, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
-
 const props = defineProps<{
   product: {}
 }>();

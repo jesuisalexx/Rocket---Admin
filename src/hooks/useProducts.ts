@@ -14,12 +14,14 @@ export const useProducts = () => {
   const {
     getProductsList,
   } = useProductsStorage();
-  const products = ref([]);
+  const records = ref<any>([]);
   const fetchProducts = async () => {
     await getProductsList;
     const { data } = await getProductsList(model.value);
-    products.value = data.list;
-    console.log(products.value);
+    records.value = data.list.map(
+      (record: any) => ({ ...record, id: record._id }),
+    );
+    console.log(records.value);
     return {
       data,
     };
@@ -27,6 +29,6 @@ export const useProducts = () => {
 
   return {
     fetchProducts,
-    records: products,
+    records,
   };
 };

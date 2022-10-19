@@ -8,5 +8,4 @@ export type TableColumn = {
 export type TableRecord = {
     id: string,
     isSelected: boolean,
-    data: any
 }

@@ -6,6 +6,7 @@
           icon-before="search"
           icon-after="filter"
           :class="$style.field"
+          @click="huj"
         />
         <Button
           variant="secondary"
@@ -117,7 +118,7 @@
                 </Badge>
                 <div
                   :class="$style.gridCheckWrap"
-                  @click="toggleSelect(record.code)"
+                  @click="toggleSelect(record.id)"
                 >
                   <div
                     v-if="!isSelected"
@@ -144,7 +145,7 @@
                   {{ record.category }}
                 </div>
                 <div :class="$style.recordFlexData">
-                  {{ record.price }}
+                  {{ record.price }}$
                 </div>
               </div>
             </div>
@@ -167,7 +168,7 @@ import Badge from '@/components/core/badge/Badge.vue';
 import Button from '@/components/core/button/Button.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import More from '@/components/core/icon/assets/more.svg';
-import { computed, ref } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
 import PaginationBlock from '@/components/core/paginationBlock/PaginationBlock.vue';
 import { modalType } from '@/types/modal';
 import { useModalStore } from '@/stores/modals';
@@ -181,6 +182,10 @@ const { fetchProducts, records } = useProducts();
 
 fetchProducts();
 
+const huj = () => [
+  console.log(records.value),
+  console.log(records.value),
+];
 const switchTableValue = computed(() => productsStorage.localSwitchValue);
 const { t } = useI18n();
 const statusMap = {

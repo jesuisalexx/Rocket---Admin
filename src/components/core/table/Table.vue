@@ -34,7 +34,7 @@
       </div>
       <div
         v-for="record in computedRecords"
-        :key="record.id"
+        :key="record._id"
         :class="$style.records"
       >
         <div
@@ -120,17 +120,20 @@ const computedRecords = computed<TableRecord[]>(() => props.records.map((el: any
   { ...el, isSelected: localSelectedRecords.value.includes(el.id) }
 )));
 const recordIds = ref(props.records.map((record) => record.id));
-const isCheckedAll = ref(false);
+const isCheckedAll = ref(true);
 
 const toggleSelectAll = (selectable: any, recordIds: any) => {
+  console.log(recordIds);
   if (selectable) {
     if (localSelectedRecords.value === recordIds) {
       isCheckedAll.value = false;
+      console.log(localSelectedRecords.value);
       localSelectedRecords.value = [];
     } else {
       isCheckedAll.value = true;
       localSelectedRecords.value = [];
       localSelectedRecords.value = recordIds;
+      console.log(localSelectedRecords.value);
     }
   }
 };

@@ -75,14 +75,16 @@ import PhotoGallery from '@/components/core/photoGallery/PhotoGallery.vue';
 import CounterInput from '@/components/core/counterInput/CounterInput.vue';
 import Button from '@/components/core/button/Button.vue';
 import Like from '@/components/core/icon/assets/like.svg';
-import { defineProps, ref } from 'vue';
+import {
+  defineProps, ref,
+} from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 const props = defineProps<{
   product: {}
 }>();
-
+// const specs = computed(() => props.product.specifications);
 const counter = ref(1);
 const increaseCounter = () => counter.value++;
 const decreaseCounter = () => {
@@ -106,7 +108,6 @@ const pics = [
 ];
 const emit = defineEmits(['close']);
 const close = () => emit('close');
-
 const specifications = [
   {
     name: 'Display',

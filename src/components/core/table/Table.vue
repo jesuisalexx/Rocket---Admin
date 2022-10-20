@@ -64,7 +64,10 @@
       <div
         v-for="record in computedRecords"
         :key="record.id"
-        :class="$style.gridRecord"
+        :class="{
+          [$style.gridRecord]: true,
+          [$style.gridRecordActive]: record.isSelected
+        }"
       >
         <slot
           name="record"
@@ -88,7 +91,6 @@ const props = defineProps<{
   records: Omit<TableRecord, 'isSelected'>[],
   selectedRecords: [],
   selectable: boolean,
-  gridColumns: {},
   type: '',
 }>();
 const computedColumns = computed(() => {
@@ -103,7 +105,6 @@ const computedRowStyles = computed(() => ({
   gridTemplateColumns: computedColumns.value,
 }));
 
-const gridSize = props.gridColumns;
 const emit = defineEmits([
   'update:selectedRecords',
 ]);
@@ -196,6 +197,9 @@ watchEffect(() => {
   border: rem(1px) solid rgb(var(--color-border));
   border-radius: rem(17px);
   cursor: pointer;
+}
+.gridRecordActive {
+  border: rem(1px) solid rgb(var(--color-primary-accent));
 }
 .recordCheckbox {
   width: rem(100px);

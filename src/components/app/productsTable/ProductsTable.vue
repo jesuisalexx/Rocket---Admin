@@ -22,7 +22,6 @@
           :records="records"
           :selectable="true"
           :type="switchTableValue"
-          :grid-columns="gridColumns"
         >
           <template #column(select)="{ isSelected }">
             <Checkbox
@@ -103,7 +102,6 @@
           :records="records"
           :selectable="true"
           :type="switchTableValue"
-          :grid-columns="gridColumns"
         >
           <template
             #record="{ record, isSelected }"
@@ -167,7 +165,7 @@ import Badge from '@/components/core/badge/Badge.vue';
 import Button from '@/components/core/button/Button.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import More from '@/components/core/icon/assets/more.svg';
-import { computed, ref, watchEffect } from 'vue';
+import { computed, ref } from 'vue';
 import PaginationBlock from '@/components/core/paginationBlock/PaginationBlock.vue';
 import { modalType } from '@/types/modal';
 import { useModalStore } from '@/stores/modals';
@@ -186,9 +184,6 @@ const { t } = useI18n();
 const statusMap = {
   active: 'success',
   disabled: 'warning',
-};
-const gridColumns = {
-  gridTemplateColumns: '1fr 1fr 1fr 1fr',
 };
 const columns = [
   {
@@ -282,7 +277,7 @@ const showProductModal = (product: any) => modalsStore.showModal(
   height: rem(35px);
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: rem(30px);
 }
 .moreBtn {
   position: absolute;

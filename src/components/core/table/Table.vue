@@ -34,7 +34,7 @@
       </div>
       <div
         v-for="record in computedRecords"
-        :key="record._id"
+        :key="record.id"
         :class="$style.records"
       >
         <div
@@ -60,7 +60,6 @@
     <div
       v-else-if="type === 'grid'"
       :class="$style.gridTable"
-      :style="gridSize"
     >
       <div
         v-for="record in computedRecords"
@@ -79,7 +78,7 @@
 
 <script lang="ts" setup>
 import {
-  computed, defineProps, ref, watchEffect,
+  computed, defineProps, ref, watch, watchEffect,
 } from 'vue';
 import { TableColumn, TableRecord } from '@/components/core/table/index';
 import Arrow from '@/components/core/icon/assets/arrowDown.svg';
@@ -119,24 +118,22 @@ const localSelectedRecords = computed<string[]>({
 const computedRecords = computed<TableRecord[]>(() => props.records.map((el: any) => (
   { ...el, isSelected: localSelectedRecords.value.includes(el.id) }
 )));
-const recordIds = ref(props.records.map((record) => record.id));
-const isCheckedAll = ref(true);
+const recordIds = computed(() => props.records.map((record) => record.id));
+const isCheckedAll = ref(false);
 
 const toggleSelectAll = (selectable: any, recordIds: any) => {
-  console.log(recordIds);
   if (selectable) {
-    if (localSelectedRecords.value === recordIds) {
+    if (localSelectedRecords.value.length === recordIds.length) {
       isCheckedAll.value = false;
-      console.log(localSelectedRecords.value);
       localSelectedRecords.value = [];
     } else {
       isCheckedAll.value = true;
       localSelectedRecords.value = [];
       localSelectedRecords.value = recordIds;
-      console.log(localSelectedRecords.value);
     }
   }
 };
+watch(props.records, () => localSelectedRecords.value = []);
 watchEffect(() => {
   isCheckedAll.value = localSelectedRecords.value.length === recordIds.value.length;
 });
@@ -190,6 +187,7 @@ watchEffect(() => {
 }
 .gridTable {
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: rem(20px);
 }
 .gridRecord {

@@ -6,7 +6,6 @@
           icon-before="search"
           icon-after="filter"
           :class="$style.field"
-          @click="huj"
         />
         <Button
           variant="secondary"
@@ -84,7 +83,7 @@
             #cell(price)="{ record }"
           >
             <div :class="$style.recordLightText">
-              {{ record.price }}
+              {{ record.price }}$
             </div>
           </template>
           <template
@@ -113,7 +112,7 @@
               :class="$style.gridRecordPicWrap"
             >
               <div :class="$style.badgeWrap">
-                <Badge :variant="statusMap[record.data.status]">
+                <Badge :variant="statusMap[record.status]">
                   {{ record.status }}
                 </Badge>
                 <div
@@ -139,7 +138,7 @@
               </div>
               <div :class="$style.recordFlexDataWrap">
                 <div :class="$style.recordFlexData">
-                  {{ record.date }}
+                  {{ record.createDate }}
                 </div>
                 <div :class="$style.recordFlexData">
                   {{ record.category }}
@@ -182,10 +181,6 @@ const { fetchProducts, records } = useProducts();
 
 fetchProducts();
 
-const huj = () => [
-  console.log(records.value),
-  console.log(records.value),
-];
 const switchTableValue = computed(() => productsStorage.localSwitchValue);
 const { t } = useI18n();
 const statusMap = {
@@ -240,57 +235,8 @@ const columns = [
     sortable: true,
   },
 ];
-// const records = [
-//   {
-//     id: '1',
-//     data: {
-//       name: 'iPhone 13 Pro 256GB',
-//       number: '#1123',
-//       category: 'Phone',
-//       date: '21.09.2020',
-//       price: '1000$',
-//       status: 'available',
-//       pic: '',
-//     },
-//   },
-//   {
-//     id: '2',
-//     data: {
-//       name: 'MacBook Pro 13',
-//       number: '#2321',
-//       category: 'Laptop',
-//       date: '25.01.2021',
-//       price: '2200$',
-//       status: 'disabled',
-//       pic: '',
-//     },
-//   },
-//   {
-//     id: '3',
-//     data: {
-//       name: 'iPhone 11 Pro 256GB',
-//       number: '#3321',
-//       category: 'Phone',
-//       date: '11.01.2022',
-//       price: '800$',
-//       status: 'available',
-//       pic: '',
-//     },
-//   },
-//   {
-//     id: '4',
-//     data: {
-//       name: 'iPhone X',
-//       number: '#3311',
-//       category: 'Phone',
-//       date: '12.02.2022',
-//       price: '500$',
-//       status: 'available',
-//       pic: '',
-//     },
-//   },
-// ];
-const selectedRecords = ref([]);
+
+const selectedRecords = ref(['']);
 const toggleSelect = (id: any) => {
   if (selectedRecords.value.includes(id)) {
     selectedRecords.value = selectedRecords.value.filter(

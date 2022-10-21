@@ -2,14 +2,17 @@
   <div :class="$style.root">
     <div :class="$style.selectWrapper">
       <div :class="$style.select">
-        <Select :options="ops" />
+        <Select
+          :options="ops"
+          @items-amount="items"
+        />
       </div>
       <div :class="$style.text">
         {{ t('pagination.showing') }}
       </div>
     </div>
     <paginate
-      :page-count="pages"
+      :page-count="pagesAmount"
       :prev-link-class="$style.prev"
       :next-link-class="$style.next"
       :page-link-class="$style.page"
@@ -25,14 +28,23 @@
 <script lang="ts" setup>
 import Paginate from 'vuejs-paginate-next';
 import Select from '@/components/core/select/Select.vue';
-import { defineProps } from 'vue';
+import { computed, defineProps, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useProducts } from '@/hooks/useProducts';
 
 const { t } = useI18n();
-
+const products = useProducts();
+const total = computed(() => products.total.value);
+console.log(total);
 const props = defineProps<{
   pages: any
 }>();
+const pagesAmount = ref(1);
+
+const items = (value:any) => {
+  pagesAmount.value = total.value / value;
+  console.log(total.value);
+};
 
 const ops = [
   {

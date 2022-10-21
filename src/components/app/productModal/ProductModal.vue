@@ -9,7 +9,7 @@
           </div>
           <div :class="$style.number">
             {{ t('productsModal.number') }}
-            {{ product.number }}
+            {{ product.code }}
           </div>
           <div :class="$style.description">
             {{ t('productsModal.description') }}

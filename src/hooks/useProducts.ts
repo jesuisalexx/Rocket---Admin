@@ -15,12 +15,14 @@ export const useProducts = () => {
     getProductsList,
   } = useProductsStorage();
   const records = ref([]);
+  const total = ref(0);
   const fetchProducts = async () => {
     await getProductsList;
     const { data } = await getProductsList(model.value);
     records.value = data.list.map(
       (record: any) => ({ ...record, id: record._id }),
     );
+    total.value = data.total;
     return {
       data,
     };
@@ -29,5 +31,6 @@ export const useProducts = () => {
   return {
     fetchProducts,
     records,
+    total,
   };
 };

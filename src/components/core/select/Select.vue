@@ -52,9 +52,14 @@ const firstElem = props.options[0].val;
 
 const currentVal = ref(firstElem);
 
+const emit = defineEmits([
+  'itemsAmount',
+]);
+
 const setVal = (val: any) => {
   currentVal.value = val;
   isOpen.value = false;
+  emit('itemsAmount', val);
 };
 </script>
 

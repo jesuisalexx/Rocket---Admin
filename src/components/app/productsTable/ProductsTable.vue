@@ -178,7 +178,6 @@ const productsStorage = useProductsStorage();
 const { fetchProducts, records } = useProducts();
 
 fetchProducts();
-
 const switchTableValue = computed(() => productsStorage.localSwitchValue);
 const { t } = useI18n();
 const statusMap = {

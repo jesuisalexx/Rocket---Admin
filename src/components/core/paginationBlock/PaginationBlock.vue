@@ -4,6 +4,7 @@
       <div :class="$style.select">
         <Select
           :options="ops"
+          :total-amount="totalProducts"
           @items-amount="items"
         />
       </div>
@@ -28,22 +29,22 @@
 <script lang="ts" setup>
 import Paginate from 'vuejs-paginate-next';
 import Select from '@/components/core/select/Select.vue';
-import { computed, defineProps, ref } from 'vue';
+import {
+  computed,
+  defineProps,
+  ref,
+} from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useProducts } from '@/hooks/useProducts';
 
 const { t } = useI18n();
-const products = useProducts();
-const total = computed(() => products.total.value);
-console.log(total);
 const props = defineProps<{
-  pages: any
+  pages: any,
+  totalAmount: number,
 }>();
 const pagesAmount = ref(1);
-
+const totalProducts = computed(() => props.totalAmount);
 const items = (value:any) => {
-  pagesAmount.value = total.value / value;
-  console.log(total.value);
+  pagesAmount.value = value;
 };
 
 const ops = [

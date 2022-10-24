@@ -43,7 +43,8 @@ import { ref } from 'vue';
 
 const props = defineProps<{
   label: '',
-  options: []
+  options: [],
+  totalAmount: number,
 }>();
 
 const isOpen = ref(false);
@@ -59,7 +60,8 @@ const emit = defineEmits([
 const setVal = (val: any) => {
   currentVal.value = val;
   isOpen.value = false;
-  emit('itemsAmount', val);
+  const pages = props.totalAmount / currentVal.value;
+  emit('itemsAmount', pages);
 };
 </script>
 

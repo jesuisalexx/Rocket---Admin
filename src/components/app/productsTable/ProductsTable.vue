@@ -150,7 +150,10 @@
         </Table>
       </div>
       <div :class="$style.pagination">
-        <PaginationBlock :pages="1" />
+        <PaginationBlock
+          :total-amount="total"
+          :pages="1"
+        />
       </div>
     </Card>
   </div>
@@ -175,9 +178,9 @@ import { useProductsStorage } from '@/stores/products';
 
 const productsStorage = useProductsStorage();
 
-const { fetchProducts, records } = useProducts();
-
+const { fetchProducts, records, total } = useProducts();
 fetchProducts();
+
 const switchTableValue = computed(() => productsStorage.localSwitchValue);
 const { t } = useI18n();
 const statusMap = {

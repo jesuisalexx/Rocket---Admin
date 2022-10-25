@@ -17,11 +17,11 @@
       <div :class="$style.table">
         <Table
           v-if="switchTableValue === 'list'"
-          v-model:selectedRecords="selectedRecords"
           :columns="columns"
           :records="records"
           :selectable="true"
           :type="switchTableValue"
+          :items-per-page="computedItems"
         >
           <template #column(select)="{ isSelected }">
             <Checkbox
@@ -39,12 +39,11 @@
             <More :class="$style.moreBtn" />
           </template>
           <template
-            #cell(select)="{ isSelected, record }"
+            #cell(select)="{ isSelected }"
           >
             <Checkbox
               :model-value="isSelected"
               :class="$style.checkbox"
-              @click="toggleSelect(record.id)"
             />
           </template>
           <template
@@ -97,11 +96,11 @@
         </Table>
         <Table
           v-else-if="switchTableValue === 'grid'"
-          v-model:selectedRecords="selectedRecords"
           :columns="columns"
           :records="records"
           :selectable="true"
           :type="switchTableValue"
+          :items-per-page="computedItems"
         >
           <template
             #record="{ record, isSelected }"
@@ -115,7 +114,6 @@
                 </Badge>
                 <div
                   :class="$style.gridCheckWrap"
-                  @click="toggleSelect(record.id)"
                 >
                   <div
                     v-if="!isSelected"
@@ -153,6 +151,7 @@
         <PaginationBlock
           :total-amount="total"
           :pages="1"
+          @items-per-page="itemsPerPage"
         />
       </div>
     </Card>
@@ -180,6 +179,14 @@ const productsStorage = useProductsStorage();
 
 const { fetchProducts, records, total } = useProducts();
 fetchProducts();
+
+const computedItems = ref(1);
+
+const itemsPerPage = (value: any) => {
+  records.value.length = value;
+  computedItems.value = value;
+  console.log(records.value);
+};
 
 const switchTableValue = computed(() => productsStorage.localSwitchValue);
 const { t } = useI18n();
@@ -232,18 +239,6 @@ const columns = [
     sortable: true,
   },
 ];
-
-const selectedRecords = ref(['']);
-const toggleSelect = (id: any) => {
-  if (selectedRecords.value.includes(id)) {
-    selectedRecords.value = selectedRecords.value.filter(
-      (currentId) => currentId !== id,
-    );
-  } else {
-    selectedRecords.value.push(id);
-  }
-};
-
 const modalsStore = useModalStore();
 
 const showProductModal = (product: any) => modalsStore.showModal(

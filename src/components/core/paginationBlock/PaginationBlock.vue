@@ -3,9 +3,10 @@
     <div :class="$style.selectWrapper">
       <div :class="$style.select">
         <Select
-          :options="ops"
+          :options="options"
           :total-amount="totalProducts"
           @items-amount="items"
+          @items-per-page="itemsPerPage"
         />
       </div>
       <div :class="$style.text">
@@ -41,13 +42,19 @@ const props = defineProps<{
   pages: any,
   totalAmount: number,
 }>();
+const emit = defineEmits([
+  'itemsPerPage',
+]);
+const itemsPerPage = (value: any) => {
+  emit('itemsPerPage', value);
+};
 const pagesAmount = ref(1);
 const totalProducts = computed(() => props.totalAmount);
-const items = (value:any) => {
+const items = (value: any) => {
   pagesAmount.value = value;
 };
 
-const ops = [
+const options = [
   {
     val: 1,
   },

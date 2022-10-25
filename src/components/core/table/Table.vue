@@ -92,6 +92,7 @@ const props = defineProps<{
   selectedRecords: [],
   selectable: boolean,
   type: '',
+  itemsPerPage: number,
 }>();
 const computedColumns = computed(() => {
   const columnsMap = props.columns.map((item: any) => item.size);
@@ -105,38 +106,38 @@ const computedRowStyles = computed(() => ({
   gridTemplateColumns: computedColumns.value,
 }));
 
-const emit = defineEmits([
-  'update:selectedRecords',
-]);
+const selectedRecords = ref(['']);
+const toggleSelect = (id: any) => {
+  if (selectedRecords.value.includes(id)) {
+    selectedRecords.value = selectedRecords.value.filter(
+      (currentId) => currentId !== id,
+    );
+  } else {
+    selectedRecords.value.push(id);
+  }
+};
 
-const localSelectedRecords = computed<string[]>({
-  get: () => props.selectedRecords,
-
-  set: (value) => {
-    emit('update:selectedRecords', value);
-  },
-});
 const computedRecords = computed<TableRecord[]>(() => props.records.map((el: any) => (
-  { ...el, isSelected: localSelectedRecords.value.includes(el.id) }
+  { ...el, isSelected: selectedRecords.value.includes(el.id) }
 )));
 const recordIds = computed(() => props.records.map((record) => record.id));
 const isCheckedAll = ref(false);
 
-const toggleSelectAll = (selectable: any, recordIds: any) => {
+const toggleSelectAll = (selectable: any) => {
   if (selectable) {
-    if (localSelectedRecords.value.length === recordIds.length) {
+    if (selectedRecords.value.length === props.itemsPerPage) {
       isCheckedAll.value = false;
-      localSelectedRecords.value = [];
+      selectedRecords.value = [];
     } else {
       isCheckedAll.value = true;
-      localSelectedRecords.value = [];
-      localSelectedRecords.value = recordIds;
+      selectedRecords.value = [];
+      selectedRecords.value = props.itemsPerPage;
     }
   }
 };
-watch(props.records, () => localSelectedRecords.value = []);
+watch(props.records, () => selectedRecords.value = []);
 watchEffect(() => {
-  isCheckedAll.value = localSelectedRecords.value.length === recordIds.value.length;
+  isCheckedAll.value = selectedRecords.value.length === recordIds.value.length;
 });
 </script>
 

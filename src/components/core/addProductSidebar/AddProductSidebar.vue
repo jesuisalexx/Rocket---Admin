@@ -99,6 +99,9 @@ const categories = [
   height: 100vh;
   background-color: rgb(var(--color-surface));
   padding: rem(30px);
+  position: fixed;
+  top: 0;
+  right: 0;
 }
 .heading {
   font-size: rem(28px);

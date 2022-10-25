@@ -55,13 +55,15 @@ const currentVal = ref(firstElem);
 
 const emit = defineEmits([
   'itemsAmount',
+  'itemsPerPage',
 ]);
 
 const setVal = (val: any) => {
   currentVal.value = val;
   isOpen.value = false;
-  const pages = props.totalAmount / currentVal.value;
+  const pages = Math.ceil(props.totalAmount / currentVal.value);
   emit('itemsAmount', pages);
+  emit('itemsPerPage', currentVal.value);
 };
 </script>
 
@@ -103,6 +105,7 @@ const setVal = (val: any) => {
   background-color: rgb(var(--color-border));
   border-bottom-right-radius: rem(10px);
   border-bottom-left-radius: rem(10px);
+  margin-top: rem(1px);
 }
 .option {
   color: rgb(var(--color-body-light));

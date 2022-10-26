@@ -1,192 +1,157 @@
 <template>
   <div :class="$style.root">
-    <Card>
-      <div :class="$style.fieldWrap">
-        <Input
-          icon-before="search"
-          icon-after="filter"
-          :class="$style.field"
+    <Table
+      v-if="switchTableValue === 'list'"
+      :columns="columns"
+      :records="records"
+      :selectable="true"
+      :type="switchTableValue"
+      :items-per-page="computedItems"
+    >
+      <template #column(select)="{ isSelected }">
+        <Checkbox
+          :model-value="isSelected"
+          :class="$style.checkbox"
         />
-        <Button
-          variant="secondary"
-          icon-after="arrowDown3"
+      </template>
+      <template #column(name) />
+      <template #column(number) />
+      <template #column(category) />
+      <template #column(date) />
+      <template #column(price) />
+      <template #column(status) />
+      <template #options>
+        <More :class="$style.moreBtn" />
+      </template>
+      <template
+        #cell(select)="{ isSelected }"
+      >
+        <Checkbox
+          :model-value="isSelected"
+          :class="$style.checkbox"
+        />
+      </template>
+      <template
+        #cell(name)="{ record }"
+      >
+        <div
+          :class="$style.recordLightText"
+          @click="showProductModal(record)"
         >
-          {{ t('products.actions') }}
-        </Button>
-      </div>
-      <div :class="$style.table">
-        <Table
-          v-if="switchTableValue === 'list'"
-          :columns="columns"
-          :records="records"
-          :selectable="true"
-          :type="switchTableValue"
-          :items-per-page="computedItems"
+          {{ record.name }}
+        </div>
+      </template>
+      <template
+        #cell(number)="{ record }"
+      >
+        <div :class="$style.recordDarkText">
+          {{ record.code }}
+        </div>
+      </template>
+      <template
+        #cell(category)="{ record }"
+      >
+        <div :class="$style.recordLightText">
+          {{ record.category }}
+        </div>
+      </template>
+      <template
+        #cell(date)="{ record }"
+      >
+        <div :class="$style.recordDarkText">
+          {{ record.createDate }}
+        </div>
+      </template>
+      <template
+        #cell(price)="{ record }"
+      >
+        <div :class="$style.recordLightText">
+          {{ record.price }}$
+        </div>
+      </template>
+      <template
+        #cell(status)="{ record }"
+      >
+        <Badge
+          :variant="statusMap[record.status]"
         >
-          <template #column(select)="{ isSelected }">
-            <Checkbox
-              :model-value="isSelected"
-              :class="$style.checkbox"
-            />
-          </template>
-          <template #column(name) />
-          <template #column(number) />
-          <template #column(category) />
-          <template #column(date) />
-          <template #column(price) />
-          <template #column(status) />
-          <template #options>
-            <More :class="$style.moreBtn" />
-          </template>
-          <template
-            #cell(select)="{ isSelected }"
-          >
-            <Checkbox
-              :model-value="isSelected"
-              :class="$style.checkbox"
-            />
-          </template>
-          <template
-            #cell(name)="{ record }"
-          >
-            <div
-              :class="$style.recordLightText"
-              @click="showProductModal(record)"
-            >
-              {{ record.name }}
-            </div>
-          </template>
-          <template
-            #cell(number)="{ record }"
-          >
-            <div :class="$style.recordDarkText">
-              {{ record.code }}
-            </div>
-          </template>
-          <template
-            #cell(category)="{ record }"
-          >
-            <div :class="$style.recordLightText">
-              {{ record.category }}
-            </div>
-          </template>
-          <template
-            #cell(date)="{ record }"
-          >
-            <div :class="$style.recordDarkText">
-              {{ record.createDate }}
-            </div>
-          </template>
-          <template
-            #cell(price)="{ record }"
-          >
-            <div :class="$style.recordLightText">
-              {{ record.price }}$
-            </div>
-          </template>
-          <template
-            #cell(status)="{ record }"
-          >
-            <Badge
-              :variant="statusMap[record.status]"
-            >
+          {{ record.status }}
+        </Badge>
+      </template>
+    </Table>
+    <Table
+      v-else-if="switchTableValue === 'grid'"
+      :columns="columns"
+      :records="records"
+      :selectable="true"
+      :type="switchTableValue"
+      :items-per-page="computedItems"
+    >
+      <template
+        #record="{ record, isSelected }"
+      >
+        <div
+          :class="$style.gridRecordPicWrap"
+        >
+          <div :class="$style.badgeWrap">
+            <Badge :variant="statusMap[record.status]">
               {{ record.status }}
             </Badge>
-          </template>
-        </Table>
-        <Table
-          v-else-if="switchTableValue === 'grid'"
-          :columns="columns"
-          :records="records"
-          :selectable="true"
-          :type="switchTableValue"
-          :items-per-page="computedItems"
-        >
-          <template
-            #record="{ record, isSelected }"
-          >
             <div
-              :class="$style.gridRecordPicWrap"
-            >
-              <div :class="$style.badgeWrap">
-                <Badge :variant="statusMap[record.status]">
-                  {{ record.status }}
-                </Badge>
-                <div
-                  :class="$style.gridCheckWrap"
-                >
-                  <div
-                    v-if="!isSelected"
-                    :class="$style.gridCheck"
-                  />
-                  <Check v-else />
-                </div>
-              </div>
-            </div>
-            <div
-              :class="$style.gridRecordData"
-              @click="showProductModal(record)"
+              :class="$style.gridCheckWrap"
             >
               <div
-                :class="$style.recordName"
-              >
-                {{ record.name }}
-              </div>
-              <div :class="$style.recordFlexDataWrap">
-                <div :class="$style.recordFlexData">
-                  {{ record.createDate }}
-                </div>
-                <div :class="$style.recordFlexData">
-                  {{ record.category }}
-                </div>
-                <div :class="$style.recordFlexData">
-                  {{ record.price }}$
-                </div>
-              </div>
+                v-if="!isSelected"
+                :class="$style.gridCheck"
+              />
+              <Check v-else />
             </div>
-          </template>
-        </Table>
-      </div>
-      <div :class="$style.pagination">
-        <PaginationBlock
-          :total-amount="total"
-          :pages="1"
-          @items-per-page="itemsPerPage"
-        />
-      </div>
-    </Card>
+          </div>
+        </div>
+        <div
+          :class="$style.gridRecordData"
+          @click="showProductModal(record)"
+        >
+          <div
+            :class="$style.recordName"
+          >
+            {{ record.name }}
+          </div>
+          <div :class="$style.recordFlexDataWrap">
+            <div :class="$style.recordFlexData">
+              {{ record.createDate }}
+            </div>
+            <div :class="$style.recordFlexData">
+              {{ record.category }}
+            </div>
+            <div :class="$style.recordFlexData">
+              {{ record.price }}$
+            </div>
+          </div>
+        </div>
+      </template>
+    </Table>
   </div>
 </template>
 
 <script lang="ts" setup>
 import Table from '@/components/core/table/Table.vue';
-import Input from '@/components/core/input/Input.vue';
-import Card from '@/components/core/card/Card.vue';
 import Check from '@/components/core/icon/assets/checked.svg';
 import Badge from '@/components/core/badge/Badge.vue';
-import Button from '@/components/core/button/Button.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import More from '@/components/core/icon/assets/more.svg';
 import { computed, ref } from 'vue';
-import PaginationBlock from '@/components/core/paginationBlock/PaginationBlock.vue';
 import { modalType } from '@/types/modal';
 import { useModalStore } from '@/stores/modals';
 import { useI18n } from 'vue-i18n';
-import { useProducts } from '@/hooks/useProducts';
 import { useProductsStorage } from '@/stores/products';
 
 const productsStorage = useProductsStorage();
-
-const { fetchProducts, records, total } = useProducts();
-fetchProducts();
+const props = defineProps<{
+  records: []
+}>();
 
 const computedItems = ref(1);
-
-const itemsPerPage = (value: any) => {
-  records.value.length = value;
-  computedItems.value = value;
-  console.log(records.value);
-};
 
 const switchTableValue = computed(() => productsStorage.localSwitchValue);
 const { t } = useI18n();
@@ -253,16 +218,6 @@ const showProductModal = (product: any) => modalsStore.showModal(
 .root {
   padding-top: rem(25px);
   font-family: 'Poppins', sans-serif;
-}
-
-.fieldWrap {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.field {
-  width: 89%;
 }
 
 .table {

@@ -4,7 +4,6 @@
       <div :class="$style.select">
         <Select
           :options="options"
-          :total-amount="totalProducts"
           @items-amount="items"
           @items-per-page="itemsPerPage"
         />
@@ -14,7 +13,7 @@
       </div>
     </div>
     <paginate
-      :page-count="pagesAmount"
+      :page-count="pages"
       :prev-link-class="$style.prev"
       :next-link-class="$style.next"
       :page-link-class="$style.page"
@@ -23,6 +22,7 @@
       :next-text="'>'"
       :container-class="'className'"
       :class="$style.pagination"
+      :click-handler="currentPage"
     />
   </div>
 </template>
@@ -31,7 +31,6 @@
 import Paginate from 'vuejs-paginate-next';
 import Select from '@/components/core/select/Select.vue';
 import {
-  computed,
   defineProps,
   ref,
 } from 'vue';
@@ -40,18 +39,21 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 const props = defineProps<{
   pages: any,
-  totalAmount: number,
 }>();
 const emit = defineEmits([
   'itemsPerPage',
+  'setCurrentPage',
 ]);
 const itemsPerPage = (value: any) => {
   emit('itemsPerPage', value);
 };
-const pagesAmount = ref(1);
-const totalProducts = computed(() => props.totalAmount);
+const itemsAmount = ref(1);
 const items = (value: any) => {
-  pagesAmount.value = value;
+  itemsAmount.value = value;
+};
+
+const currentPage = (pageNum: any) => {
+  emit('setCurrentPage', pageNum);
 };
 
 const options = [

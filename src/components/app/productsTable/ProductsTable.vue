@@ -150,9 +150,6 @@ const productsStorage = useProductsStorage();
 const props = defineProps<{
   records: []
 }>();
-
-const computedItems = ref(1);
-
 const switchTableValue = computed(() => productsStorage.localSwitchValue);
 const { t } = useI18n();
 const statusMap = {

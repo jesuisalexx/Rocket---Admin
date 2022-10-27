@@ -14,11 +14,13 @@
       </Button>
     </template>
     <template #table>
-      <ProductsTable :records="records"/>
+      <ProductsTable :records="records" />
     </template>
     <template #pagination>
       <PaginationBlock
+        :pages="computedItems"
         @itemsPerPage="itemsPerPage"
+        @setCurrentPage="setCurrentPage"
       />
     </template>
   </ProductsAllPageContainer>
@@ -32,15 +34,20 @@ import ProductsTable from '@/components/app/productsTable/ProductsTable.vue';
 import Button from '@/components/core/button/Button.vue';
 import { useI18n } from 'vue-i18n';
 import { useProducts } from '@/hooks/useProducts';
+import { ref } from 'vue';
 
 const { t } = useI18n();
 const { fetchProducts, records, total } = useProducts();
 fetchProducts();
-
+const computedItems = ref(1);
+const currentPage = ref(1);
+const setCurrentPage = (value: any) => {
+  currentPage.value = value;
+  console.log(currentPage.value);
+};
 const itemsPerPage = (value: any) => {
-  // records.value.length = value;
-  // computedItems.value = value;
-  console.log(value);
+  records.value.length = value;
+  computedItems.value = Math.ceil(total.value / records.value.length);
 };
 </script>
 

@@ -34,7 +34,7 @@
       </div>
       <div
         v-for="record in computedRecords"
-        :key="record.id"
+        :key="record"
         :class="$style.records"
       >
         <div

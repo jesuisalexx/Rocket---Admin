@@ -44,7 +44,6 @@ import { ref } from 'vue';
 const props = defineProps<{
   label: '',
   options: [],
-  totalAmount: number,
 }>();
 
 const isOpen = ref(false);

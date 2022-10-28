@@ -48,9 +48,7 @@ const props = defineProps<{
 
 const isOpen = ref(false);
 
-const firstElem = props.options[0].val;
-
-const currentVal = ref(firstElem);
+const currentVal = ref(10);
 
 const emit = defineEmits([
   'itemsAmount',
@@ -60,8 +58,6 @@ const emit = defineEmits([
 const setVal = (val: any) => {
   currentVal.value = val;
   isOpen.value = false;
-  const pages = Math.ceil(props.totalAmount / currentVal.value);
-  emit('itemsAmount', pages);
   emit('itemsPerPage', currentVal.value);
 };
 </script>

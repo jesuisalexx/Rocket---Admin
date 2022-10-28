@@ -18,7 +18,7 @@
     </template>
     <template #pagination>
       <PaginationBlock
-        :pages="computedItems"
+        :pages="computedPages"
         @itemsPerPage="itemsPerPage"
         @setCurrentPage="setCurrentPage"
       />
@@ -34,21 +34,29 @@ import ProductsTable from '@/components/app/productsTable/ProductsTable.vue';
 import Button from '@/components/core/button/Button.vue';
 import { useI18n } from 'vue-i18n';
 import { useProducts } from '@/hooks/useProducts';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 const { t } = useI18n();
-const { fetchProducts, records, total } = useProducts();
+const {
+  fetchProducts, records, total, model,
+} = useProducts();
+
 fetchProducts();
-const computedItems = ref(1);
+
+const computedPages = ref(1);
 const currentPage = ref(1);
+
 const setCurrentPage = (value: any) => {
   currentPage.value = value;
-  console.log(currentPage.value);
+  model.value.page = currentPage.value;
 };
 const itemsPerPage = (value: any) => {
-  records.value.length = value;
-  computedItems.value = Math.ceil(total.value / records.value.length);
+  computedPages.value = Math.ceil(total.value / value);
+  model.value.perPage = value;
 };
+watch(computedPages, () => fetchProducts());
+watch(currentPage, () => fetchProducts());
+watch(total, () => computedPages.value = Math.ceil(total.value / 10));
 </script>
 
 <style lang="scss" module>

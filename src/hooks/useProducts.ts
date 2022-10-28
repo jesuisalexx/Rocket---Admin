@@ -32,5 +32,6 @@ export const useProducts = () => {
     fetchProducts,
     records,
     total,
+    model,
   };
 };

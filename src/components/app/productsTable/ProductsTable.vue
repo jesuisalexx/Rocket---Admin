@@ -140,7 +140,7 @@ import Check from '@/components/core/icon/assets/checked.svg';
 import Badge from '@/components/core/badge/Badge.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import More from '@/components/core/icon/assets/more.svg';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { modalType } from '@/types/modal';
 import { useModalStore } from '@/stores/modals';
 import { useI18n } from 'vue-i18n';

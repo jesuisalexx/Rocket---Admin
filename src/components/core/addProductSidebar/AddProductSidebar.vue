@@ -74,19 +74,19 @@ const close = () => {
 
 const categories = [
   {
-    val: 'Phone',
+    value: 'Phone',
   },
   {
-    val: 'Laptop',
+    value: 'Laptop',
   },
   {
-    val: 'Tv',
+    value: 'Tv',
   },
   {
-    val: 'Console',
+    value: 'Console',
   },
   {
-    val: 'Other',
+    value: 'Other',
   },
 ];
 </script>

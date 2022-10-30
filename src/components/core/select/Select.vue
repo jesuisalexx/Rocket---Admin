@@ -27,10 +27,10 @@
         v-for="option in options"
         :key="option"
         :class="$style.option"
-        @click="setVal(option.val)"
+        @click="setVal(option.value)"
       >
         <slot name="option">
-          {{ option.val }}
+          {{ option.value }}
         </slot>
       </div>
     </div>
@@ -47,16 +47,17 @@ const props = defineProps<{
 }>();
 
 const isOpen = ref(false);
+const firstElement = props.options[0].value;
 
-const currentVal = ref(10);
+const currentVal = ref(firstElement);
 
 const emit = defineEmits([
   'itemsAmount',
   'itemsPerPage',
 ]);
 
-const setVal = (val: any) => {
-  currentVal.value = val;
+const setVal = (value: any) => {
+  currentVal.value = value;
   isOpen.value = false;
   emit('itemsPerPage', currentVal.value);
 };
@@ -89,7 +90,7 @@ const setVal = (val: any) => {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: rem(10px);
+  margin-left: rem(7px);
 }
 .dropdown {
   @include useCustomScrollbar;

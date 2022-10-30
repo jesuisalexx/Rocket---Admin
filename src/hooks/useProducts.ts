@@ -17,7 +17,6 @@ export const useProducts = () => {
   const records = ref([]);
   const total = ref(0);
   const fetchProducts = async () => {
-    await getProductsList;
     const { data } = await getProductsList(model.value);
     records.value = data.list.map(
       (record: any) => ({ ...record, id: record._id }),

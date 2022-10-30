@@ -58,19 +58,16 @@ const currentPage = (pageNum: any) => {
 
 const options = [
   {
-    val: 2,
+    value: 10,
   },
   {
-    val: 4,
+    value: 8,
   },
   {
-    val: 6,
+    value: 6,
   },
   {
-    val: 8,
-  },
-  {
-    val: 10,
+    value: 4,
   },
 ];
 </script>
@@ -143,7 +140,7 @@ const options = [
   margin-left: rem(15px);
 }
 .select {
-  width: rem(66px);
+  width: rem(70px);
 }
 .selectWrapper {
   display: flex;

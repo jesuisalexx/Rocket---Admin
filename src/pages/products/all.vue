@@ -18,7 +18,7 @@
     </template>
     <template #pagination>
       <PaginationBlock
-        :pages="computedPages"
+        :pages="pages"
         @itemsPerPage="itemsPerPage"
         @setCurrentPage="setCurrentPage"
       />
@@ -43,20 +43,22 @@ const {
 
 fetchProducts();
 
-const computedPages = ref(1);
+const pages = ref(1);
 const currentPage = ref(1);
+const perPage = ref(10);
 
 const setCurrentPage = (value: any) => {
   currentPage.value = value;
   model.value.page = currentPage.value;
 };
 const itemsPerPage = (value: any) => {
-  computedPages.value = Math.ceil(total.value / value);
+  pages.value = Math.ceil(total.value / value);
   model.value.perPage = value;
+  perPage.value = value;
 };
-watch(computedPages, () => fetchProducts());
+watch(pages, () => fetchProducts());
 watch(currentPage, () => fetchProducts());
-watch(total, () => computedPages.value = Math.ceil(total.value / 10));
+watch(total, () => pages.value = Math.ceil(total.value / perPage.value));
 </script>
 
 <style lang="scss" module>

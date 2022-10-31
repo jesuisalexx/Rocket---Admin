@@ -6,7 +6,7 @@
       :records="records"
       :selectable="true"
       :type="switchTableValue"
-      :items-per-page="computedItems"
+      :is-loading="props.isLoading"
     >
       <template #column(select)="{ isSelected }">
         <Checkbox
@@ -85,7 +85,7 @@
       :records="records"
       :selectable="true"
       :type="switchTableValue"
-      :items-per-page="computedItems"
+      :is-loading="props.isLoading"
     >
       <template
         #record="{ record, isSelected }"
@@ -148,7 +148,8 @@ import { useProductsStorage } from '@/stores/products';
 
 const productsStorage = useProductsStorage();
 const props = defineProps<{
-  records: []
+  records: [],
+  isLoading: boolean,
 }>();
 const switchTableValue = computed(() => productsStorage.localSwitchValue);
 const { t } = useI18n();

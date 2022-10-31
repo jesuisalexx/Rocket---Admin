@@ -1,79 +1,97 @@
 <template>
   <div :class="$style.root">
-    <div
-      v-if="type === 'list'"
-    >
-      <div :class="$style.tableHead">
+    <div v-if="type === 'list'">
+      <Loader
+        v-if="isLoading"
+        :class="$style.loader"
+      />
+      <div v-else>
         <div
-          :class="$style.columnsWrap"
-          :style="computedRowStyles"
+          :class="$style.tableHead"
         >
           <div
-            v-for="column in columns"
-            :key="column.label"
-            :class="$style.columns"
+            :class="$style.columnsWrap"
+            :style="computedRowStyles"
           >
             <div
-              :class="$style.columnsLabel"
-              @click="toggleSelectAll(column.selectable, recordIds)"
+              v-for="column in columns"
+              :key="column.label"
+              :class="$style.columns"
             >
-              <slot
-                :name="`column(${column.value})`"
-                :column="column"
-                :is-selected="isCheckedAll"
+              <div
+                :class="$style.columnsLabel"
+                @click="toggleSelectAll(column.selectable, recordIds)"
               >
-                {{ column.label }}
-              </slot>
-              <Arrow
-                v-if="column.sortable"
-                :class="$style.sortable"
-              />
+                <slot
+                  :name="`column(${column.value})`"
+                  :column="column"
+                  :is-selected="isCheckedAll"
+                >
+                  {{ column.label }}
+                </slot>
+                <Arrow
+                  v-if="column.sortable"
+                  :class="$style.sortable"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div
-        v-for="record in computedRecords"
-        :key="record"
-        :class="$style.records"
-      >
         <div
-          :class="$style.recordWrap"
-          :style="computedRowStyles"
+          v-for="record in computedRecords"
+          :key="record"
+          :class="$style.records"
+          @click="toggleSelect(record.id)"
         >
           <div
-            v-for="column in columns"
-            :key="column.value"
-            :class="$style.record"
+            :class="$style.recordWrap"
+            :style="computedRowStyles"
           >
-            <slot
-              :name="`cell(${column.value})`"
-              :record="record"
-              :data="record[column.value]"
-              :is-selected="record.isSelected"
-            />
-            <slot name="options" />
+            <div
+              v-for="column in columns"
+              :key="column.value"
+              :class="$style.record"
+            >
+              <slot
+                :name="`cell(${column.value})`"
+                :record="record"
+                :data="record[column.value]"
+                :is-selected="record.isSelected"
+              />
+              <slot
+                name="options"
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div
       v-else-if="type === 'grid'"
-      :class="$style.gridTable"
     >
+      <Loader
+        v-if="isLoading"
+        :class="$style.loader"
+      />
       <div
-        v-for="record in computedRecords"
-        :key="record.id"
-        :class="{
-          [$style.gridRecord]: true,
-          [$style.gridRecordActive]: record.isSelected
-        }"
+        v-else
+        :class="$style.gridTable"
       >
-        <slot
-          name="record"
-          :record="record"
-          :is-selected="record.isSelected"
-        />
+        <div
+          v-for="record in computedRecords"
+          :key="record.id"
+          :class="{
+            [$style.gridRecord]: true,
+            [$style.gridRecordActive]: record.isSelected
+          }"
+          @click="toggleSelect(record.id)"
+        >
+          <slot
+            name="record"
+            :record="record"
+            :is-selected="record.isSelected"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -85,14 +103,16 @@ import {
 } from 'vue';
 import { TableColumn, TableRecord } from '@/components/core/table/index';
 import Arrow from '@/components/core/icon/assets/arrowDown.svg';
+import Loader from '@/components/core/loader/Loader.vue';
 
 const props = defineProps<{
   columns: TableColumn[],
   records: Omit<TableRecord, 'isSelected'>[],
-  selectedRecords: [],
+  selectedRecords: [''],
   selectable: boolean,
   type: '',
   itemsPerPage: number,
+  isLoading: boolean,
 }>();
 const computedColumns = computed(() => {
   const columnsMap = props.columns.map((item: any) => item.size);
@@ -108,6 +128,7 @@ const computedRowStyles = computed(() => ({
 
 const selectedRecords = ref(['']);
 const toggleSelect = (id: any) => {
+  console.log(id);
   if (selectedRecords.value.includes(id)) {
     selectedRecords.value = selectedRecords.value.filter(
       (currentId) => currentId !== id,
@@ -125,16 +146,17 @@ const isCheckedAll = ref(false);
 
 const toggleSelectAll = (selectable: any) => {
   if (selectable) {
-    if (selectedRecords.value.length === props.itemsPerPage) {
+    if (selectedRecords.value.length === recordIds.value.length) {
       isCheckedAll.value = false;
       selectedRecords.value = [];
     } else {
       isCheckedAll.value = true;
       selectedRecords.value = [];
-      selectedRecords.value = props.itemsPerPage;
+      selectedRecords.value = recordIds.value;
     }
   }
 };
+
 watch(props.records, () => selectedRecords.value = []);
 watchEffect(() => {
   isCheckedAll.value = selectedRecords.value.length === recordIds.value.length;
@@ -145,6 +167,10 @@ watchEffect(() => {
 @import "src/assets/styles/utils";
 
 .root {
+}
+.loader {
+  width: 100%;
+  margin-left: 50%;
 }
 .tableHead {
   display: flex;

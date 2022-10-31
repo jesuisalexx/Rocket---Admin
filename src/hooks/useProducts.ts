@@ -16,12 +16,15 @@ export const useProducts = () => {
   } = useProductsStorage();
   const records = ref([]);
   const total = ref(0);
+  const isLoading = ref(false);
   const fetchProducts = async () => {
+    isLoading.value = true;
     const { data } = await getProductsList(model.value);
     records.value = data.list.map(
       (record: any) => ({ ...record, id: record._id }),
     );
     total.value = data.total;
+    isLoading.value = false;
     return {
       data,
     };
@@ -32,5 +35,6 @@ export const useProducts = () => {
     records,
     total,
     model,
+    isLoading,
   };
 };

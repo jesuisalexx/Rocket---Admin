@@ -61,13 +61,13 @@ const options = [
     value: 10,
   },
   {
-    value: 8,
+    value: 20,
   },
   {
-    value: 6,
+    value: 25,
   },
   {
-    value: 4,
+    value: 50,
   },
 ];
 </script>

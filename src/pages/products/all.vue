@@ -14,7 +14,10 @@
       </Button>
     </template>
     <template #table>
-      <ProductsTable :records="records" />
+      <ProductsTable
+        :is-loading="isLoading"
+        :records="records"
+      />
     </template>
     <template #pagination>
       <PaginationBlock
@@ -38,7 +41,7 @@ import { ref, watch } from 'vue';
 
 const { t } = useI18n();
 const {
-  fetchProducts, records, total, model,
+  fetchProducts, records, total, model, isLoading,
 } = useProducts();
 
 fetchProducts();

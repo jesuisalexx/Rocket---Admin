@@ -87,27 +87,33 @@
       :type="switchTableValue"
       :is-loading="props.isLoading"
     >
+      <template #image="{ img }">
+        <div :class="$style.img">
+          <img
+            :src="img"
+            alt=""
+          >
+        </div>
+      </template>
+      <template #badge="{ record }">
+        <Badge :variant="statusMap[record.status]">
+          {{ record.status }}
+        </Badge>
+      </template>
       <template
-        #record="{ record, isSelected }"
+        #select="{ isSelected }"
       >
         <div
-          :class="$style.gridRecordPicWrap"
+          :class="$style.gridCheckWrap"
         >
-          <div :class="$style.badgeWrap">
-            <Badge :variant="statusMap[record.status]">
-              {{ record.status }}
-            </Badge>
-            <div
-              :class="$style.gridCheckWrap"
-            >
-              <div
-                v-if="!isSelected"
-                :class="$style.gridCheck"
-              />
-              <Check v-else />
-            </div>
-          </div>
+          <div
+            v-if="!isSelected"
+            :class="$style.gridCheck"
+          />
+          <Check v-else />
         </div>
+      </template>
+      <template #recordData="{ record }">
         <div
           :class="$style.gridRecordData"
           @click="showProductModal(record)"
@@ -252,12 +258,6 @@ const showProductModal = (product: any) => modalsStore.showModal(
   display: flex;
   align-items: center;
 }
-.gridRecordPicWrap {
-  position: relative;
-  height: rem(267px);
-  border-bottom: rem(1px) solid rgb(var(--color-border));
-  padding: rem(16px);
-}
 .gridCheck {
   width: rem(16px);
   height: rem(16px);
@@ -268,11 +268,14 @@ const showProductModal = (product: any) => modalsStore.showModal(
   width: 100%;
   padding: rem(16px);
 }
-.badgeWrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 5;
+.img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: rem(17px) rem(17px) 0 0;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 .gridCheckWrap {
   width: rem(16px);

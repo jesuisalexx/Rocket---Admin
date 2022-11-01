@@ -13,6 +13,7 @@
       </div>
     </div>
     <paginate
+      v-model="localModel"
       :page-count="pages"
       :prev-link-class="$style.prev"
       :next-link-class="$style.next"
@@ -22,7 +23,6 @@
       :next-text="'>'"
       :container-class="'className'"
       :class="$style.pagination"
-      :click-handler="currentPage"
     />
   </div>
 </template>
@@ -31,29 +31,34 @@
 import Paginate from 'vuejs-paginate-next';
 import Select from '@/components/core/select/Select.vue';
 import {
+  computed,
   defineProps,
-  ref,
+  ref, watch,
 } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const { t } = useI18n();
 const props = defineProps<{
   pages: any,
+  currentPage: number,
 }>();
 const emit = defineEmits([
   'itemsPerPage',
   'setCurrentPage',
 ]);
+const localModel = computed({
+  get: () => props.currentPage,
+
+  set: (value) => {
+    emit('setCurrentPage', value);
+  },
+});
 const itemsPerPage = (value: any) => {
   emit('itemsPerPage', value);
 };
 const itemsAmount = ref(1);
 const items = (value: any) => {
   itemsAmount.value = value;
-};
-
-const currentPage = (pageNum: any) => {
-  emit('setCurrentPage', pageNum);
 };
 
 const options = [

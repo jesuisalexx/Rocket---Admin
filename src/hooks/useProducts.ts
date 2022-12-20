@@ -1,6 +1,6 @@
 import { useProductsStorage } from '@/stores/products';
 import { ref } from 'vue';
-import { ProductsListDto } from '@/api/dto/auth';
+import { ProductsListDto } from '@/api/dto/products';
 
 export const useProducts = () => {
   const model = ref<ProductsListDto>({

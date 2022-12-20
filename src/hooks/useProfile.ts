@@ -1,6 +1,6 @@
 import { useSessionStore } from '@/stores/session';
 import { ref } from 'vue';
-import { ProfileUpdateDto } from '@/api/dto/auth';
+import { ProfileUpdateDto } from '@/api/dto/profile';
 import {
   object, string,
 } from 'yup';

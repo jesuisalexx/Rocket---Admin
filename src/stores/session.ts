@@ -4,12 +4,10 @@ import { defineStore } from 'pinia';
 import { router } from '@/router';
 import { useAuthToken } from '@/hooks/useAuthToken';
 import { RouteLocationRaw } from 'vue-router';
-import {
-  signIn, signUp, changePassword, profileUpdate, profileData,
-} from '@/api/endpoints/auth';
-import {
-  SignInDto, SignUpDto, ChangePasswordDto, ProfileUpdateDto,
-} from '@/api/dto/auth';
+import { changePassword, signIn, signUp } from '@/api/endpoints/auth';
+import { profileData, profileUpdate } from '@/api/endpoints/profile';
+import { ChangePasswordDto, SignInDto, SignUpDto } from '@/api/dto/auth';
+import { ProfileUpdateDto } from '@/api/dto/profile';
 import { useToastStore } from '@/stores/toasts';
 import { useI18n } from 'vue-i18n';
 import { showServerErrors } from '@/utils/server';
@@ -54,9 +52,15 @@ export const useSessionStore = defineStore('session', () => {
     async (token) => {
       isAuthorized.value = !!token;
 
-      const { guestRequired, authRequired } = router.currentRoute.value.meta;
+      const {
+        guestRequired,
+        authRequired,
+      } = router.currentRoute.value.meta;
 
-      const { result, redirect } = checkAuth(
+      const {
+        result,
+        redirect,
+      } = checkAuth(
         isAuthorized.value,
         guestRequired,
         authRequired,
@@ -66,14 +70,20 @@ export const useSessionStore = defineStore('session', () => {
         await router.push(redirect);
       }
     },
-    { deep: true, immediate: true },
+    {
+      deep: true,
+      immediate: true,
+    },
   );
 
   const toastStore = useToastStore();
   const { t } = useI18n();
 
   const handleSignIn = async (model: SignInDto, remember: boolean) => {
-    const { result, data } = await signIn(model);
+    const {
+      result,
+      data,
+    } = await signIn(model);
 
     if (result) {
       setToken(data, remember);
@@ -100,7 +110,10 @@ export const useSessionStore = defineStore('session', () => {
     };
   };
   const handleSignUp = async (model: SignUpDto, accept: boolean) => {
-    const { result, data } = await signUp(model);
+    const {
+      result,
+      data,
+    } = await signUp(model);
 
     if (result) {
       setToken(data, accept);
@@ -127,7 +140,10 @@ export const useSessionStore = defineStore('session', () => {
     };
   };
   const handleChangePassword = async (model: ChangePasswordDto) => {
-    const { result, data } = await changePassword(model);
+    const {
+      result,
+      data,
+    } = await changePassword(model);
 
     if (result) {
       toastStore.showSuccess(
@@ -153,7 +169,10 @@ export const useSessionStore = defineStore('session', () => {
     };
   };
   const handleUpdateProfile = async (model: ProfileUpdateDto) => {
-    const { result, data } = await profileUpdate(model);
+    const {
+      result,
+      data,
+    } = await profileUpdate(model);
     if (result) {
       toastStore.showSuccess(
         {
@@ -178,7 +197,10 @@ export const useSessionStore = defineStore('session', () => {
   };
 
   const handleProfileData = async () => {
-    const { result, data } = await profileData();
+    const {
+      result,
+      data,
+    } = await profileData();
     if (!result) {
       showServerErrors((message: string) => {
         toastStore.showDanger({

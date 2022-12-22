@@ -1,5 +1,5 @@
 import { ProfileUpdateDto } from '@/api/dto/profile';
-import { get, patch } from '@/api/transport';
+import { get, patch } from '@/api';
 
 export const profileUpdate = (profileUpdateDto: ProfileUpdateDto) => patch('/me', profileUpdateDto);
 

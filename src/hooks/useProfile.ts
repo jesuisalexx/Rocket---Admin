@@ -1,13 +1,11 @@
-import { useSessionStore } from '@/stores/session';
+import { useProfileStore } from '@/stores/profile';
 import { ref } from 'vue';
-import { ProfileUpdateDto } from '@/api/dto/auth';
-import {
-  object, string,
-} from 'yup';
+import { ProfileUpdateDto } from '@/api/dto/profile';
+import { object, string } from 'yup';
 import { useI18n } from 'vue-i18n';
 
 export const useProfile = () => {
-  const sessionStore = useSessionStore();
+  const profileStore = useProfileStore();
   const { t } = useI18n();
 
   const model = ref<ProfileUpdateDto>({
@@ -18,18 +16,19 @@ export const useProfile = () => {
     job: '',
   });
 
-  const validationSchema = object().shape({
-    firstName: string()
-      .required(t('auth.error.first-name-required')),
-    lastName: string()
-      .required(t('auth.error.last-name-required')),
-    username: string()
-      .required(t('auth.error.username-required')),
-    phone: string()
-      .required(t('auth.error.phone-required')),
-    job: string()
-      .required(t('auth.error.job-required')),
-  });
+  const validationSchema = object()
+    .shape({
+      firstName: string()
+        .required(t('auth.error.first-name-required')),
+      lastName: string()
+        .required(t('auth.error.last-name-required')),
+      username: string()
+        .required(t('auth.error.username-required')),
+      phone: string()
+        .required(t('auth.error.phone-required')),
+      job: string()
+        .required(t('auth.error.job-required')),
+    });
 
   const isLoading = ref(false);
 
@@ -39,8 +38,8 @@ export const useProfile = () => {
 
   const fetchProfile = async () => {
     isLoading.value = true;
-    await sessionStore.getProfile();
-    const { data } = await sessionStore.getProfile();
+    await profileStore.getProfile();
+    const { data } = await profileStore.getProfile();
     isLoading.value = false;
 
     setProfile(model.value, data);
@@ -52,7 +51,7 @@ export const useProfile = () => {
 
   const submit = async () => {
     isLoading.value = true;
-    await sessionStore.profileUpdate(model.value);
+    await profileStore.profileUpdate(model.value);
     isLoading.value = false;
   };
 

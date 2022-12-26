@@ -3,32 +3,75 @@
     <Table
       v-if="switchTableValue === 'list'"
       :columns="columns"
+      :is-loading="props.isLoading"
       :records="records"
       :selectable="true"
       :type="switchTableValue"
-      :is-loading="props.isLoading"
     >
-      <template #column(select)="{ isSelected }">
+      <template
+        v-if="isAdmin"
+        #column(select)="{ isSelected }"
+      >
         <Checkbox
-          :model-value="isSelected"
           :class="$style.checkbox"
+          :model-value="isSelected"
         />
       </template>
-      <template #column(name) />
-      <template #column(number) />
-      <template #column(category) />
-      <template #column(date) />
-      <template #column(price) />
-      <template #column(status) />
+      <template #column(name)="{ column }">
+        <div>{{ column.label }}</div>
+        <Arrow
+          v-if="column.sortable"
+          :class="$style.sortable"
+        />
+      </template>
+      <template #column(number)="{ column }">
+        <div>{{ column.label }}</div>
+        <Arrow
+          v-if="column.sortable"
+          :class="$style.sortable"
+        />
+      </template>
+      <template #column(category)="{ column }">
+        <div>{{ column.label }}</div>
+        <Arrow
+          v-if="column.sortable"
+          :class="$style.sortable"
+        />
+      </template>
+      <template #column(date)="{ column }">
+        <div>{{ column.label }}</div>
+        <Arrow
+          v-if="column.sortable"
+          :class="$style.sortable"
+        />
+      </template>
+      <template #column(price)="{ column }">
+        <div>{{ column.label }}</div>
+        <Arrow
+          v-if="column.sortable"
+          :class="$style.sortable"
+        />
+      </template>
+      <template
+        v-if="isAdmin"
+        #column(status)="{ column }"
+      >
+        <div>{{ column.label }}</div>
+        <Arrow
+          v-if="column.sortable"
+          :class="$style.sortable"
+        />
+      </template>
       <template #options>
         <More :class="$style.moreBtn" />
       </template>
       <template
+        v-if="isAdmin"
         #cell(select)="{ isSelected }"
       >
         <Checkbox
-          :model-value="isSelected"
           :class="$style.checkbox"
+          :model-value="isSelected"
         />
       </template>
       <template
@@ -70,6 +113,7 @@
         </div>
       </template>
       <template
+        v-if="isAdmin"
         #cell(status)="{ record }"
       >
         <Badge
@@ -82,10 +126,10 @@
     <Table
       v-else-if="switchTableValue === 'grid'"
       :columns="columns"
+      :is-loading="props.isLoading"
       :records="records"
       :selectable="true"
       :type="switchTableValue"
-      :is-loading="props.isLoading"
     >
       <template #image="{ img }">
         <div :class="$style.img">
@@ -146,13 +190,17 @@ import Check from '@/components/core/icon/assets/checked.svg';
 import Badge from '@/components/core/badge/Badge.vue';
 import Checkbox from '@/components/core/checkbox/Checkbox.vue';
 import More from '@/components/core/icon/assets/more.svg';
+import Arrow from '@/components/core/icon/assets/arrowDown.svg';
 import { computed } from 'vue';
 import { modalType } from '@/types/modal';
 import { useModalStore } from '@/stores/modals';
 import { useI18n } from 'vue-i18n';
 import { useProductsStorage } from '@/stores/products';
+import { useProfileStore } from '@/stores/profile';
 
 const productsStorage = useProductsStorage();
+const profileStore = useProfileStore();
+const isAdmin = computed(() => profileStore.isAdmin);
 const props = defineProps<{
   records: [],
   isLoading: boolean,
@@ -163,14 +211,16 @@ const statusMap = {
   active: 'success',
   disabled: 'warning',
 };
-const columns = [
-  {
-    label: '',
-    size: 0.5,
-    value: 'select',
-    sortable: false,
-    selectable: true,
-  },
+const columns = computed(() => [
+  ...(isAdmin.value ? [
+    {
+      label: '',
+      size: 0.5,
+      value: 'select',
+      sortable: false,
+      selectable: true,
+    },
+  ] : []),
   {
     label: 'product name',
     size: 3.5,
@@ -201,17 +251,22 @@ const columns = [
     value: 'price',
     sortable: true,
   },
-  {
-    label: 'status',
-    size: 1.4,
-    value: 'status',
-    sortable: true,
-  },
-];
+  ...(isAdmin.value ? [
+    {
+      label: 'status',
+      size: 1.4,
+      value: 'status',
+      sortable: true,
+    },
+  ] : []),
+]);
 const modalsStore = useModalStore();
 
 const showProductModal = (product: any) => modalsStore.showModal(
-  { type: modalType.PRODUCT, payload: { product } },
+  {
+    type: modalType.PRODUCT,
+    payload: { product },
+  },
 );
 
 </script>
@@ -235,6 +290,7 @@ const showProductModal = (product: any) => modalsStore.showModal(
   justify-content: center;
   margin-top: rem(30px);
 }
+
 .moreBtn {
   position: absolute;
   top: rem(18px);
@@ -258,16 +314,19 @@ const showProductModal = (product: any) => modalsStore.showModal(
   display: flex;
   align-items: center;
 }
+
 .gridCheck {
   width: rem(16px);
   height: rem(16px);
   border-radius: 50%;
   border: rem(1px) solid grey;
 }
+
 .gridRecordData {
   width: 100%;
   padding: rem(16px);
 }
+
 .img {
   position: absolute;
   width: 100%;
@@ -277,21 +336,29 @@ const showProductModal = (product: any) => modalsStore.showModal(
   left: 0;
   z-index: 1;
 }
+
 .gridCheckWrap {
   width: rem(16px);
   height: rem(16px);
   z-index: 5;
 }
+
 .recordFlexDataWrap {
   display: flex;
   justify-content: space-between;
 }
+
 .recordFlexData {
   color: rgb(var(--color-body-dark));
   font-size: rem(14px);
   font-weight: 400;
   margin-top: rem(25px);
 }
+
+.sortable {
+  margin-left: rem(7px);
+}
+
 .recordName {
   width: 100%;
   font-size: rem(14px);

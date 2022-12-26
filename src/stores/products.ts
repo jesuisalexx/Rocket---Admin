@@ -2,12 +2,10 @@ import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import { useStorage } from '@vueuse/core';
 import { showServerErrors } from '@/utils/server';
-import { productsList } from '@/api/endpoints/auth';
+import { productsList } from '@/api/endpoints/products';
 import { useToastStore } from '@/stores/toasts';
 import { useI18n } from 'vue-i18n';
-import {
-  ProductsListDto,
-} from '@/api/dto/auth';
+import { ProductsListDto } from '@/api/dto/products';
 
 export const useProductsStorage = defineStore('products', () => {
   const localSwitchValue = ref(useStorage('switchVal', 'list'));
@@ -17,7 +15,10 @@ export const useProductsStorage = defineStore('products', () => {
   const toastStore = useToastStore();
   const { t } = useI18n();
   const handleProductsList = async (model: ProductsListDto) => {
-    const { result, data } = await productsList(model);
+    const {
+      result,
+      data,
+    } = await productsList(model);
     if (!result) {
       showServerErrors((message: string) => {
         toastStore.showDanger({

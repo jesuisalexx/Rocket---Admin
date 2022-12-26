@@ -5,9 +5,7 @@ import { router } from '@/router';
 import { useAuthToken } from '@/hooks/useAuthToken';
 import { RouteLocationRaw } from 'vue-router';
 import { changePassword, signIn, signUp } from '@/api/endpoints/auth';
-import { profileData, profileUpdate } from '@/api/endpoints/profile';
 import { ChangePasswordDto, SignInDto, SignUpDto } from '@/api/dto/auth';
-import { ProfileUpdateDto } from '@/api/dto/profile';
 import { useToastStore } from '@/stores/toasts';
 import { useI18n } from 'vue-i18n';
 import { showServerErrors } from '@/utils/server';
@@ -168,53 +166,6 @@ export const useSessionStore = defineStore('session', () => {
       data,
     };
   };
-  const handleUpdateProfile = async (model: ProfileUpdateDto) => {
-    const {
-      result,
-      data,
-    } = await profileUpdate(model);
-    if (result) {
-      toastStore.showSuccess(
-        {
-          label: t('auth.success.success'),
-          text: t('auth.success.profile-updated'),
-          duration: 5000,
-        },
-      );
-    } else {
-      showServerErrors((message: string) => {
-        toastStore.showDanger({
-          label: t('auth.error.error'),
-          text: t(message),
-          duration: 5000,
-        });
-      }, data.message);
-    }
-    return {
-      result,
-      data,
-    };
-  };
-
-  const handleProfileData = async () => {
-    const {
-      result,
-      data,
-    } = await profileData();
-    if (!result) {
-      showServerErrors((message: string) => {
-        toastStore.showDanger({
-          label: t('auth.error.error'),
-          text: t(message),
-          duration: 5000,
-        });
-      }, data.message);
-    }
-    return {
-      result,
-      data,
-    };
-  };
 
   const logoutUser = () => {
     removeToken();
@@ -230,8 +181,6 @@ export const useSessionStore = defineStore('session', () => {
     signIn: handleSignIn,
     signUp: handleSignUp,
     changePassword: handleChangePassword,
-    profileUpdate: handleUpdateProfile,
-    getProfile: handleProfileData,
     logoutUser,
   };
 });

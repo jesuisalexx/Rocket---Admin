@@ -23,15 +23,9 @@
                 @click="toggleSelectAll(column.selectable, recordIds)"
               >
                 <slot
-                  :name="`column(${column.value})`"
                   :column="column"
                   :is-selected="isCheckedAll"
-                >
-                  {{ column.label }}
-                </slot>
-                <Arrow
-                  v-if="column.sortable"
-                  :class="$style.sortable"
+                  :name="`column(${column.value})`"
                 />
               </div>
             </div>
@@ -53,10 +47,10 @@
               @click="toggleSelect(column.selectable, record.id)"
             >
               <slot
-                :name="`cell(${column.value})`"
-                :record="record"
                 :data="record[column.value]"
                 :is-selected="record.isSelected"
+                :name="`cell(${column.value})`"
+                :record="record"
               />
               <slot
                 name="options"
@@ -90,28 +84,28 @@
           >
             <div :class="$style.badgeWrap">
               <slot
-                name="badge"
                 :record="record"
+                name="badge"
               />
               <div
                 @click="toggleSelectGrid(record.id)"
               >
                 <slot
-                  name="select"
                   :is-selected="record.isSelected"
+                  name="select"
                 />
               </div>
             </div>
             <div :class="$style.img">
               <slot
-                name="image"
                 :img="record.img"
+                name="image"
               />
             </div>
           </div>
           <slot
-            name="recordData"
             :record="record"
+            name="recordData"
           />
         </div>
       </div>
@@ -124,8 +118,12 @@ import {
   computed, defineProps, ref, watch, watchEffect,
 } from 'vue';
 import { TableColumn, TableRecord } from '@/components/core/table/index';
-import Arrow from '@/components/core/icon/assets/arrowDown.svg';
 import Loader from '@/components/core/loader/Loader.vue';
+import { useProductsStorage } from '@/stores/products';
+import { useProfileStore } from '@/stores/profile';
+
+const productsStorage = useProductsStorage();
+const { isAdmin } = useProfileStore();
 
 const props = defineProps<{
   columns: TableColumn[],
@@ -170,7 +168,10 @@ const toggleSelectGrid = (id: any) => {
   }
 };
 const computedRecords = computed<TableRecord[]>(() => props.records.map((el: any) => (
-  { ...el, isSelected: selectedRecords.value.includes(el.id) }
+  {
+    ...el,
+    isSelected: selectedRecords.value.includes(el.id),
+  }
 )));
 const recordIds = computed(() => props.records.map((record) => record.id));
 const isCheckedAll = ref(false);
@@ -199,20 +200,24 @@ watchEffect(() => {
 
 .root {
 }
+
 .loader {
   width: 100%;
   margin-left: 50%;
 }
+
 .tableHead {
   display: flex;
   border-bottom: rem(1px) solid rgb(var(--color-border));
   padding-bottom: rem(16px);
 }
+
 .columnsWrap {
   display: grid;
-  align-items: flex-end;
+  align-items: center;
   width: 100%;
 }
+
 .columns {
   width: 100%;
   display: flex;
@@ -222,33 +227,36 @@ watchEffect(() => {
   font-size: rem(14px);
   font-weight: 500;
 }
+
 .columnsLabel {
   margin-right: rem(5px);
   display: flex;
 }
-.sortable {
-  margin-left: rem(7px);
-}
+
 .records {
   width: 100%;
   height: rem(64px);
   border-bottom: rem(1px) solid rgb(var(--color-border));
   display: grid;
 }
+
 .recordWrap {
   display: grid;
   cursor: pointer;
   position: relative;
 }
+
 .record {
   display: flex;
   align-items: center;
 }
+
 .gridTable {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: rem(20px);
 }
+
 .gridRecord {
   width: 100%;
   height: rem(367px);
@@ -256,18 +264,22 @@ watchEffect(() => {
   border-radius: rem(17px);
   cursor: pointer;
 }
+
 .gridRecordActive {
   border: rem(1px) solid rgb(var(--color-primary-accent));
 }
+
 .recordCheckbox {
   width: rem(100px);
 }
+
 .recordPic {
   position: absolute;
   width: 89%;
   height: 89%;
   z-index: 1;
 }
+
 .img {
   position: absolute;
   top: 0;
@@ -276,6 +288,7 @@ watchEffect(() => {
   width: 100%;
   height: 100%;
 }
+
 .gridRecordPicWrap {
   position: relative;
   height: rem(267px);
@@ -283,6 +296,7 @@ watchEffect(() => {
   padding: rem(16px);
   border-radius: rem(17px) rem(17px) 0 0;
 }
+
 .badgeWrap {
   position: absolute;
   top: rem(16px);

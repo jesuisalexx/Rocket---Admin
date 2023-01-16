@@ -2,7 +2,7 @@ import { useProductsStorage } from '@/stores/products';
 import { ref } from 'vue';
 import { ProductsListDto } from '@/api/dto/products';
 
-export const useProducts = () => {
+export const useGetProducts = () => {
   const model = ref<ProductsListDto>({
     page: 1,
     perPage: 10,
@@ -21,7 +21,10 @@ export const useProducts = () => {
     isLoading.value = true;
     const { data } = await getProductsList(model.value);
     records.value = data.list.map(
-      (record: any) => ({ ...record, id: record._id }),
+      (record: any) => ({
+        ...record,
+        id: record._id,
+      }),
     );
     total.value = data.total;
     isLoading.value = false;

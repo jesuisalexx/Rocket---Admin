@@ -29,7 +29,6 @@
     "terms-and-conditions": "Terms and Conditions",
     "already-have-an-account": "Already have an account?",
     "login": "Login",
-
     "login-to-your-account": "Login To Your Account",
     "login-with-google": "Login with Google",
     "or-login-with-email": "Or Login with email",
@@ -38,18 +37,14 @@
     "log-in": "Log In",
     "dont-have-an-account": "Dont have an account?",
     "sign-up": "Sign Up",
-
-
     "reset-your-password": "Reset Your Password",
     "reset-password": "Reset Password",
     "old-password": "Old password",
     "new-password": "New password",
     "new-password-confirm": "Confirm new password",
     "go-back-to": "Go back to",
-
     "recover-your-password": "Recover Your Password",
     "recover-password": "Recover Password",
-
     "error": {
       "error": "Error",
       "email-required": "Email is required",
@@ -72,7 +67,9 @@
       "username-required": "Username is required",
       "first-name-required": "First name is required",
       "confirm-password-required": "Confirm Password is required",
-      "password-dont-match": "Password fields don't match"
+      "password-dont-match": "Password fields don't match",
+      "name-required": "Name required",
+      "code-required": "Code required"
     },
     "success": {
       "success": "Success",
@@ -99,7 +96,6 @@
     "username": "Username",
     "change-password": "Change password",
     "submit": "Submit",
-
     "name-placeholder": "Regina",
     "last-name-placeholder": "Cooper",
     "email-placeholder": "cooper@example.com",
@@ -130,9 +126,9 @@
     "quantity": "Quantity",
     "specifications": "Specifications",
     "number": "SKU:",
+    "delete": "Delete",
     "add-to-cart": "Add to Cart",
     "description": "A new dual‑camera system captures more of what you see and love. The fastest chip ever in a smartphone and all‑day battery life let you do more and charge less. And the highest‑quality video in a smartphone, so your memories look better than ever."
-
   },
   "pagination": {
     "showing": "Showing 1 - 10 of 100"
@@ -144,8 +140,10 @@
     "price": "Price",
     "discount": "Discount",
     "cancel": "Cancel",
+    "category": "Category",
     "save": "Save",
-    "tags": "Tags"
+    "tags": "Tags",
+    "code": "Code"
   },
   "drag": {
     "product-images": "Product Images",

@@ -27,11 +27,13 @@ import { computed } from 'vue';
 import { useModalStore } from '@/stores/modals';
 import { Modal, modalType } from '@/types/modal';
 import ProductModal from '@/components/app/productModal/ProductModal.vue';
+import AddProductSidebar from '@/components/core/addProductSidebar/AddProductSidebar.vue';
 
 const modalsStore = useModalStore();
 
 const modalsMap = {
   [modalType.PRODUCT]: ProductModal,
+  [modalType.ADDPRODUCT]: AddProductSidebar,
 };
 
 const modals = computed(() => modalsStore.list.map((modal) => ({
@@ -56,6 +58,7 @@ const closeModal = (modalId: Modal['id']) => {
   align-items: center;
   pointer-events: none;
   z-index: 10;
+  position: relative;
   &.active {
     pointer-events: all;
     .layer {

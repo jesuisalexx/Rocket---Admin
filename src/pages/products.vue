@@ -6,7 +6,7 @@
       v-if="isProductSidebarOpen"
       :class="$style.productSidebar"
     >
-      <AddProductSidebar @close="close" />
+      <AddProductSidebar />
     </div>
     <ProductsPageContainer>
       <template #heading>
@@ -24,7 +24,7 @@
       <template #import-button>
         <Button
           variant="primary-empty"
-          @click="isProductSidebarOpen = true"
+          @click="showProductModal"
         >
           <PlusIcon />
         </Button>
@@ -87,6 +87,8 @@ import { tableType } from '@/components/core/listTypeSwitch';
 import AddProductSidebar from '@/components/core/addProductSidebar/AddProductSidebar.vue';
 import { ref, watch } from 'vue';
 import { useProductsStorage } from '@/stores/products';
+import { useModalStore } from '@/stores/modals';
+import { modalType } from '@/types/modal';
 
 const { t } = useI18n();
 const tabs = [
@@ -108,15 +110,20 @@ const tabs = [
 ];
 const tabsActive = '';
 
-const isProductSidebarOpen = ref(false);
+const modalsStore = useModalStore();
+
+const showProductModal = () => modalsStore.showModal(
+  {
+    type: modalType.ADDPRODUCT,
+  },
+);
+
 const productsStorage = useProductsStorage();
 const switchVal = ref('');
 watch(switchVal, () => {
   productsStorage.changeSwitchValue(switchVal.value);
 });
-const close = () => {
-  isProductSidebarOpen.value = false;
-};
+
 const buttons = [
   {
     icon: 'list2',

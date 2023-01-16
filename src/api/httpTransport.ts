@@ -37,7 +37,11 @@ export const createHttpTransport = ({
     query,
   }: RequestProps): Promise<ApiResponse<Response>> => {
     try {
-      const { status, data, headers } = await api[method](
+      const {
+        status,
+        data,
+        headers,
+      } = await api[method](
         path,
         payload,
         {

@@ -89,7 +89,6 @@ import {
 const props = withDefaults(
   defineProps<InputProps>(),
   {
-    modelValue: '',
     name: undefined,
     label: undefined,
     placeholder: undefined,

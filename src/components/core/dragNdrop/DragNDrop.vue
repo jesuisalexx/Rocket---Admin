@@ -19,8 +19,8 @@
         <div :class="$style.uploadWrap">
           <Upload :class="$style.uploadPic" />
           <input
-            type="file"
             :class="$style.fileUpload"
+            type="file"
             @change="uploadFile"
           >
         </div>
@@ -47,6 +47,7 @@
         >
           <img
             v-if="pic"
+            :class="$style.image"
             :src="pic"
             alt=""
           >
@@ -121,16 +122,18 @@ const removeImg = (id: any) => {
   width: 100%;
   height: auto;
 }
+
 .label {
   font-size: rem(14px);
   font-weight: 400;
   color: rgb(var(--color-body-dark));
 }
+
 .dropzone {
   margin-top: rem(10px);
   width: 100%;
   height: rem(100px);
-  border: rem(1px)dashed rgb(var(--color-body-dark));
+  border: rem(1px) dashed rgb(var(--color-body-dark));
   background-color: rgb(var(--color-background));
   border-radius: rem(12px);
   display: flex;
@@ -138,6 +141,7 @@ const removeImg = (id: any) => {
   justify-content: center;
   align-items: center;
 }
+
 .uploadWrap {
   width: rem(30px);
   height: rem(30px);
@@ -147,6 +151,7 @@ const removeImg = (id: any) => {
   position: relative;
   z-index: 3;
 }
+
 .fileUpload {
   opacity: 0;
   position: absolute;
@@ -154,17 +159,21 @@ const removeImg = (id: any) => {
   z-index: 4;
   cursor: wait;
 }
+
 .uploadPic {
   width: rem(20px);
   height: rem(20px);
   position: absolute;
 }
+
 .dropzoneText {
   display: flex;
 }
+
 .dropzoneActive {
   border: rem(1px) solid rgb(var(--color-heading));
 }
+
 .textWrapper {
   display: flex;
   align-items: center;
@@ -173,13 +182,16 @@ const removeImg = (id: any) => {
   color: rgb(var(--color-body-dark));
   margin-top: rem(5px);
 }
+
 .text {
 }
+
 .button {
   padding-left: rem(7px);
   padding-right: rem(7px);
   margin-top: rem(2px);
 }
+
 .pictures {
   width: 105%;
   height: rem(74px);
@@ -187,11 +199,17 @@ const removeImg = (id: any) => {
   display: flex;
   position: relative;
 }
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
 .picture {
   width: rem(74px);
   height: rem(74px);
   border-radius: rem(10px);
-  border: rem(1px)solid rgb(var(--color-border));
+  border: rem(1px) solid rgb(var(--color-border));
   background-color: rgb(var(--color-background));
   display: flex;
   justify-content: center;
@@ -202,6 +220,7 @@ const removeImg = (id: any) => {
   z-index: 2;
   margin-right: 15px;
 }
+
 .deletePic {
   width: rem(74px);
   height: rem(74px);
@@ -213,12 +232,14 @@ const removeImg = (id: any) => {
   position: absolute;
   z-index: 3;
   transition: 0.3s;
+
   &:hover {
     opacity: 1;
     background-color: rgb(var(--color-hover-background));
     transition: 0.3s;
   }
 }
+
 .bin {
   width: rem(32px);
   height: rem(32px);
@@ -228,6 +249,7 @@ const removeImg = (id: any) => {
   justify-content: center;
   align-items: center;
 }
+
 .pictureFrames {
   width: 100%;
   position: absolute;
@@ -237,11 +259,12 @@ const removeImg = (id: any) => {
   padding-right: rem(22px);
   z-index: 1;
 }
+
 .pictureFrame {
   width: rem(74px);
   height: rem(74px);
   border-radius: rem(10px);
-  border: rem(1px)solid rgb(var(--color-border));
+  border: rem(1px) solid rgb(var(--color-border));
   background-color: rgb(var(--color-background));
   display: flex;
   justify-content: center;

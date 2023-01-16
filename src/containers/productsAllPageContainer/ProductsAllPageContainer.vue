@@ -13,8 +13,7 @@
 </template>
 
 <script lang="ts" setup>
-import Card from '@/components/core/card/Card.vue';
-</script>
+import Card from '@/components/core/card/Card.vue'; </script>
 
 <style lang="scss" module>
 @import "src/assets/styles/utils";
@@ -24,9 +23,11 @@ import Card from '@/components/core/card/Card.vue';
   justify-content: space-between;
   width: 100%;
 }
+
 .pagination {
   margin-top: rem(24px);
 }
+
 .card {
   margin-top: rem(32px);
 }

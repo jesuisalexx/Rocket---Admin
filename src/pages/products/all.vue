@@ -2,13 +2,13 @@
   <ProductsAllPageContainer>
     <template #top-input>
       <Input
-        icon-before="search"
-        icon-after="filter"
         :class="$style.field"
+        icon-after="filter"
+        icon-before="search"
       />
       <Button
-        variant="secondary"
         icon-after="arrowDown3"
+        variant="secondary"
       >
         {{ t('products.actions') }}
       </Button>
@@ -21,8 +21,8 @@
     </template>
     <template #pagination>
       <PaginationBlock
-        :pages="pages"
         :current-page="currentPage"
+        :pages="pages"
         @itemsPerPage="itemsPerPage"
         @setCurrentPage="setCurrentPage"
       />
@@ -37,13 +37,17 @@ import Input from '@/components/core/input/Input.vue';
 import ProductsTable from '@/components/app/productsTable/ProductsTable.vue';
 import Button from '@/components/core/button/Button.vue';
 import { useI18n } from 'vue-i18n';
-import { useProducts } from '@/hooks/useProducts';
+import { useGetProducts } from '@/hooks/useGetProducts';
 import { ref, watch } from 'vue';
 
 const { t } = useI18n();
 const {
-  fetchProducts, records, total, model, isLoading,
-} = useProducts();
+  fetchProducts,
+  records,
+  total,
+  model,
+  isLoading,
+} = useGetProducts();
 
 fetchProducts();
 

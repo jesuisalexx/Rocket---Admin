@@ -30,7 +30,7 @@
   </Card>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { PropType } from 'vue';
 import Card from '@/components/core/card/Card.vue';
 import Loader from '@/components/core/loader/Loader.vue';
@@ -82,6 +82,7 @@ const close = (e: Event) => {
   opacity: 0;
   transition: .2s opacity;
   pointer-events: none;
+
   &.active {
     opacity: 1;
     pointer-events: all;

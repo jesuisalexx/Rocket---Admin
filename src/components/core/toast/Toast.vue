@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 
 import { PropType, toRefs } from 'vue';
 import { Toast } from '@/types/toast';
@@ -76,6 +76,7 @@ if (duration) {
       color: rgb(var(--color-green));
     }
   }
+
   &.danger {
     background-color: rgb(var(--color-overlay-light));
 
@@ -89,7 +90,8 @@ if (duration) {
   }
 }
 
-.content {}
+.content {
+}
 
 .label {
   font-size: rem(18px);

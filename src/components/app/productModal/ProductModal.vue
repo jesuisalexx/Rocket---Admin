@@ -2,9 +2,13 @@
   <Modal v-click-outside="close">
     <ProductsModalContainer>
       <div :class="$style.root">
+<<<<<<< HEAD
         <div :class="$style.imagesWrapper">
 <!--          <PhotoGallery :pictures="product.images" />-->
         </div>
+=======
+        <PhotoGallery :pictures="pics" />
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
         <div
           v-if="isAdmin"
           :class="$style.modalInfo"
@@ -63,7 +67,11 @@
                   variant="primary-extended"
                   @click="submit(product.id)"
                 >
+<<<<<<< HEAD
                   {{ t("productsModal.update") }}
+=======
+                  {{ t("productsModal.add-to-cart") }}
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
                 </Button>
               </div>
               <div :class="$style.favAddBtn">
@@ -181,7 +189,11 @@ const profileStore = useProfileStore();
 const isAdmin = computed(() => profileStore.isAdmin);
 const { t } = useI18n();
 const props = defineProps<{
+<<<<<<< HEAD
   product: {},
+=======
+  product: {}
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
 }>();
 
 const { deleteProduct } = useProductsStorage();
@@ -211,7 +223,12 @@ const pics = [
     val: 'pic4',
   },
 ];
+<<<<<<< HEAD
 
+=======
+const emit = defineEmits(['close']);
+const close = () => emit('close');
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
 const specifications = [
   {
     name: 'Display',
@@ -241,12 +258,19 @@ const specifications = [
   color: white;
   display: flex;
 }
+<<<<<<< HEAD
 //.imagesWrapper {
 //}
 
 //.modalInfo {
 //  margin-left: rem(72px);
 //}
+=======
+
+.modalInfo {
+  margin-left: rem(72px);
+}
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
 
 .heading {
   font-size: rem(20px);

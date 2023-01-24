@@ -6,7 +6,11 @@
       v-if="isProductSidebarOpen"
       :class="$style.productSidebar"
     >
+<<<<<<< HEAD
 <!--      <AddProductSidebar />-->
+=======
+      <AddProductSidebar />
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
     </div>
     <ProductsPageContainer>
       <template #heading>
@@ -24,6 +28,10 @@
       <template #import-button>
         <Button
           variant="primary-empty"
+<<<<<<< HEAD
+=======
+          @click="showProductModal"
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
         >
           <PlusIcon />
         </Button>

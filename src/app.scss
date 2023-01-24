@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import "src/assets/styles";
 
 #nprogress {
@@ -28,3 +29,35 @@
     }
   }
 }
+=======
+@import "src/assets/styles";
+
+#nprogress {
+  .bar {
+    background: lightgray;
+    z-index: 100000;
+  }
+  .spinner {
+    display: none;
+  }
+}
+
+.app {
+  &__toast-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    .toast {
+      pointer-events: all;
+    }
+  }
+  &__modal-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    .modal {
+      pointer-events: all;
+    }
+  }
+}
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1

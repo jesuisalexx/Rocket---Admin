@@ -27,6 +27,7 @@ Trace:
       at processTicksAndRejections (node:internal/process/task_queues:83:21)
 
 npm manifest: 
+<<<<<<< HEAD
   {
     "name": "uikit",
     "version": "0.0.0",
@@ -77,6 +78,58 @@ npm manifest:
       "vite-svg-loader": "^3.2.0",
       "vue-tsc": "^0.34.9 "
     }
+=======
+  {
+    "name": "uikit",
+    "version": "0.0.0",
+    "scripts": {
+      "dev": "vite",
+      "build": "vue-tsc && vite build",
+      "preview": "vite preview",
+      "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src"
+    },
+    "dependencies": {
+      "@ckeditor/ckeditor5-build-classic": "^35.0.1",
+      "@ckeditor/ckeditor5-vue": "^4.0.1",
+      "@vueuse/core": "^8.3.1",
+      "animejs": "^3.2.1",
+      "axios": "^0.26.1",
+      "dotenv": "^16.0.1",
+      "hammerjs": "^2.0.8",
+      "intl-tel-input": "^17.0.16",
+      "maska": "^1.5.0",
+      "nprogress": "^0.2.0",
+      "pinia": "^2.0.13",
+      "uuid": "^8.3.2",
+      "vue": "^3.2.37",
+      "vue-i18n": "^9.2.0-beta.30",
+      "vue-router": "^4.0.14",
+      "vuejs-paginate-next": "^1.0.2",
+      "yup": "^0.32.11"
+    },
+    "devDependencies": {
+      "@types/animejs": "^3.1.4",
+      "@types/hammerjs": "^2.0.41",
+      "@types/node": "^17.0.25",
+      "@types/uuid": "^8.3.4",
+      "@typescript-eslint/eslint-plugin": "^5.20.0",
+      "@typescript-eslint/parser": "^5.20.0",
+      "@vitejs/plugin-vue": "^2.3.1",
+      "eslint": "^8.13.0",
+      "eslint-config-airbnb-base": "^15.0.0",
+      "eslint-import-resolver-alias": "^1.1.2",
+      "eslint-plugin-import": "^2.26.0",
+      "eslint-plugin-vue": "^8.7.0",
+      "eslint-plugin-vuejs-accessibility": "^1.1.1",
+      "sass": "^1.51.0",
+      "typescript": "^4.6.3",
+      "vite": "^2.9.5",
+      "vite-plugin-eslint": "^1.5.2",
+      "vite-plugin-pages": "^0.23.0",
+      "vite-svg-loader": "^3.2.0",
+      "vue-tsc": "^0.34.9 "
+    }
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
   }
 
 yarn manifest: 

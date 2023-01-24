@@ -6,7 +6,11 @@
     >
       <div :class="$style.root">
         <div :class="$style.heading">
+<<<<<<< HEAD
+          {{ t("add-product.add-product") }}
+=======
           {{ t('add-product.add-product') }}
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
         </div>
         <div :class="$style.productName">
           <FormInput
@@ -36,13 +40,24 @@
               :is-loading="isLoading"
               :label="t('add-product.price')"
               icon-before="dollar"
+<<<<<<< HEAD
+              name="price"
+              type="number"
+=======
               type="number"
               name="price"
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
             />
           </div>
         </div>
         <div :class="$style.dragNdrop">
+<<<<<<< HEAD
+          <DragNDrop
+            :model-value="model.images"
+          />
+=======
           <DragNDrop />
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
         </div>
         <div :class="$style.tags">
           <FormInput
@@ -57,14 +72,22 @@
             variant="primary"
             @click="submit"
           >
+<<<<<<< HEAD
+            {{ t("add-product.save") }}
+=======
             {{ t('add-product.save') }}
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
           </Button>
           <Button
             :class="$style.cancelButton"
             variant="secondary"
             @click="close"
           >
+<<<<<<< HEAD
+            {{ t("add-product.cancel") }}
+=======
             {{ t('add-product.cancel') }}
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
           </Button>
         </div>
       </div>

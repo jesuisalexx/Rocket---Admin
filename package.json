@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
+  "name": "rocketAdmin",
+=======
   "name": "uikit",
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",

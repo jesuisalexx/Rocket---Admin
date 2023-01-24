@@ -7,6 +7,13 @@
         :key="pic"
         :class="$style.smallPic"
       >
+<<<<<<< HEAD
+        <img
+          :src="pic"
+          alt=""
+        >
+=======
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
       </div>
     </div>
   </div>
@@ -26,6 +33,10 @@ const props = defineProps<{
   height: rem(556px);
   background-color: #000;
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
 .smallPics {
   margin-top: rem(16px);
   max-width: rem(400px);
@@ -34,6 +45,10 @@ const props = defineProps<{
   justify-content: space-between;
   overflow: hidden;
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
 .smallPic {
   width: rem(90px);
   height: rem(100px);

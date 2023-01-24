@@ -1,0 +1,182 @@
+{
+  "theme": {
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "e-commerce": "E-Commerce",
+    "calendar": "Calendar",
+    "mail": "Mail",
+    "chat": "Сhat",
+    "tasks": "Tasks",
+    "projects": "Projects",
+    "file-manager": "File Manager",
+    "notes": "Notes",
+    "contacts": "Contacts"
+  },
+  "auth": {
+    "create-account": "Create Account",
+    "sign-up-with-google": "Sign Up with Google",
+    "name": "Name",
+    "last-name": "Last Name",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "confirm-password": "Confirm Password",
+    "or-sign-up-with-email": "Or Sign Up with email",
+    "accept": "I accept",
+    "terms-and-conditions": "Terms and Conditions",
+    "already-have-an-account": "Already have an account?",
+    "login": "Login",
+    "login-to-your-account": "Login To Your Account",
+    "login-with-google": "Login with Google",
+    "or-login-with-email": "Or Login with email",
+    "remember-me": "Remember Me",
+    "forgot-password": "Forgot Password?",
+    "log-in": "Log In",
+    "dont-have-an-account": "Dont have an account?",
+    "sign-up": "Sign Up",
+    "reset-your-password": "Reset Your Password",
+    "reset-password": "Reset Password",
+    "old-password": "Old password",
+    "new-password": "New password",
+    "new-password-confirm": "Confirm new password",
+    "go-back-to": "Go back to",
+    "recover-your-password": "Recover Your Password",
+    "recover-password": "Recover Password",
+    "error": {
+      "error": "Error",
+      "email-required": "Email is required",
+      "email-invalid": "Email is invalid",
+      "password-required": "Password is required",
+      "wrong-email-or-password": "Wrong email or password",
+      "password-min-length": "Password must contain at least 8 symbols",
+      "first-name-min-length": "First name must contain at least 2 symbols",
+      "remember-me-empty": "Remember field is empty",
+      "username-min-length": "Username must contain at least 2 symbols ",
+      "first-name-empty": "First name field is empty",
+      "last-name-empty": "Last name field is empty",
+      "username-empty": "username field is empty",
+      "phone-is-empty": "Phone field is empty",
+      "phone-required": "Phone required",
+      "job-title-is-empty": "Job field is empty",
+      "job-required": "Job required",
+      "last-name-min-length": "Last name must contain at least 2 symbols",
+      "last-name-required": "Last name is required",
+      "username-required": "Username is required",
+      "first-name-required": "First name is required",
+      "confirm-password-required": "Confirm Password is required",
+      "password-dont-match": "Password fields don't match",
+      "name-required": "Name required",
+      "code-required": "Code required"
+    },
+    "success": {
+      "success": "Success",
+      "welcome": "Welcome",
+      "profile-updated": "Profile successfully updated",
+      "password-changed": "Password successfully changed"
+    }
+  },
+  "header": {
+    "settings": "Settings",
+    "activity": "Activity",
+    "users": "Users",
+    "name": "John Doe"
+  },
+  "profile": {
+    "profile": "Profile",
+    "name": "Name",
+    "last-name": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "job": "Job",
+    "next-step": "Next Step",
+    "settings": "Settings",
+    "username": "Username",
+    "change-password": "Change password",
+    "submit": "Submit",
+    "name-placeholder": "Regina",
+    "last-name-placeholder": "Cooper",
+    "email-placeholder": "cooper@example.com",
+    "password-placeholder": "Type password",
+    "confirm-password-placeholder": "Confirm password",
+    "old-password-placeholder": "Type old password",
+    "new-password-placeholder": "Type new password",
+    "confirm-new-password-placeholder": "Confirm new password",
+    "username-placeholder": "User12345",
+    "phone-placeholder": "(201) 555-5555",
+    "job-placeholder": "unemployed"
+  },
+  "products": {
+    "products": "Products",
+    "export": "Export",
+    "all": "All",
+    "available": "Available",
+    "disabled": "Disabled",
+    "actions": "Actions"
+  },
+  "selectInput": {
+    "status": "Status"
+  },
+  "telInput": {
+    "phone": "Phone"
+  },
+  "productsModal": {
+    "quantity": "Quantity",
+    "specifications": "Specifications",
+    "number": "SKU:",
+    "delete": "Delete",
+    "update": "Update",
+    "add-to-cart": "Add to Cart",
+    "description": "A new dual‑camera system captures more of what you see and love. The fastest chip ever in a smartphone and all‑day battery life let you do more and charge less. And the highest‑quality video in a smartphone, so your memories look better than ever."
+  },
+  "pagination": {
+    "showing": "Showing 1 - 10 of 100"
+  },
+  "add-product": {
+    "add-product": "Add Product",
+    "product-name": "Product Name",
+    "placeholder": "Iphone 7",
+    "price": "Price",
+    "discount": "Discount",
+    "cancel": "Cancel",
+    "category": "Category",
+    "save": "Save",
+    "tags": "Tags",
+    "code": "Code"
+  },
+  "drag": {
+    "product-images": "Product Images",
+    "drag-n-drop": "Drag and Drop or",
+    "browse": "Browse",
+    "upload": "to upload"
+  },
+  "dashboard": {
+    "overview": "Overview",
+    "last-days": "Last 7 days"
+  },
+  "orders-table": {
+    "last-orders": "Last Orders",
+    "name": "Customer Name",
+    "number": "Order No.",
+    "amount": "Amount",
+    "type": "Payment Type",
+    "date": "Date"
+  },
+  "transactions-card": {
+    "transactions": "Transactions"
+  },
+  "charts": {
+    "sales": "Sales",
+    "statistics": "Statistics",
+    "analytics": "Analytics",
+    "income": "Income",
+    "expense": "Expense",
+    "current-week": "Current Week",
+    "last-week": "Last Week",
+    "total-income": "Total Income",
+    "total-sales": "Total Sales",
+    "new-clients": "New Clients"
+  }
+}

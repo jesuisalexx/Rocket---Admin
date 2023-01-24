@@ -1,0 +1,12 @@
+@mixin useCustomScrollbar() {
+  &::-webkit-scrollbar-track {
+    background: rgb(var(--color-hover-background));
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(var(--color-hover-background));
+    outline: none;
+  }
+  &::-webkit-scrollbar {
+    width: 13px;
+  }
+}

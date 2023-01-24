@@ -1,0 +1,30 @@
+@import "src/assets/styles";
+
+#nprogress {
+  .bar {
+    background: lightgray;
+    z-index: 100000;
+  }
+  .spinner {
+    display: none;
+  }
+}
+
+.app {
+  &__toast-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    .toast {
+      pointer-events: all;
+    }
+  }
+  &__modal-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    .modal {
+      pointer-events: all;
+    }
+  }
+}

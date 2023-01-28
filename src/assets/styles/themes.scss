@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @import "utils";
 @import "variables";
 
@@ -33,39 +32,3 @@
   --color-light-black: #{extractRgb($light-black)};
   --color-hover-background: #{extractRgb($hover-background)};
 }
-=======
-@import "utils";
-@import "variables";
-
-
-.dark {
-  --color-black: #{extractRgb($black)};
-  --color-white: #{extractRgb($white)};
-
-  --color-primary-1: #{extractRgb($gray-3)};
-  --color-primary-2: #{extractRgb($gray-2)};
-  --color-primary-3: #{extractRgb($gray-1)};
-  --color-primary-4: #{extractRgb($black)};
-  --color-primary-accent: #{extractRgb($accent)};
-  --color-primary-accent-dark: #{extractRgb($accent-dark)};
-  --color-border: #{extractRgb($border)};
-  --color-body-light: #{extractRgb($body-light)};
-  --color-body-dark: #{extractRgb($body-dark)};
-  --color-orange: #{extractRgb($orange)};
-  --color-dark-orange: #{extractRgb($dark-orange)};
-  --color-red: #{extractRgb($red)};
-  --color-green: #{extractRgb($green)};
-  --color-dark-green: #{extractRgb($dark-green)};
-  --color-light-green: #{extractRgb($light-green)};
-  --color-yellow: #{extractRgb($yellow)};
-  --color-blue: #{extractRgb($blue)};
-  --color-purple: #{extractRgb($purple)};
-  --color-pink: #{extractRgb($pink)};
-  --color-heading: #{extractRgb($heading)};
-  --color-surface: #{extractRgb($surface)};
-  --color-overlay-light: #{extractRgb($overlay-light)};
-  --color-background: #{extractRgb($background)};
-  --color-light-black: #{extractRgb($light-black)};
-  --color-hover-background: #{extractRgb($hover-background)};
-}
->>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1

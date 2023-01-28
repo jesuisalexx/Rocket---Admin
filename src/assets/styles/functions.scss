@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @use "sass:math";
 
 @function extractRgb($color) {
@@ -21,27 +20,3 @@
     @return $remSize + 0rem;
   }
 }
-=======
-@use "sass:math";
-
-@function extractRgb($color) {
-  @return "#{red($color), green($color), blue($color)}";
-}
-
-@function rem($size, $em: false, $baseFontSize: 16px) {
-  @if (type-of($size) == 'number') {
-    $size: $size + 0px;
-  }
-  @if ($size == 1px or $size == -1px) {
-    @return $size;
-  }
-
-  $remSize: math.div($size, $baseFontSize);
-
-  @if ($em) {
-    @return $remSize + 0em;
-  } @else {
-    @return $remSize + 0rem;
-  }
-}
->>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1

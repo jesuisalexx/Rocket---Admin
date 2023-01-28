@@ -4,11 +4,7 @@
       :class="$style.root"
     >
       <div :class="$style.label">
-<<<<<<< HEAD
         {{ t("drag.product-images") }}
-=======
-        {{ t('drag.product-images') }}
->>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
       </div>
       <div
         :class="{
@@ -30,63 +26,48 @@
         </div>
         <div :class="$style.textWrapper">
           <div :class="$style.text">
-<<<<<<< HEAD
-            {{ t("drag.drag-n-drop") }}
-=======
             {{ t('drag.drag-n-drop') }}
->>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
           </div>
           <Button
             :class="$style.button"
             variant="primary-minimalistic"
           >
-<<<<<<< HEAD
             {{ t("drag.browse") }}
           </Button>
           <div :class="$style.text">
             {{ t("drag.upload") }}
-=======
-            {{ t('drag.browse') }}
-          </Button>
-          <div :class="$style.text">
-            {{ t('drag.upload') }}
->>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
           </div>
         </div>
-      </div>
-      <div :class="$style.pictures">
-        <div
-<<<<<<< HEAD
-          v-for="(pic, index) in localValue"
-=======
-          v-for="(pic, index) in images"
->>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
-          :key="index"
-          :class="$style.picture"
-        >
-          <img
-            v-if="pic"
-            :class="$style.image"
-            :src="pic"
-            alt=""
-          >
+        <div :class="$style.pictures">
           <div
-            :class="$style.deletePic"
+            v-for="(pic, index) in localValue"
+            :key="index"
+            :class="$style.picture"
           >
-            <div
-              :class="$style.bin"
-              @click="removeImg(index)"
+            <img
+              v-if="pic"
+              :class="$style.image"
+              :src="pic"
+              alt=""
             >
-              <DeleteIcon />
+            <div
+              :class="$style.deletePic"
+            >
+              <div
+                :class="$style.bin"
+                @click="removeImg(index)"
+              >
+                <DeleteIcon />
+              </div>
             </div>
           </div>
-        </div>
-        <div :class="$style.pictureFrames">
-          <div
-            v-for="frame in frames"
-            :key="frame"
-            :class="$style.pictureFrame"
-          />
+          <div :class="$style.pictureFrames">
+            <div
+              v-for="frame in frames"
+              :key="frame"
+              :class="$style.pictureFrame"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -97,7 +78,6 @@
 import Upload from '@/components/core/icon/assets/upload.svg';
 import Button from '@/components/core/button/Button.vue';
 import DeleteIcon from '@/components/core/icon/assets/delete.svg';
-<<<<<<< HEAD
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -114,27 +94,13 @@ const localValue = computed({
   get: () => props.modelValue,
   set: (value: any) => emit('update:modelValue', value),
 });
-=======
-import { ref } from 'vue';
-import { useI18n } from 'vue-i18n';
 
->>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
 const { t } = useI18n();
 const isActive = ref(false);
 const toggleActive = () => {
   isActive.value = !isActive.value;
 };
 const file = ref('');
-<<<<<<< HEAD
-const imgSrc = ref('');
-const drop = (e: any) => {
-  if (localValue.value.length < 5) {
-    file.value = e.target.files[0];
-    isActive.value = false;
-    imgSrc.value = URL.createObjectURL(file.value);
-    localValue.value.push(imgSrc.value);
-=======
-const images = ref([]);
 const imgSrc = ref('');
 const drop = (e: any) => {
   if (images.value.length < 5) {
@@ -142,36 +108,24 @@ const drop = (e: any) => {
     isActive.value = false;
     imgSrc.value = URL.createObjectURL(file.value);
     images.value.push(imgSrc.value);
->>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
   } else {
     isActive.value = false;
   }
 };
 const uploadFile = (e: any) => {
-<<<<<<< HEAD
   if (localValue.value.length < 5) {
     file.value = e.target.files[0];
     isActive.value = false;
     imgSrc.value = URL.createObjectURL(file.value);
     localValue.value.push(imgSrc.value);
-=======
-  if (images.value.length < 5) {
-    file.value = e.target.files[0];
-    isActive.value = false;
-    imgSrc.value = URL.createObjectURL(file.value);
-    images.value.push(imgSrc.value);
->>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
   } else {
     isActive.value = false;
   }
 };
 const frames = [1, 2, 3, 4, 5];
 const removeImg = (id: any) => {
-<<<<<<< HEAD
   localValue.value.splice(id, 1);
-=======
   images.value.splice(id, 1);
->>>>>>> d16a9bf58825136f5c26c8b878b116d80ced4fa1
 };
 </script>
 
